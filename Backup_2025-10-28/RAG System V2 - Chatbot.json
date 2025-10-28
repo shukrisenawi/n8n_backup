@@ -1,0 +1,258 @@
+{
+  "createdAt": "2025-10-04T01:43:47.253Z",
+  "updatedAt": "2025-10-04T01:43:47.000Z",
+  "id": "k7UTkdCuIL2AsW1m",
+  "name": "RAG System V2 - Chatbot",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f9658c8d-b74d-4223-a59d-5d9521327d68",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        112
+      ],
+      "webhookId": "d49a228d-703d-4a93-8e7a-ed173500fc6e",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "f489ef26-e948-4a0a-ae6d-6c3806a1cd6f",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        432,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "f0e88f1d-80a5-4385-bebc-8433e1cfe21d",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.1,
+      "position": [
+        592,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "name": "database",
+        "description": "retrieves data about projects"
+      },
+      "id": "9ed58efb-f070-492e-8e6a-5ff4321543e9",
+      "name": "Vector Store Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        768,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {}
+      },
+      "id": "56d43217-2566-4477-8874-abe9585c78eb",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        624
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "407756b4-adfa-48f7-85af-2cd22a1ddc7d",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "0309e831-3abc-4afa-b8cc-f96f9e1cf72d",
+      "name": "Supabase Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        624,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# RAG AI Agent\n",
+        "height": 847.7499999999999,
+        "width": 1262.1803336071664
+      },
+      "id": "2e970dea-de36-4c4b-87e0-275e7692ed5b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "2dca0f6e-9259-41e5-885f-5e9351146914",
+      "name": "New RAG Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        544,
+        112
+      ]
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "81ea6d86-4146-4f91-8c55-9814689734b9",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-04T01:43:47.257Z",
+      "updatedAt": "2025-10-04T01:43:47.257Z",
+      "role": "workflow:owner",
+      "workflowId": "k7UTkdCuIL2AsW1m",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-10-04T01:43:37.822Z",
+      "updatedAt": "2025-10-04T01:43:37.822Z",
+      "id": "KOj9OwmUHX8vxex9",
+      "name": "RAG"
+    },
+    {
+      "createdAt": "2025-10-04T01:43:37.826Z",
+      "updatedAt": "2025-10-04T01:43:37.826Z",
+      "id": "VucNYMr44NLcrkPg",
+      "name": "template"
+    },
+    {
+      "createdAt": "2025-10-04T01:43:37.830Z",
+      "updatedAt": "2025-10-04T01:43:37.830Z",
+      "id": "pjsd3s9Z9TacUea5",
+      "name": "chatbot"
+    }
+  ]
+}
