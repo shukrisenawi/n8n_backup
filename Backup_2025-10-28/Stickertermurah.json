@@ -1,0 +1,2837 @@
+{
+  "createdAt": "2025-08-17T02:53:50.480Z",
+  "updatedAt": "2025-09-29T10:01:16.000Z",
+  "id": "ZviNDCgCCNGqs5qv",
+  "name": "Stickertermurah",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2820,
+        980
+      ],
+      "id": "2faf3267-59be-442a-8903-32362efa1099",
+      "name": "When chat message received",
+      "webhookId": "a219e416-83ec-4d9e-949a-b3dc33b717a5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "options": {
+          "systemMessage": "=System Message (SOP AI Agent - Printing Sticker Mirrorcote)\n\nPeranan AI Agent:\nAI Agent ini hanya bertanggungjawab membantu pelanggan berkaitan harga, design, dan payment sahaja mengikut ketetapan berikut.\n\n1. Harga\n\n- Jika ada yang tanya nama siapa gunakan tool dont_know_tool, kemudian jangan bls apa2 pada customer.. nnt admin akan balas manual\n- Semua maklumat harga mesti dirujuk daripada Google Sheet ('Harga Sticker') yang telah ditetapkan.\n- AI tidak dibenarkan mereka, mengubah, atau meneka harga.\n- Jika harga tidak wujud dalam Google Sheet, AI perlu jawab:\n\"Untuk harga ini, pihak kami akan maklumkan kemudian ya 😊.\"\n- Jika customer tanya berapa harga sticker jangan bg semua senarai harga.. tanya dulu saiz.. bg harga ikut saiz, kalau customer xbg, anda bg harga untuk 100pcs\n\n2. Design\n\n- AI hanya boleh memberikan link contoh design yang telah disediakan.\n- AI tidak dibenarkan menerangkan secara terperinci atau mencadangkan design baru.\n- Jika pelanggan bertanya soalan lanjut tentang design, AI perlu jawab:\n\"Untuk design, pihak kami akan teruskan komunikasi sendiri ya 👍.\"\n\n3. Payment\n\n- AI hanya bertugas untuk menyemak status pembayaran berdasarkan data yang diberikan.\n- Jika pembayaran sah, AI jawab ringkas:\n\"Pembayaran anda telah diterima. Terima kasih kerana membuat bayaran 😊.\"\n- Jika belum ada rekod bayaran, AI jawab:\n\"Pembayaran anda masih belum direkodkan. Mohon semak semula ya 🙏.\"\n\n4. Soalan Lain\n\n- AI tidak dibenarkan menjawab soalan di luar skop (harga, design, payment).\n- Jawapan AI mestilah:\n\"Untuk pertanyaan ini, pihak kami akan jawab secara terus ya.\"\n\n5. Etika Komunikasi\n\n- Sentiasa gunakan bahasa mesra, sopan, dan positif.\n- Gunakan emoji yang sesuai (jangan berlebihan).\n- Jawapan mestilah ringkas, padat, dan mudah difahami.\n- Elakkan bahasa kasar, teknikal yang rumit, atau ayat panjang berjela.\n- Sentiasa beri respon yang buat pelanggan rasa dihargai.\n\n6. Rujukan \n-  Bank : Bank Islam, No Bank : 02132010007605, Penama : SH BEST CREATIVE DESIGN\n- QR Code : https://drive.google.com/uc?id=1hzPA968CpdIkHmQSkwirPHAMgnq81-os"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        1200
+      ],
+      "id": "ff848e29-50db-495f-9cee-2db524266332",
+      "name": "AI Chat",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -580,
+        1500
+      ],
+      "id": "530aa6fc-5180-45c9-8786-695d7c045b7a",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"mesej\": \"hi.. buat apa\",\n\t\"label\": \"lain-lain\",\n    \"nama\" : \"Mohamad Shukri Bin Senawi\",\n    \"alamat\" : \"No 1 Simpang 3, Beris Jaya, 08200 Sik, Kedah\",\n    \"negeri\" : \"kedah\",\n    \"no_tel\" : \"019-5168839\",\n    \"jumlah\" : \"RM27\",\n    \"produk\" : \"nama produk dan kuantiti, contoh : Jamu Asli 5 botol, Aurora Terapi Kayu Putih  6 botol\",\n    \"status\" : \"Bayar\",\n    \"tarikh tempahan\" : \"22-8-2025 08:30 AM\",\n    \"kurier\" : \"J&T\",\n    \"belian\" : [{\"produk\":\"Jamu Asli\", \"kuantiti\":5},{\"produk\":\"Aurora Terapi Kayu Putih\", \"kuantiti\":6}],\n    \"catatan\" : \"Pelanggan {no hp pelanggan}, masalah pelanggan.. contoh marah sebab makan jamu sakit perut atau sebagainya yang dirasakan perlu untuk sy tahu\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -40,
+        1840
+      ],
+      "id": "fc9a779a-94f5-4a67-b924-080341329dd7",
+      "name": "Structured Output Parser",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.output; // ambil text asal dari AI\n\n// Step 1: tukar \\n\\n jadi \\n\nlet text = input.replace(/\\n\\n/g, \"\\n\");\n\n// Step 2: split ikut \\n\nlet lines = text.split(\"\\n\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        1180
+      ],
+      "id": "0e3d8c46-ac2e-4579-b167-27c4fe10be1c",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        40,
+        1180
+      ],
+      "id": "b5f0632a-304f-42ec-8e63-6f0deb443ccf",
+      "name": "pecahkan mesej"
+    },
+    {
+      "parameters": {
+        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        1200
+      ],
+      "id": "9ff2040e-9696-4a44-9ab3-17b94b70066a",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1240,
+        1200
+      ],
+      "id": "ada49c4d-1de8-419c-9518-a7dce52d19a0",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.text.trim();\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        620,
+        1480
+      ],
+      "id": "7f6e1a9d-69c4-4938-ba40-b7be7eebbad5",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "chatId": "={{ $json.from }}",
+        "messageId": "={{ $json.message_id }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -2420,
+        980
+      ],
+      "id": "623446eb-29f0-4e41-93b9-18b7908e1153",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        680,
+        1280
+      ],
+      "id": "e6bd0e38-64fb-4636-b39e-4c119e55ce16",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n\ntry {\n  item.json.message = $('WAHA Trigger').first().json.payload.body;\n  item.json.session = $('WAHA Trigger').first().json.session;  \n  item.json.sessionId = $('WAHA Trigger').first().json.payload.id;\n  item.json.from = $('WAHA Trigger').first().json.payload.from;\n  item.json.message_id = $('WAHA Trigger').first().json.payload.id;\n  item.json.hasMedia = $('WAHA Trigger').first().json.payload.hasMedia;\n  item.json.mimetype = $('WAHA Trigger').first().json.payload.media.mimetype;\n} catch (e) {\n  item.json.message_post = $input.first().json.chatInput;\n  item.json.session = \"Jamu_Asli\";\n  item.json.sessionId = $input.first().json.sessionId;\n  item.json.from = \"60195168839@c.us\";\n  item.json.message_id = \"false_60195168839@c.us_C6E412CBF6C1881C8B96887FF73B24E7\";\n  item.json.hasMedia = false;\n  item.json.mimetype = null;\n}\n  \n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2540,
+        980
+      ],
+      "id": "4b380366-e6c3-4346-b4cd-50d4893beb0e",
+      "name": "var"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        1280
+      ],
+      "id": "5bdd7d88-21eb-4356-9c7a-06bb434c8b32",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1100,
+        1280
+      ],
+      "id": "2b8b5533-6d23-4915-83ec-c6144fc7e37a",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "={{ $('var').item.json.sessionId }}",
+              "renameField": true,
+              "outputFieldName": "sessionId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        1200
+      ],
+      "id": "1e104d7f-e29b-40d7-a866-42fc9246cc54",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        960,
+        1280
+      ],
+      "id": "6026f1e9-10d1-4cfe-9fe9-962a2dd6d8b9",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[1]??$json.output[0] }}\"\n}",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        840,
+        1480
+      ],
+      "id": "77bfbab6-02fc-4c87-8a95-ab80d8be450e",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        1840
+      ],
+      "id": "56766c9f-77b3-4128-b16e-6dd29e5dcc9b",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "databaseName": "mieayam7140_JamuAsli",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        1500
+      ],
+      "id": "34dfd1b8-8f3d-4e45-85ae-8d5ef3184998",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "93472987-619b-4ba7-97ea-5b15e2610257",
+              "leftValue": "={{ $('var').item.json.hasMedia }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2100,
+        980
+      ],
+      "id": "514476fa-b53f-49b7-b450-695d54ff5e49",
+      "name": "Text Only"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('WAHA Trigger').item.json.payload.mediaUrl }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wahaApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2020,
+        1460
+      ],
+      "id": "a48f0c27-ef1d-45a7-b427-81cb0e79826b",
+      "name": "Download Media",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ca671463-78af-4c55-9c05-40d71de8dbea"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6a17eda7-37ae-4742-a740-4ca7a5641f6b",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/jpeg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR JPEG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c25d352-cee8-4f79-b0bf-d64f448c75b9",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/png",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR PNG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "05076dfd-2324-402c-8ce4-70f9ab75efed",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "audio/ogg;",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AUDIO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1760,
+        1300
+      ],
+      "id": "16fdf6b4-197b-41ea-89d8-16922a866c00",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -1440,
+        1360
+      ],
+      "id": "003e2a9a-de65-428d-ac0f-98fcc4b23a38",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -1440,
+        1160
+      ],
+      "id": "e05edbfb-09d9-4392-92a0-0176703b0965",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fa890ae8-3a05-445e-843c-ad6a95f4b265",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1240,
+        1180
+      ],
+      "id": "c4d7788e-3f05-46e2-8037-4b34d64c18f2",
+      "name": "PDF Map"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1020,
+        1180
+      ],
+      "id": "40843dfa-b8c6-4ecf-a56d-b36fa72c3de5",
+      "name": "Output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3c0ccd84-71f2-49a8-8d9c-0cdd3cd23d46",
+              "name": "output",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1240,
+        1360
+      ],
+      "id": "f5cdfbd6-2155-42c6-bd52-36d7a6fb61ad",
+      "name": "Image Map"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2feafedd-5e7b-40e1-b4fa-fc2ba85d3852",
+              "name": "output",
+              "value": "={{ $('var').item.json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1240,
+        960
+      ],
+      "id": "a06bf3b5-7bd5-4aed-a046-192533d95065",
+      "name": "Text Map"
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -1440,
+        1560
+      ],
+      "id": "c3f39408-a93d-4fba-8fcf-ede0af598327",
+      "name": "Transcribe audio or video",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "3zIFnCxvzGnMkW2J",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9dbd50cc-dafc-4a22-be9b-0417d96ba328",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1240,
+        1560
+      ],
+      "id": "040430b4-0b81-4b5a-b096-19dd561bc42b",
+      "name": "Audio Map"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -2260,
+        980
+      ],
+      "id": "c992e216-82e3-43d9-a0df-a28c6c77507b",
+      "name": "Loop Over Items3"
+    },
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -3560,
+        760
+      ],
+      "id": "b6e75648-107e-4997-aeb1-0aa0f04de925",
+      "name": "WAHA Trigger",
+      "webhookId": "3a545eee-5bbd-40e3-9a71-9c747e90c694"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+              "leftValue": "={{ $('Config').item.json.payload.from }}",
+              "rightValue": "@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3220,
+        1100
+      ],
+      "id": "d40d4a16-1f1d-4fab-bdb8-d61bd27d504b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e12dfe8d-2801-4d83-aa06-889942256dd4",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "60195168839@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "1c14e781-f085-4a7b-8b6a-737f6a934c6c",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "601120913823@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3540,
+        620
+      ],
+      "id": "18880cbc-fb78-49de-adf2-a69fe8f3e46f",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $('AI Chat').params.options.systemMessage }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        160
+      ],
+      "id": "39c7398e-f257-4b3a-b9c7-6fb61a24cd6e",
+      "name": "AI Cek Pembayaran"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ca671463-78af-4c55-9c05-40d71de8dbea"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6a17eda7-37ae-4742-a740-4ca7a5641f6b",
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "image/jpeg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR JPEG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c25d352-cee8-4f79-b0bf-d64f448c75b9",
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "image/png",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR PNG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -880,
+        840
+      ],
+      "id": "46b101b1-bbf5-46f1-b0d1-e8fc0b3b8920",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -680,
+        400
+      ],
+      "id": "12b093f8-3556-47a0-8991-68881dee0b31",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "databaseName": "mieayam7140_JamuAsli",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        400
+      ],
+      "id": "d89de9b8-d100-42d3-9503-77cf5ac38fa9",
+      "name": "MongoDB Chat Memory1",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"bank\": \"Maybank\",\n  \"jumlah\": \"150.00\",\n  \"tarikh\": \"2025-08-23 14:22\",\n  \"status\": \"Berjaya\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -340,
+        400
+      ],
+      "id": "7cf84e83-02e1-4e2a-b307-7ef994aa76ae",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        520
+      ],
+      "id": "5dc2c014-a729-4f83-8770-202bb6787dcc",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "383e7963-d253-46bf-b1af-1b1fdae91211",
+              "leftValue": "={{ $json.output.status }}",
+              "rightValue": "Berjaya",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7a967313-f66f-4193-b4bb-dfadcb87f9ba",
+              "leftValue": "={{ $json.output.status }}",
+              "rightValue": "Success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        140
+      ],
+      "id": "cf765cff-9af5-47ed-8600-52c590162b9b",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1d1aa326-93fd-49bf-bc10-22442e7ec6b0",
+              "name": "message",
+              "value": "Terima kasih, bayaran anda telah diterima ✅",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        120
+      ],
+      "id": "348b541b-c6e5-420b-b599-770862e5ff53",
+      "name": "Message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "62f78894-6b71-427f-95ed-703aabd77371",
+              "name": "message",
+              "value": "Maaf, bukti pembayaran tidak jelas. Sila hantar semula.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        280
+      ],
+      "id": "588a0aa8-b56a-4c0a-9774-89af234aacbe",
+      "name": "Message1"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        500,
+        480
+      ],
+      "id": "4e5a0b6d-d44e-404b-9508-29a57030578a",
+      "name": "Output Message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "69a7d205-9220-4e3a-a6ab-64d5bf4f6b66",
+              "leftValue": "={{ $('var').item.json.mimetype }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "88541a59-f6ac-4bd6-9758-528409235b80",
+              "leftValue": "={{ $('var').item.json.mimetype }}",
+              "rightValue": "audio",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -840,
+        1200
+      ],
+      "id": "bcaede0f-0a2d-49dd-ab48-0ea37793ffb4",
+      "name": "Jika text"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -580,
+        880
+      ],
+      "id": "591ab1e4-a29f-4485-91d1-637ac4c7b7e3",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "databaseName": "mieayam7140_JamuAsli",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        880
+      ],
+      "id": "9b685e9d-208d-4569-88a2-610132342197",
+      "name": "MongoDB Chat Memory2",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{ \"jenis\": \"biasa\", \"mesej\":\"terima kasih\" }",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -280,
+        880
+      ],
+      "id": "21af13c5-656f-4f20-8492-1f78e9561300",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -360,
+        1020
+      ],
+      "id": "fab9ffaa-0d53-4e9e-9ad8-ae3a8930aa33",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "383e7963-d253-46bf-b1af-1b1fdae91211",
+              "leftValue": "={{ $json.output.jenis }}",
+              "rightValue": "resit",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        660
+      ],
+      "id": "d6fbd15e-7254-4b86-8114-95c4b1305dcc",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $('AI Chat').params.options.systemMessage }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        660
+      ],
+      "id": "e2a2c193-f1a9-4119-a3d3-55d58954dd60",
+      "name": "AI Cek Resit"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "={{ $('var').item.json.sessionId }}",
+              "renameField": true,
+              "outputFieldName": "sessionId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        160
+      ],
+      "id": "2fc539dd-b321-4dab-8831-08278bc8fc0d",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        680,
+        480
+      ],
+      "id": "1918043f-92f2-40ca-9403-9893519047a0",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        840,
+        480
+      ],
+      "id": "bba4f0b0-e24d-47a9-a5b0-8c856b3e9b6a",
+      "name": "Wait1",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $('Output Message').item.json.message }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1120,
+        480
+      ],
+      "id": "e0bf11ba-82ca-4732-9ad9-c153b6345d12",
+      "name": "Send a text message1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        980,
+        480
+      ],
+      "id": "4e78381c-ed17-4e17-b10e-429ff1ece7b1",
+      "name": "Stop Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "95a729a0-4066-4dca-b91b-6423e1fad25f",
+              "name": "payload.body",
+              "value": "={{ $('var').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "28305e25-c6e7-41af-b3ae-550c5aadcbf3",
+              "name": "payload.media.mimetype",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+              "type": "string"
+            },
+            {
+              "id": "fd575436-2501-48b3-98b3-546d1518e5d7",
+              "name": "payload.media.url",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "84cd5f98-4ad0-4d18-8292-32005fc4a716",
+              "name": "payload.body",
+              "value": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "type": "string"
+            },
+            {
+              "id": "f9f8be5a-99b9-43c0-898b-8ee20b2c7593",
+              "name": "payload.timestamp",
+              "value": "={{ $('WAHA Trigger').item.json.payload.timestamp }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2020,
+        1260
+      ],
+      "id": "b75934d8-266b-48ba-8cc7-f73728554034",
+      "name": "Image Data"
+    },
+    {
+      "parameters": {
+        "description": "Tolong semak imej ini. Adakah ini:\n(a) resit bayaran,\n(b) gambar biasa (produk, orang, dll.)?\n\nJawab dengan format JSON:\n{ \"jenis\": \"resit\", \"mesej\":\"mesej yang hendak disampai kan\" } atau { \"jenis\": \"biasa\", \"mesej\":\"mesej yang hendak disampai kan\" }"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        880
+      ],
+      "id": "cdcd34c0-5d21-418d-893e-c75d552a7598",
+      "name": "Think1"
+    },
+    {
+      "parameters": {
+        "description": "Ini adalah bukti pembayaran. Tolong semak:\n1. Nama bank\n2. Jumlah bayaran (RM)\n3. Tarikh & masa\n4. Status transaksi (Berjaya/Gagal)\n\nJawab dalam format JSON:\n{\n  \"bank\": \"\",\n  \"jumlah\": \"\",\n  \"tarikh\": \"\",\n  \"status\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        400
+      ],
+      "id": "89c78e67-7d66-40fb-8eed-10fdb699e115",
+      "name": "Think2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c20485c1-787b-42cc-b04c-3e64a47e21bc",
+              "name": "message",
+              "value": "={{ $json.output.mesej }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        760
+      ],
+      "id": "191cac4b-651a-4cdc-930c-b695185c3917",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "={{ $('Config').item.json.payload.from }}"
+            },
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -3220,
+        1260
+      ],
+      "id": "be182e16-1708-4821-a757-e2246a2214b5",
+      "name": "Cek Prospek",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "={{ $('Config').item.json.payload.from }}"
+            },
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            },
+            {
+              "column": "on",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -3200,
+        1600
+      ],
+      "id": "e84291a1-8a14-4e22-a0aa-1bf2263e13a6",
+      "name": "Add Prospek",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54ff3f6b-3c9d-4768-928d-dac7cd091679",
+              "leftValue": "={{ $json.no_tel }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3220,
+        1440
+      ],
+      "id": "d658292a-e3aa-4c31-8d77-f2a1a9f36325",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.bisnesId = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3220,
+        780
+      ],
+      "id": "b6062319-05b6-436d-afb7-d911ab27ba98",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "jsCode": "response = {\"response\": \"nnt sy bgtau lain.\"}\nreturn response;"
+      },
+      "id": "2b9b686d-9740-46e2-8c7f-527452b25a22",
+      "name": "Confirm that we've messaged a human",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1000,
+        1960
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc",
+          "mode": "list",
+          "cachedResultName": "Harga Sticker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -240,
+        1500
+      ],
+      "id": "2bcd1fbb-17e1-469c-ac68-bd6d0c0b0885",
+      "name": "Harga Sticker",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            },
+            {
+              "column": "on",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -3220,
+        940
+      ],
+      "id": "29e4a5ca-5f1a-41d9-8d95-69fe1dff30cb",
+      "name": "Cek On",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1417b396-d54f-4306-88a3-cfa9cda90a48",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3020,
+        1620
+      ],
+      "id": "52bd8cbc-43ea-4d7d-be29-4423a2329e78",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5c7e4d86-77eb-4108-bded-54f099986c36",
+              "leftValue": "={{ $('Cek Prospek').item.json.on }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2840,
+        1420
+      ],
+      "id": "eb47036c-46f1-49d5-9b75-ede11ffe6460",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -840,
+        1760
+      ],
+      "id": "142c4b53-6fc7-41aa-96b1-73307d301820",
+      "name": "Start Typing2",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1)}}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -680,
+        1760
+      ],
+      "id": "b682ec87-58b8-4258-86e5-22814025da91",
+      "name": "Wait2",
+      "webhookId": "de656d78-5fa0-4660-b19f-2e17e0de3077"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -520,
+        1760
+      ],
+      "id": "c76a3e9a-5572-4f04-a975-a8c068a52108",
+      "name": "Send a text message2",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1100,
+        1760
+      ],
+      "id": "9023cf9a-fdd8-4c4a-9881-cfd08154bdcb",
+      "name": "When Executed by Another Workflow",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "dont_know_tool",
+        "description": "Use this tool if you don't know the answer to the user's question, or if you're not very confident about your answer.",
+        "workflowId": "={{ $workflow.id}}",
+        "fields": {
+          "values": [
+            {
+              "name": "chatInput",
+              "stringValue": "={{ $('var').item.json.message }}"
+            }
+          ]
+        }
+      },
+      "id": "c878c9ce-df3c-47eb-b1d6-87660b8e46fc",
+      "name": "Test Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        1500
+      ]
+    },
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        2120
+      ],
+      "id": "b7c9a7ac-bd4b-4035-8cb7-8133e1924078"
+    },
+    {
+      "parameters": {
+        "chatId": "{{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "name": "Notify Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        700,
+        2120
+      ],
+      "id": "e5662450-b7a9-4935-81ce-38629b9d2784",
+      "webhookId": "13c616bf-a3ad-4035-998a-1dfe6021b89f",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hello, this workflow is made by khaisa. please visit shop.khaisa.com for more tailored support\n\n// Perfect error access untuk N8N v1.99.1\nconst errorData = $input.first().json;\nconst execution = errorData.execution;\nconst workflow = errorData.workflow;\nconst error = execution.error;\n\nconst message = `🚨 <b>WORKFLOW ERROR</b>\\n\\n` +\n  `📋 Workflow: <b>${workflow.name}</b>\\n` +\n  `⚙️ Node: <code>${error.node.name}</code>\\n` +\n  `❌ Error: <code>${error.message}</code>\\n` +\n  `📝 Description: <i>${error.description}</i>\\n` +\n  `🕐 Waktu: ${new Date(error.timestamp).toLocaleString('id-ID')}\\n` +\n  `🔍 Execution: <a href=\"${execution.url}\">${execution.id}</a>\\n` +\n  `⚠️ Level: ${error.level.toUpperCase()}`;\n\nreturn {\n  message: message,\n  parse_mode: 'HTML',\n  chat_id: '621412350'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        2120
+      ],
+      "id": "aef24bfe-0daf-4e48-be8e-5fe2025533b6",
+      "name": "Prepare Messages"
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Chat": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        []
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "var": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Only": {
+      "main": [
+        [
+          {
+            "node": "Text Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Image Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Media": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcribe audio or video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Image Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "PDF Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Output": {
+      "main": [
+        [
+          {
+            "node": "Jika text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Text Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe audio or video": {
+      "main": [
+        [
+          {
+            "node": "Audio Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Text Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Cek Prospek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Cek Pembayaran": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Output Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message1": {
+      "main": [
+        [
+          {
+            "node": "Output Message",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Output Message": {
+      "main": [
+        [
+          {
+            "node": "Start Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika text": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Cek Resit": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Data": {
+      "main": [
+        [
+          {
+            "node": "Download Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Output Message",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Cek Prospek": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Prospek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Prospek": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Cek On",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Harga Sticker": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek On": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing2": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Confirm that we've messaged a human",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Messages": {
+      "main": [
+        [
+          {
+            "node": "Notify Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "100d2f64-b384-4b82-adb7-2b5c76d6fc5c",
+  "triggerCount": 2,
+  "shared": [
+    {
+      "createdAt": "2025-08-17T02:53:50.484Z",
+      "updatedAt": "2025-08-17T02:53:50.484Z",
+      "role": "workflow:owner",
+      "workflowId": "ZviNDCgCCNGqs5qv",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-09-06T03:02:41.200Z",
+      "updatedAt": "2025-09-06T03:02:41.200Z",
+      "id": "3uWBdzMEdI5rmz0n",
+      "name": "project"
+    }
+  ]
+}
