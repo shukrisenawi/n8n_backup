@@ -1,0 +1,3718 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Chat": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "var": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Jika text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gambar Lain": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Only": {
+      "main": [
+        [
+          {
+            "node": "Text Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Image Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Media": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcribe audio or video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Image Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "PDF Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Image Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Text Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe audio or video": {
+      "main": [
+        [
+          {
+            "node": "Audio Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Text Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Output": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Cek Pembayaran": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Simpan Tempahan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message1": {
+      "main": [
+        [
+          {
+            "node": "Output Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Output Message": {
+      "main": [
+        [
+          {
+            "node": "Start Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika text": {
+      "main": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Cek Resit": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Data": {
+      "main": [
+        [
+          {
+            "node": "Download Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Output Message",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Simpan Tempahan": {
+      "main": [
+        [
+          {
+            "node": "Senarai Belian Produk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Admin": {
+      "main": [
+        [
+          {
+            "node": "Start Typing2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Belian Produk": {
+      "main": [
+        [
+          {
+            "node": "Asingkan Produk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan Produk": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cek Stok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Stok": {
+      "main": [
+        [
+          {
+            "node": "Update Stok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Stok": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Stok1": {
+      "main": [
+        [
+          {
+            "node": "Gabungkan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gabungkan": {
+      "main": [
+        [
+          {
+            "node": "Mesej Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a new label": {
+      "main": [
+        [
+          {
+            "node": "Save labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all labels": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Label Exists": {
+      "main": [
+        [
+          {
+            "node": "Save labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a new label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save labels for the chat": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get labels for the chat": {
+      "main": [
+        [
+          {
+            "node": "Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Label": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Cek Stok1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Cek Label Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing2": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Get labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get all labels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stok Produk": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Cek Prospek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Prospek": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Prospek": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Cek On",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek On": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Prospek",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Messages": {
+      "main": [
+        [
+          {
+            "node": "Notify Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Cek Pembayaran",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Cek Resit",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-23T02:33:50.440Z",
+  "id": "3XSqTlCMmEL3EEJu",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "JAMU ASLI TRADISIONAL",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1776,
+        -368
+      ],
+      "id": "7fd4f604-ba66-42e7-bb0a-2da62eae35c9",
+      "name": "When chat message received",
+      "webhookId": "a219e416-83ec-4d9e-949a-b3dc33b717a5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=-\tAnda ialah Pembantu Maya syarikat produk tradisional.\n-\tJawab soalan pelanggan dengan nada mesra seperti kawan, santai dan mudah difahami, ayat pendek dan sederhana ikut kesesuaian supaya mudah baca, gunakan emoji bila sesuai dan sentiasa bantu closing dengan ajakan lembut contoh “Puan nak cuba jamu ni untuk penjagaan dalaman ke luaran ye? 🌸”. \n-\tUntuk stok dan gambar produk rujuk 'Stok Produk',  gambar produk di column gambar.\n-\tElak beritahu customer anda pembantu maya. Nama anda Maya\n-\tSebelum bagi no bank bagi harga dahulu.. pastikan customer dah beritahu produk apa dan berapa kuantiti nk beli\n-\tElakkan gelaran sayang pada customer\n-\tCerita kelebihan produk, jangan banyak tanya pada customer, banyakan cerita tentang produk dan harga yang ditawarkan.\n  - Jika tanya berkenaan testimoni ckp sebelum ni jual secara kampung xsimpan testimoni.. baru nk jual secara online.. insyaallah akan datang kami akan simpan testimoni, jangan buat testimoni ikut suka hati.\n- untuk cek tracking no blh cek di laman web J&T https://jtexpress.my/tracking/{no_tracking}\n- jangan buat ayat yg nampak mcm anda adalah ai\n- jangan cakap perkataan indonesia seperti butuh gantikan dengan perkataan ingin\n- Guna ganti gelaran anda dengan gelaran puan untuk perempuan dan jika lelaki tuan.. dan jika tidak kena guna puan.\n- Jika customer tanya QR untuk pembayaran ambil gambar di file 'Gambar Lain'\n- Jika customer tanya pasal no bank sertakan sekali gambar QR\n\n\nFAQ – Jamu Asli 41 Herba (Buatan Tradisional)\n- Jamu Asli berbentuk bulat..\n1. Jamu Asli ini untuk siapa?\nJamu ini sesuai untuk:\n•\tWanita selepas bersalin (dalam pantang)\n•\tWanita yang ingin menjaga kesihatan dalaman & luaran\n•\tIbu menyusu yang mahu kembalikan tenaga\n•\tWanita yang mengalami masalah keputihan, haid tak teratur atau perut buncit\n________________________________________\n2. Adakah selamat untuk ibu menyusu?\nYa, Jamu Asli ini buatan tradisional menggunakan herba turun-temurun yang biasa diamalkan oleh orang lama. Ramuan 100% herba tanpa bahan kimia tambahan.\n________________________________________\n3. Berapa lama kesan boleh dirasai?\nRamai pengguna mula rasa perubahan seawal 3–7 hari penggunaan secara konsisten. Hasil mungkin berbeza mengikut keadaan badan.\n________________________________________\n4. Bagaimana cara makan Jamu Asli?\n•\tAmbil 2 biji pagi sebelum sarapan\n•\tAmbil 2 biji malam sebelum tidur\n•\tMinum air kosong secukupnya untuk kesan lebih baik\n________________________________________\n5. Adakah perlu pantang makanan?\nUntuk kesan maksimum, elakkan:\n•\tMinuman berais berlebihan\n•\tMinuman berkafein terlalu banyak (kopi/teh pekat)\n•\tMakanan terlalu berminyak atau berlemak\n________________________________________\n6. Adakah produk ini berdaftar dengan KKM?\nTidak, kerana Jamu Asli ini adalah hasil buatan tradisional secara kecil-kecilan menggunakan resipi orang lama. Walaupun tidak berdaftar, ia dihasilkan dengan amalan kebersihan dan bahan yang selamat dimakan.\n________________________________________\n7. Berapa harga 1 botol?\n1 botol (70  biji) hanya RM18 — tahan untuk 17 hari jika mengikut cara makan yang disediakan.\n________________________________________\n8. Berapa kos penghantaran?\n•\tSemenanjung Malaysia: RM7\n•\tSabah & Sarawak: RM12\nPercuma pos untuk pembelian 5 botol ke atas.\n________________________________________\n9. Bagaimana nak buat pesanan?\nBuat bayaran ke akaun :\nMOHAMAD SHUKRI BIN SENAWI\nMAYBANK\n155015073618\nselepas buat bayaran hantar resit di sini\n________________________________________\n10. Herba apa yang di gunakan?\n- Kacip Fatimah\nMenjaga kesihatan rahim, tingkat tenaga dan stabilkan hormon wanita.\n- Manjakani\nKetatkan faraj, cegah keputihan dan lawan bakteria kawasan intim.\n- Bunga Pakma\nKecutkan rahim, buang angin dan pulihkan dalaman wanita lepas bersalin.\n- Halia Bara\nBuang angin, lancar darah dan bantu masalah penghadaman.\n- Kunyit Hidup\nSembuhkan luka dalaman, lancar haid dan cegah radang.\n- Lada Hitam\nHangatkan badan, tingkat metabolisma dan bantu penghadaman.\n- Kulit Kayu Manis\nStabilkan gula darah, lancar darah dan tingkat kesuburan.\n- Cengkih\nCegah jangkitan, buang angin dan segarkan nafas.\n- Lain-lain\ndirahsiakan\n\nPRODUK UP SELL \n-\tPromote bila customer dah setuju nk beli jamu\n-\tPromote bila customer xcukup bajet untuk beli jamu\n-\tPromote bila customer cakap jamu mahal\n\nMINYAK PANAS AURORA TERAPI\n\n1.\tAda 4 jenis:\na.\tAurora terapi Kayu Putih\nb.\tAurora terapi Serai Wangi\nc.\tAurora terapi Lemon\nd.\tAurora terapi Bidara\n\n2.\tKelebihan :\na.\tMinyak panas jenis roll menjadikan ia mudah digunakan\nb.\tMudah dibawa kemana sahaja\nc.\tMempunyai pelbagai wangian\n3.\tSesuai untuk:\na.\tMengurangkan sakit kepala.\nb.\tMabuk perjalanan\nc.\tBuang angin sembelit\nd.\tBatuk\ne.\tKejang otot\nf.\tSakit lutut/sendi\n4.\tHarga :\na.\tSebotol RM10\nb.\t5 botol RM45\nc.\t10 botol RM80"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        608,
+        -144
+      ],
+      "id": "0a2b9045-fc6c-4b64-bf47-730b4f1376d0",
+      "name": "AI Chat",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "description": "{mesej} = output yang ingin di sampaikan kepada customer.. var lain adalah untuk kegunaan sistem.. contoh customer minta no bank jangan bg mesej tergantung mcm ni 'Puan, berikut adalah maklumat no bank dan QR untuk pembayaran:'.. letak detail pembayaran sekali\n\n***** var di bawah ini untuk sistem sahaja.. customer xblh lihat ******\n\n{label} = gambar/dah bayar/lain-lain sahaja.. jgn tulis lain\nlabel hanya dari 3 value ini sahaja jangan tukar text.. pilih antara 3 ni sahaja: \n - gambar – customer minta gambar\n - dah bayar – pastikan customer telah membuat bayaran membayar dan bayaran telah disahkan oleh anda\n - lain-lain – selain label di atas\n\n***** di bawah ini var untuk pos (isi jika label 'dah bayar' sahaja) ******\n\n{nama} = nama penerima\n{alamat} = alamat pos\n{negeri} = negeri berdasarkan alamat\n{no_tel} = no hp\n{jumlah} = jumlah bayaran\n{produk} = nama produk dan kuantiti, contoh : Jamu Asli 5 botol, Aurora Terapi Kayu Putih  6 botol\n{belian} = ambil dari key produk\n{status} = \"Bayar\" - nilai tetap\n{tarikh tempahan} = tarikh dan masa bayaran\n{kurier} = \"J&T\" - nilai tetap\n\n*****************************************\n\n{catatan} = Pelanggan {no hp pelanggan}, masalah pelanggan.. contoh marah sebab makan jamu sakit perut atau sebagainya yang dirasakan perlu untuk sy tahu (tunjuk jika dirasakan perlu sahaja)\n\nkey yang wajib hanya message dan label.. yang lain jika tidak berkenaan tidak perlu letak\n\n*penting : jika value ada \"\" var tersebut xperlu di tayangkan\n- jika mesej mempunyai link gambar letak tanda \\n di depan dan di akhir link. contoh ayat.. Gambar produk jamu https://drive.google.com/uc?id=15n86rgBVnlY9rta4-k--s38abGuAA-VF , terima kasih.. akan jd seperti ini Gambar produk jamu \\nhttps://drive.google.com/uc?id=15n86rgBVnlY9rta4-k--s38abGuAA-VF\\n , terima kasih.. xperlu letak ayat klik di sini.. cukup letak link gambar sahaja supaya sistem boleh convert link tersebut kepada gambar denga lebih mudah"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        688,
+        192
+      ],
+      "id": "ff01e21c-182a-41ee-a0f9-d6f23c3b61f0",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        192
+      ],
+      "id": "f4838d89-c9e8-4dec-ab96-7648d1067e16",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"mesej\": \"hi.. buat apa\",\n\t\"label\": \"lain-lain\",\n    \"nama\" : \"Mohamad Shukri Bin Senawi\",\n    \"alamat\" : \"No 1 Simpang 3, Beris Jaya, 08200 Sik, Kedah\",\n    \"negeri\" : \"kedah\",\n    \"no_tel\" : \"019-5168839\",\n    \"jumlah\" : \"RM27\",\n    \"produk\" : \"nama produk dan kuantiti, contoh : Jamu Asli 5 botol, Aurora Terapi Kayu Putih  6 botol\",\n    \"status\" : \"Bayar\",\n    \"tarikh tempahan\" : \"22-8-2025 08:30 AM\",\n    \"kurier\" : \"J&T\",\n    \"belian\" : [{\"produk\":\"Jamu Asli\", \"kuantiti\":5},{\"produk\":\"Aurora Terapi Kayu Putih\", \"kuantiti\":6}],\n    \"catatan\" : \"Pelanggan {no hp pelanggan}, masalah pelanggan.. contoh marah sebab makan jamu sakit perut atau sebagainya yang dirasakan perlu untuk sy tahu\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        784,
+        320
+      ],
+      "id": "8775712f-b81c-45b5-84dd-06d8fb405d87",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.output.mesej; // ambil text asal dari AI\n\n// Step 1: tukar \\n\\n jadi \\n\nlet text = input.replace(/\\n\\n/g, \"\\n\");\n\n// Step 2: split ikut \\n\nlet lines = text.split(\"\\n\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        -144
+      ],
+      "id": "1387e793-92e8-48e6-9c89-6a27bb99962b",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1152,
+        -144
+      ],
+      "id": "0fa5464c-3119-40fe-8e92-746d6fb519f1",
+      "name": "pecahkan mesej"
+    },
+    {
+      "parameters": {
+        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        -128
+      ],
+      "id": "ed162243-b55f-49f0-a4bb-56af8f5935e3",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2352,
+        -128
+      ],
+      "id": "20ac8d7b-b5ad-4cd9-a0c8-260fc6fba6d3",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.text.trim();\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1728,
+        160
+      ],
+      "id": "00276a5e-de04-4d72-8eea-12e90ced32f0",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "chatId": "={{ $json.from }}",
+        "messageId": "={{ $json.message_id }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -1376,
+        -368
+      ],
+      "id": "25c9a689-ec74-4d33-9405-3e025b957f1f",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1760,
+        -48
+      ],
+      "id": "e41c4e46-e840-449e-8dc4-1c2c98bdfef9",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n\ntry {\n  item.json.message = $('WAHA Trigger').first().json.payload.body;\n  item.json.session = $('WAHA Trigger').first().json.session;  \n  item.json.sessionId = $('WAHA Trigger').first().json.payload.id;\n  item.json.from = $('WAHA Trigger').first().json.payload.from;\n  item.json.message_id = $('WAHA Trigger').first().json.payload.id;\n  item.json.hasMedia = $('WAHA Trigger').first().json.payload.hasMedia;\n  item.json.mimetype = $('WAHA Trigger').first().json.payload.media.mimetype;\n} catch (e) {\n  item.json.message_post = $input.first().json.chatInput;\n  item.json.session = \"Jamu_Asli\";\n  item.json.sessionId = $input.first().json.sessionId;\n  item.json.from = \"60195168839@c.us\";\n  item.json.message_id = \"false_60195168839@c.us_C6E412CBF6C1881C8B96887FF73B24E7\";\n  item.json.hasMedia = false;\n  item.json.mimetype = null;\n}\n  \n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1536,
+        -368
+      ],
+      "id": "db53c70e-610b-43f0-9bd4-66b4a8182801",
+      "name": "var"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1920,
+        -48
+      ],
+      "id": "7f74261f-7403-4234-8341-c5d4e525feea",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2208,
+        -48
+      ],
+      "id": "e153486f-2339-4fe3-9401-24105cc5c0da",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "={{ $('var').item.json.sessionId }}",
+              "renameField": true,
+              "outputFieldName": "sessionId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -128
+      ],
+      "id": "89b57628-4a03-4b9b-882c-f570f0039d93",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2064,
+        -48
+      ],
+      "id": "5754316b-137c-46d9-8788-8bb8b1302108",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[1]??$json.output[0] }}\"\n}",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1952,
+        160
+      ],
+      "id": "225e3a8f-6636-4c44-97dd-ff1e0b70ee07",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        320
+      ],
+      "id": "6bcdad9b-18e8-4c15-a2f2-96d2c2cebff4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xVrd92K4rCnBooVNP7152R55T6IKUsiUd4JiRYgv6Ls",
+          "mode": "list",
+          "cachedResultName": "Gambar lain",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xVrd92K4rCnBooVNP7152R55T6IKUsiUd4JiRYgv6Ls/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xVrd92K4rCnBooVNP7152R55T6IKUsiUd4JiRYgv6Ls/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        928,
+        192
+      ],
+      "id": "02e8f751-bf63-41b3-bfba-c69e685d4a13",
+      "name": "Gambar Lain",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "93472987-619b-4ba7-97ea-5b15e2610257",
+              "leftValue": "={{ $('var').item.json.hasMedia }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -928,
+        -336
+      ],
+      "id": "d3c80794-2b45-4d8b-9ea6-20397caca6b6",
+      "name": "Text Only"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('WAHA Trigger').item.json.payload.mediaUrl }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wahaApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -928,
+        144
+      ],
+      "id": "6b49754e-50e4-4bd6-b318-dbb2ac79aedd",
+      "name": "Download Media",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ca671463-78af-4c55-9c05-40d71de8dbea"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6a17eda7-37ae-4742-a740-4ca7a5641f6b",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/jpeg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR JPEG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c25d352-cee8-4f79-b0bf-d64f448c75b9",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/png",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR PNG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "05076dfd-2324-402c-8ce4-70f9ab75efed",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "audio/ogg;",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AUDIO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -656,
+        -16
+      ],
+      "id": "557384aa-2443-43b7-9f27-4c5f9fa97a3d",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -336,
+        48
+      ],
+      "id": "7f16e0b0-2b3e-439d-b4d3-7fc7cab3731c",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -160
+      ],
+      "id": "fb368c67-cc83-44ef-b92a-e8e9e3d01276",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fa890ae8-3a05-445e-843c-ad6a95f4b265",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        -144
+      ],
+      "id": "93458c13-c7cd-47e4-ae91-9172ec406117",
+      "name": "PDF Map"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        160,
+        -144
+      ],
+      "id": "42cdd4c9-8276-456c-9b67-6adff77cb4b8",
+      "name": "Output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3c0ccd84-71f2-49a8-8d9c-0cdd3cd23d46",
+              "name": "output",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        48
+      ],
+      "id": "a0a11441-3d08-40e1-8ce6-4cd379cab56c",
+      "name": "Image Map"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2feafedd-5e7b-40e1-b4fa-fc2ba85d3852",
+              "name": "output",
+              "value": "={{ $('var').item.json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        -368
+      ],
+      "id": "3057ee7c-777e-4cef-8b87-9f927419613d",
+      "name": "Text Map"
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        240
+      ],
+      "id": "b26243d0-c584-4cdb-a4da-e7a18faa9eed",
+      "name": "Transcribe audio or video",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "3zIFnCxvzGnMkW2J",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9dbd50cc-dafc-4a22-be9b-0417d96ba328",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        240
+      ],
+      "id": "1557462f-6cb7-4a11-a00c-581524492757",
+      "name": "Audio Map"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1216,
+        -368
+      ],
+      "id": "367b699c-37fb-4ed0-a840-3ce9fc239701",
+      "name": "Loop Over Items3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $('AI Chat').params.options.systemMessage }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        544,
+        -1168
+      ],
+      "id": "f37ae1ad-c706-4bdc-aa07-9635fe10895f",
+      "name": "AI Cek Pembayaran"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ca671463-78af-4c55-9c05-40d71de8dbea"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6a17eda7-37ae-4742-a740-4ca7a5641f6b",
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "image/jpeg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR JPEG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c25d352-cee8-4f79-b0bf-d64f448c75b9",
+                    "leftValue": "={{ $('var').item.json.mimetype }}",
+                    "rightValue": "image/png",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR PNG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        224,
+        -480
+      ],
+      "id": "e26a1763-d966-4242-a8a0-15485e0f62d5",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        -928
+      ],
+      "id": "f74c6a32-494a-4ee1-9d51-72611ac2120e",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"bank\": \"Maybank\",\n  \"jumlah\": \"150.00\",\n  \"tarikh\": \"2025-08-23 14:22\",\n  \"status\": \"Berjaya\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        -928
+      ],
+      "id": "925004b8-4650-4175-adb1-b2a293f67d27",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        784,
+        -800
+      ],
+      "id": "f35f6ba3-5e78-46f6-b5c7-2174d7f17f14",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "383e7963-d253-46bf-b1af-1b1fdae91211",
+              "leftValue": "={{ $json.output.status }}",
+              "rightValue": "Berjaya",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "7a967313-f66f-4193-b4bb-dfadcb87f9ba",
+              "leftValue": "={{ $json.output.status }}",
+              "rightValue": "Success",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        -1184
+      ],
+      "id": "979e7706-dbfe-43e4-bca1-6f99b1dcf191",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1d1aa326-93fd-49bf-bc10-22442e7ec6b0",
+              "name": "message",
+              "value": "Terima kasih, bayaran anda telah diterima ✅",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -1200
+      ],
+      "id": "d037d12d-0739-4de1-9570-91ac0824fa66",
+      "name": "Message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "62f78894-6b71-427f-95ed-703aabd77371",
+              "name": "message",
+              "value": "Maaf, bukti pembayaran tidak jelas. Sila hantar semula.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -1040
+      ],
+      "id": "ffdb2726-4ac7-4928-bdf8-902fbb1da43e",
+      "name": "Message1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1392,
+        -848
+      ],
+      "id": "19cb0e9e-68ba-40c9-8179-5a793d6d5fbc",
+      "name": "Output Message"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "69a7d205-9220-4e3a-a6ab-64d5bf4f6b66",
+              "leftValue": "={{ $('var').item.json.mimetype }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "88541a59-f6ac-4bd6-9758-528409235b80",
+              "leftValue": "={{ $('var').item.json.mimetype }}",
+              "rightValue": "audio",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -304
+      ],
+      "id": "97f16a20-b5ea-4e4c-a288-f96fe4e3b5c7",
+      "name": "Jika text"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        464,
+        -448
+      ],
+      "id": "e260342d-92a5-48f7-8952-a31a4a0c7783",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{ \"jenis\": \"biasa\", \"mesej\":\"terima kasih\" }",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        832,
+        -448
+      ],
+      "id": "4bf8f4db-880b-442f-8bca-23e9e14f0d3f",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        752,
+        -304
+      ],
+      "id": "7dbf0c63-fe2d-4d30-98b5-6b7bc75f434b",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "383e7963-d253-46bf-b1af-1b1fdae91211",
+              "leftValue": "={{ $json.output.jenis }}",
+              "rightValue": "resit",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        -656
+      ],
+      "id": "86fcc0c6-22e8-4143-b9c1-60f75ebcdfb3",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Output').item.json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "={{ $('AI Chat').params.options.systemMessage }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        544,
+        -688
+      ],
+      "id": "27c2185c-1d2b-43c0-bead-0b43db96943c",
+      "name": "AI Cek Resit"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "={{ $('var').item.json.sessionId }}",
+              "renameField": true,
+              "outputFieldName": "sessionId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -1168
+      ],
+      "id": "1247562b-9df4-455f-9551-50077b45b7b1",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1568,
+        -848
+      ],
+      "id": "2f8b229d-7737-4f27-96f7-1dbc39c2f0f7",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1728,
+        -848
+      ],
+      "id": "dc714a5c-7c3d-4642-b4bf-4a457ce097d0",
+      "name": "Wait1",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $('Output Message').item.json.message }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2000,
+        -848
+      ],
+      "id": "b533ddc1-bfaa-4254-8b98-8e504896c1ba",
+      "name": "Send a text message1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1872,
+        -848
+      ],
+      "id": "6eea414d-041a-488c-a0d0-7106e778c769",
+      "name": "Stop Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "95a729a0-4066-4dca-b91b-6423e1fad25f",
+              "name": "payload.body",
+              "value": "={{ $('var').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "28305e25-c6e7-41af-b3ae-550c5aadcbf3",
+              "name": "payload.media.mimetype",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+              "type": "string"
+            },
+            {
+              "id": "fd575436-2501-48b3-98b3-546d1518e5d7",
+              "name": "payload.media.url",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "84cd5f98-4ad0-4d18-8292-32005fc4a716",
+              "name": "payload.body",
+              "value": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "type": "string"
+            },
+            {
+              "id": "f9f8be5a-99b9-43c0-898b-8ee20b2c7593",
+              "name": "payload.timestamp",
+              "value": "={{ $('WAHA Trigger').item.json.payload.timestamp }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -928,
+        -64
+      ],
+      "id": "30f20142-6808-4816-8bd5-85f80d06af1e",
+      "name": "Image Data"
+    },
+    {
+      "parameters": {
+        "description": "Tolong semak imej ini. Adakah ini:\n(a) resit bayaran,\n(b) gambar biasa (produk, orang, dll.)?\n\nJawab dengan format JSON:\n{ \"jenis\": \"resit\", \"mesej\":\"mesej yang hendak disampai kan\" } atau { \"jenis\": \"biasa\", \"mesej\":\"mesej yang hendak disampai kan\" }"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -448
+      ],
+      "id": "90e64490-accd-4933-97ee-f3ead1cf6f65",
+      "name": "Think1"
+    },
+    {
+      "parameters": {
+        "description": "Ini adalah bukti pembayaran. Tolong semak:\n1. Nama bank\n2. Jumlah bayaran (RM)\n3. Tarikh & masa\n4. Status transaksi (Berjaya/Gagal)\n\nJawab dalam format JSON:\n{\n  \"bank\": \"\",\n  \"jumlah\": \"\",\n  \"tarikh\": \"\",\n  \"status\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -928
+      ],
+      "id": "2a21c8dc-8cce-4d1c-813b-d40859ba8526",
+      "name": "Think2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c20485c1-787b-42cc-b04c-3e64a47e21bc",
+              "name": "message",
+              "value": "={{ $json.output.mesej }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -560
+      ],
+      "id": "4f5fc62a-0b88-4707-a6f1-39d2a8a1d8b2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI",
+          "mode": "list",
+          "cachedResultName": "Tempahan JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tempahan",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama": "={{ $json.nama }}",
+            "Alamat": "={{ $json.alamat }}",
+            "Negeri": "={{ $json.negeri }}",
+            "Jumlah": "={{ $json.jumlah }}",
+            "Tarikh Tempahan": "={{ $json['tarikh tempahan'] }}",
+            "Catatan": "={{ $json.catatan }}",
+            "Status": "={{ $json.status }}",
+            "Kurier": "={{ $json.kurier }}",
+            "Produk dan Kuantiti": "={{ $json.produk }}",
+            "No Tel": "={{ $('WAHA Trigger').item.json.payload.from }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Alamat",
+              "displayName": "Alamat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Negeri",
+              "displayName": "Negeri",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Jumlah",
+              "displayName": "Jumlah",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Produk dan Kuantiti",
+              "displayName": "Produk dan Kuantiti",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "No Tel",
+              "displayName": "No Tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tarikh Tempahan",
+              "displayName": "Tarikh Tempahan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tracking No",
+              "displayName": "Tracking No",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kurier",
+              "displayName": "Kurier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Catatan",
+              "displayName": "Catatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1488,
+        -1200
+      ],
+      "id": "00fd408a-01c6-4c35-9fda-fa858a3c359f",
+      "name": "Simpan Tempahan",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "322ba80b-b691-4b20-af30-5ddc28155530",
+              "name": "message",
+              "value": "=Tempahan Baru ({{ $('Code2').first().json['tarikh tempahan'] }}):\n\nNama: {{ $('Code2').first().json.nama }}\nAlamat: {{ $('Code2').first().json.alamat }}\nTel: {{ $('Code1').first().json.formatted }}\nProduk & Kuantiti: {{ $('Code2').first().json.produk }}\n\nStok: {{ $json.data[0]['Nama Produk'] }} : {{ $json.data[0].Stok }}, {{ $json.data[1]['Nama Produk'] }} : {{ $json.data[1].Stok }}, {{ $json.data[2]['Nama Produk'] }} : {{ $json.data[2].Stok }}, {{ $json.data[3]['Nama Produk'] }} : {{ $json.data[4].Stok }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2608,
+        -1040
+      ],
+      "id": "16fff503-f5cb-4c9e-86ca-c5ad44f153c3",
+      "name": "Mesej Admin"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37a7acd6-5d3e-4408-b0d6-2a860744e03d",
+              "name": "belian",
+              "value": "={{ $('Code2').item.json.belian }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1632,
+        -1200
+      ],
+      "id": "4096f1e2-cfa2-4a49-8bb7-3a31468660eb",
+      "name": "Senarai Belian Produk"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nlet output = [];\n\nfor (const item of items) {\n  if (item.json.belian) {\n    for (const [key, value] of Object.entries(item.json.belian)) {\n      output.push({\n        json: {\n          produk: key,\n          kuantiti: value\n        }\n      });\n    }\n  }\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        -1200
+      ],
+      "id": "ae93921f-1d35-46c3-93f0-68f4118556fc",
+      "name": "Asingkan Produk"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1952,
+        -1184
+      ],
+      "id": "4197f2eb-6214-4ed4-a9bb-164bd6064061",
+      "name": "Loop Over Items2",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Nama Produk",
+              "lookupValue": "={{ $json.produk }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2192,
+        -1120
+      ],
+      "id": "423111e3-800c-4108-a2ec-c1e1a783b123",
+      "name": "Cek Stok",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama Produk": "={{ $json['Nama Produk'] }}",
+            "Stok": "={{ $json.Stok-$('Asingkan Produk').item.json.kuantiti }}"
+          },
+          "matchingColumns": [
+            "Nama Produk"
+          ],
+          "schema": [
+            {
+              "id": "Nama Produk",
+              "displayName": "Nama Produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Harga",
+              "displayName": "Harga",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stok",
+              "displayName": "Stok",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2320,
+        -1120
+      ],
+      "id": "a1a39a39-fc5c-4112-95cd-e361f1dcf8dd",
+      "name": "Update Stok",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        2784,
+        -1248
+      ],
+      "id": "71971502-c78b-48c6-a325-a611c8edd9e6",
+      "name": "Cek Stok1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\n// Gabung semua item jadi array tunggal\nconst merged = items.map(item => item.json);\n\nreturn [{ json: { data: merged } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2960,
+        -1248
+      ],
+      "id": "d58c5029-81a0-45b4-a3ff-094308588076",
+      "name": "Gabungkan"
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Create",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "name": "Packing",
+        "color": {},
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3840,
+        -1136
+      ],
+      "id": "c072a6f2-85a3-4c8e-bf0d-5af8b49e7be7",
+      "name": "Create a new label",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Get All",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3808,
+        -1328
+      ],
+      "id": "b2a86a62-8b0f-406d-9fed-a3ebee98d270",
+      "name": "Get all labels",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b9ad593-72e9-46af-8cb6-b32d96a4c980",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "Packing",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4080,
+        -1328
+      ],
+      "id": "74180599-8541-4265-b7c5-1f3a2b2770ed",
+      "name": "Cek Label Exists",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Put Chat Labels",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "labels": "=[\n  {\n    \"name\": \"Packing\"\n  }\n]",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4032,
+        -1136
+      ],
+      "id": "c16f025e-8f97-4d21-ac77-6ddddfb9eaab",
+      "name": "Save labels for the chat",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Get Chat Labels",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3344,
+        -1328
+      ],
+      "id": "c6a2f664-8a53-43e1-9d05-72b567a42b55",
+      "name": "Get labels for the chat",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3488,
+        -1328
+      ],
+      "id": "40d260f9-969c-4d70-a5a4-7a2eb9c3dab4",
+      "name": "Label"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Simpan Tempahan').first().json['No Tel']; // contoh ambil dari field phone = \"60195168839@c.us\"\n\n// ambil nombor sahaja sebelum @\nlet number = input.split(\"@\")[0]; // \"60195168839\"\n\n// buang kod negara \"60\" → jadi \"195168839\"\nif (number.startsWith(\"60\")) {\n  number = number.slice(2);\n}\n\n// pastikan mula dengan \"0\"\nif (!number.startsWith(\"0\")) {\n  number = \"0\" + number;\n}\n\n// format jadi 3 digit depan + selebihnya\nconst formatted = number.slice(0, 3) + \"-\" + number.slice(3);\n\nreturn [{\n  json: {\n    original: input,\n    formatted: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        -1248
+      ],
+      "id": "4a024644-150c-40ad-8481-9662484700f9",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3952,
+        -1328
+      ],
+      "id": "896adafd-6260-4c32-b67c-cbb548363688",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2768,
+        -1040
+      ],
+      "id": "919f355d-a209-4b3d-963a-335f93d516ae",
+      "name": "Start Typing2",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2928,
+        -1040
+      ],
+      "id": "19b1394e-917f-442a-91ad-3ff55c266343",
+      "name": "Wait2",
+      "webhookId": "53f2d56c-078b-4d90-9389-0d4936466c22"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3072,
+        -1040
+      ],
+      "id": "017527c9-d886-4364-bdf8-f47721364786",
+      "name": "Stop Typing2",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Nama Produk"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2192,
+        -1264
+      ],
+      "id": "d32e6f58-d028-4197-a830-e91ee21d2156",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4ef5a45b-4e5d-435c-a858-32873436b90a",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "Packing",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3648,
+        -1328
+      ],
+      "id": "3c69354a-fd1a-4331-a648-5f1fe225d3b8",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "produk",
+          "mode": "list",
+          "cachedResultName": "produk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        784,
+        192
+      ],
+      "id": "4311413f-a47a-4082-8a72-6a6821d56adf",
+      "name": "Stok Produk",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -2464,
+        -416
+      ],
+      "id": "41725566-5c26-4151-bf56-1d09287b79e9",
+      "name": "WAHA Trigger",
+      "webhookId": "3a545eee-5bbd-40e3-9a71-9c747e90c694"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+              "leftValue": "={{ $('Config').item.json.payload.from }}",
+              "rightValue": "@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "f1e7921d-ed20-4416-9758-4e5979f0e8b3",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2128,
+        -64
+      ],
+      "id": "6d404abb-042a-4646-af0a-d3d73c0ab403",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e12dfe8d-2801-4d83-aa06-889942256dd4",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "60195168839@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "1c14e781-f085-4a7b-8b6a-737f6a934c6c",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "601120913823@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2128,
+        -560
+      ],
+      "id": "0e8b26e2-98bb-4d15-9283-372d34b5cee5",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "={{ $('Config').item.json.payload.from }}"
+            },
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -2128,
+        112
+      ],
+      "id": "9e664503-286c-4f65-bb71-9ee865d56cda",
+      "name": "Cek Prospek",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "={{ $('Config').item.json.payload.from }}"
+            },
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            },
+            {
+              "column": "on",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -2128,
+        448
+      ],
+      "id": "33b63595-4295-4130-8bd2-c028bd0ffe2a",
+      "name": "Add Prospek",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.bisnesId = 2;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2128,
+        -384
+      ],
+      "id": "9c1a808e-d8dc-4a15-88e3-9b4cdb554334",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "prospek",
+          "mode": "list",
+          "cachedResultName": "prospek"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('Config').item.json.bisnesId }}"
+            },
+            {
+              "column": "on",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -2128,
+        -224
+      ],
+      "id": "fb9fa6a3-c100-48a6-b81e-321a5ccf1df9",
+      "name": "Cek On",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1417b396-d54f-4306-88a3-cfa9cda90a48",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1904,
+        448
+      ],
+      "id": "02f42572-a46e-495d-ae23-e5b9873b73b3",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5c7e4d86-77eb-4108-bded-54f099986c36",
+              "leftValue": "={{ $('Cek Prospek').item.json.on }}",
+              "rightValue": "1",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1744,
+        272
+      ],
+      "id": "3463c4e7-8ab3-4a03-9de8-f99fe3e1d9ad",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54ff3f6b-3c9d-4768-928d-dac7cd091679",
+              "leftValue": "={{ $json.no_tel }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2128,
+        288
+      ],
+      "id": "b6ef8dc7-82c0-4dd6-9e25-89b7fdb669db",
+      "name": "If7"
+    },
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        640
+      ],
+      "id": "43094810-30da-49d6-88c4-082f88376dbb"
+    },
+    {
+      "parameters": {
+        "chatId": "{{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "name": "Notify Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        2752,
+        640
+      ],
+      "id": "eea0096c-b517-4646-aced-8e9b502fae92",
+      "webhookId": "13c616bf-a3ad-4035-998a-1dfe6021b89f",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hello, this workflow is made by khaisa. please visit shop.khaisa.com for more tailored support\n\n// Perfect error access untuk N8N v1.99.1\nconst errorData = $input.first().json;\nconst execution = errorData.execution;\nconst workflow = errorData.workflow;\nconst error = execution.error;\n\nconst message = `🚨 <b>WORKFLOW ERROR</b>\\n\\n` +\n  `📋 Workflow: <b>${workflow.name}</b>\\n` +\n  `⚙️ Node: <code>${error.node.name}</code>\\n` +\n  `❌ Error: <code>${error.message}</code>\\n` +\n  `📝 Description: <i>${error.description}</i>\\n` +\n  `🕐 Waktu: ${new Date(error.timestamp).toLocaleString('id-ID')}\\n` +\n  `🔍 Execution: <a href=\"${execution.url}\">${execution.id}</a>\\n` +\n  `⚠️ Level: ${error.level.toUpperCase()}`;\n\nreturn {\n  message: message,\n  parse_mode: 'HTML',\n  chat_id: '621412350'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2528,
+        640
+      ],
+      "id": "c93ebd57-0963-4033-b09b-73ef993ca4ff",
+      "name": "Prepare Messages"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('var').item.json.from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        -928
+      ],
+      "id": "d6b8f28e-1ae7-4f54-b017-1cd52411f3c0",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('var').item.json.from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        624,
+        -448
+      ],
+      "id": "4ff6d7f2-c184-4aed-a726-6dabe67984bc",
+      "name": "Postgres Chat Memory1",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('var').item.json.from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        192
+      ],
+      "id": "a88b055f-6703-4a89-96be-bb764445b2d1",
+      "name": "Postgres Chat Memory2",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-23T02:33:50.443Z",
+      "updatedAt": "2025-08-23T02:33:50.443Z",
+      "role": "workflow:owner",
+      "workflowId": "3XSqTlCMmEL3EEJu",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-09-06T03:02:41.200Z",
+      "updatedAt": "2025-09-06T03:02:41.200Z",
+      "id": "3uWBdzMEdI5rmz0n",
+      "name": "project"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-05T06:59:26.000Z",
+  "versionId": "19be7af0-a641-4f68-a2a0-c5d82f7f96ec"
+}
