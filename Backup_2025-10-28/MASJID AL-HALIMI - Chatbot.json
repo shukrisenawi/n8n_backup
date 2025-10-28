@@ -1,0 +1,258 @@
+{
+  "createdAt": "2025-10-05T04:49:19.958Z",
+  "updatedAt": "2025-10-05T05:30:46.000Z",
+  "id": "DkvY37KbIj1vKymj",
+  "name": "MASJID AL-HALIMI - Chatbot",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c26056c8-ee1c-4b0e-834a-eb84cb01187b",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -272,
+        0
+      ],
+      "webhookId": "d49a228d-703d-4a93-8e7a-ed173500fc6e"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c9e06431-1f00-4c80-8dba-1841bbb07937",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        256
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "database",
+        "description": "retrieves data about projects"
+      },
+      "id": "f299e9f2-c4f9-420e-8eb7-3a4d4cc261ea",
+      "name": "Vector Store Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        176,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9df13883-8344-4a76-ac21-e12607205bed",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        416,
+        512
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4b9deafd-50af-43e4-9290-9b4dbc874ffe",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -144,
+        576
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "id": "db672e9f-6229-4e81-a04f-edd83238f665",
+      "name": "Supabase Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1,
+      "position": [
+        32,
+        448
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "Ehjs6dRtJNVzHK8N",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "Berinteraksi secara santai dalam bahasa melayu malaysia"
+        }
+      },
+      "id": "8cbc297a-edbc-4650-b564-b023f2ad02f0",
+      "name": "New RAG Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -48,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "databaseName": "mieayam7140_JamuAsli",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        256
+      ],
+      "id": "bb534c56-ae73-4b3c-b838-d6b975125c7a",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "New RAG Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "87965ed2-8789-4bf4-ab58-36410f08ddac",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-05T04:49:19.961Z",
+      "updatedAt": "2025-10-05T04:49:19.961Z",
+      "role": "workflow:owner",
+      "workflowId": "DkvY37KbIj1vKymj",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
