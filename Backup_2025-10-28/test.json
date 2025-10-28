@@ -1,0 +1,666 @@
+{
+  "createdAt": "2025-09-12T10:25:41.397Z",
+  "updatedAt": "2025-09-12T10:39:33.000Z",
+  "id": "C567RF8a4owqFCg6",
+  "name": "test",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "database",
+        "operation": "insert",
+        "table": {
+          "__rl": true,
+          "value": "scan_cula",
+          "mode": "list",
+          "cachedResultName": "scan_cula"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "no_kp",
+              "value": "={{ $('Loop Over Items').item.json.no_kp }}"
+            },
+            {
+              "column": "nama_pemilih",
+              "value": "={{ $('Loop Over Items').item.json.nama_pemilih }}"
+            },
+            {
+              "column": "alamat",
+              "value": "={{ $('Loop Over Items').item.json.alamat }}"
+            },
+            {
+              "column": "cula",
+              "value": "={{ $('Loop Over Items').item.json.cula }}"
+            },
+            {
+              "column": "approve",
+              "value": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        640
+      ],
+      "id": "660ea7cf-e23f-4019-b797-18a8be444f18",
+      "name": "Insert",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "database",
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "scan_cula",
+          "mode": "list",
+          "cachedResultName": "scan_cula"
+        },
+        "returnAll": false,
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "no_kp",
+              "condition": "equal",
+              "value": "={{ $json.no_kp }}"
+            },
+            {
+              "column": "nama_pemilih",
+              "condition": "equal",
+              "value": "={{ $json.nama_pemilih }}"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "sort": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        420
+      ],
+      "id": "68d28fd7-ddf9-42a0-b496-7826cdfed5bf",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "92bbacda-cb7d-4412-a1bb-a224fc905398",
+              "leftValue": "={{ $json.no_kp }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        420
+      ],
+      "id": "57c87ea8-702e-40e2-9af7-b432c0e62e86",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "splitInBatchesNotice": "",
+        "batchSize": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        640,
+        360
+      ],
+      "id": "029ed21b-e4b6-4065-b989-3ff5551f4599",
+      "name": "Loop Over Items",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const culaMap = {\n  \"1\": \"UMNO @ BN\",\n  \"10\": \"PPBM\",\n  \"11\": \"GERAKAN\",\n  \"12\": \"PEJUANG\",\n  \"13\": \"MCA\",\n  \"14\": \"MIC\",\n  \"15\": \"PUTRA\",\n  \"16\": \"MUDA\",\n  \"1A\": \"UMNO - SASARAN / LEMAH / ATAS PAGAR\",\n  \"1B\": \"UMNO SOKONG PAS @ PN\",\n  \"1P\": \"UMNO SOKONG PN (TIDAK SOKONG PAS)\",\n  \"2\": \"PAS @ P\",\n  \"3\": \"PAS LUAR KAWASAN\",\n  \"3B\": \"PAS LUAR KEDAH (BORNEO)\",\n  \"3D\": \"PAS LUAR DUN\",\n  \"3K\": \"PAS LUAR KEDAH (SEMENANJUNG)\",\n  \"3M\": \"PAS LUAR MALAYSIA\",\n  \"3P\": \"PAS LUAR PARLIMEN\",\n  \"3U\": \"PAS LUAR UDM\",\n  \"4\": \"ATAS PAGAR\",\n  \"4P\": \"ATAS PAGAR SOKONG PN\",\n  \"5\": \"PKR @ PH\",\n  \"6\": \"DHPP\",\n  \"7\": \"TIDAK DIKENALI\",\n  \"7P\": \"TIDAK DIKENALI (POLIS / TENTERA)\",\n  \"8\": \"MATI @ MENINGGAL\",\n  \"9\": \"PAN @ DAP\",\n  \"97\": \"LAIN-LAIN BANGSA\",\n  \"98\": \"INDIA\",\n  \"99\": \"CINA\"\n};\n\nconst input = $input.first().json.pages[0].markdown;\n\n// Pisahkan ikut baris table\nconst lines = input.split(\"\\n\").filter(l => l.includes(\"|\") && !l.includes(\"---\"));\n\nconst results = [];\n\nfor (let line of lines) {\n  const parts = line.split(\"|\").map(p => p.trim());\n  if (!parts[1] || !parts[2]) continue; // skip header kosong\n\n  const no = parts[1];\n  const no_kp = parts[2];\n  const nama = parts[3];\n  let culaRaw = parts[4] || \"\";\n  // const numPart = parts[5] || \"\";\n  let alamat = parts[5] || \"\";\n  // let alamat = parts.slice(6).join(\" \").trim();\n\n  // Combine kalau code & nombor asing (contoh \"H\" | \"1\")\n  if (culaRaw && !alamat) {\n    culaRaw = culaRaw.trim();\n    alamat = alamat.trim();\n  }\n\n  // Cleaning cula\n  let cula = culaRaw.replace(\"*\",\"\").trim();\n\n  // Kalau pattern \"H 1\" atau \"N 1\"\n  // if (/^[HN]\\s*\\d+/.test(cula)) {\n  //   cula = cula.replace(/^[HN]\\s*/, \"\").trim();\n  // }\n\n  // if (cula === \"H\") cula = \"1\";\n  // if (cula === \"N\") cula = \"2\";\n  if (cula.toUpperCase() === \"PN\") cula = \"1B\";\n\n  if (nama !== \"Nama Pemilih\" && no_kp !== \"No. K/P (Baru)\" && cula!=\"\") {\n    results.push({\n      no,\n      no_kp,\n      nama_pemilih: nama,\n      alamat,\n      cula// tambah desc kalau ada\n    });\n  }\n}\n\nreturn results.map(r => ({ json: r }));\n",
+        "notice": ""
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        360
+      ],
+      "id": "42d99506-0ce9-40da-bf62-34ba12568323",
+      "name": "Code1",
+      "issues": {}
+    },
+    {
+      "parameters": {
+        "curlImport": "",
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyACMivrsGG8JYg30sdiYs1m7xTyj3wziuU",
+        "authentication": "none",
+        "provideSslCertificates": false,
+        "sendQuery": false,
+        "sendHeaders": false,
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [\n    {\n      \"parts\": [\n        {\n          \"text\": \"Analisa struktur gambar ini dan berikan informasi dalam format yang SAMA seperti ini:\\n\\n no_kp: [column Nombor Kad Pengenalan, mesti ada 12 digit jika tidak cukup mungkin silap analisa]\\n nama_pemilih: [column Nama Pemilih]\\n alamat: [column Alamat Kediaman]\\n cula: [column Cula, tukarkan text ini kepada key dalan array ini (1=>UMNO @ BN, 10=>PPBM, 11=>GERAKAN, 12=>PEJUANG, 13=>MCA, 14=>MIC, 15=>PUTRA, 16=>MUDA, 1A=>\\\"UMNO - SASARAN / LEMAH / ATAS PAGAR\\\", 1B=>\\\"UMNO SOKONG PAS\\\" @ PN, 1P=>\\\"UMNO SOKONG PN (TIDAK SOKONG PAS)\\\", 2=>PAS @ P, 3=>\\\"PAS LUAR KAWASAN\\\", 3B=>\\\"PAS LUAR KEDAH (BORNEO)\\\", 3D=>\\\"PAS LUAR DUN\\\", 3K=>\\\"PAS LUAR KEDAH (SEMENANJUNG)\\\", 3M=>\\\"PAS LUAR MALAYSIA\\\", 3P=>\\\"PAS LUAR PARLIMEN\\\", 3U=>\\\"PAS LUAR UDM\\\", 4=>\\\"ATAS PAGAR\\\", 4P=>\\\"ATAS PAGAR SOKONG PN\\\", 5=>PKR @ PH, 6=>DHPP, 7=>\\\"TIDAK DIKENALI\\\", 7P=>\\\"TIDAK DIKENALI ( POLIS / TENTERA )\\\", 8=>MATI @ MENINGGAL, 9=>PAN @ DAP, 97=>\\\"LAIN-LAIN BANGSA\\\", 98=>INDIA, 99=>CINA), contoh text \\\"PN\\\" output tulis 1B, text kadang-kadang tulis kod terus contoh 1, 1P, kalau tulis mcm tu terus ambil kod. Jika \\\"H\\\" atau \\\"N\\\" kiri dan nombor di kanan ambil nombor sahaja sebagai output.. contoh \\\"H  1\\\" ambil 1 sahaja sebagai output]\\n\\n Contoh response yang benar:\\n no_kp: 851203025271\\n nama_pemilih: MOHAMAD SHUKRI BIN SENAWI\\n alamat: 167 KG BATU 5, 08200 SIK, KEDAH\\n cula: P\\n\\n Jika struktur tidak jelas atau tidak boleh dibaca, berikan:\\n\\n ERROR: Struktur tidak dapat dibaca dengan jelas\\n\\n PENTING:\\n - Hanya berikan response dalam format di atas!\\n - Masukkan data dalam array sbb data kemungkinan akan lebih dari satu.\\n - Ambil baris data yang ada column cula sahaja.. data yang tiada cula abaikan.\"\n        },\n        {\n          \"inlineData\": {\n            \"mimeType\": \"image/jpeg\",\n            \"data\": \"{{ $json.data }}\"\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+        "options": {},
+        "infoMessage": ""
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -200,
+        340
+      ],
+      "id": "3b855eb8-132a-40c6-9a3f-9e595cbf3623",
+      "name": "Analisa gambar"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "data",
+        "destinationKey": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        340
+      ],
+      "id": "3acaef7a-ff35-4520-89c9-9e2299ab914a",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "aggregate": "={{ $json.success }}",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "",
+              "renameField": false
+            }
+          ]
+        },
+        "destinationFieldName": "data",
+        "include": "allFields",
+        "fieldsToExclude": "",
+        "fieldsToInclude": "",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        880,
+        240
+      ],
+      "id": "0fc6c079-e6c1-48f3-8c8f-501f7d7e8772",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.message_chat_id }}",
+        "text": "=✅ {{ $('Code1').all().length }} data berjaya di muat naik\n",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        220
+      ],
+      "id": "a712933f-2248-4877-943b-c76f1e26f60f",
+      "name": "Send a text message2",
+      "webhookId": "73daee3c-75d6-4a6e-8bf4-10cb9c4a811e",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "23f4316d-5a77-45ae-81e7-18ee4cacb995",
+              "leftValue": "={{ $json.candidates[0].content.parts[0].text }}",
+              "rightValue": "ERROR:",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        40,
+        160
+      ],
+      "id": "ec4c83e9-ed59-4520-ac17-358ad86c069e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "curlImport": "",
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "provideSslCertificates": false,
+        "sendQuery": false,
+        "sendHeaders": false,
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"image_url\",\n    \"image_url\": \"data:image/jpeg;base64,{{ $json.data }}\"\n  },\n  \"include_image_base64\": true\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "neverError": false,
+              "responseFormat": "json"
+            }
+          }
+        },
+        "infoMessage": ""
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -200,
+        160
+      ],
+      "id": "e34cf66a-cae5-407f-8a44-51497d7fc80d",
+      "name": "Upload To Mistral Ai",
+      "retryOnFail": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "jHrKu0BQJvwd79Wt",
+          "name": "Mistral OCR Demo"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "fileId": "={{ $json.message_photo[3].file_id }}",
+        "download": true
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -500,
+        160
+      ],
+      "id": "cf02747d-587c-47b4-aa7f-3ee2c9611128",
+      "name": "Get a file",
+      "webhookId": "9ef3ad3e-2ef4-4e74-a637-1c60b249e90a",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "binaryPropertyName": "data",
+        "destinationKey": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        160
+      ],
+      "id": "48a08f3e-93d3-4d4a-9e17-28593c6c93fc",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.message_chat_id }}",
+        "text": "Struktur tidak dapat dibaca dengan jelas.|Pastikan:- Gambar struktur jelas dan tidak blur- Pencahayaan cukup- Semua text dapat dilihat Sila cuba lagi! 📷",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        700,
+        80
+      ],
+      "id": "f3b73f10-33ef-474b-bfe1-c1b69bd3db38",
+      "name": "Respon error",
+      "webhookId": "8789614c-2e8b-4c58-be9b-38a462213126",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.message_chat_id }}",
+        "text": "=Data diproses..",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        -80
+      ],
+      "id": "c055b0c6-1423-4260-ad0d-e6f88c9251b0",
+      "name": "Send a text message3",
+      "webhookId": "73daee3c-75d6-4a6e-8bf4-10cb9c4a811e",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "id": "48380e87-fd98-49c5-b136-d398ddb62d33",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -720,
+        160
+      ],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "message_chat_id",
+              "type": "any"
+            },
+            {
+              "name": "message_photo",
+              "type": "any"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Analisa gambar": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respon error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Analisa gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        []
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload To Mistral Ai": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Upload To Mistral Ai",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "3f07e574-8b13-40a1-82dc-42778c8e2348",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-12T10:25:41.400Z",
+      "updatedAt": "2025-09-12T10:25:41.400Z",
+      "role": "workflow:owner",
+      "workflowId": "C567RF8a4owqFCg6",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
