@@ -1,0 +1,124 @@
+{
+  "createdAt": "2025-10-26T05:54:08.210Z",
+  "updatedAt": "2025-10-26T05:57:24.000Z",
+  "id": "gFgLW2ZkA7LFWQzw",
+  "name": "MASJID AL-HALIMI - Padam Pengumuman Exp",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 0 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -368,
+        -48
+      ],
+      "id": "c7799714-8208-4f2b-a45c-f24110367fe0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "n86Um1hF9bOnUjqJ",
+          "mode": "list",
+          "cachedResultName": "Masjid - Pengumuman",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/n86Um1hF9bOnUjqJ"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_akhir",
+              "condition": "lt",
+              "keyValue": "={{ $json.tarikh }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -48
+      ],
+      "id": "d4b7018e-6411-45f1-988d-0a36ee2222c2",
+      "name": "Delete row(s)"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nreturn {\n  tarikh,\n  tarikh_format\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -192,
+        -48
+      ],
+      "id": "de40fe7e-37e2-471c-b297-18d46abcf619",
+      "name": "Tarikh Sekarang"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Tarikh Sekarang",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh Sekarang": {
+      "main": [
+        [
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": null,
+  "pinData": {},
+  "versionId": "0c3665af-a815-4dad-a8c8-5046847685e9",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-10-26T05:54:08.214Z",
+      "updatedAt": "2025-10-26T05:54:08.214Z",
+      "role": "workflow:owner",
+      "workflowId": "gFgLW2ZkA7LFWQzw",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
