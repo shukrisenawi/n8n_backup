@@ -1,0 +1,210 @@
+{
+  "createdAt": "2025-10-04T03:09:50.470Z",
+  "updatedAt": "2025-10-04T15:19:30.000Z",
+  "id": "Acr8pO1zme7oiiP2",
+  "name": "FUNGSI /cula - JPRD Cula",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Data gagal dikosongkan (Error : ).",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        688,
+        624
+      ],
+      "id": "2677f63a-a773-4952-aa6d-0d898517bfbb",
+      "name": "Send a text message1",
+      "webhookId": "152abbe5-4a02-4574-878d-0f1d107ddd6a",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "reset",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "fde118b5-4714-419a-9514-74233a03729a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reset"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        272,
+        512
+      ],
+      "id": "2afde16b-ea57-4f45-bad6-86eb293eb3a4",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "table": {
+          "__rl": true,
+          "value": "scan_cula",
+          "mode": "list",
+          "cachedResultName": "scan_cula"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        480,
+        512
+      ],
+      "id": "209ca932-487a-43aa-a013-9958da10da8e",
+      "name": "Delete table or rows",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Data cula telah berjaya dikosongkan.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        688,
+        416
+      ],
+      "id": "60e9563f-3ecb-493e-a9df-b11ba6f53009",
+      "name": "Send a text message",
+      "webhookId": "152abbe5-4a02-4574-878d-0f1d107ddd6a",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "text",
+              "type": "any"
+            },
+            {
+              "name": "id_telegram",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "b12ffc4c-1360-4c1d-90a3-f1b1aa532e60",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        64,
+        512
+      ]
+    }
+  ],
+  "connections": {
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Delete table or rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete table or rows": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "897783e0-8f9b-4903-84e4-27ae272d7f46",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-04T03:09:50.473Z",
+      "updatedAt": "2025-10-04T03:09:50.473Z",
+      "role": "workflow:owner",
+      "workflowId": "Acr8pO1zme7oiiP2",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
