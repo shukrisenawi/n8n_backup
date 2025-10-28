@@ -1,0 +1,133 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-27T15:17:30.070Z",
+  "id": "USB7Q1FlOVHhLM06",
+  "isArchived": false,
+  "meta": null,
+  "name": "Stickertermurah - Instagram Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "262957d9-fffb-4afb-9f19-57eaa7c06542",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -464,
+        -128
+      ],
+      "id": "b836c0fa-b884-4d29-bfd7-2ce805f92a14",
+      "name": "Webhook",
+      "webhookId": "262957d9-fffb-4afb-9f19-57eaa7c06542"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9fdcb115-bc9c-4e77-a073-395b864cbba7",
+              "leftValue": "={{ $json.query['hub.mode'] }}",
+              "rightValue": "subscribe",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "4ca95c37-ec66-44eb-830e-64f82346930e",
+              "leftValue": "={{ $json.query['hub.verify_token'] }}",
+              "rightValue": "hookInstagram",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        -144
+      ],
+      "id": "a176cd5c-cffe-49fb-8fad-03ac8e0495b4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        256,
+        -176
+      ],
+      "id": "0fd90586-b589-48af-8b9d-a10be3e399db",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-27T15:17:30.073Z",
+      "updatedAt": "2025-10-27T15:17:30.073Z",
+      "role": "workflow:owner",
+      "workflowId": "USB7Q1FlOVHhLM06",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-27T15:21:46.000Z",
+  "versionId": "faeb5cf7-fb74-4d19-b4eb-fd28fceae0f6"
+}
