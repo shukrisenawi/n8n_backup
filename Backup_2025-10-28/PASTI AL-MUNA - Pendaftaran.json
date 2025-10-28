@@ -1,0 +1,276 @@
+{
+  "createdAt": "2025-09-30T03:59:26.273Z",
+  "updatedAt": "2025-10-19T02:05:07.000Z",
+  "id": "HBlCvIxSDYNmf84y",
+  "name": "PASTI AL-MUNA - Pendaftaran",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "BORANG PENDAFTARAN PASTI AL-MUNA 2025",
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "elementName": "section-maklumat_murid",
+              "html": "<h2>MAKLUMAT MURID</h2>"
+            },
+            {
+              "fieldLabel": "NAMA MURID",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NO. MYKID",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "TARIKH LAHIR",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "BANGSA",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "MELAYU"
+                  },
+                  {
+                    "option": "CINA"
+                  },
+                  {
+                    "option": "INDIA"
+                  },
+                  {
+                    "option": "PAKISTAN"
+                  },
+                  {
+                    "option": "LAIN-LAIN"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "JANTINA",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "LELAKI"
+                  },
+                  {
+                    "option": "PEREMPUAN"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "JUMLAH ADIK BERADIK",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "ANAK KE",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "PENYAKIT (jika ada)"
+            },
+            {
+              "fieldLabel": "STATUS YATIM",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "YA"
+                  },
+                  {
+                    "option": "TIDAK"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldType": "html",
+              "elementName": "session-maklumat_ibu_bapa",
+              "html": "<!-- Your custom HTML here --->\n<h2>MAKLUMAT IBU BAPA</h2>\n\n"
+            },
+            {
+              "fieldLabel": "NAMA PENUH",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NO. KAD PENGENALAN",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NO. TELEFON",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "ALAMAT",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "WARGANEGARA",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "YA"
+                  },
+                  {
+                    "option": "TIDAK"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "EMEL",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "PEKERJAAN",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "PENDAPATAN",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "ALAMAT TEMPAT KERJA"
+            },
+            {
+              "fieldLabel": "TANGGUNGAN"
+            },
+            {
+              "fieldType": "html",
+              "elementName": "session-maklumat_pasangan",
+              "html": "<!-- Your custom HTML here --->\n<h2>MAKLUMAT PASANGAN</h2>\n\n"
+            },
+            {
+              "fieldLabel": "NAMA PENUH",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NO. KAD PENGENALAN",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NO. TELEFON"
+            },
+            {
+              "fieldLabel": "ALAMAT (JIKA BERLAINAN)"
+            },
+            {
+              "fieldLabel": "WARGANEGARA",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "YA"
+                  },
+                  {
+                    "option": "TIDAK"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "EMEL"
+            },
+            {
+              "fieldLabel": "PEKERJAAN"
+            },
+            {
+              "fieldLabel": "PENDAPATAN"
+            },
+            {
+              "fieldLabel": "ALAMAT TEMPAT KERJA"
+            },
+            {
+              "fieldLabel": "PENGAKUAN IBU BAPA / PENJAGA",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Saya bersetuju mendaftar anak saya untuk menerima asuhan di PASTI ini dan bersetuju mematuhi semua syarat-syarat dan peraturan yang dikenakan dari semasa ke semasa."
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Hantar Borang Pendaftaran"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -1056,
+        -144
+      ],
+      "id": "bbdea6b2-e502-43cd-a0dd-52834e236af0",
+      "name": "On form submission",
+      "webhookId": "d72ff06e-37e5-4a99-acf0-6191fc3bff0a"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -848,
+        -144
+      ],
+      "id": "9fb4cb5c-7bf4-402d-97c6-e4033d19de8d",
+      "name": "Var"
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 1,
+    "timezone": "Asia/Kuala_Lumpur",
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "26badcb8-a01c-4ff9-a6e6-9f3c5b710760",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-30T03:59:26.277Z",
+      "updatedAt": "2025-09-30T03:59:26.277Z",
+      "role": "workflow:owner",
+      "workflowId": "HBlCvIxSDYNmf84y",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
