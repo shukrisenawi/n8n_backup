@@ -1,0 +1,2151 @@
+{
+  "active": true,
+  "connections": {
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Group Sahaja",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "Now",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari User": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Group Sahaja": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Chat": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tenaga Pengajar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Now": {
+      "main": [
+        [
+          {
+            "node": "Week",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Week": {
+      "main": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gambar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kemaskini Profile": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Cari User",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Time Now",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message1": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek text masbot": {
+      "main": [
+        [
+          {
+            "node": "Cari User",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kemaskini Pengajian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengumuman": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "message2": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Now": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tambah Kematian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kemaskini Kematian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Kematian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Hari Kematian": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-26T03:44:19.595Z",
+  "id": "dGVs23KrSIgBjgS7",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "MASJID AL-HALIMI - Group Pegawai",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -144,
+        -160
+      ],
+      "id": "8c27a4ea-f225-4cb4-8175-57d5f4cb2181",
+      "name": "WAHA Trigger",
+      "webhookId": "3a545eee-5bbd-40e3-9a71-9c747e90c694"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6ce8792c-8b3b-42a8-b4a8-2ecfff4a4497",
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_test }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Test"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_muslimat }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "45d46706-27cb-493d-b34c-eaf157f87dce"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Muslimat"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a367fffe-1e77-47f9-a45a-9ad0afbf3335",
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_masjid }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Masjid Muslimin"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "28ac23c7-5e4a-4692-927c-25be55b1b12a",
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_pegawai }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Pegawai Masjid"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1fc8efe4-6fbb-4d69-9cd0-638da376a662",
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_ribat }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Ribat"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "de62483e-d50b-4991-9ed9-40df94d4e817",
+                    "leftValue": "={{ $('Var').item.json.payload.from }}",
+                    "rightValue": "={{ $('Var').item.json.g_bukit }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Group Pemuda Bukit"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        192,
+        656
+      ],
+      "id": "02d84c6b-3937-4ae7-b696-a1c0c26f1ea3",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.g_test = '120363421710384148@g.us';\n  item.json.g_muslimat = '60134693115-1476278350@g.us';\n  item.json.g_masjid = '60134507038-1525247606@g.us';\n  item.json.g_pegawai = '60134507038-1477703538@g.us';\n  item.json.g_ribat = '120363046203034644@g.us';\n  item.json.g_bukit = '120363296155366232@g.us';\n  item.json.complete_register = 5;\n  item.json.session = $input.first().json.session;\n  item.json.session_memory = $input.first().json.payload.from;\n  item.json.group = $input.first().json.payload.from;\n  item.json.nama_bot = 'masbot';\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        48
+      ],
+      "id": "36875d4c-4a25-4d9c-9875-87f9095dd00e",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "anak_khariah",
+          "mode": "list",
+          "cachedResultName": "anak_khariah"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "={{ (()=>{\n  if($('Var').item.json.payload._data.key.participantPn){\n  return $('Var').item.json.payload._data.key.participantPn.replace('@s.whatsapp.net','@c.us');\n  }else{\n  return $('Var').item.json.payload._data.key.participantAlt.replace(':80@s.whatsapp.net','@c.us');\n}\n})()  }}"
+            },
+            {
+              "column": "on",
+              "value": "={{ $('Var').item.json.complete_register }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1104,
+        -96
+      ],
+      "id": "6fd9957c-e1d6-4c5f-b78f-5d24d250cf2d",
+      "name": "Cari User",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Var').first().json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[1]??$json.output[0] }}\"\n}",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3072,
+        448
+      ],
+      "id": "0acca3ed-8aee-4b5e-b60e-016ec74ffc47",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Var').first().json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2992,
+        704
+      ],
+      "id": "4b9e506d-bafe-4af3-bc5a-8f25d763c3c4",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Var').first().json.group }}",
+        "reply_to": "={{ $('Asingkan text biasa dengan gambar').item.json.replyId }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3152,
+        704
+      ],
+      "id": "9240323f-0ded-4d3a-bb61-551d4b43ad6d",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*3,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2832,
+        704
+      ],
+      "id": "27a204cf-006c-4571-8859-affb48c47320",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Var').first().json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2640,
+        704
+      ],
+      "id": "468ea15e-e73d-4734-a509-8fe2a563173f",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Asingkan text biasa dengan gambar').item.json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2864,
+        448
+      ],
+      "id": "3dfcae1e-869f-4ce5-b182-eb4caa8557cd",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $('Asingkan text biasa dengan gambar').item.json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3040,
+        80
+      ],
+      "id": "3504e714-9032-43e1-9cc4-068da1fd369f",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "jsCode": "let lines = $input.first().json.message;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      replyId:$input.first().json.repyId,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2864,
+        80
+      ],
+      "id": "d9c91cdb-64f0-4aaf-967d-f79f66b02de4",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2560,
+        64
+      ],
+      "id": "15df7580-048d-4ef8-a628-1f75b0bd92c1",
+      "name": "pecahkan mesej",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac825e8f-99d2-45f8-bd28-9e229fe94021",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@g.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -160
+      ],
+      "id": "a29a0184-c3cf-49d3-ab39-34a0fafcc92b",
+      "name": "Group Sahaja"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Switch').item.json.payload.body }}",
+        "options": {
+          "systemMessage": "=Anda ialah Ai pembantu masjid.. nama anda Masbot atau boleh juga dipanggil bot.\n\nMaklumat Pengguna\n\nNama Penuh : {{ $('Cari User').item.json.nama }}\nGelaran : {{ $('Cari User').item.json.gelaran }}\nAlamat : {{ $('Cari User').item.json.alamat }}\nTarikh Lahir : {{ $('Cari User').item.json.tarikh_lahir }}\n\nGunakan tool `Tambah Pengumuman` jika pengguna menambah pengumuman.\n\nSystem Message (AI Agent Masjid)\n\nAnda merupakan pakar bahasa melayu.\nGunakan bahasa melayu, malaysia.\nJika pengguna meminta gambar jangan senaraikan semua gambar, tanya pengguna gambar apa yang ingin di cari.\nJika pengguna meminta jadual jangan senaraikan semua jadual sbb byk.. tanya tarikh jadual yang ingin di paparkan.\nGunakan gelaran {{ $('Cari User').item.json.gelaran }} kepada pengguna tersebut untuk berinteraksi.\nAnda ialah Pembantu Maya Masjid yang berperanan sebagai sahabat digital kepada jemaah. Semua jawapan anda mestilah santai macam rakan, ringkas, jelas, sopan, mesra, penuh adab, dan berpandukan manhaj Ahli Sunnah Wal Jamaah.\nJawab soalan dengan maklumat dan data yang telah diberikan sahaja.. Maklumat Masjid di tool `Maklumat Masjid`.\nJangan bercerita tentang hukum hakam yang susah.. Cuma bg pandangan yang umum sahaja takut tersalah bg pandangan.\nTarikh semasa hari ini ialah {{$json[\"tarikh\"]}}, hari {{$json[\"hari\"]}}, minggu ke {{$json[\"minggu\"]}}, pukul {{$json[\"masa\"]}}\nGunakan tool `Jadual Pengajian` untuk mencari jadual pengajian, var tarikh menggunakan format YYYY-mm-dd, column active dalam Jadual Pengajian `Ya` bermaksud ada pengajian manakala `Tidak` bermaksud pengajian di batalkan.\nGunakan tool 'Gambar' untuk mencari gambar.\nJangan gunakan perkataan `Pengajaran` gantikan dengan kitab, jika bacaan yasin tulis program bacaan yasin..\nJika tempat di Masjid Al-Halimi Batu 5 tidak perlu tulis, tulis jika ditanya sahaja sbb kebanyakan program diadakan di Masjid Al-Halimi Batu 5.\nJangan tulis nama kitab yang tiada didalam jadual pengajian!!\nTidak bercerita tentang perkara teknikal dan dalaman sistem.\nSenaraikan jadual pengajian mengikut waktu yang mana dahulu.. contoh pengajian selepas subuh, pengajian pukul 3 petang baru pengajian lepas solat maghrib..\nJangan masukkan poster jika pengguna bertanya tentang pengajian.\nJika ada sebarang masalah teknikal minta pengguna mesej kepada 019-5168839\n\nMaklumat Masjid\n\nAlamat : Masjid Al-Halimi, Pekan Batu 5, 08200 Sik, Kedah\nNo Hp : 013-409 2131\nNama Imam : Aminudin Bin Abdul Rahman\nFacebook Masjid : https://www.facebook.com/Masjid.Al.Halimi.Batu5\nNo Akaun Bank Masjid\n- Nama Bank : Bank Rakyat\n- Penama : Masjid Al-Halimi\n- No Akaun : 1101498276\n\nPeranan Utama (Roles):\n\nPenasihat Agama\n\nTidak halisunisasi\nMenyampaikan dakwah dengan cara berhemah dan hikmah.\nMemberi nasihat berdasarkan al-Quran, Sunnah, dan pandangan ulama Ahli Sunnah Wal Jamaah.\nTidak mengeluarkan fatwa baharu, hanya merujuk kepada pandangan ulama muktabar.\n\nPengurus Data Masjid\nJadual pengajian rujuk pada file dapatkan hari dan minggu berdasarkan tarikh, kemudian rujuk column hari & minggu di ‘Jadual Pengajian Masjid’. \nMenyimpan dan menyusun maklumat berkaitan masjid seperti jadual solat, kelas pengajian, kuliah, ceramah, dan program masjid.\nMembantu mengingatkan jemaah tentang aktiviti masjid.\nwaktu solat rujuk file 'Waktu Solat 2025'\n\nModerator Kumpulan Masjid\n\njangan menjawab semua soalan.. jawab jika perlu sahaja contoh jika ada yang menyebut nama anda.\nMembantu mengurus komunikasi dalam kumpulan masjid secara mesra dan beradab.\nMenggalakkan suasana harmoni, saling menghormati, dan ukhuwah Islamiah.\nMenjawab dengan ringkas, mengelakkan perdebatan yang tidak bermanfaat.\n\nSahabat Sosial Jemaah\n\nBersosial dengan jemaah secara mesra, sopan dan sesuai dengan adab Islam.\nMenggunakan bahasa mudah difahami, dengan nada positif dan mengajak kepada kebaikan.\n\nRole Admin\n- terima arahan dari id `60195168839@c.us` sahaja\n- jika mesej pembatalan jadual pengajian atau ada jadual pengajian kemaskini di tool `Kemaskini Jadual`, filter pada `Tarikh Bulan Ini`, gunakan tarikh hari ini dlm format YYYY-mm-dd, column Active set [Ya/Tidak] bergantung pada mesej. Keluarkan output pengajian yang berjaya dikemaskini."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1552,
+        224
+      ],
+      "id": "234ce363-7497-41bc-b3ad-c58c0bddf095",
+      "name": "AI Chat",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        432
+      ],
+      "id": "eaaf7ac3-be9c-4f09-a691-66c879d2802b",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.output; // ambil text asal dari AI\n\n// Step 1: tukar \\n\\n jadi \\n\n//let text = input.replace(/\\n\\n/g, \"\\n\");\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"\\n\\n\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { repyId:null, line:line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        224
+      ],
+      "id": "84ed4f4a-8a37-4b5c-9f55-4ad8d179bba5",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "tenaga_pengajars",
+          "mode": "list",
+          "cachedResultName": "tenaga_pengajars"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        1712,
+        560
+      ],
+      "id": "613a3bce-e264-42a7-a09f-97b77b0f3634",
+      "name": "Tenaga Pengajar",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\nfunction pad(n){ return String(n).padStart(2, '0'); }\n\nconst utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);\nconst kl  = new Date(utc.getTime() + 8 * 60 * 60 * 1000);\n\nconst tarikh = `${kl.getFullYear()}-${pad(kl.getMonth()+1)}-${pad(kl.getDate())}`;\n\nlet hour = kl.getHours();\nconst minute = pad(kl.getMinutes());\nconst second = pad(kl.getSeconds());\n\nconst ampm = hour >= 12 ? \"PM\" : \"AM\";\nhour = hour % 12;\nhour = hour ? hour : 12; // kalau 0 jadikan 12\n\nconst masa = `${pad(hour)}:${minute}:${second} ${ampm}`;\n\nconst weekdays = ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'];\n\nreturn [\n  {\n    json: {\n      sessionId: $input.first().json.sessionId,\n      tarikh,\n      masa,              // Format 12 jam (hh:mm:ss AM/PM)\n      hari: weekdays[kl.getDay()]\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1184,
+        224
+      ],
+      "id": "5f944902-0b9d-4266-a180-926be5c21be4",
+      "name": "Time Now"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input tarikh (boleh ubah manual atau guna new Date() untuk tarikh semasa)\nconst inputDate = new Date($input.first().json.tarikh); // contoh\n\n// Senarai nama hari\nconst days = [\"ahad\", \"isnin\", \"selasa\", \"rabu\", \"khamis\", \"jumaat\", \"sabtu\"];\n\n// Tahun, bulan, hari\nlet year = inputDate.getFullYear();\nlet month = inputDate.getMonth() + 1; // bulan bermula dari 0\nlet day = inputDate.getDate();\n\n// Cari minggu (1–7 minggu 1, 8–14 minggu 2, dsb.)\nlet minggu = Math.ceil(day / 7);\n\n// Dapatkan nama hari\nlet hari = days[inputDate.getDay()];\n\n// Format tarikh dd/mm/yyyy\nlet tarikh = `${day}/${month}/${year}`;\n\n// Output untuk n8n\nreturn [\n  {\n    json: {\n      hari: hari,\n      minggu: minggu,\n      tarikh: tarikh,\n      masa: $input.first().json.masa,\n      sessionId:$input.first().json.sessionId\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        224
+      ],
+      "id": "014860c2-1e68-4a1a-bd08-f41c895d6b13",
+      "name": "Week"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "gambar",
+          "mode": "list",
+          "cachedResultName": "gambar"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "where": {
+          "values": [
+            {
+              "column": "bisnes_id",
+              "value": "={{ $('var').item.json.bisnes_id }}"
+            },
+            {
+              "column": "ai_search",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        1552,
+        560
+      ],
+      "id": "93b35dc9-bc12-44cd-8204-66bd46004290",
+      "name": "Gambar",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "anak_khariah",
+          "mode": "list",
+          "cachedResultName": "anak_khariah"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "no_tel",
+        "valueToMatchOn": "={{ $('var').item.json.no_tel }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "nama",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', `nama penuh`, 'string') }}"
+            },
+            {
+              "column": "gelaran",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values1_Value', `gelaran atau panggilan di kampung`, 'string') }}"
+            },
+            {
+              "column": "tarikh_lahir",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values2_Value', `tarikh lahir`, 'string') }}"
+            },
+            {
+              "column": "alamat",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values3_Value', `nama kampung`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        1872,
+        560
+      ],
+      "id": "bb8ed4c6-e7b4-48b7-9c06-1a7632c447dc",
+      "name": "Kemaskini Profile",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "070ec633-2d96-41a7-b809-2940c4f6eaad",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Ya",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        208
+      ],
+      "id": "d7b1f0a4-b0e0-4008-98f3-80998a9c9c50",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e052b7c5-3576-4def-8966-3a546137966a",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        -96
+      ],
+      "id": "8f000e1f-bcd7-4325-a866-62f3507a9831",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = \"Maaf anda tidak dibenarkan berhubung dengan sy kerana anda belum mendaftar sebagai anak khariah.. sila mesej sy untuk pendaftaran ringkas.\";\nconst replyId = ;\nreturn [\n  {\n    json:{\n      message:message,\n      replyId:replyId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1552,
+        -96
+      ],
+      "id": "56e53e01-8d89-4ff9-a038-6c5f7d6de682",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1728,
+        -96
+      ],
+      "id": "dea22156-5669-4748-ab00-f030c52af42b",
+      "name": "message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "66246247-a01c-49e3-93c3-25e9908f2f5e",
+              "name": "message",
+              "value": "={{ $json.line }}",
+              "type": "string"
+            },
+            {
+              "id": "7ee3ee5e-8f21-4c63-bffa-53ae350b9d77",
+              "name": "replyId",
+              "value": "null",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2144,
+        224
+      ],
+      "id": "9999560f-c8c4-4d24-ae78-20fe41094ef2",
+      "name": "message1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.payload.body }}",
+        "options": {
+          "systemMessage": "System Message\n\n- Jika mesej ini adalah balasan kepada soalan anda, Output Ya. Jika tidak, Output Tidak\n\n- Output hanya Ya atau Tidak"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        592,
+        208
+      ],
+      "id": "d55014bc-d291-450c-bc2f-fc698b3025cf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        592,
+        384
+      ],
+      "id": "6ef95063-08b3-413a-b453-e45511acdb56",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0e62b62e-ff0b-44bb-b35d-13b96487d6ff",
+              "leftValue": "={{ $json.payload.body }}",
+              "rightValue": "={{ $('Var').item.json.nama_bot }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -64
+      ],
+      "id": "41dbcc8d-30c1-4bef-90d7-8e26bcbf9ce7",
+      "name": "Cek text masbot"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', `Tarikh pengajian dalam format YYYY-mm-dd (wajib pilih)`, 'string') }}"
+            },
+            {
+              "keyName": "kitab",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions1_Value', `Nama kitab`, 'string') }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "active": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('active', `\"Ya\" jika ada pengajian, \"Tidak\" jika tiada pengajian`, 'string') }}",
+            "sebab_tidak_mengajar": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('sebab_tidak_mengajar', `Alasan jika tiada pengajian`, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "kitab",
+              "displayName": "kitab",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari",
+              "displayName": "hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "minggu",
+              "displayName": "minggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "masa",
+              "displayName": "masa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "pengajar",
+              "displayName": "pengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tempat",
+              "displayName": "tempat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "live",
+              "displayName": "live",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_bulan_ini",
+              "displayName": "tarikh_bulan_ini",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_peringatan",
+              "displayName": "tarikh_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "no_hp_peringatan",
+              "displayName": "no_hp_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sebab_tidak_mengajar",
+              "displayName": "sebab_tidak_mengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        432
+      ],
+      "id": "d9b4d7f3-7181-4662-b732-addc6db78e76",
+      "name": "Kemaskini Pengajian"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', `Tarikh dalam format YYYY-mm-dd`, 'string') }}"
+            },
+            {
+              "keyName": "hari",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions1_Value', `Hari Pengajian`, 'string') }}"
+            },
+            {
+              "keyName": "minggu",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions2_Value', `Minggu pengajian`, 'string') }}"
+            },
+            {
+              "keyName": "pengajar",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions3_Value', `Nama pengajar`, 'string') }}"
+            },
+            {
+              "keyName": "kitab",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions4_Value', `Nama kitab`, 'string') }}"
+            },
+            {
+              "keyName": "tempat",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions5_Value', `Tempat pengajian`, 'string') }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        432
+      ],
+      "id": "ed9afcb2-b8ff-47ef-b1bc-92f1c8a53a31",
+      "name": "Cari Pengajian"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "n86Um1hF9bOnUjqJ",
+          "mode": "list",
+          "cachedResultName": "Masjid - Pengumuman",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/n86Um1hF9bOnUjqJ"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pengumuman",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', `Pengumugam`, 'string') }}"
+            },
+            {
+              "keyName": "tarikh_mula",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions1_Value', `Tarikh mula pengumuman dalam format YYYY-mm-dd`, 'string') }}"
+            },
+            {
+              "keyName": "tarikh_akhir",
+              "keyValue": "Tarikh akhir pengumuman dalam format YYYY-mm-dd"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        432
+      ],
+      "id": "92468a67-9605-4036-b71d-70809d47c533",
+      "name": "Cari Pengumuman"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Var').item.json.session_memory }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1488,
+        432
+      ],
+      "id": "313ac40e-2611-4339-905d-b3d341505bd8",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Var').item.json.payload.body }}",
+                    "rightValue": "/kematian",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "84ea31e8-c99e-415b-99a3-3001671ee7fa"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Kematian"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        544,
+        736
+      ],
+      "id": "947eba3b-4bb1-4d9e-94d8-f1ba22091635",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Var').item.json.payload.body }}",
+        "options": {
+          "systemMessage": "=Tarikh semasa hari ini ialah {{$('Now').item.json.tarikh}}, hari {{$('Now').item.json.hari}}, pukul {{$('Now').item.json.masa}}\n\nAnda ialah AI Agent dalam n8n yang menguruskan data kematian bagi Masjid.\nSemua data disimpan dalam DataTable bernama “Masjid - Kematian”.\n\nPeranan anda ialah melaksanakan operasi CRUD (Cipta, Baca, Kemas Kini, Padam) menggunakan node DataTable berikut:\n\nPemetaan Node Operasi:\n- “Tambah Kematian” → untuk operasi Cipta (Insert), pastikan tiada nama yang sama dalam database\n- “Senarai Kematian” → untuk operasi Baca (Get Many)\n- “Kemaskini Kematian” → untuk operasi Kemas Kini (Update)\n- “Padam Kematian” → untuk operasi Padam (Delete)\n- Jika text yang mempunyai nama tapi tiada pemetaan gunakan pemetaan `Tambah Kematian`\n\nStruktur Jadual:\n- nama (Teks)\n- tarikh_lahir (Tarikh)\n- tarikh_kematian (Tarikh)\n- hari_kematian (Gunakan tool `Cari Hari Kematian` menggunakan input tarikh_kematian)\n- masa_kematian (Masa)\n- kampung (Teks)\n\nOutput:\n- Label yang tidak mempunyai nilai tidak perlu dikeluarkan.\n\nTatacara Operasi:\n\n1. **Cipta (Tambah Kematian)**\n   - Gunakan node “Tambah Kematian” dengan operasi “Insert”.\n   - Medan wajib: `nama`, `kampung`, `tarikh_kematian`, `masa_kematian`.\n   - Gunakan tool `Cari Hari Kematian` untuk mendapatkan hari_kematian dengan menggunakan tarikh_kematian dalam format YYYY-mm-dd.\n   - Format tarikh: `YYYY-MM-DD`, format masa: `HH:mm` atau `HH:mm:ss`.\n   - Contoh data:\n     {\n       \"nama\": \"Haji Ahmad bin Ali\",\n       \"tarikh_lahir\": \"1945-03-12\",\n       \"tarikh_kematian\": \"2024-10-10\",\n       \"masa_kematian\": \"22:15\",\n       \"kampung\": \"Kampung Baru\"\n     }\n\n2. **Baca (Senarai Kematian)**\n   - Gunakan node “Senarai Kematian” dengan operasi “Get Many”.\n   - Boleh tapis berdasarkan nama, kampung, tarikh_kematian, atau masa_kematian.\n   - Contoh: “Senaraikan semua kematian di Kampung Baru pada 2024-10-10.”\n\n3. **Kemas Kini (Kemaskini Kematian)**\n   - Gunakan node “Kemaskini Kematian” dengan operasi “Update”.\n   - Pastikan ID atau rekod unik dikenal pasti sebelum kemas kini.\n   - Contoh:\n     “Kemas kini masa kematian Haji Ahmad bin Ali kepada 22:45 pada 2024-10-10.”\n\n4. **Padam (Padam Kematian)**\n   - Gunakan node “Padam Kematian” dengan operasi “Delete”.\n   - Contoh: “Padam rekod kematian Haji Ahmad bin Ali dari Kampung Baru.”\n\nPeraturan Umum:\n- Semua input dan output dalam format JSON.\n- Format tarikh output : `dd-mm-YYYY`, format masa output: `h:mmA`.\n- Jangan ubah jadual atau lajur lain.\n\nContoh Dialog:\nPengguna: “Tambah kematian baharu — Haji Ismail bin Abu, lahir 1948-06-20, tarikh kematian 2024-10-11 jam 05:30, kampung Kampung Tengah.”\n→ Tindakan: Gunakan node “Tambah Kematian”.\n\nPengguna: “Tunjukkan semua kematian pada 2024-10-11.”\n→ Tindakan: Gunakan node “Senarai Kematian”.\n\nPengguna: “Kemas kini masa kematian Haji Ismail kepada 06:00.”\n→ Tindakan: Gunakan node “Kemaskini Kematian”.\n\nPengguna: “Padam rekod kematian Haji Ismail dari Kampung Tengah.”\n→ Tindakan: Gunakan node “Padam Kematian”."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        544
+      ],
+      "id": "f531d9c4-58da-4c3e-8963-3bf87de921ee",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        816,
+        752
+      ],
+      "id": "4ad883c2-4deb-41b3-9671-f10e14e4194e",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Var').item.json.session_memory }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        752
+      ],
+      "id": "baa6ff2b-d428-4372-bf54-9f4ffb13b3e2",
+      "name": "Postgres Chat Memory1",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.output+\"\\n\\n_File:_ _https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit?usp=sharing_\"; // ambil text asal dari AI\n\n// Step 1: tukar \\n\\n jadi \\n\n//let text = input.replace(/\\n\\n/g, \"\\n\");\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"\\n\\n\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { repyId:null, line:line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1504,
+        816
+      ],
+      "id": "1ad9ad34-9931-42d5-9a58-c90c0aad5d2c",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "66246247-a01c-49e3-93c3-25e9908f2f5e",
+              "name": "message",
+              "value": "={{ $json.line }}",
+              "type": "string"
+            },
+            {
+              "id": "7ee3ee5e-8f21-4c63-bffa-53ae350b9d77",
+              "name": "replyId",
+              "value": "null",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1728,
+        816
+      ],
+      "id": "5ce466cb-3cd9-4085-a2d4-c7fe7dfa8ac0",
+      "name": "message2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\nfunction pad(n){ return String(n).padStart(2, '0'); }\n\nconst utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);\nconst kl  = new Date(utc.getTime() + 8 * 60 * 60 * 1000);\n\nconst tarikh = `${kl.getFullYear()}-${pad(kl.getMonth()+1)}-${pad(kl.getDate())}`;\n\nlet hour = kl.getHours();\nconst minute = pad(kl.getMinutes());\nconst second = pad(kl.getSeconds());\n\nconst ampm = hour >= 12 ? \"PM\" : \"AM\";\nhour = hour % 12;\nhour = hour ? hour : 12; // kalau 0 jadikan 12\n\nconst masa = `${pad(hour)}:${minute}:${second} ${ampm}`;\n\nconst weekdays = ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'];\n\nreturn [\n  {\n    json: {\n      tarikh,\n      masa,              // Format 12 jam (hh:mm:ss AM/PM)\n      hari: weekdays[kl.getDay()]\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        272
+      ],
+      "id": "1a155fd1-a75a-4a64-a40c-f38f0f5fd0fc",
+      "name": "Now"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg",
+          "mode": "list",
+          "cachedResultName": "Data Kematian",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1061991772,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit#gid=1061991772"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nama', ``, 'string') }}",
+            "Kampung": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Kampung', ``, 'string') }}",
+            "Umur": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Umur', ``, 'string') }}",
+            "Tarikh Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tarikh_Kematian', `format YYYY-mm-dd`, 'string') }}",
+            "Masa Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Masa_Kematian', ``, 'string') }}",
+            "Penunggu": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Penunggu', `Nama orang yang menunggu kubur`, 'string') }}",
+            "Hari Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Hari_Kematian', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kampung",
+              "displayName": "Kampung",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Umur",
+              "displayName": "Umur",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hari Kematian",
+              "displayName": "Hari Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tarikh Kematian",
+              "displayName": "Tarikh Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Masa Kematian",
+              "displayName": "Masa Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Penunggu",
+              "displayName": "Penunggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        816,
+        944
+      ],
+      "id": "632e3761-0c56-42c4-9292-0cc0869a26b8",
+      "name": "Tambah Kematian",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg",
+          "mode": "list",
+          "cachedResultName": "Data Kematian",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1061991772,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit#gid=1061991772"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nama__using_to_match_', ``, 'string') }}",
+            "Kampung": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Kampung', ``, 'string') }}",
+            "Umur": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Umur', ``, 'string') }}",
+            "Tarikh Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tarikh_Kematian', `format YYYY-mm-dd`, 'string') }}",
+            "Masa Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Masa_Kematian', ``, 'string') }}",
+            "Penunggu": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Penunggu', `Nama orang yang menunggu kubur`, 'string') }}",
+            "Hari Kematian": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Hari_Kematian', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Nama"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Kampung",
+              "displayName": "Kampung",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Umur",
+              "displayName": "Umur",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Hari Kematian",
+              "displayName": "Hari Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tarikh Kematian",
+              "displayName": "Tarikh Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Masa Kematian",
+              "displayName": "Masa Kematian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Penunggu",
+              "displayName": "Penunggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        992,
+        944
+      ],
+      "id": "45184816-7cb7-44e6-b59d-127e81b4da46",
+      "name": "Kemaskini Kematian",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg",
+          "mode": "list",
+          "cachedResultName": "Data Kematian",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1061991772,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hNPi9M_atW7059PJp9J15uFuTR1M02gGRENc5oF7Bpg/edit#gid=1061991772"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1168,
+        944
+      ],
+      "id": "381add58-4e2f-437d-b11f-cc17a36106d1",
+      "name": "Senarai Kematian",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Cari Hari Kematian menggunakan tarikh kematian dengan format YYYY-mm-dd",
+        "jsCode": "const date = new Date($fromAi('query')); // ambil tarikh dari input\nconst days = ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'];\nreturn days[date.getDay()];"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        944
+      ],
+      "id": "612358e5-bccc-4949-b0ec-2678898bb962",
+      "name": "Cari Hari Kematian"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-26T03:44:19.597Z",
+      "updatedAt": "2025-09-26T03:44:19.597Z",
+      "role": "workflow:owner",
+      "workflowId": "dGVs23KrSIgBjgS7",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-23T06:02:22.000Z",
+  "versionId": "37397a2f-32ca-4cd0-96ed-33e0991c907a"
+}
