@@ -1,0 +1,33 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-09-29T12:02:06.948Z",
+  "id": "62VdwWsbJtYlQqJ2",
+  "isArchived": true,
+  "meta": null,
+  "name": "Reset Jadual Pengajian",
+  "nodes": [],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-29T12:02:06.951Z",
+      "updatedAt": "2025-09-29T12:02:06.951Z",
+      "role": "workflow:owner",
+      "workflowId": "62VdwWsbJtYlQqJ2",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-29T12:02:16.000Z",
+  "versionId": "f79f89ef-fcd7-47e7-adec-7fe6ac1be31b"
+}
