@@ -1,0 +1,731 @@
+{
+  "active": false,
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "Send a photo message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a photo message": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-04T04:08:05.986Z",
+  "id": "CWxhpyBtQrQw1ukD",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "FUNGSI /gambar - Generate Gambar",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Error :  {{ $json.error }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1568,
+        1104
+      ],
+      "id": "72a08cf9-8d3f-45f5-a6cd-b8b1aff91bf5",
+      "name": "Send a text message",
+      "webhookId": "f23afa61-5ce8-4532-b9d5-ef5c07229331",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1104,
+        976
+      ],
+      "id": "48dd90ae-91da-4dfd-a815-e6b7239b47b4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Tiada senarai prompts dijumpai.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        912
+      ],
+      "id": "e9acdb40-15be-43ba-967b-202861936f4c",
+      "name": "Send a text message1",
+      "webhookId": "f23afa61-5ce8-4532-b9d5-ef5c07229331",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Prompt tidak dimasukkan.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        912
+      ],
+      "id": "af4f56ce-363c-4dc6-a1d5-ce852b7e02d3",
+      "name": "Send a text message2",
+      "webhookId": "f23afa61-5ce8-4532-b9d5-ef5c07229331",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*10,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2640,
+        736
+      ],
+      "id": "973f3e3d-4d83-4010-847e-693a4b5360e2",
+      "name": "Wait",
+      "webhookId": "4140f766-62a4-43f8-89aa-7101db2ab4d5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://aisandbox-pa.googleapis.com/v1/whisk:generateImage",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"clientContext\": {\n    \"workflowId\": \"8a0ca43d-1baf-46f0-ad9c-c2dce265f251\",\n    \"tool\": \"BACKBONE\",\n    \"sessionId\": \";1759330160220\"\n  },\n  \"imageModelSettings\": {\n    \"imageModel\": \"IMAGEN_3_5\",\n    \"aspectRatio\": \"IMAGE_ASPECT_RATIO_LANDSCAPE\"\n  },\n  \"seed\": 776321,\n  \"prompt\": {{ $json.output }},\n  \"mediaCategory\": \"MEDIA_CATEGORY_BOARD\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1552,
+        720
+      ],
+      "id": "48b66c72-efb7-4a50-8968-7ef89eb33918",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "P8gMcHo8Ofvlcs2y",
+          "name": "Header Auth account Whisk"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagePanels[0].generatedImages[0].encodedImage",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1760,
+        720
+      ],
+      "id": "300265ac-cc9f-4e4f-a2f7-07e18e8ca94a",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "action": "generate",
+        "dataPropertyName": "uuid"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        720
+      ],
+      "id": "5f580ab9-37d0-45f3-8cf5-7525a6723dd4",
+      "name": "Crypto"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "514b50fc-55bd-4a25-9407-785675f15794",
+              "leftValue": "={{ $('Loop Over Items').item.json.from }}",
+              "rightValue": "google_sheet",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2336,
+        720
+      ],
+      "id": "fb58207f-5ffa-4735-88d7-8c16bd97997c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ab3e5c20-1c62-494f-9af7-b666f2f502a7",
+              "leftValue": "={{ $json.Prompts[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        720
+      ],
+      "id": "353139db-5af4-41d0-a02d-73b3a0b2a9c3",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "={{ $('Loop Over Items').item.json.from==\"google_sheet\"?$('Data').item.json.Name:$json.uuid}}"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2160,
+        720
+      ],
+      "id": "22b1b094-26e1-4677-b5c5-fb5697e67b73",
+      "name": "Send a photo message",
+      "webhookId": "419abf0c-9f79-44ef-b23d-a6793169acfc",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.Prompts }}",
+        "options": {
+          "systemMessage": "Keluar keluarkan output yang sesuai untuk prompt gambar google whisk, kemaskini prompt supaya gambar yang dihasil menepati apa yang diinginkan.\n\nPENTING!!\n- ouput mestilah dalam bahasa inggeris\n- output mestilah sebaris."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        720
+      ],
+      "id": "a1d4f184-5fdd-4f0a-8412-d33ec9c763b6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        704
+      ],
+      "id": "93ffcb9c-2b92-49a9-8900-27a38ff9e9c2",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "378d2da1-b6ce-463d-9cee-9fe89b8a3d64",
+              "leftValue": "={{ $json.Prompts }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        704
+      ],
+      "id": "51c4c7e2-f684-473e-bfaf-d96f0f401385",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Prompts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        528,
+        688
+      ],
+      "id": "5d251e7b-c918-4141-951b-6ee8626d68ff",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1CT6ovQYnToTbn8BoXI6ZUfD8fIwtVCD6sw06AA56AHY",
+          "mode": "list",
+          "cachedResultName": "Whisk",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT6ovQYnToTbn8BoXI6ZUfD8fIwtVCD6sw06AA56AHY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CT6ovQYnToTbn8BoXI6ZUfD8fIwtVCD6sw06AA56AHY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Done",
+            "row_number": "={{ $('Data').item.json.row_number }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Prompts",
+              "displayName": "Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2512,
+        640
+      ],
+      "id": "81d85d7b-c594-4ebb-9a8b-6eb108eb2c25",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Gambar diproses...",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1552,
+        592
+      ],
+      "id": "1c7d8b5e-b1b0-4709-b31d-787d4af4642e",
+      "name": "Send a text message3",
+      "webhookId": "f23afa61-5ce8-4532-b9d5-ef5c07229331",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "id_telegram",
+              "type": "any"
+            },
+            {
+              "name": "Prompts",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "1b3ee66b-254b-4be2-ad90-3c24e7533f21",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -160,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Start').item.json.id_telegram }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1296,
+        976
+      ],
+      "id": "eb9639c3-feb7-42d1-b6d6-d15ba32e6ff8",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-04T04:08:05.989Z",
+      "updatedAt": "2025-10-04T04:08:05.989Z",
+      "role": "workflow:owner",
+      "workflowId": "CWxhpyBtQrQw1ukD",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-05T06:56:25.000Z",
+  "versionId": "e4a332e6-8f9b-4466-b501-c97f6535590a"
+}
