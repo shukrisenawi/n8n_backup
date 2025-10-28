@@ -1,0 +1,3026 @@
+{
+  "active": false,
+  "connections": {
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Check Bisnes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        []
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Chat": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stok Produk": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cek Kosong",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Only": {
+      "main": [
+        [
+          {
+            "node": "Text Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Data Mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Media": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcribe audio or video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Image Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "PDF Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Output": {
+      "main": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Text Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Data": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        []
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Simpan Tempahan",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mesej Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mesej Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hantar Berasingan": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Cek Stok1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gambar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Mesej Gambar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Gambar": {
+      "main": [
+        [
+          {
+            "node": "Hantar Berasingan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Text": {
+      "main": [
+        [
+          {
+            "node": "Hantar Berasingan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Tempahan": {
+      "main": [
+        [
+          {
+            "node": "Senarai Belian Produk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Kosong": {
+      "main": [
+        [
+          {
+            "node": "Start Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Admin": {
+      "main": [
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Belian Produk": {
+      "main": [
+        [
+          {
+            "node": "Asingkan Produk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan Produk": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cek Stok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Stok": {
+      "main": [
+        [
+          {
+            "node": "Update Stok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Stok": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Stok1": {
+      "main": [
+        [
+          {
+            "node": "Gabungkan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gabungkan": {
+      "main": [
+        [
+          {
+            "node": "Mesej Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Mesej": {
+      "main": [
+        [
+          {
+            "node": "Download Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe audio or video": {
+      "main": [
+        [
+          {
+            "node": "Audio Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Map": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Create a new label": {
+      "main": [
+        [
+          {
+            "node": "Save labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all labels": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Label Exists": {
+      "main": [
+        [
+          {
+            "node": "Save labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a new label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Cek Label Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save labels for the chat": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Get labels for the chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get labels for the chat": {
+      "main": [
+        [
+          {
+            "node": "Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get all labels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Label": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Text Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Aggregate4": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Simpan Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Bisnes": {
+      "main": [
+        [
+          {
+            "node": "Aggregate4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-17T02:12:50.409Z",
+  "id": "LzaMmjm1aTdiSxG1",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "JAMU ASLI",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -288,
+        -464
+      ],
+      "id": "7f0923eb-4e2a-446a-b5ca-550eba9f7dea",
+      "name": "WAHA Trigger",
+      "webhookId": "3a545eee-5bbd-40e3-9a71-9c747e90c694"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        -304
+      ],
+      "id": "40583cb4-15e1-4a30-a298-d0183539443c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from}}",
+        "text": "={{ $('Hantar Berasingan').item.json.message}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3920,
+        -16
+      ],
+      "id": "2dacdaad-e3f2-49c5-952a-85dd26591a00",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "messageId": "={{ $('WAHA Trigger').item.json.payload.id }}",
+        "participant": "=",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        384,
+        -560
+      ],
+      "id": "92607953-ce44-4b31-bac2-2f5305a709c9",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3792,
+        -16
+      ],
+      "id": "291dd65d-6c2e-4235-a9ab-1f895868ef05",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e12dfe8d-2801-4d83-aa06-889942256dd4",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "60195168839@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "1c14e781-f085-4a7b-8b6a-737f6a934c6c",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "601120913823@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        -480
+      ],
+      "id": "7ee6fad5-f53b-4344-8430-a0f08a990c31",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=-\tAnda ialah Pembantu Maya syarikat produk tradisional.\n-\tJawab soalan pelanggan dengan nada mesra, santai dan mudah difahami, ayat pendek dan sederhana ikut kesesuaian supaya mudah baca, gunakan emoji bila sesuai dan sentiasa bantu closing dengan ajakan lembut seperti “Puan nak cuba jamu ni untuk penjagaan dalaman ke luaran ye? 🌸”. \n-\tUntuk stok rujuk 'Stok Produk'.\n-\tElak beritahu customer anda pembantu maya. Nama anda Maya\n-\tSebelum bagi no bank bagi harga dahulu.. pastikan customer dah beritahu produk apa dan berapa kuantiti nk beli\n-\tElakkan gelaran sayang pada customer\n-\tCerita kelebihan produk, jangan banyak tanya pada customer, banyakan cerita tentang produk dan harga yang ditawarkan.\n\n********** output ******\n{\n\"message\": \"Mesej dari Ai\",\n\"label\": \"gambar/bayar/lain-lain\",\n\"gambar\": [“link gambar yang customer minta”],\n\"nama\": \"nama penerima\",\n\"alamat\": \"alamat pos\",\n\"negeri\": \"negeri ambil dari alamat\",\n\"jumlah\": \"harga yang perlu di bayar\",\n\"produk\": \"nama dan kuantiti produk\",\n\"status\": \"bayar (jangan ubah)\",\n\"tarikh tempahan\": \"22-08-2025 6:35PM\",\n\"kurier\": \"J&T (jangan ubah)\",\n\"catatan\": \"perangai pelanggan\",\n\"belian\": [“senarai dan kuantiti produk yang diambil dari key produk dan di asingkan kepada array”]\n}\nNota : gambar – customer minta gambar\n\tBayar – customer telah membayar dan di sahkan\n\tLain-lain – bukan gambar dan bayar\n\nkey yang wajib hanya message dan label.. yang lain jika tidak berkenaan tidak perlu letak\n\n***********************\n\nFAQ – Jamu Asli 41 Herba (Buatan Tradisional)\n- Jamu Asli berbentuk bulat..\n1. Jamu Asli ini untuk siapa?\nJamu ini sesuai untuk:\n•\tWanita selepas bersalin (dalam pantang)\n•\tWanita yang ingin menjaga kesihatan dalaman & luaran\n•\tIbu menyusu yang mahu kembalikan tenaga\n•\tWanita yang mengalami masalah keputihan, haid tak teratur atau perut buncit\n________________________________________\n2. Adakah selamat untuk ibu menyusu?\nYa, Jamu Asli ini buatan tradisional menggunakan herba turun-temurun yang biasa diamalkan oleh orang lama. Ramuan 100% herba tanpa bahan kimia tambahan.\n________________________________________\n3. Berapa lama kesan boleh dirasai?\nRamai pengguna mula rasa perubahan seawal 3–7 hari penggunaan secara konsisten. Hasil mungkin berbeza mengikut keadaan badan.\n________________________________________\n4. Bagaimana cara makan Jamu Asli?\n•\tAmbil 2 biji pagi sebelum sarapan\n•\tAmbil 2 biji malam sebelum tidur\n•\tMinum air kosong secukupnya untuk kesan lebih baik\n________________________________________\n5. Adakah perlu pantang makanan?\nUntuk kesan maksimum, elakkan:\n•\tMinuman berais berlebihan\n•\tMinuman berkafein terlalu banyak (kopi/teh pekat)\n•\tMakanan terlalu berminyak atau berlemak\n________________________________________\n6. Adakah produk ini berdaftar dengan KKM?\nTidak, kerana Jamu Asli ini adalah hasil buatan tradisional secara kecil-kecilan menggunakan resipi orang lama. Walaupun tidak berdaftar, ia dihasilkan dengan amalan kebersihan dan bahan yang selamat dimakan.\n________________________________________\n7. Berapa harga 1 botol?\n1 botol (70  biji) hanya RM18 — tahan untuk 17 hari jika mengikut cara makan yang disediakan.\n________________________________________\n8. Berapa kos penghantaran?\n•\tSemenanjung Malaysia: RM7\n•\tSabah & Sarawak: RM12\nPercuma pos untuk pembelian 5 botol ke atas.\n________________________________________\n9. Bagaimana nak buat pesanan?\nBuat bayaran ke akaun :\nMOHAMAD SHUKRI BIN SENAWI\nMAYBANK\n155015073618\nselepas buat bayaran hantar resit di sini\n________________________________________\n10. Herba apa yang di gunakan?\n- Kacip Fatimah\nMenjaga kesihatan rahim, tingkat tenaga dan stabilkan hormon wanita.\n- Manjakani\nKetatkan faraj, cegah keputihan dan lawan bakteria kawasan intim.\n- Bunga Pakma\nKecutkan rahim, buang angin dan pulihkan dalaman wanita lepas bersalin.\n- Halia Bara\nBuang angin, lancar darah dan bantu masalah penghadaman.\n- Kunyit Hidup\nSembuhkan luka dalaman, lancar haid dan cegah radang.\n- Lada Hitam\nHangatkan badan, tingkat metabolisma dan bantu penghadaman.\n- Kulit Kayu Manis\nStabilkan gula darah, lancar darah dan tingkat kesuburan.\n- Cengkih\nCegah jangkitan, buang angin dan segarkan nafas.\n- Lain-lain\ndirahsiakan\n\nPRODUK UP SELL \n-\tPromote bila customer dah setuju nk beli jamu\n-\tPromote bila customer xcukup bajet untuk beli jamu\n-\tPromote bila customer cakap jamu mahal\nMINYAK PANAS AURORA TERAPI\n1.\tAda 4 jenis:\na.\tAurora terapi Kayu Putih\nb.\tAurora terapi Serai Wangi\nc.\tAurora terapi Lemon\nd.\tAurora terapi Bidara\n2.\tKelebihan :\na.\tMinyak panas jenis roll menjadikan ia mudah digunakan\nb.\tMudah dibawa kemana sahaja\nc.\tMempunyai pelbagai wangian\n3.\tSesuai untuk:\na.\tMengurangkan sakit kepala.\nb.\tMabuk perjalanan\nc.\tBuang angin sembelit\nd.\tBatuk\ne.\tKejang otot\nf.\tSakit lutut/sendi\n4.\tHarga :\na.\tSebotol RM10\nb.\t5 botol RM45\nc.\t10 botol RM80"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        2192,
+        -256
+      ],
+      "id": "9a984ba0-399c-4ec7-a3cf-25f17e21d258",
+      "name": "AI Chat",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2432,
+        32
+      ],
+      "id": "044a7ea6-0b67-46f5-b22f-f71a41fe4a7a",
+      "name": "Stok Produk",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3648,
+        -16
+      ],
+      "id": "af82312b-4eea-4330-a398-13c32139437d",
+      "name": "Wait",
+      "webhookId": "53f2d56c-078b-4d90-9389-0d4936466c22"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3808,
+        240
+      ],
+      "id": "7f3e396e-903d-4fcc-884a-811ad67c9fd3",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4080,
+        80
+      ],
+      "id": "328cef98-a1a2-421c-941e-53fac3d73492",
+      "name": "Loop Over Items",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "93472987-619b-4ba7-97ea-5b15e2610257",
+              "leftValue": "={{ $('WAHA Trigger').item.json.payload.hasMedia }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        -464
+      ],
+      "id": "18424691-d58f-44a2-b226-20b331cfd9f0",
+      "name": "Text Only"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('WAHA Trigger').item.json.payload.mediaUrl }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "wahaApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        912,
+        0
+      ],
+      "id": "ab3ab9ba-5c6d-46c6-b018-481ff57c742e",
+      "name": "Download Media",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ca671463-78af-4c55-9c05-40d71de8dbea"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PDF"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6a17eda7-37ae-4742-a740-4ca7a5641f6b",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/jpeg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR JPEG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c25d352-cee8-4f79-b0bf-d64f448c75b9",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "image/png",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GAMBAR PNG"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "05076dfd-2324-402c-8ce4-70f9ab75efed",
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+                    "rightValue": "audio/ogg;",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AUDIO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1168,
+        -160
+      ],
+      "id": "d220ab9e-4271-42b8-a583-2baab2446d91",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1488,
+        -96
+      ],
+      "id": "e8ceb211-7024-4819-be37-48fbfbaa41e7",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        -304
+      ],
+      "id": "3586b79f-0853-4e6a-919b-a8fd3dbccd3d",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fa890ae8-3a05-445e-843c-ad6a95f4b265",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        -288
+      ],
+      "id": "815ef95f-5130-4081-931d-b90d16c7e7d9",
+      "name": "PDF Map"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1968,
+        -288
+      ],
+      "id": "46d34698-05fa-43e8-951d-e6c8f598093b",
+      "name": "Output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3c0ccd84-71f2-49a8-8d9c-0cdd3cd23d46",
+              "name": "output",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        -96
+      ],
+      "id": "ff590f08-756c-4054-ae79-22947d429ec7",
+      "name": "Image Map"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2feafedd-5e7b-40e1-b4fa-fc2ba85d3852",
+              "name": "output",
+              "value": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        -480
+      ],
+      "id": "7e9cb507-ac12-49eb-86b2-1517449f86cb",
+      "name": "Text Map"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc",
+          "mode": "list",
+          "cachedResultName": "Prospek JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "No Tel": "={{ $('Output WAHA').item.json.payload.from }}",
+            "Tarikh": "={{ $('WAHA Trigger').item.json.payload.timestamp }}",
+            "Status": "Prospek",
+            "Nama": "={{ $('WAHA Trigger').item.json.payload._data.pushName }}",
+            "Timestamp": "={{ $('WAHA Trigger').item.json.payload.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "No Tel",
+              "displayName": "No Tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tarikh",
+              "displayName": "Tarikh",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Catatan",
+              "displayName": "Catatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        48,
+        384
+      ],
+      "id": "42c7af76-9c70-4360-9cd2-fb9ce7bdb6f6",
+      "name": "Simpan Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.output;\n\n// Check kalau ada [[ dalam input\nif (!input.includes('[[')) {\n  return [{ json: { mesej: input || \"\" } }];\n}\n\n// Pisahkan mesej dengan data\nconst parts = input.split('[[');\nconst mesej = parts[0].trim();\nlet dataStr = parts[1].replace(/]]$/, '').trim();\n\n// --- Parse belian ---\nlet belian = {};\nconst belianMatch = dataStr.match(/\\[belian:\\[(.*?)\\]\\]/);\nif (belianMatch) {\n  const belianStr = belianMatch[1];\n\n  belianStr.split(';').forEach(item => {\n    const [key, val] = item.split(':').map(s => s.trim());\n    if (key && val) belian[key] = val;\n  });\n  // Buang part belian dari string utama\n  dataStr = dataStr.replace(belianMatch[0], '');\n}\n\n// --- Parse field lain ---\nlet obj = { mesej };\ndataStr.split(';').forEach(pair => {\n  const [key, val] = pair.split(':').map(s => s.trim());\n  if (key && val) obj[key] = val;\n});\n\n// Tambah belian\nobj.belian = belian;\n\n// Return dalam format n8n\nreturn [{ json: obj }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2448,
+        -480
+      ],
+      "id": "f4b0df78-b32f-40d4-b56c-a4c619ed8d2a",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.label }}",
+                    "rightValue": "gambar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "1ff4291f-1a4f-4718-8994-a2513dd148f5"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Gambar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "19eb35cc-84cf-4ee4-bd85-0ebe853d5300",
+                    "leftValue": "={{ $json.label }}",
+                    "rightValue": "bayar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Bayar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7d059dab-5798-499a-809c-a028535f8c46",
+                    "leftValue": "={{ $json.label }}",
+                    "rightValue": "lain-lain",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Lain-lain"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "840a6e98-3e22-4c3e-8f64-b8f6121f3952",
+                    "leftValue": "={{ $json.label }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2560,
+        -288
+      ],
+      "id": "54db5181-61d5-4b61-9713-6447b4e8d3c4",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = $input.first().json.message || \"\";   // output ni datang dari AI node sebelum ni\n\n// Contoh: pecah ikut dua perenggan kosong\nconst parts = output.split(\"\\n\\n\");  \n\nreturn parts.map(p => ({\n  json: { message: p }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3648,
+        144
+      ],
+      "id": "ac6aeb8f-4e85-4359-994e-1e3764e86d1b",
+      "name": "Hantar Berasingan"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Simpan Tempahan').first().json['No Tel']; // contoh ambil dari field phone = \"60195168839@c.us\"\n\n// ambil nombor sahaja sebelum @\nlet number = input.split(\"@\")[0]; // \"60195168839\"\n\n// buang kod negara \"60\" → jadi \"195168839\"\nif (number.startsWith(\"60\")) {\n  number = number.slice(2);\n}\n\n// pastikan mula dengan \"0\"\nif (!number.startsWith(\"0\")) {\n  number = \"0\" + number;\n}\n\n// format jadi 3 digit depan + selebihnya\nconst formatted = number.slice(0, 3) + \"-\" + number.slice(3);\n\nreturn [{\n  json: {\n    original: input,\n    formatted: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4224,
+        -336
+      ],
+      "id": "d593dffd-01c4-4950-8278-895d0e959560",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ttCllpFBSpnLY0lbepCmplyuDlasKwlDOaUwATGoqNA",
+          "mode": "list",
+          "cachedResultName": "Gambar JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ttCllpFBSpnLY0lbepCmplyuDlasKwlDOaUwATGoqNA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ttCllpFBSpnLY0lbepCmplyuDlasKwlDOaUwATGoqNA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2528,
+        32
+      ],
+      "id": "0de403eb-db65-485e-acbd-0ab80cdf799c",
+      "name": "Gambar",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Code2').first().json.data[0].link_gambar;\n\n// Split string menggunakan koma sebagai pemisah\nconst links = input.split(\",\");\n\n// trim setiap link + tambah key id (timestamp)\nconst picture = links.map((link, index) => {\n  return {\n    id: Date.now() + index,   // timestamp unik untuk setiap link\n    url: link.trim()\n  };\n});\n\nreturn [{\n  json: {\n    picture\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2944,
+        -688
+      ],
+      "id": "58171119-ffb6-45a0-9a9b-d6633d26bef4",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3360,
+        -704
+      ],
+      "id": "c743c5d4-4ac2-4068-8d09-9df51c8d7608",
+      "name": "Loop Over Items1",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=picture",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3088,
+        -688
+      ],
+      "id": "712bc2eb-221c-4cdf-b40b-5404f5abba0f",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $('Split Out').item.json.id }}.jpg\",\n  \"url\": \"{{ $('Split Out').item.json.url }}\"\n}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3632,
+        -688
+      ],
+      "id": "2e7733b5-4a4a-42c4-bb49-c3231e4658c7",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1264a294-ae03-4254-b3ca-30dd328650c3",
+              "name": "message",
+              "value": "={{ $('Switch1').item.json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3360,
+        -848
+      ],
+      "id": "e1af052b-9c19-4d58-babf-973beaa53e9e",
+      "name": "Mesej Gambar"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0a4fa23e-e4b5-44f4-abff-e36fc66c56a3",
+              "name": "message",
+              "value": "={{ $json.mesej }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3184,
+        128
+      ],
+      "id": "82abe297-fda3-4667-8cf4-454756f8d61a",
+      "name": "Mesej Text"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI",
+          "mode": "list",
+          "cachedResultName": "Tempahan JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tempahan",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1klBlMJtLRFSCaatPHPydsqv3QcDn6Bp4os4fEWUVXpI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama": "={{ $json.nama }}",
+            "Alamat": "={{ $json.alamat }}",
+            "Negeri": "={{ $json.negeri }}",
+            "Jumlah": "={{ $json.jumlah }}",
+            "Tarikh Tempahan": "={{ $json['tarikh tempahan'] }}",
+            "Catatan": "={{ $json.catatan }}",
+            "Status": "={{ $json.status }}",
+            "Kurier": "={{ $json.kurier }}",
+            "Produk dan Kuantiti": "={{ $json.produk }}",
+            "No Tel": "={{ $('WAHA Trigger').item.json.payload.from }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Alamat",
+              "displayName": "Alamat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Negeri",
+              "displayName": "Negeri",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Jumlah",
+              "displayName": "Jumlah",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Produk dan Kuantiti",
+              "displayName": "Produk dan Kuantiti",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "No Tel",
+              "displayName": "No Tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tarikh Tempahan",
+              "displayName": "Tarikh Tempahan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tracking No",
+              "displayName": "Tracking No",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Kurier",
+              "displayName": "Kurier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Catatan",
+              "displayName": "Catatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3040,
+        -384
+      ],
+      "id": "daa6f8e2-bffe-4ba9-a0cf-147b9f8f6eaf",
+      "name": "Simpan Tempahan",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "65e33f76-a333-43f9-b697-3a3453aeac0b",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4448,
+        160
+      ],
+      "id": "cc9c7621-5f98-44f3-aa48-96866f9480df",
+      "name": "Cek Kosong"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "322ba80b-b691-4b20-af30-5ddc28155530",
+              "name": "message",
+              "value": "=Tempahan Baru ({{ $('Code2').first().json['tarikh tempahan'] }}):\n\nNama: {{ $('Code2').first().json.nama }}\nAlamat: {{ $('Code2').first().json.alamat }}\nTel: {{ $('Code').first().json.formatted }}\nProduk & Kuantiti: {{ $('Code2').first().json.produk }}\n\nStok: {{ $json.data[0]['Nama Produk'] }} : {{ $json.data[0].Stok }}, {{ $json.data[1]['Nama Produk'] }} : {{ $json.data[1].Stok }}, {{ $json.data[2]['Nama Produk'] }} : {{ $json.data[2].Stok }}, {{ $json.data[3]['Nama Produk'] }} : {{ $json.data[4].Stok }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4224,
+        -144
+      ],
+      "id": "59379050-51fa-431c-9790-3f139cf0d057",
+      "name": "Mesej Admin"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37a7acd6-5d3e-4408-b0d6-2a860744e03d",
+              "name": "belian",
+              "value": "={{ $('Code2').item.json.belian }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3040,
+        -208
+      ],
+      "id": "cc8c4ef9-a84c-4975-812b-419f81127a7b",
+      "name": "Senarai Belian Produk"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nlet output = [];\n\nfor (const item of items) {\n  if (item.json.belian) {\n    for (const [key, value] of Object.entries(item.json.belian)) {\n      output.push({\n        json: {\n          produk: key,\n          kuantiti: value\n        }\n      });\n    }\n  }\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3232,
+        -384
+      ],
+      "id": "91c74d84-1ce7-4087-aac1-95ca7cae955a",
+      "name": "Asingkan Produk"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3408,
+        -384
+      ],
+      "id": "43295221-8358-416b-baf2-6bdc13cac927",
+      "name": "Loop Over Items2",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Nama Produk",
+              "lookupValue": "={{ $json.produk }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3664,
+        -336
+      ],
+      "id": "3d631348-83db-4c3c-80ca-986760f4c20f",
+      "name": "Cek Stok",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama Produk": "={{ $json['Nama Produk'] }}",
+            "Stok": "={{ $json.Stok-$('Asingkan Produk').item.json.kuantiti }}"
+          },
+          "matchingColumns": [
+            "Nama Produk"
+          ],
+          "schema": [
+            {
+              "id": "Nama Produk",
+              "displayName": "Nama Produk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Harga",
+              "displayName": "Harga",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stok",
+              "displayName": "Stok",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3808,
+        -336
+      ],
+      "id": "1d9841a2-f870-4b30-8c98-e939443972c9",
+      "name": "Update Stok",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM",
+          "mode": "list",
+          "cachedResultName": "STOK JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PRoSbRRdm4z-4t7Eqbu9ztSfYzNHeuDMSzYedqpNWSM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        4400,
+        -336
+      ],
+      "id": "32522333-b5ab-4c9a-8940-2e24938e9d50",
+      "name": "Cek Stok1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\n// Gabung semua item jadi array tunggal\nconst merged = items.map(item => item.json);\n\nreturn [{ json: { data: merged } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4592,
+        -336
+      ],
+      "id": "2d9704da-7f61-4992-8674-1e481eb850c7",
+      "name": "Gabungkan"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "95a729a0-4066-4dca-b91b-6423e1fad25f",
+              "name": "payload.body",
+              "value": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "type": "string"
+            },
+            {
+              "id": "28305e25-c6e7-41af-b3ae-550c5aadcbf3",
+              "name": "payload.media.mimetype",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.mimetype }}",
+              "type": "string"
+            },
+            {
+              "id": "fd575436-2501-48b3-98b3-546d1518e5d7",
+              "name": "payload.media.url",
+              "value": "={{ $('WAHA Trigger').item.json.payload.media.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        912,
+        -144
+      ],
+      "id": "f74a1508-ee13-46d1-ae56-a3655c17d887",
+      "name": "Data Mesej"
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        112
+      ],
+      "id": "c3b588ff-284d-411a-82ab-3c72e716435a",
+      "name": "Transcribe audio or video",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "3zIFnCxvzGnMkW2J",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9dbd50cc-dafc-4a22-be9b-0417d96ba328",
+              "name": "output",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        112
+      ],
+      "id": "b5144f20-f347-4f70-981f-57d189c36037",
+      "name": "Audio Map"
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Create",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "name": "Packing",
+        "color": {},
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4944,
+        -624
+      ],
+      "id": "395d33ac-49b6-4135-ab92-ee412d98bdca",
+      "name": "Create a new label",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Get All",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4912,
+        -800
+      ],
+      "id": "06be78de-69c8-44f6-8b70-cbdc3f102e01",
+      "name": "Get all labels",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b9ad593-72e9-46af-8cb6-b32d96a4c980",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "Packing",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5184,
+        -800
+      ],
+      "id": "7faa66af-abd5-44a5-af2e-70c993275609",
+      "name": "Cek Label Exists",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        5040,
+        -800
+      ],
+      "id": "6ea0d5fa-f4a9-4948-a116-1a50501d32b3",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Put Chat Labels",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "labels": "=[\n  {\n    \"name\": \"Packing\"\n  }\n]",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        5120,
+        -624
+      ],
+      "id": "150db30d-b3b4-49c4-ad41-7002ea0c4100",
+      "name": "Save labels for the chat",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4384,
+        -144
+      ],
+      "id": "3fae1e32-5383-4c98-b58a-4d91f4331ad8",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4544,
+        -144
+      ],
+      "id": "6d744972-c193-47e5-a72b-eb5d74d8f12b",
+      "name": "Wait1",
+      "webhookId": "53f2d56c-078b-4d90-9389-0d4936466c22"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "={{ $('WAHA Trigger').first().json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4688,
+        -144
+      ],
+      "id": "1db79c45-c372-432c-a44c-d328a6744e1e",
+      "name": "Stop Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Nama Produk"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        -480
+      ],
+      "id": "05e57c3f-591e-41d1-acb2-23564531a94f",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "resource": "Labels",
+        "operation": "Get Chat Labels",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4448,
+        -800
+      ],
+      "id": "001c8d2d-9c71-477d-b5d9-6953d92550b5",
+      "name": "Get labels for the chat",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4ef5a45b-4e5d-435c-a858-32873436b90a",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "Packing",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4752,
+        -800
+      ],
+      "id": "e195e1da-15ad-49f2-9cdb-04b640e17a80",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        4592,
+        -800
+      ],
+      "id": "591e55ff-8f79-447b-9090-3a4bcb1d4d9b",
+      "name": "Label"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('WAHA Trigger').first().json.session }}",
+        "chatId": "=601120913823@c.us",
+        "text": "={{ $('Mesej Admin').item.json.message }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4960,
+        368
+      ],
+      "id": "1dc14176-2afe-451b-b935-bef685423b6b",
+      "name": "Send a text message1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        368,
+        -288
+      ],
+      "id": "14edefcf-6654-4e87-94bd-fc0c0bcfacc7",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        608,
+        -480
+      ],
+      "id": "9c0376cd-7225-4253-a652-2ef81c590af7",
+      "name": "Loop Over Items3"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        4704,
+        304
+      ],
+      "id": "bb181b5b-2b4f-4b29-9e13-696f9ed83b2c",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc",
+          "mode": "list",
+          "cachedResultName": "Prospek JAMU ASLI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gjB3qjiohBjKCYkBugbDwFnDYMVmYAkk8FLzbLBneTc/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "No Tel",
+              "lookupValue": "={{ $json.payload.from }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        432,
+        64
+      ],
+      "id": "5e9f62ce-53b0-4331-9e26-5fae195f2ae8",
+      "name": "Get row(s) in sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "No Tel"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        48,
+        48
+      ],
+      "id": "9afa6835-6145-44a4-abaa-ce5bd1f926d4",
+      "name": "Aggregate4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54ff3f6b-3c9d-4768-928d-dac7cd091679",
+              "leftValue": "={{ $json['No Tel'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        208
+      ],
+      "id": "3ac519bb-bdb2-4c24-975c-4fb9696e14ca",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "description": "{\n\"message\": \"Mesej dari Ai\",\n\"label\": \"gambar/bayar/lain-lain\",\n\"gambar\": [“link gambar yang customer minta”],\n\"nama\": \"nama penerima\",\n\"alamat\": \"alamat pos\",\n\"negeri\": \"negeri ambil dari alamat\",\n\"jumlah\": \"harga yang perlu di bayar\",\n\"produk\": \"nama dan kuantiti produk\",\n\"status\": \"bayar (jangan ubah)\",\n\"tarikh tempahan\": \"22-08-2025 6:35PM\",\n\"kurier\": \"J&T (jangan ubah)\",\n\"catatan\": \"perangai pelanggan\",\n\"belian\": [“senarai dan kuantiti produk yang diambil dari key produk dan di asingkan kepada array”]\n}\nNota : gambar – customer minta gambar\n\tBayar – customer telah membayar dan di sahkan\n\tLain-lain – bukan gambar dan bayar\n\nkey yang wajib hanya message dan label.. yang lain jika tidak berkenaan tidak perlu letak"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        2304,
+        32
+      ],
+      "id": "97454143-1dce-4339-9309-1db653866061",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2064,
+        32
+      ],
+      "id": "4b36798b-ab59-4e40-8d3c-892280ce84c4",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Jawab soalan berikut dalam 1 ayat ringkas:\n{soalan}",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        2128,
+        -464
+      ],
+      "id": "eb414482-4876-488c-815b-96719667ce95",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        -464
+      ],
+      "id": "95d2b8b5-1c23-422d-af1a-e59e020f7351",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "q2eFWybRc8AmkSwu",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        2640,
+        32
+      ],
+      "id": "da748b7b-3e65-4dd2-b400-20208f1a75c9",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        208
+      ],
+      "id": "ba20716a-4978-4831-9310-0b60a547d03d",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "q2eFWybRc8AmkSwu",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "bisnes",
+          "mode": "list",
+          "cachedResultName": "bisnes"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "no_tel",
+              "value": "$json.no_tel"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        48,
+        -144
+      ],
+      "id": "344f0d98-55ea-41ac-be4c-efce377ac242",
+      "name": "Check Bisnes",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        2192,
+        32
+      ],
+      "id": "8cf49be3-349b-463b-b7cb-1b24f041e223",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-17T02:12:50.414Z",
+      "updatedAt": "2025-08-17T02:12:50.414Z",
+      "role": "workflow:owner",
+      "workflowId": "LzaMmjm1aTdiSxG1",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-09-06T03:02:41.200Z",
+      "updatedAt": "2025-09-06T03:02:41.200Z",
+      "id": "3uWBdzMEdI5rmz0n",
+      "name": "project"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-05T06:57:39.000Z",
+  "versionId": "90fdbb3e-5171-4d8a-a09b-013d875074cb"
+}
