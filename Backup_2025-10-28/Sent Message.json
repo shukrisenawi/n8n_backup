@@ -1,0 +1,371 @@
+{
+  "createdAt": "2025-09-26T02:24:25.938Z",
+  "updatedAt": "2025-09-29T10:01:23.000Z",
+  "id": "9Sd6uCp04av253W2",
+  "name": "Sent Message",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('Start').item.json.sessionId }}",
+        "chatId": "={{ $('Start').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -120,
+        480
+      ],
+      "id": "ec651d11-b961-4984-88f6-cccd38e530ad",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": "={{ Math.floor(Math.random()*5,1) }}",
+        "unit": "seconds"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        60,
+        480
+      ],
+      "id": "a58dba38-237b-4d50-910a-221bbc5db54c",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('Start').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
+        "reply_to": "",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "linkPreview": true,
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        380,
+        480
+      ],
+      "id": "7fbdc944-26eb-45da-b934-db4fe75645ad",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('Start').item.json.sessionId }}",
+        "chatId": "={{ $('Start').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        220,
+        480
+      ],
+      "id": "80133882-2145-439d-97ad-f2eb9485701e",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const input = $('Asingkan text biasa dengan gambar').item.json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n",
+        "notice": ""
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        220
+      ],
+      "id": "d0e18b06-ffe5-42b7-a52e-7cf88d7d1ac5",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('Start').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[1]??$json.output[0] }}\"\n}",
+        "reply_to": "",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        300,
+        220
+      ],
+      "id": "4dfc7633-837b-4218-a620-6f82f59d2124",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});",
+        "notice": ""
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        -140
+      ],
+      "id": "021ca159-cae7-41b0-a391-8f9dbf3cde38",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $('Asingkan text biasa dengan gambar').item.json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        280,
+        -140
+      ],
+      "id": "4a435bf1-675b-45fb-a1c5-01a84448ae11",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "splitInBatchesNotice": "",
+        "batchSize": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -200,
+        -160
+      ],
+      "id": "5e65ab91-6272-4f17-b216-657527b12553",
+      "name": "pecahkan mesej",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "id": "2b878b41-587e-40dc-9c0d-48a632b1082a",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -420,
+        -160
+      ],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "sessionId",
+              "type": "any"
+            },
+            {
+              "name": "group",
+              "type": "any"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "2fb3597a-0691-4974-81a5-4bb0303e36c5",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-26T02:24:25.940Z",
+      "updatedAt": "2025-09-26T02:24:25.940Z",
+      "role": "workflow:owner",
+      "workflowId": "9Sd6uCp04av253W2",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
