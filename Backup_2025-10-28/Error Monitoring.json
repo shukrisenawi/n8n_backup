@@ -1,0 +1,109 @@
+{
+  "createdAt": "2025-08-27T04:34:36.890Z",
+  "updatedAt": "2025-09-14T02:53:31.000Z",
+  "id": "jd7AL2ultYxEcXiK",
+  "name": "Error Monitoring",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -80
+      ],
+      "id": "2a1781f0-71e4-4285-9d8d-79b9e6f9c4c8"
+    },
+    {
+      "parameters": {
+        "chatId": "@shukrisenawi",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "name": "Notify Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -80
+      ],
+      "id": "5baa5cdb-f3b1-423b-8b2b-a7fea3e9a787",
+      "webhookId": "13c616bf-a3ad-4035-998a-1dfe6021b89f",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hello, this workflow is made by khaisa. please visit shop.khaisa.com for more tailored support\n\n// Perfect error access untuk N8N v1.99.1\nconst errorData = $input.first().json;\nconst execution = errorData.execution;\nconst workflow = errorData.workflow;\nconst error = execution.error;\n\nconst message = `🚨 <b>WORKFLOW ERROR</b>\\n\\n` +\n  `📋 Workflow: <b>${workflow.name}</b>\\n` +\n  `⚙️ Node: <code>${error.node.name}</code>\\n` +\n  `❌ Error: <code>${error.message}</code>\\n` +\n  `📝 Description: <i>${error.description}</i>\\n` +\n  `🕐 Waktu: ${new Date(error.timestamp).toLocaleString('id-ID')}\\n` +\n  `🔍 Execution: <a href=\"${execution.url}\">${execution.id}</a>\\n` +\n  `⚠️ Level: ${error.level.toUpperCase()}`;\n\nreturn {\n  message: message,\n  parse_mode: 'HTML',\n  chat_id: '621412350'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        -80
+      ],
+      "id": "5969d98d-2b3f-4a8c-8f65-ceacb4a123fa",
+      "name": "Prepare Messages"
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Messages": {
+      "main": [
+        [
+          {
+            "node": "Notify Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "175c74e9-aa05-454d-b0c7-3fc4a3601173",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-27T04:34:36.893Z",
+      "updatedAt": "2025-08-27T04:34:36.893Z",
+      "role": "workflow:owner",
+      "workflowId": "jd7AL2ultYxEcXiK",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ]
+}
