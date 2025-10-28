@@ -1,0 +1,2077 @@
+{
+  "createdAt": "2025-10-17T15:02:57.496Z",
+  "updatedAt": "2025-10-23T15:31:44.000Z",
+  "id": "vqgUnJoyRxOQNEpe",
+  "name": "Instagram DM",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1366ec6d-04d2-4019-93d6-c3578fa106ba",
+        "options": {}
+      },
+      "id": "3497a829-e89d-4a27-a1b6-c0c455d4981f",
+      "name": "Instagram Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        1680,
+        -32
+      ],
+      "webhookId": "1366ec6d-04d2-4019-93d6-c3578fa106ba",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message[0] }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Anda hanya menjawab soalan yang anda tahu sahaja.. harga blh rujuk tool harga.. jika harga tidak diketahui keluarkan status=false, jika tahu status=true.. \n\nBercakap dalam bahasa melayu malaysia..\nkomunikasi secara santai, mesra dan jangan guna ayat skema.\noutput gambar tidak perlu letak caption.\nperkataan `anda` ganti dengan `cik`.\njika customer tanya tentang harga.. bg harga beserta kos penghantaran. Kos penghantaran Semenanjung RM7, Sabah Sarawak RM12.\n\nkeluarkan output dlm format json seperti contoh di bawah:\njika status=false, output:\n{\n  status: false,\n  output: (soalan dari customer)\n}\njika status=true, output:\n{\n  status: true,\n  output: mesej yg ingin dibalas pada customer\n}"
+        }
+      },
+      "id": "7e473ee9-6de6-49fd-8807-8f3835928d3c",
+      "name": "AI Travel Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        2480,
+        -80
+      ],
+      "typeVersion": 1.9
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v18.0/{{ $('Message Processor').item.json.senderId }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "ee3646c6-35df-4e88-81ab-e1e33bd7f1f5",
+      "name": "Instagram Sender",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        3632,
+        32
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "jHrKu0BQJvwd79Wt",
+          "name": "Mistral OCR Demo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2224,
+        144
+      ],
+      "id": "9d5fd875-21d2-49bc-9436-d3e6986a6347",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        208,
+        -656
+      ],
+      "id": "0e44d4d6-808e-4b33-8e7a-390fedef56c5",
+      "name": "WAHA Trigger",
+      "webhookId": "15cd15b2-cc14-46ea-806e-37d7d99a6fa2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const platform = 'whatsapp';\nconst dataWhatsapp = $('WAHA Trigger').first().json;\nconst message = dataWhatsapp.payload.body;\nconst memoryId = dataWhatsapp.payload.from;\nconst fromId = dataWhatsapp.payload.from;\n\nreturn [\n  {\n    json:{\n      platform,\n      message,\n      memoryId,\n      fromId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1872,
+        -320
+      ],
+      "id": "ed5a21bf-0071-404f-8f09-cb9ce548d3fd",
+      "name": "data whatsapp"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "platform"
+            },
+            {
+              "fieldToAggregate": "message"
+            },
+            {
+              "fieldToAggregate": "memoryId"
+            },
+            {
+              "fieldToAggregate": "fromId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        -80
+      ],
+      "id": "2a40b836-13e6-4850-a78c-e5233b60a781",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "const platform = 'instagram';\nconst message = '';\nconst memoryId = 'instagramId';\n\nreturn [\n  {\n    json:{\n      platform,\n      message,\n      memoryId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1872,
+        -32
+      ],
+      "id": "76c12318-52b4-4f20-8fec-a0335520f171",
+      "name": "data instagram"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('data').item.json.platform[0] }}",
+                    "rightValue": "whatsapp",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "63ee517f-ac8f-414b-942e-2b3c0b08cbb2"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Whatsapp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0ea99cba-c3f6-47ba-8980-069594b43906",
+                    "leftValue": "={{ $('data').item.json.platform[0] }}",
+                    "rightValue": "instagram",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Instagram"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        2976,
+        -80
+      ],
+      "id": "fe60a806-26e6-4a3e-b734-2d2ec728ee7c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('data').item.json.memoryId }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        2368,
+        144
+      ],
+      "id": "15fe0ead-6a58-4392-ba21-d8fe2fe5dd61",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2304,
+        -80
+      ],
+      "id": "c3c5efad-9990-45d8-9ec0-18ebb2e5ca55",
+      "name": "data"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "messageId": "={{ $('WAHA Trigger').item.json.payload.id }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1488,
+        -320
+      ],
+      "id": "15ad01b5-5597-41ae-bac2-3ca9a82ea44c",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('WAHA Trigger').item.json.payload.from }}",
+        "text": "={{ $json.id }} : {{ $('data').item.json.message[0] }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        3184,
+        224
+      ],
+      "id": "8f1b7f15-30d7-4b23-9482-8bc1520664a6",
+      "name": "Send a text message1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b533bc19-68e9-4275-a2b1-632779176936",
+              "leftValue": "={{ $json.output.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2800,
+        -64
+      ],
+      "id": "1880e0b6-affc-4c14-89c6-caec5659eead",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ec4dc103-9e56-41c6-83e1-9615cf098061",
+              "leftValue": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "rightValue": "={{ $('Var').item.json.ownerId }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        512,
+        -32
+      ],
+      "id": "e89ff756-2462-4af2-a5b5-5f132ff4e0b3",
+      "name": "if owner"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "KOalmhPU4NUEktNE",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Waiting Message",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/KOalmhPU4NUEktNE"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "message_id": "={{ $json.key.id }}",
+            "message": "={{ $('data').item.json.message[0] }}",
+            "platform": "={{ $('data').item.json.platform[0] }}",
+            "from_id": "={{ $('data').item.json.fromId[0] }}",
+            "from_message_id": "={{ $('WAHA Trigger').item.json.payload._data.key.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "from_id",
+              "displayName": "from_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "from_message_id",
+              "displayName": "from_message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        3344,
+        224
+      ],
+      "id": "7daa7ce6-c645-4d35-8de6-3bdeaa667a83",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"status\": true,\n\t\"output\": \"Harga sticker 5cm 300pcs RM30, pos RM7\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        2176,
+        320
+      ],
+      "id": "8e04ffc0-3608-4cbb-91fa-c74714aaa0e8",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2176,
+        464
+      ],
+      "id": "26ab7322-8b0c-4c02-b418-e5947a98a7b5",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KOalmhPU4NUEktNE",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Waiting Message",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/KOalmhPU4NUEktNE"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message_id",
+              "keyValue": "={{ $('WAHA Trigger').item.json.payload.replyTo.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -672
+      ],
+      "id": "8cb46d75-a6d2-4625-a84a-81108f05afa5",
+      "name": "Check Data Reply",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3a3d8271-15bc-450d-86f3-a8136b5ed609",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        -672
+      ],
+      "id": "cd0cb50f-5cf9-45c4-a73b-2ee09291cc5f",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const platform = $input.first().json.platform;\nconst dataWhatsapp = $('WAHA Trigger').first().json;\nconst message = dataWhatsapp.payload.body;\nconst memoryId = dataWhatsapp.payload.from;\nconst fromId = $input.first().json.from_id;\n\nreturn [\n  {\n    json:{\n      platform,\n      message,\n      memoryId,\n      fromId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        -640
+      ],
+      "id": "244b82d8-8d13-497a-90a6-64802a0f9999",
+      "name": "data output"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KOalmhPU4NUEktNE",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Waiting Message",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/KOalmhPU4NUEktNE"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('Check Data Reply').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1792,
+        -624
+      ],
+      "id": "1bc0b1fb-f8ce-45af-aa84-ee04be567887",
+      "name": "Delete Data Reply",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d467d35e-5749-4646-8a79-215cd918c442",
+              "name": "message",
+              "value": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "type": "string"
+            },
+            {
+              "id": "45543ff6-ae56-46fe-936e-6aebbe4394c2",
+              "name": "to",
+              "value": "={{ $('data output').item.json.fromId }}",
+              "type": "string"
+            },
+            {
+              "id": "8fc9249a-66bb-4e98-b249-2f11d6acbc9d",
+              "name": "replyId",
+              "value": "={{ $('Check Data Reply').item.json.from_message_id==$json.messageId[0]?'':$('Check Data Reply').item.json.from_message_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2752,
+        -608
+      ],
+      "id": "fca8133c-f849-4367-9eb1-00a845567e06",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d467d35e-5749-4646-8a79-215cd918c442",
+              "name": "message",
+              "value": "={{ $('AI Travel Agent').item.json.output.output }}",
+              "type": "string"
+            },
+            {
+              "id": "4bb8ab7e-34c2-490e-9e41-2cacfda5ebf6",
+              "name": "to",
+              "value": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3296,
+        -160
+      ],
+      "id": "53ad2dde-50bf-4846-8f6b-99ef4c2f76ac",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d467d35e-5749-4646-8a79-215cd918c442",
+              "name": "message",
+              "value": "={{ $('AI Travel Agent').item.json.output.output }}",
+              "type": "string"
+            },
+            {
+              "id": "4a4c47be-0c8e-42f2-aa40-fb9c345972d8",
+              "name": "to",
+              "value": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3296,
+        32
+      ],
+      "id": "0e3b2026-592e-4e92-9c55-5dc718313f6d",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "message"
+            },
+            {
+              "fieldToAggregate": "to"
+            },
+            {
+              "fieldToAggregate": "replyId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        -272
+      ],
+      "id": "e66f3996-6f68-4cf2-a393-3a5aefa1bfbf",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3472,
+        32
+      ],
+      "id": "f7d62c4f-cd46-4092-add2-f31bc6dc0277",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const id = $('data').first().json.fromId[0].replace('@c.us','');\nreturn [\n  {\n    json:{\n      id\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3008,
+        224
+      ],
+      "id": "85e9e23c-02e6-4190-ac8e-0d6f3b325618",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ownerId = '60195168839@c.us';\nconst bisnesId = '60166831403@c.us';\n\nreturn [\n  {\n    json:{\n      ownerId,\n      bisnesId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        -640
+      ],
+      "id": "205b455b-0b60-433e-a468-4fcb75fcc0a3",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('WAHA Trigger').item.json.payload.from }}",
+                    "rightValue": "@c.us",
+                    "operator": {
+                      "type": "string",
+                      "operation": "endsWith"
+                    },
+                    "id": "adcc6cf5-1953-4c77-8cde-3a6afa45d60b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Personal"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        512,
+        -240
+      ],
+      "id": "004e862d-6735-4da8-989d-d51bb2baef4b",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "EqmID7VEzvvevDQ6",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Maklumat",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/EqmID7VEzvvevDQ6"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        144
+      ],
+      "id": "40e49910-aadb-4e1a-b9ae-27051e0d792b",
+      "name": "Maklumat Perniagaan"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc",
+          "mode": "list",
+          "cachedResultName": "Harga Sticker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18Vc7_TdKRjIGNQsaILapz6fM2eh_rz9fJxeK6MIoRTc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        2608,
+        144
+      ],
+      "id": "57fde6cc-46a2-492a-acdf-9dd7922a079e",
+      "name": "Harga Sticker",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Aggregate1').first().json.message[0] ; // ambil text asal dari AI\n\n// Step 1: tukar \\n\\n jadi \\n\n//let text = input.replace(/\\n\\n/g, \"\\n\");\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"\\n\\n\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3824,
+        -272
+      ],
+      "id": "9075c501-ee1a-401d-9d73-0db7f39b4820",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4032,
+        -256
+      ],
+      "id": "a50ed284-45db-4fce-a3d7-dc9a96efeb7d",
+      "name": "pecahkan mesej",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4320,
+        -256
+      ],
+      "id": "01e388bd-2609-43ae-9f1b-918d2e82c459",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $('Asingkan text biasa dengan gambar').item.json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4560,
+        -16
+      ],
+      "id": "b280b90c-90a4-4feb-b2e2-ce2a849135ea",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Asingkan text biasa dengan gambar').item.json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4128,
+        176
+      ],
+      "id": "6dbd6e2f-ff2b-4667-8568-867204f2835a",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('Aggregate1').item.json.to[0] }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[1]??$json.output[0] }}\"\n}",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4288,
+        176
+      ],
+      "id": "55ccb179-1f72-4d00-8d7d-2980442550e2",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chats",
+        "operation": "Get Chats Overview",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "limit": 1,
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4512,
+        -256
+      ],
+      "id": "cbb8cd20-0083-41f7-9252-6f6e59e16cdd",
+      "name": "Mesej Terbaru",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('Aggregate1').item.json.to[0] }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4592,
+        320
+      ],
+      "id": "22096790-9804-42b0-bb8d-adf9114aaf64",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4752,
+        320
+      ],
+      "id": "3a95be3f-f9a9-4a93-8fce-c9e2482bcda4",
+      "name": "Wait1",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('Aggregate1').item.json.to[0] }}",
+        "reply_to": "={{ $('Aggregate1').item.json.replyId[0] }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        5072,
+        320
+      ],
+      "id": "270e3722-04e7-4d42-b6b0-fb02544cd353",
+      "name": "Send a text message2",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "chatId": "={{ $('Aggregate1').item.json.to[0] }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        4912,
+        320
+      ],
+      "id": "d7f737a3-b284-4e06-a082-c410c3f51510",
+      "name": "Stop Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        144
+      ],
+      "id": "11522391-bc0b-498a-8c19-fca67e24468e",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 5,
+        "fields": [
+          "phoneNumbers",
+          "names"
+        ],
+        "options": {
+          "sortOrder": "LAST_MODIFIED_DESCENDING"
+        }
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        832,
+        -384
+      ],
+      "id": "c823dd52-5c9b-4fbf-8f7e-2478af2fd35f",
+      "name": "Get many contacts1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleContactsOAuth2Api": {
+          "id": "KE5ABsHAMWKUjXVM",
+          "name": "Google Contacts account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8c65bd0b-4073-4022-a19f-f80d355fa103",
+              "leftValue": "={{ $json.phoneNumbers.mobile[0] }}",
+              "rightValue": "={{ $('WAHA Trigger').item.json.payload.from.replace('@c.us','') }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        -144
+      ],
+      "id": "f22d06d8-922b-4951-8f91-00a4c27ccdeb",
+      "name": "If4",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ec4dc103-9e56-41c6-83e1-9615cf098061",
+              "leftValue": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "rightValue": "={{ $('Var').item.json.ownerId }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        512,
+        -432
+      ],
+      "id": "5e6c86c6-7122-4a4f-8637-9104b760ef15",
+      "name": "TEST"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "n8n_chat_histories",
+          "mode": "list",
+          "cachedResultName": "n8n_chat_histories"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "session_id": "={{ $('WAHA Trigger').item.json.payload.from }}",
+            "message": "={\n  \"type\": \"ai\",\n  \"content\": \"{{ $('WAHA Trigger').item.json.payload.body }}\",\n  \"tool_calls\": [],\n  \"additional_kwargs\": {},\n  \"response_metadata\": {},\n  \"invalid_tool_calls\": []\n}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "session_id",
+              "displayName": "session_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2048,
+        -624
+      ],
+      "id": "e5415849-4d65-4f78-9214-a91ca2270ed2",
+      "name": "Insert rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chats",
+        "operation": "Get Chat Message",
+        "session": "={{ $('WAHA Trigger').item.json.session }}",
+        "downloadMedia": false,
+        "chatId": "={{ $('Check Data Reply').item.json.from_id }}",
+        "messageId": "=",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2304,
+        -624
+      ],
+      "id": "f9f713b2-3d15-4baa-8531-56bf7b6b08aa",
+      "name": "Get Latest Chat",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "body"
+            },
+            {
+              "fieldToAggregate": "_data.key.id",
+              "renameField": true,
+              "outputFieldName": "messageId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -624
+      ],
+      "id": "6dcaa5a3-6957-44f0-8fc8-5db9ac0a4706",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5206f223-a14b-48bc-8308-e4166cca50aa",
+              "leftValue": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "rightValue": "padam",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "31a00fff-25b5-4256-a97c-17b9dea23383",
+              "leftValue": "={{ $('WAHA Trigger').item.json.payload.body }}",
+              "rightValue": "Padam",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1184,
+        -672
+      ],
+      "id": "bf401d84-3151-4fa7-b714-cbbb539a4475",
+      "name": "Cek Padam"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KOalmhPU4NUEktNE",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Waiting Message",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/KOalmhPU4NUEktNE"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('Check Data Reply').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        -864
+      ],
+      "id": "4d0d0544-337f-4383-b78a-93383997d2e1",
+      "name": "Delete Data Reply1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d467d35e-5749-4646-8a79-215cd918c442",
+              "name": "message",
+              "value": "=Berjaya dipadam",
+              "type": "string"
+            },
+            {
+              "id": "45543ff6-ae56-46fe-936e-6aebbe4394c2",
+              "name": "to",
+              "value": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "type": "string"
+            },
+            {
+              "id": "8fc9249a-66bb-4e98-b249-2f11d6acbc9d",
+              "name": "replyId",
+              "value": "={{ $('Check Data Reply').item.json.message_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1904,
+        -864
+      ],
+      "id": "6ce89783-7720-4393-97a1-d0362dbf244f",
+      "name": "Edit Fields1"
+    }
+  ],
+  "connections": {
+    "Instagram Webhook": {
+      "main": [
+        [
+          {
+            "node": "data instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Travel Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        []
+      ]
+    },
+    "data whatsapp": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data instagram": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data": {
+      "main": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        [
+          {
+            "node": "data whatsapp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "if owner": {
+      "main": [
+        [
+          {
+            "node": "Check Data Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get many contacts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Data Reply": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Cek Padam",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data output": {
+      "main": [
+        [
+          {
+            "node": "Delete Data Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Data Reply": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Instagram Sender",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "TEST",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "if owner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maklumat Perniagaan": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Harga Sticker": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Mesej Terbaru",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Terbaru": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many contacts1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TEST": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table1": {
+      "main": [
+        [
+          {
+            "node": "Get Latest Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest Chat": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Padam": {
+      "main": [
+        [
+          {
+            "node": "Delete Data Reply1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "data output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Data Reply1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "009c2204-623c-4571-9300-4f62b8140f13",
+  "triggerCount": 2,
+  "shared": [
+    {
+      "createdAt": "2025-10-17T15:02:57.499Z",
+      "updatedAt": "2025-10-17T15:02:57.499Z",
+      "role": "workflow:owner",
+      "workflowId": "vqgUnJoyRxOQNEpe",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
