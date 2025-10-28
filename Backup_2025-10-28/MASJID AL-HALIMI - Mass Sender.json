@@ -1,0 +1,168 @@
+{
+  "createdAt": "2025-10-23T01:44:53.272Z",
+  "updatedAt": "2025-10-23T01:47:48.000Z",
+  "id": "1qkPrPNxcCzoMYkB",
+  "name": "MASJID AL-HALIMI - Mass Sender",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $json.from }}",
+        "messageId": "={{ $json.message_id }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        160,
+        -256
+      ],
+      "id": "e14ce48b-78e4-4c2b-8c0b-78863f879fe8",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst now = new Date();\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\ntarikh =  `${year}-${month}-${day}`;\n\n\nfor (const item of $input.all()) {\n\n  const payload = $('WAHA Trigger').first().json.payload;\n\n  item.json.message_post = payload.body;\n  item.json.session = $('WAHA Trigger').first().json.session;  \n  item.json.sessionId = payload.from;\n  item.json.from = payload.from;\n  item.json.message_id = payload.id;\n  item.json.hasMedia = payload.hasMedia;\n  item.json.mimetype = payload.media ? payload.media.mimetype : false;  \n  item.json.tarikh = tarikh;\n  \n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -256
+      ],
+      "id": "b2026251-8aac-4e51-80ec-f153f96d3f7b",
+      "name": "var"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -208,
+        -256
+      ],
+      "id": "4918ddd4-a2b6-423b-b0a7-5cce00ec2256",
+      "name": "If2"
+    },
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -528,
+        -240
+      ],
+      "id": "2f99847a-3259-4561-94ad-605367008254",
+      "name": "WAHA Trigger",
+      "webhookId": "ea464110-b609-4814-9de6-acbb1d027fb8"
+    }
+  ],
+  "connections": {
+    "var": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "timeSavedPerExecution": 1,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "e6ea3ab5-01f9-442b-8e79-02ee9a172b29",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-23T01:44:53.277Z",
+      "updatedAt": "2025-10-23T01:44:53.277Z",
+      "role": "workflow:owner",
+      "workflowId": "1qkPrPNxcCzoMYkB",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
