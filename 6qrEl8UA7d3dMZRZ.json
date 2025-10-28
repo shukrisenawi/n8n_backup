@@ -1,0 +1,735 @@
+{
+  "active": false,
+  "connections": {
+    "12.00am": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "n8n1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Create a file1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare File Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare File Content": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Create a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a file": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List files": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cek Folder exp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "List files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Folder exp": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "List files1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a file": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List files1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Delete a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-28T04:29:21.703Z",
+  "id": "6qrEl8UA7d3dMZRZ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "GitHub Delete Folder Recursive",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c60a2548-e83b-4752-8336-0b3827cac6ed",
+              "name": "folderName",
+              "value": "=Backup_{{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        1424
+      ],
+      "id": "69e77a2d-a613-45be-8aad-9f452eb8e834",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 0 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        1424
+      ],
+      "id": "d0d5b10d-2734-4cf7-a190-3c0e8e86709f",
+      "name": "12.00am"
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "id": "816b0670-5705-4e02-8972-81959f55eee2",
+      "name": "n8n1",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        912,
+        1424
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "MhhzGVwpF75UTF5O",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        1424
+      ],
+      "id": "b4ebcf9c-1d35-45a3-b6af-780b47ec7199",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "177555b8-21f3-4b53-9a39-2571de04a4ed",
+              "name": "nodes",
+              "value": "={{ JSON.stringify($json, null, 2) }}",
+              "type": "string"
+            },
+            {
+              "id": "32328fd9-e22c-4414-9734-30796dd9a82f",
+              "name": "fileName",
+              "value": "={{ $json.name }}.json",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1392,
+        1440
+      ],
+      "id": "4538bbfd-a269-4845-89df-2473ecd6a9c5",
+      "name": "Prepare File Content"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "nodes",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1600,
+        1440
+      ],
+      "id": "c070197f-7673-4949-bef4-e4ed16aaa52c",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "shukrisenawi",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n_backup",
+          "mode": "list",
+          "cachedResultName": "n8n_backup",
+          "cachedResultUrl": "https://github.com/shukrisenawi/n8n_backup"
+        },
+        "filePath": "={{ $('Edit Fields').item.json.folderName }}/{{ $('Prepare File Content').item.json.fileName }}",
+        "binaryData": true,
+        "commitMessage": "={{ $now.setZone('Asia/Kuala_Lumpur').format('yyyy-MM-dd T') }} Backup Completed"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1808,
+        1440
+      ],
+      "id": "ede04d04-a55e-40ed-b4d2-0b1841db23b2",
+      "name": "Create a file",
+      "webhookId": "4510af94-b12d-4f5d-994f-7b34a9794e95",
+      "credentials": {
+        "githubApi": {
+          "id": "XQliTVqyZoqfFVL4",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ULSrTl3Ja8hEByXpoJ8JIJSt4PcxzZsItHfKof2YZXY",
+          "mode": "list",
+          "cachedResultName": "Daily Backup n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ULSrTl3Ja8hEByXpoJ8JIJSt4PcxzZsItHfKof2YZXY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ULSrTl3Ja8hEByXpoJ8JIJSt4PcxzZsItHfKof2YZXY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Folder Name": "={{ $('Edit Fields').item.json.folderName }}",
+            "File Name": "={{ $('Prepare File Content').item.json.fileName }}",
+            "Error Message": "={{ $json.error }}",
+            "Date Time": "={{ $now.setZone('Asia/Kuala_Lumpur').format('yyyy-MM-dd T') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date Time",
+              "displayName": "Date Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Folder Name",
+              "displayName": "Folder Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "File Name",
+              "displayName": "File Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        1648
+      ],
+      "id": "38a05d04-574b-4ec7-8ba8-675896629dd9",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "shukrisenawi",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n_backup",
+          "mode": "list",
+          "cachedResultName": "n8n_backup",
+          "cachedResultUrl": "https://github.com/shukrisenawi/n8n_backup"
+        },
+        "filePath": "={{ $('Edit Fields').item.json.folderName }}/README.md",
+        "fileContent": "=# N8N Workflow Backup - {{ $('Edit Fields').item.json.folderName }}\nThis folder contains the backup of all N8N workflows as of {{ $now.setZone('Asia/Kuala_Lumpur').format('yyyy-MM-dd') }}\n\n## Backup Details\n- Backup Time: {{ $now.setZone('Asia/Kuala_Lumpur').format('yyyy-MM-dd T') }}\n- Total Workflows: {{ $('n8n1').all().length }}\n\n## Files\nEach workflow is saved as a separate JSON file with the format\n\n---\n*Automatically generated by N8N Backup Workflow*",
+        "commitMessage": "={{ $now.setZone('Asia/Kuala_Lumpur').format('yyyy-MM-dd T') }} Backup Completed"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1392,
+        1280
+      ],
+      "id": "dd93eba7-be99-403c-a0e2-d36afbef31e2",
+      "name": "Create a file1",
+      "webhookId": "0368da47-a6e3-44d7-898f-f89470d34f3a",
+      "credentials": {
+        "githubApi": {
+          "id": "XQliTVqyZoqfFVL4",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1248,
+        1648
+      ],
+      "id": "38770513-291d-4287-a2c3-6488d7265d45",
+      "name": "Wait",
+      "webhookId": "bcb5b4af-aa12-43d7-9145-8790e004ef40"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "shukrisenawi",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n_backup",
+          "mode": "list",
+          "cachedResultName": "n8n_backup",
+          "cachedResultUrl": "https://github.com/shukrisenawi/n8n_backup"
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        496,
+        1744
+      ],
+      "id": "8f5d7162-51b1-46f4-a3a1-0ee980faff5d",
+      "name": "List files",
+      "webhookId": "cee0e161-658d-41cf-81dd-6be4b56f43d7",
+      "credentials": {
+        "githubApi": {
+          "id": "XQliTVqyZoqfFVL4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        496,
+        1904
+      ],
+      "id": "795799fa-5d1c-4e69-ad9d-7a551177a8ad",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst varExp = 30;\nnow.setDate(now.getDate() - varExp);\nconst dateExp =  now.toISOString().slice(0,10);\n\nfor (const item of $input.all()) {\n  item.json.dateExp = dateExp;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1552
+      ],
+      "id": "104934f1-3075-4948-ac3a-595a3aa21ac4",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "jsCode": "const dateFolder = $input.first().json.name.replace('Backup_','');\nconst checkExp = dateFolder<=$('Var').first().json.dateExp;\n\nfor (const item of $input.all()) {\n  item.json.checkExp = checkExp;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        2064
+      ],
+      "id": "6e197976-5953-421a-93c6-84d5ed77ce25",
+      "name": "Cek Folder exp"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e099d2aa-3c5a-4753-821a-449bb197395a",
+              "leftValue": "={{ $json.checkExp }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        2064
+      ],
+      "id": "0a0c69c4-26cc-43a8-a54a-9e4a0906a7a5",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "delete",
+        "owner": {
+          "__rl": true,
+          "value": "shukrisenawi",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n_backup",
+          "mode": "list",
+          "cachedResultName": "n8n_backup",
+          "cachedResultUrl": "https://github.com/shukrisenawi/n8n_backup"
+        },
+        "filePath": "={{ $json.path }}",
+        "commitMessage": "=Delete Folder {{ $json.path }}"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        832,
+        1872
+      ],
+      "id": "f15d0476-960c-413a-9fa4-68e0256d37cd",
+      "name": "Delete a file",
+      "webhookId": "e42f7e06-832b-4d3f-94d8-5678d712f1c2",
+      "credentials": {
+        "githubApi": {
+          "id": "XQliTVqyZoqfFVL4",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "shukrisenawi",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n_backup",
+          "mode": "list",
+          "cachedResultName": "n8n_backup",
+          "cachedResultUrl": "https://github.com/shukrisenawi/n8n_backup"
+        },
+        "filePath": "={{ $json.path }}/"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        2224
+      ],
+      "id": "5b9ff0ce-b6c5-49af-8b72-18ad461b9282",
+      "name": "List files1",
+      "webhookId": "3c535d98-bdc7-47af-870a-8777f0c9028b",
+      "credentials": {
+        "githubApi": {
+          "id": "XQliTVqyZoqfFVL4",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        832,
+        1728
+      ],
+      "id": "674c70a5-689b-4b2a-9e7a-c4cdc93e5363",
+      "name": "Loop Over Items2"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-28T04:29:21.707Z",
+      "updatedAt": "2025-10-28T04:29:21.707Z",
+      "role": "workflow:owner",
+      "workflowId": "6qrEl8UA7d3dMZRZ",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": {
+    "node:12.00am": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-28T11:44:39.000Z",
+  "versionId": "d1070965-fc3f-4e12-b932-939c90261846"
+}
