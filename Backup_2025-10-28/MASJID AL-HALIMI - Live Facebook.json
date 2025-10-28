@@ -1,0 +1,1692 @@
+{
+  "createdAt": "2025-09-28T09:25:27.754Z",
+  "updatedAt": "2025-10-26T11:12:56.000Z",
+  "id": "qijDbSeDRZTGEbLi",
+  "name": "MASJID AL-HALIMI - Live Facebook",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "graphApiVersion": "v23.0",
+        "node": "me",
+        "edge": "feed",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -32
+      ],
+      "id": "2f8d8bfd-ca94-4560-832d-33acb1e08124",
+      "name": "Facebook Feed Masjid",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "GwhUdTdF8NgkqAOe",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = parseInt(now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" }), 10);\n\nconst tarikh_format = `${String(day).padStart(2,\"0\")}-${month}-${year}`;\ntarikh = `${year}-${month}-${String(day).padStart(2,\"0\")}`;\n\nreturn {\n  tarikh,\n  tarikh_format,\n  session:\"masjid_session\",\n  no_hp:'60195168839@c.us'\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1648,
+        -304
+      ],
+      "id": "c78c629c-d72d-49c5-a222-08631ff5fd92",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "b229925a-7676-4e25-937a-07ade4326107",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1952,
+        -480
+      ],
+      "id": "a59c0fb4-a27f-4ed7-a96c-9e8ef8c1a417",
+      "name": "Webhook",
+      "webhookId": "b229925a-7676-4e25-937a-07ade4326107"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "22e90b2a-8ce3-4f72-85ab-d1972e8192df",
+              "leftValue": "={{ $json.query['hub.mode'] }}",
+              "rightValue": "subscribe",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "4258f141-a834-4510-86fc-dd612d8b4774",
+              "leftValue": "={{ $json.query['hub.verify_token'] }}",
+              "rightValue": "=pageMasjid",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1616,
+        -496
+      ],
+      "id": "9da90d66-4f31-4008-9098-7f7f48497c43",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -1360,
+        -512
+      ],
+      "id": "f786dfee-09a2-4872-a525-155e3302289b",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "rightValue": "live_videos",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "372be7e5-72eb-42f2-8068-f90d0cde1e0b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Live Video"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "44ad03dc-e843-45df-8f9f-98f698d25b7e",
+                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "rightValue": "feed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Feed"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -1472,
+        -304
+      ],
+      "id": "309b8e22-df43-4200-869e-f51fb7728bae",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -32
+      ],
+      "id": "84441991-5d25-4c8b-b954-c3accd9f527f",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -64,
+        -32
+      ],
+      "id": "7d2e11d1-cf07-4ce5-a617-aab74698d2b7",
+      "name": "Loop Over Items",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e543a084-1967-4359-94d1-5f931bfd0991",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        -16
+      ],
+      "id": "c9de93cf-de6e-4c4b-abf7-122064f02814",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date($input.first().json.created_time);\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\nconst now = new Date(); // tarikh semasa\nnow.setHours(22, 0, 0, 0);\nconst pukul10pm = Math.floor(now.getTime() / 1000);\n\nconst ts = $('Webhook').first().json.body.entry[0].changes[0].value.created_time; // asal (UTC)\nconst offset = 8 * 60 * 60; // +8 jam dalam seconds\nconst waktuPost = ts + offset;\n\nconst waktuPengajian = waktuPost>pukul10pm?\"Selepas Solat Isyak\":\"Selepas Solat Maghrib\";\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst seconds = malaysiaDate.getUTCSeconds().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;\n\n// Format tarikh gaya Malaysia (dd-mm-YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}-${month}-${year}`;\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,            // format dd-mm-YYYY\n    waktuPengajian    \n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        224
+      ],
+      "id": "2bcf5c83-ebbe-4576-8302-e9f7fb660278",
+      "name": "Tarikh & Masa"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ $json.tarikh }}"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Ya"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        224
+      ],
+      "id": "2a1c17d0-6afc-4086-ba50-828493eb418e",
+      "name": "Cari Pengajian",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ String($('Loop Over Items').item.json.story) }}",
+                    "rightValue": "Masjid Al-Halimi Batu 5 was live.",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "568fc823-734b-4f4e-b337-b9f1d5fcaf95"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Live Facebook"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1b0d84e5-f554-4c3c-9edd-5dbc64203a66",
+                    "leftValue": "={{ $json.tempat }}",
+                    "rightValue": "Bangsal Haji Nordin Bukit",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pemuda Bukit"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6437dc84-3dc6-4b1c-ab60-f9ae9ce9add1",
+                    "leftValue": "={{ $json.tempat }}",
+                    "rightValue": "Ribat Abu Al-Hassan",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Ribat"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -48,
+        208
+      ],
+      "id": "a52f245b-7ec1-4392-ab3e-a42c44a14685",
+      "name": "Switch1",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "kitab",
+              "keyValue": "={{ $json.kitab }}"
+            },
+            {
+              "keyName": "pengajar",
+              "keyValue": "={{ $json.pengajar }}"
+            },
+            {
+              "keyName": "live",
+              "keyValue": "Ya"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        208
+      ],
+      "id": "d2b64250-231f-4406-a697-f4983468934e",
+      "name": "minggu kitab"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "minggu"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        608,
+        208
+      ],
+      "id": "93eeffd4-5b2e-41c3-8b4c-0dfc525cbfe2",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v23.0",
+        "node": "={{ $('Loop Over Items').item.json.id }}",
+        "edge": "=",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $json.message }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        368
+      ],
+      "id": "4bb29096-8e0e-4d66-b1e7-1450f9e666f7",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "GwhUdTdF8NgkqAOe",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `***** Siaran Langsung *****\n\nTempat   :   Masjid Al-Halimi Batu 5, Sik Kedah\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :   `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`\n\n#Kitab`+$('Cari Pengajian').first().json.kitab.replace(/\\s+/g, '').replace('(Hadis)','')+`\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK           :    BANK RAKYAT \nPENAMA      :    MASJID AL-HALIMI\nNO AKAUN  :    1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        208
+      ],
+      "id": "99461b6c-3c76-47b7-a666-3572c58ac236",
+      "name": "Message Pengajian"
+    },
+    {
+      "parameters": {
+        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Pengajian Pemuda Kampung ***\n\nTempat   :   `+$('Cari Pengajian').first().json.tempat+`\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : Isnin Minggu 1 & 4, Rabu Minggu 3, Selepas Solat Isyak\n\n#RibatAbuAlHassan\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        528
+      ],
+      "id": "b192cdd5-751c-46b0-aed7-9fcf566de856",
+      "name": "Message Ribat"
+    },
+    {
+      "parameters": {
+        "jsCode": "const minggu = $('minggu bukit').first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Usrah Pemuda Bukit ***\n\nTempat   :   `+$('minggu bukit').first().json.tempat+`\nPengajar :   `+$('minggu bukit').first().json.pengajar+`\nKitab       :   `+$('minggu bukit').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+` selepas isyak\n\n#UsrahPemudaBukit\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        368
+      ],
+      "id": "f40c862d-3f0a-4bd0-bc9f-685989002da6",
+      "name": "Message Bukit"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tempat",
+              "keyValue": "Bangsal Haji Nordin Bukit"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        384,
+        368
+      ],
+      "id": "a799d4e7-4d94-4f2c-97e1-09d8aeedd69b",
+      "name": "minggu bukit"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "minggu"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        608,
+        368
+      ],
+      "id": "714de6fe-d34e-4835-aac0-78fbc8e0e31b",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "minggu"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        608,
+        528
+      ],
+      "id": "baa7ebc9-bf2e-410c-954f-0cbd5a1ca2b3",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pengajar",
+              "keyValue": "={{ $json.pengajar }}"
+            },
+            {
+              "keyName": "kitab",
+              "keyValue": "={{ $json.kitab }}"
+            },
+            {
+              "keyName": "live",
+              "keyValue": "Ya"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -336
+      ],
+      "id": "4f22c19e-b5b3-44d3-95ea-ba785124e864",
+      "name": "minggu kitab1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "minggu"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -336
+      ],
+      "id": "5e7ba0af-e6fb-404d-bcd1-966502ac45f9",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const minggu = $('Aggregate3').first().json.minggu;\nconst parmalinkUrl = $input.first().json.permalink_url;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `***** Siaran Langsung *****\n\nTempat :\n- _*Masjid Al-Halimi Batu 5, Sik Kedah*_\nPengajar :\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\nKitab :\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\nTarikh :\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`*_\nJadual Pengajian :\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n\n****************************\n🔴 _Link LIVE (mula : `+$('Tarikh & Masa1').first().json.masa12+`)_\n\nhttps://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n****************************\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\n\nreturn [\n  {\n    json:{\n      message,\n      group:['default']\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        -304
+      ],
+      "id": "8423e52a-5c0c-4727-a966-8a0394f16f29",
+      "name": "Message Pengajian1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ $('Var').item.json.tarikh }}"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Ya"
+            },
+            {
+              "keyName": "live",
+              "keyValue": "Ya"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -336
+      ],
+      "id": "3ccdc4d0-cd0a-4c15-bc59-1cc6d1084a2e",
+      "name": "Cari Pengajian Live",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst seconds = malaysiaDate.getUTCSeconds().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd-mm-YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}-${month}-${year}`;\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia            // format dd-mm-YYYY\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -736,
+        -336
+      ],
+      "id": "5b5fb76e-de88-4e47-872e-1bf1df7b55f9",
+      "name": "Tarikh & Masa1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input =$('Message Pengajian1').first().json.message;\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"<br>\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line:line,group:$input.first().json.group } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1248,
+        -144
+      ],
+      "id": "9da79b8e-2618-43cb-9743-a3830f158d1e",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "jsCode": "let groups =  ['120363421710384148@g.us','601120913823@c.us'];//group test\n\nif($input.first().json.group[0]=='default')\n  groups = ['60134693115-1476278350@g.us','60134507038-1525247606@g.us','120363046203034644@g.us', '120363296155366232@g.us'];\nelse if($input.first().json.group[0])\n  groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message[0] } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        848,
+        -304
+      ],
+      "id": "0df0160d-424c-4de4-aec7-6949711dd825",
+      "name": "All Groups"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('Var').item.json.session }}",
+        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[0] }}\"\n}",
+        "caption": "={{ $json.output[1]?$json.output[0]:null }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2144,
+        -80
+      ],
+      "id": "691ef28d-a654-4404-9d11-209631c8eae1",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('Var').item.json.session }}",
+        "chatId": "={{ $('Loop Over Items1').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2064,
+        176
+      ],
+      "id": "5caf58f4-ecc7-43bb-abf7-b9a7c755b3c5",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('Var').item.json.session }}",
+        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        2224,
+        176
+      ],
+      "id": "68fbb1d7-6aed-4c39-914c-19ddbdaac3bf",
+      "name": "Send a text message",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1904,
+        176
+      ],
+      "id": "d7ef5709-37fe-4470-8c54-28d971b1c968",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('Var').item.json.session }}",
+        "chatId": "={{ $('Loop Over Items1').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1728,
+        176
+      ],
+      "id": "b5f71aa8-c956-4949-ac6a-fb1184f5b1a3",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Asingkan text biasa dengan gambar').item.json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1952,
+        -80
+      ],
+      "id": "a788b3af-2e40-4a9b-92a0-0bb1be1a235b",
+      "name": "Asingkan label dan link",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
+              "leftValue": "={{ $('Asingkan text biasa dengan gambar').item.json.isImage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2128,
+        -448
+      ],
+      "id": "38f4aae0-18a2-4556-953a-bdb093793494",
+      "name": "Jika gambar"
+    },
+    {
+      "parameters": {
+        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1952,
+        -448
+      ],
+      "id": "3fe34cac-50eb-460b-852d-3edfb772a0e6",
+      "name": "Asingkan text biasa dengan gambar"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1648,
+        -464
+      ],
+      "id": "1201a72c-300a-4180-a187-8a8510649acc",
+      "name": "pecahkan mesej",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1232,
+        -448
+      ],
+      "id": "22123a42-f9b8-4b60-bce1-d8953fa006ab",
+      "name": "Loop Over Items1",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f6f32dba-8dfa-4add-82ac-589eb029a66d",
+              "leftValue": "={{ $json.message[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        -304
+      ],
+      "id": "50f72a79-aeaf-4408-9b64-d195d518c969",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                    "rightValue": "live",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "068a8dcd-55a5-4a99-a7a0-36bbd079e5e1"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Mula"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "180c31ef-1bef-43c3-a187-eb478d9bd1bc",
+                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                    "rightValue": "vod",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Post"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -1040,
+        -320
+      ],
+      "id": "eb33f928-2032-48a6-b6e1-08f49c334f13",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "052bb662-1d96-49b5-ba9c-a33ca645be8a",
+              "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.verb }}",
+              "rightValue": "add",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "3379c999-b16f-4ada-bcd1-84223845c95c",
+              "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.published }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1184,
+        -80
+      ],
+      "id": "82e287e8-3fe5-4081-af68-e9d9e356e93e",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v23.0",
+        "node": "me",
+        "edge": "live_videos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1296,
+        912
+      ],
+      "id": "75db7ff1-4300-4736-a058-d503318b7a5f",
+      "name": "Facebook Graph API1",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "GwhUdTdF8NgkqAOe",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v23.0",
+        "node": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.id }}",
+        "edge": "=",
+        "allowUnauthorizedCerts": true,
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "fields",
+                "value": "permalink_url"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -336
+      ],
+      "id": "778d9441-1b3a-434f-9b2a-20d76f49efd2",
+      "name": "Facebook Graph API2",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "GwhUdTdF8NgkqAOe",
+          "name": "Facebook Graph account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Feed Masjid": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Tarikh & Masa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh & Masa": {
+      "main": [
+        [
+          {
+            "node": "Cari Pengajian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "minggu kitab",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "minggu bukit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "minggu kitab": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Message Pengajian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Pengajian": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Ribat": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Bukit": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "minggu bukit": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Message Bukit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Message Ribat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "minggu kitab1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Pengajian1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Live": {
+      "main": [
+        [
+          {
+            "node": "minggu kitab1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh & Masa1": {
+      "main": [
+        [
+          {
+            "node": "Cari Pengajian Live",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Groups": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan label dan link": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika gambar": {
+      "main": [
+        [
+          {
+            "node": "Asingkan label dan link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan text biasa dengan gambar": {
+      "main": [
+        [
+          {
+            "node": "Jika gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "All Groups",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Tarikh & Masa1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Facebook Feed Masjid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Facebook Feed Masjid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API2": {
+      "main": [
+        [
+          {
+            "node": "Message Pengajian1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "ae17ba1d-da7f-4b7f-9d55-6824ffb70105",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-09-28T09:25:27.757Z",
+      "updatedAt": "2025-09-28T09:25:27.757Z",
+      "role": "workflow:owner",
+      "workflowId": "qijDbSeDRZTGEbLi",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
