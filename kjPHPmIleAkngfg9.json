@@ -1,0 +1,86 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-27T11:13:04.824Z",
+  "id": "kjPHPmIleAkngfg9",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Clear Mongo DB",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        0
+      ],
+      "id": "99733776-69c6-4534-8c16-617c233ec90a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "collection": "n8n_chat_histories"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a532e788-2e03-4381-8d70-1d1f0abe8980",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-27T11:13:04.826Z",
+      "updatedAt": "2025-09-27T11:13:04.826Z",
+      "role": "workflow:owner",
+      "workflowId": "kjPHPmIleAkngfg9",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-28T06:07:55.000Z",
+  "versionId": "da393049-da86-4ea9-ad8d-0feb34d7c64e"
+}
