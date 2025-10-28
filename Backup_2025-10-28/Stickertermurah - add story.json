@@ -1,0 +1,70 @@
+{
+  "createdAt": "2025-10-23T15:32:41.148Z",
+  "updatedAt": "2025-10-23T15:42:34.000Z",
+  "id": "4FrcflXlGvIJHayG",
+  "name": "Stickertermurah - add story",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        0
+      ],
+      "id": "ebad349f-6085-4158-8d42-a08d9e1f9e01",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "Status",
+        "operation": "Send Image Status",
+        "session": "=stickertermurah_session",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        64,
+        16
+      ],
+      "id": "6bc3a60d-5728-4e86-a5ce-7c6ac3f3032f",
+      "name": "Send image status",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "409ac67d-b687-4ac5-b291-761b80d2c17d",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-23T15:32:41.152Z",
+      "updatedAt": "2025-10-23T15:32:41.152Z",
+      "role": "workflow:owner",
+      "workflowId": "4FrcflXlGvIJHayG",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
