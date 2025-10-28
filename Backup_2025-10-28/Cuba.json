@@ -1,0 +1,168 @@
+{
+  "createdAt": "2025-08-27T14:34:03.124Z",
+  "updatedAt": "2025-09-28T06:08:41.000Z",
+  "id": "0nfGGNtjk60vlQiL",
+  "name": "Cuba",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        380,
+        360
+      ],
+      "id": "2b975020-b9a7-49dc-9e06-6e0a777d06b7",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"message\": \"Ini resitnya\",\n\t\"var\": {\n      \"label\":\"resit\",\n      \"attribute\":{\"url\":\"http://....\",\"nama_file\":\"resit.png\"}\n    }\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        760,
+        340
+      ],
+      "id": "d40659d8-6738-4be2-bbe0-6c7774d733fa",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        140
+      ],
+      "id": "340fef43-2edd-455e-9f6d-3a679164b5f3",
+      "name": "When chat message received",
+      "webhookId": "a747416d-02e6-4fad-8231-36c4bf548727"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        440
+      ],
+      "id": "4e0bff69-cfe8-4362-85b1-685d138fb41f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "description": "{output} = respond dari ai untuk mesej yang masuk\n\n{label} = ikut label dibawah mengikut kategori\n\n{label} = \"resit\"\n- customer hantar gambar resit atau dalam file pdf\n{attribute} = [{\"url\": url file/gambar,\"nama_file\": nama file/gambar}]\n\n{label} = \"tidak_tahu\"\n- customer bertanya soalan diluar pengetahuan yg telah diberikan oleh admin\n{attribute} = [{\"mesej\":\"xfaham soalan : \"+ soalan dari customer}]\n\n{label} = \"pos\"\n- berkenaan dengan detail pos iaitu nama, alamat, poskod dan no hp\n{attribute} = [{\"nama\":nama penerima, \"alamat\":alamat penghantaran, \"poskod\":ambil dari alamat penghantaran, \"no_tel\":no telefon penerima}]\n- keluarkan label pos ini setelah anda mendapat nama dan alamat penerima.\n\n{label} = \"lain-lain\"\n- selain label di atas\n{attribute} = [{\"mesej\":{output}}]\n\n****************************************\n* Penting\n- {attribute} mengikut label masing-masing, jangan guna {attribute} label lain. contoh attribute {\"url\":\"http://....\",\"nama_file\":\"resit.png\"} hanya untuk {label} = \"resit\"\n\n***************************************\nKeluarkan output json seperti di bawah\n\n{\n\t\"output\": {output},\n\t\"var\": {\n      \"label\":{label},\n      \"attribute\":{attribute}\n    }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        580,
+        440
+      ],
+      "id": "d3e11d5e-2438-4d12-9fca-c3580bb06a23",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Arahan penting:\n\nKeluarkan output dalam format JSON SAHAJA. Jangan tambah ayat lain di luar JSON. \n\nStruktur output WAJIB begini:\n\n{\n  \"output\": \"{output}\",\n  \"var\": {\n    \"label\": \"{label}\",\n    \"attribute\": {attribute}\n  }\n}\n\nKeterangan:\n- {output} = jawapan AI kepada mesej customer.\n- {label} mesti pilih SATU daripada senarai ini:\n  1. \"resit\" → bila customer hantar bukti bayaran (gambar/PDF).\n     attribute = [{\"url\":\"http://...\",\"nama_file\":\"resit.png\"}]\n\n  2. \"produk\" → bila customer tanya pasal jenis sticker, kualiti, saiz, atau printing.\n     attribute = [{\"mesej\":\"{output}\"}]\n\n  3. \"harga\" → bila customer tanya pasal harga sticker.\n     attribute = [{\"mesej\":\"{output}\"}]\n\n  4. \"design\" → bila customer tanya pasal design, contoh design, atau nak customize.\n     attribute = [{\"mesej\":\"{output}\"}]\n\n  5. \"pos\" → bila customer beri detail penghantaran (nama, alamat, poskod, no tel).\n     attribute = [{\"nama\":nama penerima,\"alamat\":alamat penuh,\"poskod\":\"...\",\"no_tel\":\"...\"}]\n\n  6. \"tidak_tahu\" → bila soalan di luar topik printing/sticker.\n     attribute = [{\"mesej\":\"xfaham soalan : {soalan_customer}\"}]\n\n  7. \"lain-lain\" → selain label di atas.\n     attribute = [{\"mesej\":\"{output}\"}]\n\nPenting:\n- Jangan campur attribute dari label lain.\n- Sentiasa gunakan array untuk attribute, contoh [{\"mesej\":\"...\"}], walaupun hanya 1 item.\n- Output MESTI valid JSON.\n- Jangan tambah penerangan atau teks lain selain JSON.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        460,
+        140
+      ],
+      "id": "b3159288-ac7e-4e79-9461-a1b282520dd9",
+      "name": "Basic LLM Chain"
+    }
+  ],
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "968a108d-adcb-4161-bffd-402272cad132",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-27T14:34:03.127Z",
+      "updatedAt": "2025-08-27T14:34:03.127Z",
+      "role": "workflow:owner",
+      "workflowId": "0nfGGNtjk60vlQiL",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
