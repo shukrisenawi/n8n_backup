@@ -1,0 +1,247 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-29T10:03:11.214Z",
+  "id": "LLw6v5hCllXnpaFx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Export Google Sheet ke Datatable",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        -16
+      ],
+      "id": "d823fcf4-716f-413d-bc53-8ab12af1899f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1zK3B8UEgirV5QP-O_Af5AfY-3cv3FWsY08q0d8zfE7E",
+          "mode": "list",
+          "cachedResultName": "Waktu Solat 2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zK3B8UEgirV5QP-O_Af5AfY-3cv3FWsY08q0d8zfE7E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zK3B8UEgirV5QP-O_Af5AfY-3cv3FWsY08q0d8zfE7E/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -368,
+        -176
+      ],
+      "id": "8a71f38c-3f44-4577-a994-9163ee39bdbc",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "anak_khariah",
+          "mode": "list",
+          "cachedResultName": "anak_khariah"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -176,
+        -16
+      ],
+      "id": "465d7b83-febb-4ea0-9f17-3efbdabce070",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "6TDWi5bdTjrwOocH",
+          "mode": "list",
+          "cachedResultName": "Masjid - Anak Khariah",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/6TDWi5bdTjrwOocH"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nama": "={{ $json.nama }}",
+            "gelaran": "={{ $json.gelaran }}",
+            "alamat": "={{ $json.alamat }}",
+            "tarikh_lahir": "={{ $json.tarikh_lahir }}",
+            "no_tel": "={{ $json.no_tel }}",
+            "gambar": "={{ $json.gambar }}",
+            "on": "={{ $json.on }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nama",
+              "displayName": "nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "gelaran",
+              "displayName": "gelaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "alamat",
+              "displayName": "alamat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "tarikh_lahir",
+              "displayName": "tarikh_lahir",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "no_tel",
+              "displayName": "no_tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "gambar",
+              "displayName": "gambar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "on",
+              "displayName": "on",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -16
+      ],
+      "id": "2302b447-1e57-4103-bc86-79178e34e773",
+      "name": "Insert row",
+      "disabled": true
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 1,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-29T10:03:11.218Z",
+      "updatedAt": "2025-09-29T10:03:11.218Z",
+      "role": "workflow:owner",
+      "workflowId": "LLw6v5hCllXnpaFx",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-03T03:43:03.000Z",
+  "versionId": "f8e3c56d-8f9c-4e48-8347-9feaf7ac32c7"
+}
