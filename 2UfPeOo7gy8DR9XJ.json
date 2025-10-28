@@ -1,0 +1,246 @@
+{
+  "active": false,
+  "connections": {
+    "Convert to Base": {
+      "main": [
+        [
+          {
+            "node": "Set Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Request": {
+      "main": [
+        [
+          {
+            "node": "Call Vision API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📥 Download Image": {
+      "main": [
+        [
+          {
+            "node": "Convert to Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "📥 Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Vision API": {
+      "main": [
+        [
+          {
+            "node": "📤 Send Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-27T04:41:19.315Z",
+  "id": "2UfPeOo7gy8DR9XJ",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Analyze Image using unli.dev",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=📸 **Image Analysis Result**\n\n{{ $json.choices[0].message.content }}\n\nModel: {{ $json.model }}\nprompt tokens: {{ $json.usage.prompt_tokens }}\ncompletion tokens: {{ $json.usage.completion_tokens }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        820,
+        0
+      ],
+      "id": "226186c5-8e82-4c70-a303-c0fe6bd65178",
+      "name": "📤 Send Response",
+      "webhookId": "ebeb27ef-0f91-4313-ad5c-e60de9e7b80e",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const binaryData = $input.first().binary.data;\n\n// Access buffer property and convert to base64\nconst base64Image = binaryData.data.toString('base64');\n\n// Get the caption from the original Telegram message if it exists\nconst caption = $('Telegram Trigger').item.json.message.caption || 'What is in this image?';\n\nreturn [{ \n  json: { \n    base64Image: base64Image,\n    prompt: caption,\n    chatId: $('Telegram Trigger').item.json.message.chat.id,\n    messageId: $('Telegram Trigger').item.json.message.message_id\n  } \n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "02411caa-e722-4e7c-bffc-ef6c5e4afcdd",
+      "name": "Convert to Base"
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "model",
+              "stringValue": "auto"
+            },
+            {
+              "name": "base64Image",
+              "stringValue": "={{ $json.base64Image }}"
+            },
+            {
+              "name": "userPrompt",
+              "stringValue": "extract the trancastion on this image. output in md format"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "896c5340-01d7-4a71-9629-91c82755d32e",
+      "name": "Set Request",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        420,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[3].file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        0
+      ],
+      "id": "96f68df0-4663-4f84-a557-ea2bdd7748b9",
+      "name": "📥 Download Image",
+      "webhookId": "7d9d13d4-ec19-40d7-a905-0b44b58867d9",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        0
+      ],
+      "id": "96e11357-1a14-4d70-a6b0-a8128b10ca10",
+      "name": "Telegram Trigger",
+      "webhookId": "f460f87e-fb6b-4854-a012-46de743f7695",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.unli.dev/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"{{ $json.model }}\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"data:image/jpeg;base64,{{ $json.base64Image }}\"\n          }\n        },\n        {\n          \"type\": \"text\",\n          \"text\": \"{{ $json.prompt }}\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "bc47c641-6c1d-43d3-897f-ca67a2e9fd73",
+      "name": "Call Vision API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Cy3iw73TehYDcWH4",
+          "name": "Header Auth account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-27T04:41:19.317Z",
+      "updatedAt": "2025-08-27T04:41:19.317Z",
+      "role": "workflow:owner",
+      "workflowId": "2UfPeOo7gy8DR9XJ",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-28T06:08:47.000Z",
+  "versionId": "920b4376-6ebd-4727-9681-bf347ebb0280"
+}
