@@ -1,0 +1,506 @@
+{
+  "active": false,
+  "connections": {
+    "Create a contact": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many contacts": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Get many contacts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Create a contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-27T03:25:09.278Z",
+  "id": "Cp9ZCFJF6Xb473gM",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Add Contact",
+  "nodes": [
+    {
+      "parameters": {
+        "givenName": "={{ $json.prefix+$('Code3').item.json.query.save_nama }}",
+        "additionalFields": {
+          "addressesUi": {
+            "addressesValues": {
+              "streetAddress": "={{ $('Code3').item.json.query.alamat }}",
+              "type": "home"
+            }
+          },
+          "phoneUi": {
+            "phoneValues": [
+              {
+                "type": "mobile",
+                "value": "={{ $('Code3').item.json.query.no_tel }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        120
+      ],
+      "id": "425e2cf6-1f05-450e-bddd-96e79b6c5f4a",
+      "name": "Create a contact",
+      "credentials": {
+        "googleContactsOAuth2Api": {
+          "id": "KE5ABsHAMWKUjXVM",
+          "name": "Google Contacts account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 5,
+        "fields": [
+          "phoneNumbers",
+          "names"
+        ],
+        "options": {
+          "sortOrder": "LAST_MODIFIED_DESCENDING"
+        }
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -120
+      ],
+      "id": "a2d92b8b-f25c-40d6-ae31-db587b60e431",
+      "name": "Get many contacts",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleContactsOAuth2Api": {
+          "id": "KE5ABsHAMWKUjXVM",
+          "name": "Google Contacts account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.save_nama = $('Code3').first().json.query.save_nama;\n  item.json.nama = $('Code3').first().json.query.nama;\n  item.json.no = $input.first().json.phoneNumbers[0].value;\n  item.json.alamat = $('Code3').first().json.query.alamat;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2260,
+        120
+      ],
+      "id": "433d801d-205b-47f1-a8d6-92413eb9de5e",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.nama = $('Code3').first().json.nama;\n  item.json.no = $('Code3').first().json.no_tel;\n  item.json.alamat = $('Code3').first().json.query.alamat;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        -140
+      ],
+      "id": "fa4a4ace-5371-4166-9aef-d1a4a612b60d",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "444e9daf-365e-4ace-982f-6642c6b7849b",
+              "name": "nama",
+              "value": "={{ $json.nama }}",
+              "type": "string"
+            },
+            {
+              "id": "202b4c63-e345-42b4-a57c-afbb545b2841",
+              "name": "no",
+              "value": "={{ $json.no }}",
+              "type": "string"
+            },
+            {
+              "id": "526c2f18-753c-4a1a-80ad-e8b4f181dce2",
+              "name": "alamat",
+              "value": "={{ $json.alamat }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2280,
+        -140
+      ],
+      "id": "3a505739-45ad-4e24-a4d1-d383d206fab3",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2500,
+        340
+      ],
+      "id": "582e7313-fd23-4ede-af84-1acaafa979ea",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "22cdc001-665f-46b4-9ea5-099ef2e6ab36",
+              "leftValue": "={{ $json.query.nama }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a67790d0-c217-4190-b528-4e8e1b287a18",
+              "leftValue": "={{ $json.query.no_tel }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        -40
+      ],
+      "id": "165ed425-a02a-47cd-8b39-21c636e408be",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.error = \"Nama atau no tel tidak dijumpai\";\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        340
+      ],
+      "id": "3596a4ef-3ab4-4a76-9b43-e3136006932f",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "path": "cf1a7beb-3a83-4c6d-8302-748f5331a3d0",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        800,
+        20
+      ],
+      "id": "61c42654-4937-4beb-8ffe-928c85d5d990",
+      "name": "Webhook",
+      "webhookId": "cf1a7beb-3a83-4c6d-8302-748f5331a3d0"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "bisnes",
+          "mode": "list",
+          "cachedResultName": "bisnes"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('Code3').item.json.bisnes_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1940,
+        120
+      ],
+      "id": "de5ced6c-0388-418d-a02d-bd8a88a4b2f0",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.sessionId = $input.first().json.query.sessionId;\n  item.json.save_nama = $input.first().json.query.save_nama;\n  item.json.nama = $input.first().json.query.nama;\n  item.json.alamat = $input.first().json.query.alamat;\n  item.json.no_tel = $input.first().json.query.no_tel;\n  item.json.bisnes_id = $input.first().json.query.bisnes_id;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        20
+      ],
+      "id": "1674fbf9-d2eb-4022-9bee-712121cce722",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8c65bd0b-4073-4022-a19f-f80d355fa103",
+              "leftValue": "={{ $json.phoneNumbers.mobile[0] }}",
+              "rightValue": "={{ $('Code3').item.json.query.no_tel }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1740,
+        -120
+      ],
+      "id": "8d817de8-ec2b-4136-8cf7-6e832a507966",
+      "name": "If1",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "phoneNumbers.mobile[0]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        120
+      ],
+      "id": "f413c58e-6f6f-4261-9155-94ce055b261c",
+      "name": "Aggregate"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-27T03:25:09.282Z",
+      "updatedAt": "2025-08-27T03:25:09.282Z",
+      "role": "workflow:owner",
+      "workflowId": "Cp9ZCFJF6Xb473gM",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-23T15:32:03.000Z",
+  "versionId": "30760922-a64f-424b-b4ab-24966fd8a96f"
+}
