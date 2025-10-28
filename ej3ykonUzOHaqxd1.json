@@ -1,0 +1,875 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Call JPRD - Gambar Cula",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /cula",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /gambar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /cari_gambar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /rate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /email_banner",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Help",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /cula": {
+      "main": [
+        [
+          {
+            "node": "Call JPRD - Reset Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /gambar": {
+      "main": [
+        [
+          {
+            "node": "Call Generate Gambar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /cari_gambar": {
+      "main": [
+        [
+          {
+            "node": "Call Cari Gambar Di Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Help": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /rate": {
+      "main": [
+        [
+          {
+            "node": "Call Tukar Currency",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /email_banner": {
+      "main": [
+        [
+          {
+            "node": "Call FUNGSI /email_banner - Email banner kepada kedai",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-06T03:42:43.562Z",
+  "id": "ej3ykonUzOHaqxd1",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "@shbestcreativedesign_bot",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -736,
+        272
+      ],
+      "id": "fe11bcb6-d948-474d-b790-5ec6b3e46b0b",
+      "name": "Telegram Trigger",
+      "webhookId": "858dfe5a-dcdc-4632-b412-ee3cca12f3eb",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/cula",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "586ec69c-68d4-4fa5-bb80-6f06573df538"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Gambar Cula"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "31ee3dc2-1e27-4261-ad01-afd531ebf319",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/cula",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Cula"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "34f4aed4-a389-4358-9963-8a9b9a7c9c55",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/gambar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Gambar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f97e7724-ec17-461e-b189-9e66a3aa50c1",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/cari_gambar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Cari Gambar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "df7a2f29-0930-4f57-acb9-423b5c10f065",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/rate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Rate Currency"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0f3b0dd5-343e-49c0-bceb-fc4e59a84cc1",
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/email_banner",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Email Banner"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2714d25c-d63b-497e-b5fb-5056555ee103",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Help"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -400,
+        272
+      ],
+      "id": "cad3fdf5-2ea2-4159-86cb-1d91d8fc08f6",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.id_telegram = $input.first().json.message.from.id;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        272
+      ],
+      "id": "87ba61f0-f255-4ba4-9800-c4e631a3bcff",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "y9Je2jMnA35MDenM",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/y9Je2jMnA35MDenM",
+          "cachedResultName": "JPRD - Gambar Cula"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "message_photo": "={{ $('Telegram Trigger').item.json.message.photo }}",
+            "message_document_mime_type": "={{ $json.message.document.mime_type }}",
+            "message_chat_id": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+          },
+          "matchingColumns": [
+            "message_photo",
+            "message_document_mime_type",
+            "message_chat_id"
+          ],
+          "schema": [
+            {
+              "id": "message_photo",
+              "displayName": "message_photo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_document_mime_type",
+              "displayName": "message_document_mime_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_chat_id",
+              "displayName": "message_chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        256
+      ],
+      "name": "Call JPRD - Gambar Cula",
+      "id": "c8417dca-3415-409b-9e29-46fa74f88fb3"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Acr8pO1zme7oiiP2",
+          "mode": "list"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "text": "={{ $json.text }}",
+            "id_telegram": "={{ $('Var').item.json.id_telegram }}"
+          },
+          "matchingColumns": [
+            "text",
+            "id_telegram"
+          ],
+          "schema": [
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_telegram",
+              "displayName": "id_telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        416
+      ],
+      "name": "Call JPRD - Reset Database",
+      "id": "76bdaa5c-e7f3-4a15-a3c8-f1519072fd9a"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/cula';\nlet text ='';\ntext = $('Var').first().json.message.text.replace(textRemove+' ','');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        416
+      ],
+      "id": "e9a98a75-e4be-409b-aaaf-1c87d4760527",
+      "name": "Remove /cula"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/gambar';\nlet text='';\nlet Prompts =[];\ntext = $('Var').first().json.message.text.replace(textRemove+' ','');\nPrompts = text.split(':');\n\nreturn [{\n  json:{\n    Prompts\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        576
+      ],
+      "id": "034dd7da-7d26-47f3-9158-1118e3913d58",
+      "name": "Remove /gambar"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "CWxhpyBtQrQw1ukD",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/CWxhpyBtQrQw1ukD",
+          "cachedResultName": "FUNGSI - Generate Gambar"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_telegram": "={{ $('Var').item.json.id_telegram }}",
+            "Prompts": "={{ $json.Prompts }}"
+          },
+          "matchingColumns": [
+            "id_telegram",
+            "Prompts"
+          ],
+          "schema": [
+            {
+              "id": "id_telegram",
+              "displayName": "id_telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Prompts",
+              "displayName": "Prompts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        576
+      ],
+      "name": "Call Generate Gambar",
+      "id": "9d6d7c33-dc8f-414b-a15a-b710d55a4571"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/cari_gambar';\nlet text ='';\ntext = $('Var').first().json.message.text.replace(textRemove+' ','');\ntext = $('Var').first().json.message.text.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        736
+      ],
+      "id": "374d43dc-5f37-45d7-a362-59b3f63cfc1a",
+      "name": "Remove /cari_gambar"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Var').item.json.id_telegram }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        2016
+      ],
+      "id": "98d053a1-1688-444a-9ce9-ca06af4ec842",
+      "name": "Send a text message1",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        2016
+      ],
+      "id": "d1727211-1129-4dea-91c5-558b87505a6c",
+      "name": "Help"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/rate';\nlet text ='';\ntext = $('Var').first().json.message.text.replace(textRemove+' ','');\ntext = $('Var').first().json.message.text.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        928
+      ],
+      "id": "fbcf69fa-097f-476e-bdcd-b98e67c70ed6",
+      "name": "Remove /rate"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "fFz3o95MhB7WE4VA",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/fFz3o95MhB7WE4VA",
+          "cachedResultName": "FUNGSI /rate - Tukar Currency"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "text": "={{ $json.text }}",
+            "id_telegram": "={{ $('Var').item.json.id_telegram }}",
+            "text_trim_firstItem": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "text",
+            "id_telegram",
+            "text_trim_firstItem"
+          ],
+          "schema": [
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_telegram",
+              "displayName": "id_telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text_trim_firstItem",
+              "displayName": "text_trim_firstItem",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        928
+      ],
+      "name": "Call Tukar Currency",
+      "id": "f8dfc972-be4c-4bfb-a523-02c653bad74b"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "vqXwqvHQUsSG6OBN",
+          "mode": "list"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_telegram": "={{ $('Var').item.json.id_telegram }}",
+            "text": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "id_telegram",
+            "text"
+          ],
+          "schema": [
+            {
+              "id": "id_telegram",
+              "displayName": "id_telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        736
+      ],
+      "name": "Call Cari Gambar Di Google",
+      "id": "17130a76-a60a-4d72-9ec0-92781036e05b"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/email_banner';\nlet text ='';\ntext = $input.first().json.message.caption.replace(textRemove+' ','');\ntext = $input.first().json.message.caption.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text,\n    email:'suhairazz78@gmail.com',//'shukrisenawi@hotmail.com',//\n    no_hp:'601135545758@c.us'//'60166831403@c.us'//\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        1152
+      ],
+      "id": "25ef2ebe-1e4b-4249-be85-deea528b2d2c",
+      "name": "Remove /email_banner"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "EQ1V0J85cjjZssNz",
+          "mode": "list"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Remove /email_banner').item.json.email }}",
+            "text": "={{ $('Remove /email_banner').item.json.text }}",
+            "message_document_file_id": "={{ $('Telegram Trigger').item.json.message.document.file_id }}",
+            "id_telegram": "={{ $('Var').item.json.id_telegram }}",
+            "no_hp": "={{ $('Remove /email_banner').item.json.no_hp }}"
+          },
+          "matchingColumns": [
+            "email",
+            "text",
+            "message_document_file_id",
+            "id_telegram",
+            "no_hp"
+          ],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_document_file_id",
+              "displayName": "message_document_file_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_telegram",
+              "displayName": "id_telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "no_hp",
+              "displayName": "no_hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        1152
+      ],
+      "name": "Call FUNGSI /email_banner - Email banner kepada kedai",
+      "id": "6d174b13-e13e-4a8b-83a9-56089a173840"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timezone": "Asia/Kuala_Lumpur",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-06T03:42:43.563Z",
+      "updatedAt": "2025-09-06T03:42:43.563Z",
+      "role": "workflow:owner",
+      "workflowId": "ej3ykonUzOHaqxd1",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-21T01:30:21.000Z",
+  "versionId": "bd439ec2-360b-4559-8884-edd28baf5045"
+}
