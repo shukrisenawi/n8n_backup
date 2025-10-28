@@ -1,0 +1,197 @@
+{
+  "active": false,
+  "connections": {
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-27T06:44:22.857Z",
+  "id": "Kjcl1aHYBQcPrjYa",
+  "isArchived": true,
+  "meta": null,
+  "name": "Sent Whatsapp",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -140,
+        40
+      ],
+      "id": "1c408e58-3022-4e22-9904-f73d0d37ff29",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*8,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        40
+      ],
+      "id": "c0be0849-e651-49e1-a35d-bfba75385d3b",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        300,
+        40
+      ],
+      "id": "a7ca836f-5821-449d-855c-f69cfb8faa8c",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        160,
+        40
+      ],
+      "id": "06fc5441-9562-4818-85b0-883cd5e813e6",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "ZviNDCgCCNGqs5qv",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -340,
+        40
+      ],
+      "id": "ccb0bcaf-a9f2-485c-9553-1dc1dd25d98f",
+      "name": "Execute Workflow"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-27T06:44:22.859Z",
+      "updatedAt": "2025-08-27T06:44:22.859Z",
+      "role": "workflow:owner",
+      "workflowId": "Kjcl1aHYBQcPrjYa",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-23T10:39:53.000Z",
+  "versionId": "e03ae6a4-23f2-4564-a374-57abea72428e"
+}
