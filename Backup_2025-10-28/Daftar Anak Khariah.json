@@ -1,0 +1,75 @@
+{
+  "createdAt": "2025-09-21T03:36:03.049Z",
+  "updatedAt": "2025-09-21T04:15:55.000Z",
+  "id": "NX1ljLrWO0NvsFJT",
+  "name": "Daftar Anak Khariah",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        240,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        460,
+        340
+      ],
+      "id": "c047a2c0-1331-44fe-a24d-13fa1ba10abb",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "71c46562-ad7a-4782-b079-423f54aa354e",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-21T03:36:03.052Z",
+      "updatedAt": "2025-09-21T03:36:03.052Z",
+      "role": "workflow:owner",
+      "workflowId": "NX1ljLrWO0NvsFJT",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
