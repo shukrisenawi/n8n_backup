@@ -1,0 +1,103 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-18T14:32:19.001Z",
+  "id": "7ZVetK1PcDc66TLW",
+  "isArchived": false,
+  "meta": null,
+  "name": "Clear Waiting Message",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 0 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -48
+      ],
+      "id": "ae1fe603-ae57-4af8-a684-1a2f95d307c3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "KOalmhPU4NUEktNE",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Waiting Message",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/KOalmhPU4NUEktNE"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message",
+              "condition": "isNotEmpty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -48
+      ],
+      "id": "b7df1982-a31f-469c-9fb8-bf1fad3a5347",
+      "name": "Delete row(s)"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-18T14:32:19.005Z",
+      "updatedAt": "2025-10-18T14:32:19.005Z",
+      "role": "workflow:owner",
+      "workflowId": "7ZVetK1PcDc66TLW",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-23T15:32:18.000Z",
+  "versionId": "d4d5b464-6268-4add-9c4b-ec3e3597f3f6"
+}
