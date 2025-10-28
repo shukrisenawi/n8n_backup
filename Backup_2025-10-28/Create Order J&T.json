@@ -1,0 +1,141 @@
+{
+  "createdAt": "2025-08-27T07:00:04.525Z",
+  "updatedAt": "2025-10-14T14:09:39.000Z",
+  "id": "wygI9kh1hjGPKKEG",
+  "name": "Create Order J&T",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://demoopenapi.jtexpress.my/webopenplatformapi/api/order/addOrder?uuid=21c93fb6688741dca7344cceed379434",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_param",
+              "value": "={{ $('Data').item.json.bizContent }}"
+            },
+            {
+              "name": "data_sign",
+              "value": "={{ $('Param').item.json.strToSign }}"
+            },
+            {
+              "name": "digest",
+              "value": "={{ $('Param').item.json.digest }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        816,
+        80
+      ],
+      "id": "d76ab188-6365-4810-a657-67625bf02d0e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        144,
+        80
+      ],
+      "id": "463c79dd-f519-4f14-8f6e-05438e98df67",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const timestamp = Date.now();\n\n// bizContent JSON\nconst bizContent = {\n  customerCode: \"J0086474299\",\n  actionType: \"add\",\n  password: \"9C75439FB1FD01EB01861670DD1B949C\",\n  txlogisticId: \"ORDER12345\",\n  expressType: \"EZ\",\n  serviceType: \"1\",\n  payType: \"PP_PM\",\n  sender: {\n    name: \"Ali\",\n    postCode: \"56000\",\n    phone: \"60123456789\",\n    address: \"Jalan Ampang\",\n    countryCode: \"MYS\"\n  },\n  receiver: {\n    name: \"Abu\",\n    postCode: \"43000\",\n    phone: \"60198765432\",\n    address: \"Bandar Baru Bangi\",\n    countryCode: \"MYS\"\n  },\n  items: [\n    {\n      itemName: \"Sticker\",\n      number: \"2\",\n      weight: \"0.5\",\n      itemValue: \"10\",\n      itemCurrency: \"MYR\"\n    }\n  ],\n  packageInfo: {\n    packageQuantity: \"1\",\n    weight: \"0.5\",\n    packageValue: \"10\",\n    goodsType: \"ITN8\"\n  }\n};\n\nreturn [{ json: { timestamp, bizContent: JSON.stringify(bizContent) } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        80
+      ],
+      "id": "a931cdf9-973f-4b99-9e92-c5e1e74a064b",
+      "name": "Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require(\"crypto\");\n\nconst apiAccount = \"640826271705595946\";\nconst privateKey = \"8e88c8477d4e4939859c560192fcafbc\";\n\nconst timestamp = $json.timestamp;\nconst bizContent = $json.bizContent;\n\nconst strToSign = apiAccount + bizContent + timestamp + privateKey;\n\nconst digest = crypto.createHash(\"md5\").update(strToSign).digest(\"hex\").toUpperCase();\n\nreturn {\n  apiAccount,\n  digest,\n  strToSign,\n  timestamp,\n  bizContent\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        80
+      ],
+      "id": "bc7059f0-7edf-454c-81d7-36cd3581fe32",
+      "name": "Param"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data": {
+      "main": [
+        [
+          {
+            "node": "Param",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Param": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "d3943fce-edfb-4728-a9c9-af96bdfb4dcc",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-08-27T07:00:04.527Z",
+      "updatedAt": "2025-08-27T07:00:04.527Z",
+      "role": "workflow:owner",
+      "workflowId": "wygI9kh1hjGPKKEG",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
