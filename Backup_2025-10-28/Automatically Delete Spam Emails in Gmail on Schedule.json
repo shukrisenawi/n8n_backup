@@ -1,0 +1,500 @@
+{
+  "createdAt": "2025-09-06T02:31:05.843Z",
+  "updatedAt": "2025-10-27T14:08:33.000Z",
+  "id": "ISDRq3d4sWuyNPNu",
+  "name": "Automatically Delete Spam Emails in Gmail on Schedule",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * * *"
+            }
+          ]
+        }
+      },
+      "id": "a4fa3e50-5b63-4e69-97eb-534b1170ebab",
+      "name": "Trigger at Sunday midnight",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        464,
+        272
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ $json.id }}"
+      },
+      "id": "286e5c34-18ab-46da-b184-cfabf796b21d",
+      "name": "Delete SPAM emails",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        960,
+        272
+      ],
+      "webhookId": "46b0fe0f-cc00-4994-8364-9048c888e9ef",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "labelIds": [
+            "SPAM"
+          ]
+        }
+      },
+      "id": "b755451e-7fc3-4c3b-b669-69d700c38fa4",
+      "name": "Get all SPAM emails",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        752,
+        272
+      ],
+      "webhookId": "c47419de-278c-40d1-a5da-c9414d3f89c6",
+      "typeVersion": 2.1,
+      "alwaysOutputData": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "labelIds": [
+            "INBOX"
+          ]
+        }
+      },
+      "id": "38a324d5-16e8-4e50-bbf8-6424ea2425dc",
+      "name": "Get all INBOX",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        544,
+        480
+      ],
+      "webhookId": "c47419de-278c-40d1-a5da-c9414d3f89c6",
+      "typeVersion": 2.1,
+      "alwaysOutputData": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        832,
+        480
+      ],
+      "id": "8ae6244e-63cc-4f82-af0a-edf26882ce93",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "rowExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1104,
+        960
+      ],
+      "id": "d47cf2ef-eb38-43c2-9b94-54fd8aa5c3e0",
+      "name": "If row exists",
+      "alwaysOutputData": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*10,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        704
+      ],
+      "id": "16ac988d-4da5-4d6d-98bf-8458ddd033ea",
+      "name": "Wait",
+      "webhookId": "5a65877a-1aae-47ce-8567-4559afcd580b"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1440,
+        496
+      ],
+      "id": "baf5ab47-be08-4553-8b2e-f1d75c746d28",
+      "name": "Delete a message",
+      "webhookId": "dfc5a4d3-765b-44af-88c8-a0bc9eae5a83",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1f3805c4-6afe-4fcd-88ad-51fc0aa23b7a",
+              "leftValue": "",
+              "rightValue": "delete",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1376,
+        976
+      ],
+      "id": "c6383917-8c64-4ef1-abf9-a295ff09e09d",
+      "name": "If Delete"
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1584,
+        976
+      ],
+      "id": "74d68c8e-7092-4d4a-979e-4982e54aecf3",
+      "name": "Mark a message as read",
+      "webhookId": "6323abe9-0209-41bc-89fd-fa9385b62c2e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "addLabels"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        976
+      ],
+      "id": "a8ac39a6-d3c6-4c45-b78c-42200f8a7b94",
+      "name": "Add label to message",
+      "webhookId": "aeb94c2f-11f8-48ef-8bd6-aad05474af74",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const labels = $input.first().json.labels;\nconst checkValues = ['UNREAD','Belian','Belian/Hosting','Simpanan','Simpanan/Katakunci','firesale'].map(v => v.toLowerCase());\n\nconst exists = labels.some(label => checkValues.includes((label.name || '').toLowerCase())\n);\n\nfor (const item of $input.all()) {\n  item.json.labelExists = exists;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        496
+      ],
+      "id": "508da8ea-5d01-47ca-a2dc-9bf19489a4c8",
+      "name": "Check Label"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f317a11c-8cc3-4214-8baf-e44590ac9763",
+              "leftValue": "={{ $json.labelExists }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        496
+      ],
+      "id": "7d953491-c819-4aca-ae14-41c96e9d2d39",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 30 22 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        480
+      ],
+      "id": "969397fe-75fe-4919-9fe1-2c94da08a7ea",
+      "name": "10.30pm"
+    }
+  ],
+  "connections": {
+    "Get all SPAM emails": {
+      "main": [
+        [
+          {
+            "node": "Delete SPAM emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger at Sunday midnight": {
+      "main": [
+        [
+          {
+            "node": "Get all SPAM emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all INBOX": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Check Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If row exists": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a message": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Delete": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as read": {
+      "main": [
+        [
+          {
+            "node": "Add label to message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message": {
+      "main": [
+        []
+      ]
+    },
+    "Check Label": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "10.30pm": {
+      "main": [
+        [
+          {
+            "node": "Get all INBOX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
+  },
+  "staticData": {
+    "node:Trigger at Sunday midnight": {
+      "recurrenceRules": []
+    },
+    "node:10.30pm": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateId": "4285",
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "282d7319-4a75-49b9-b382-503a74bd14d8",
+  "triggerCount": 2,
+  "shared": [
+    {
+      "createdAt": "2025-09-06T02:31:05.847Z",
+      "updatedAt": "2025-09-06T02:31:05.847Z",
+      "role": "workflow:owner",
+      "workflowId": "ISDRq3d4sWuyNPNu",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
