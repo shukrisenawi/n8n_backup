@@ -1,0 +1,492 @@
+{
+  "createdAt": "2025-10-04T15:15:54.886Z",
+  "updatedAt": "2025-10-05T14:54:38.000Z",
+  "id": "fFz3o95MhB7WE4VA",
+  "name": "FUNGSI /rate - Tukar Currency",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Jumlah tidak dimasukkan..",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        1520
+      ],
+      "id": "bc726a49-20aa-4386-a510-321a2b711b30",
+      "name": "Send a text message2",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "06114a1a-6968-4f6a-84a5-7dc97a6e4f08",
+              "leftValue": "={{ $json.currency_code }}",
+              "rightValue": "={{ $('Asingkan Currency').item.json.currency }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        1424
+      ],
+      "id": "bfeacbb3-8d1f-4e89-97be-cbe87f41b638",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=RM{{ $json.value }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1664,
+        1408
+      ],
+      "id": "3a8df26b-05ec-4125-abf1-10930c88f3e1",
+      "name": "Send a text message3",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const amount = ($('Asingkan Currency').first().json.amount*$input.first().json.rate.selling_rate)/$input.first().json.unit;\nfor (const item of $input.all()) {\n  item.json.value = parseFloat(amount.toFixed(2));\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        1408
+      ],
+      "id": "94506b03-b175-424a-9067-c965917e19d5",
+      "name": "Kiraan"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d86b4534-dcb6-4f49-9351-7c210fbf7279",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        32,
+        1296
+      ],
+      "id": "38ccd469-311e-40ff-b67d-d603020a7a2c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "url": "https://api.bnm.gov.my/public/exchange-rate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.BNM.API.v1+json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        576,
+        1280
+      ],
+      "id": "e13ea97b-2d48-4e0d-af0a-294a01225f66",
+      "name": "Get Rate"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        736,
+        1280
+      ],
+      "id": "2b6e59b2-9ef4-41cf-b929-61671593d3a4",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "231db412-e88a-40b3-b392-9262466bf906",
+              "leftValue": "={{ $('Asingkan amount dan currency').item.json.value2 }}",
+              "rightValue": "RM",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        1280
+      ],
+      "id": "a5d54bce-697e-4586-9088-4f7fe8cfaf76",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $('Start').first().json.text.trim();\n\nconst value = input.split(' ');\n\nfor (const item of $input.all()) {\n  item.json.value1 = value[0]||null;\n  if(value[1])\n    item.json.value2 = value[1].toUpperCase();\n  else\n    item.json.value2 = null;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        1280
+      ],
+      "id": "ec5b1ae8-687d-4910-bdaa-688f190a115a",
+      "name": "Asingkan amount dan currency"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.value1;\nconst input = raw.trim();\n\n// Regex: huruf (1 atau lebih) + nombor (1 atau lebih, dengan . optional)\nconst match = input.match(/^([A-Za-z]+)([0-9]+(?:\\.[0-9]+)?)$/);\n\nif (match) {\n  return [\n    {\n      json: {\n        currency: match[1].toUpperCase(),          // \"USD\"\n        amount: parseFloat(match[2]) // 23 atau 100.23\n      }\n    }\n  ];\n} else {\n  return [\n    {\n      json: {\n        error: \"Format tidak sah. Contoh: USD23 atau USD100.23\"\n      }\n    }\n  ];\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        1280
+      ],
+      "id": "a683bc56-927a-4675-b2fc-65cf12553cfb",
+      "name": "Asingkan Currency"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "06114a1a-6968-4f6a-84a5-7dc97a6e4f08",
+              "leftValue": "={{ $json.currency_code }}",
+              "rightValue": "={{ $('Asingkan amount dan currency').item.json.value2 }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1216,
+        1216
+      ],
+      "id": "c083780a-eba3-483b-a9ca-4d255f58753f",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "={{ $json.currency_code }}{{ $json.value }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1664,
+        1200
+      ],
+      "id": "bb9e46d2-52f2-4875-81b5-97ac4d556912",
+      "name": "Send a text message4",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const amount = ($('Asingkan Currency').first().json.amount/$input.first().json.rate.selling_rate)*$input.first().json.unit;\nfor (const item of $input.all()) {\n  item.json.value = parseFloat(amount.toFixed(2));\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1472,
+        1200
+      ],
+      "id": "dc453055-c852-4029-a3b0-ddc6386233ad",
+      "name": "Kiraan1"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "text",
+              "type": "any"
+            },
+            {
+              "name": "id_telegram",
+              "type": "any"
+            },
+            {
+              "name": "text_trim_firstItem",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "46112d5f-2432-40ff-81fa-dd4bda57b04d",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -176,
+        1296
+      ]
+    }
+  ],
+  "connections": {
+    "Get Rate": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Asingkan amount dan currency",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Kiraan",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Kiraan": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan amount dan currency": {
+      "main": [
+        [
+          {
+            "node": "Asingkan Currency",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan Currency": {
+      "main": [
+        [
+          {
+            "node": "Get Rate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Kiraan1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Kiraan1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "165d0ecd-d699-4e97-87fc-276eda338f73",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-04T15:15:54.889Z",
+      "updatedAt": "2025-10-04T15:15:54.889Z",
+      "role": "workflow:owner",
+      "workflowId": "fFz3o95MhB7WE4VA",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
