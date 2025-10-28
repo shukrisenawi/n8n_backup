@@ -1,0 +1,308 @@
+{
+  "createdAt": "2025-08-29T04:01:00.060Z",
+  "updatedAt": "2025-10-23T15:32:04.000Z",
+  "id": "D2SNr2APFAkNGlmL",
+  "name": "Asingkan Alamat",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        380,
+        160
+      ],
+      "id": "43c07da1-885c-4419-a22d-7fb7530be09b",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qrIOqk9261OK3B5K",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.name = 'sc_test';\n  item.json.from = '60195168839@c.us';\n  item.json.message = $input.first().json.query.chatInput;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        0
+      ],
+      "id": "1d09db13-54f9-415b-bdd5-4a507283b404",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.query.chatInput }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "nama",
+              "description": "nama orang"
+            },
+            {
+              "name": "alamat",
+              "description": "alamat penuh sekali poskod"
+            },
+            {
+              "name": "poskod",
+              "description": "poskod ambil dari alamat"
+            },
+            {
+              "name": "no_tel",
+              "description": "Nombor hp"
+            },
+            {
+              "name": "poskod",
+              "description": "poskod ambil dari alamat"
+            },
+            {
+              "name": "save_nama",
+              "description": "Nama untuk di simpan didalam contact (gelaran)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "779e0e7b-1946-46c9-9054-ae659342697e",
+      "name": "Maklumat"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e7b6c7c3-f0ce-4d49-9adb-9859a7f49749",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "b8f80b14-b2c8-4edc-accd-c60d12121fc2",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "path": "6a5efb9d-d847-4dfc-8dbd-2cca3e8ebbf9",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        60
+      ],
+      "id": "50e2e290-28c6-4eff-a18b-e9d951959b6e",
+      "name": "Webhook",
+      "webhookId": "6a5efb9d-d847-4dfc-8dbd-2cca3e8ebbf9"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        620,
+        0
+      ],
+      "id": "104b2150-9f06-4278-880a-469a63f0ae37",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {},
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        360
+      ],
+      "id": "de2ee7c1-863c-4dfc-87c8-8028b8f42750"
+    },
+    {
+      "parameters": {
+        "chatId": "{{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "name": "Notify Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        560,
+        360
+      ],
+      "id": "d36d8527-73fd-48e2-b572-edc7f74f2325",
+      "webhookId": "13c616bf-a3ad-4035-998a-1dfe6021b89f",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hello, this workflow is made by khaisa. please visit shop.khaisa.com for more tailored support\n\n// Perfect error access untuk N8N v1.99.1\nconst errorData = $input.first().json;\nconst execution = errorData.execution;\nconst workflow = errorData.workflow;\nconst error = execution.error;\n\nconst message = `🚨 <b>WORKFLOW ERROR</b>\\n\\n` +\n  `📋 Workflow: <b>${workflow.name}</b>\\n` +\n  `⚙️ Node: <code>${error.node.name}</code>\\n` +\n  `❌ Error: <code>${error.message}</code>\\n` +\n  `📝 Description: <i>${error.description}</i>\\n` +\n  `🕐 Waktu: ${new Date(error.timestamp).toLocaleString('id-ID')}\\n` +\n  `🔍 Execution: <a href=\"${execution.url}\">${execution.id}</a>\\n` +\n  `⚠️ Level: ${error.level.toUpperCase()}`;\n\nreturn {\n  message: message,\n  parse_mode: 'HTML',\n  chat_id: '621412350'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        360
+      ],
+      "id": "01126a31-28a2-4ce8-b027-dbc092a8e4e7",
+      "name": "Prepare Messages"
+    }
+  ],
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Maklumat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Maklumat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maklumat": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Messages": {
+      "main": [
+        [
+          {
+            "node": "Notify Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "20b53983-01e9-47a7-8b29-7cdf7d284424",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-08-29T04:01:00.064Z",
+      "updatedAt": "2025-08-29T04:01:00.064Z",
+      "role": "workflow:owner",
+      "workflowId": "D2SNr2APFAkNGlmL",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": [
+    {
+      "createdAt": "2025-08-27T04:43:27.966Z",
+      "updatedAt": "2025-08-27T04:43:27.966Z",
+      "id": "QGIZMgBBj1OYKF5r",
+      "name": "component"
+    }
+  ]
+}
