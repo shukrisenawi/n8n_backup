@@ -1,0 +1,275 @@
+{
+  "createdAt": "2025-09-13T13:44:49.990Z",
+  "updatedAt": "2025-10-23T15:32:20.000Z",
+  "id": "QUe0sj1n54xMHMla",
+  "name": "Chat AI",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        160
+      ],
+      "id": "d3d1bd9c-c473-49f9-a44f-544f0ff1258d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "fVROc60J7L6j0kn5",
+          "name": "Ai Sumapod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message[0] }}",
+        "options": {
+          "systemMessage": "=Anda pembantu maya menjawab soalan menggunakan database, bercakap dalam bahasa melayu\nMasa Sekarang : {{ $now }}\n\ngunakan tool sleep_schema dan sleep_data untuk mencari data"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        208,
+        -64
+      ],
+      "id": "7ec76ac6-6909-409f-8d92-6b2f41bd55bd",
+      "name": "AI Data"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        528,
+        -64
+      ],
+      "id": "7562bdc1-4fca-4190-897f-d2bf87e72bd8",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "path": "46f1bc09-cc8d-457a-bb8f-00adeb499d76",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -64
+      ],
+      "id": "97ea116d-cb78-447a-86f3-4c4954d6fd58",
+      "name": "Webhook",
+      "webhookId": "46f1bc09-cc8d-457a-bb8f-00adeb499d76"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "query.message",
+              "renameField": true,
+              "outputFieldName": "message"
+            },
+            {
+              "fieldToAggregate": "query.user_id",
+              "renameField": true,
+              "outputFieldName": "sessionId"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -64
+      ],
+      "id": "b8f7e55a-fa48-47e2-afff-d02ebac9ced7",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "sleep_data tool used to query my sleep database",
+        "operation": "executeQuery",
+        "query": "{{ $fromAI('SQLquery', 'the sql query your form based on the user request') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        448,
+        160
+      ],
+      "id": "35e5f464-7383-4058-a5a7-d5c63c41f7e9",
+      "name": "sleep_data",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "sleep_schema tool used to find the schema of my sleep SQL database",
+        "operation": "executeQuery",
+        "query": "SELECT table_name, column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_schema = DATABASE() ORDER BY table_name, ordinal_position",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.4,
+      "position": [
+        320,
+        160
+      ],
+      "id": "83b4ae58-43b9-4798-9468-03acff490d11",
+      "name": "sleep_schema",
+      "credentials": {
+        "mySql": {
+          "id": "WVOsGLIu4O9V3X6j",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        160
+      ],
+      "id": "3c57b96b-2ba7-4f5b-9a0c-b307b4d3b7d7",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "2fuVofc0mvVfTNb4",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Data",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Data": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sleep_schema": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Data",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sleep_data": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Data",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Data",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "04847a0f-dee4-4f82-9b3e-ae2bb17911f4",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "createdAt": "2025-09-13T13:44:49.992Z",
+      "updatedAt": "2025-09-13T13:44:49.992Z",
+      "role": "workflow:owner",
+      "workflowId": "QUe0sj1n54xMHMla",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
