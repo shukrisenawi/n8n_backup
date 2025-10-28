@@ -1,0 +1,28 @@
+{
+  "createdAt": "2025-09-29T12:02:06.948Z",
+  "updatedAt": "2025-09-29T12:02:16.000Z",
+  "id": "62VdwWsbJtYlQqJ2",
+  "name": "Reset Jadual Pengajian",
+  "active": false,
+  "isArchived": true,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "f79f89ef-fcd7-47e7-adec-7fe6ac1be31b",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-09-29T12:02:06.951Z",
+      "updatedAt": "2025-09-29T12:02:06.951Z",
+      "role": "workflow:owner",
+      "workflowId": "62VdwWsbJtYlQqJ2",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
