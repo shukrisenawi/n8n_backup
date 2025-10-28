@@ -1,0 +1,801 @@
+{
+  "active": true,
+  "connections": {
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "Cari Pengajian Masjid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Memory Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory Message": {
+      "main": [
+        [
+          {
+            "node": "Update Status User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh Pengajian": {
+      "main": [
+        [
+          {
+            "node": "Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert Pukul 4": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Data": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tarikh Pengajian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var1": {
+      "main": [
+        [
+          {
+            "node": "Cari Pengajian Luar",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Cari Pengajian Masjid1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Masjid": {
+      "main": [
+        [
+          {
+            "node": "Loop Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Luar": {
+      "main": [
+        [
+          {
+            "node": "Loop Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert Pukul 8pagi": {
+      "main": [
+        [
+          {
+            "node": "Var1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Data": {
+      "main": [
+        [
+          {
+            "node": "Loop Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status User": {
+      "main": [
+        [
+          {
+            "node": "Insert Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Masjid1": {
+      "main": [
+        [
+          {
+            "node": "Loop Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-27T10:03:41.005Z",
+  "id": "RA6KMQizOR4zvZ2R",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "MASJID AL-HALIMI - Notification",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "=masjid_session",
+        "chatId": "={{ $('pecahkan mesej').item.json.no_tel }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1488,
+        416
+      ],
+      "id": "3ac569d2-1cf8-4cdb-93ac-6d4fa27946e9",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "=masjid_session",
+        "chatId": "={{ $('pecahkan mesej').item.json.no_tel }}",
+        "text": "={{ $('pecahkan mesej').item.json.message }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1488,
+        560
+      ],
+      "id": "051b1c45-a8f1-43df-b363-ad9c95eab843",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1472,
+        272
+      ],
+      "id": "db621f07-20fc-439c-9a02-df348c266673",
+      "name": "Wait",
+      "webhookId": "fed00e73-ccfa-4b99-afed-35a5341d30c6"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "=masjid_session",
+        "chatId": "={{ $json.no_tel }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1472,
+        96
+      ],
+      "id": "5997c987-9c07-4386-b727-82a8922700d0",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1248,
+        80
+      ],
+      "id": "deb2f0c4-f075-44ff-8c7c-6554bc7cb24e",
+      "name": "pecahkan mesej",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = parseInt(now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" }), 10);\n\nconst tarikh_format = `${String(day).padStart(2,\"0\")}-${month}-${year}`;\ntarikh = `${year}-${month}-${String(day).padStart(2,\"0\")}`;\n\nreturn {\n  tarikh,\n  tarikh_format,\n  session:\"masjid_session\"\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        16
+      ],
+      "id": "f63bdf01-3973-43d5-9e70-8cc4b2e276c1",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = \"Assalamualaikum ustaz.. Pengajian kitab \"+$('Loop Data').first().json.kitab+\", \"+$input.first().json.tarikh_format+\" (\"+$input.first().json.hari+\") ada dak.\";\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        272
+      ],
+      "id": "d84c6966-79e9-49b9-a110-8f12c203be0e",
+      "name": "Message"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json:{\n      \"sessionId\": $('Loop Data').first().json.no_hp_peringatan,\n      \"messages\": [\n        {\n          \"type\": \"ai\",\n          \"data\": {\n            \"content\": $input.first().json.message,\n            \"action\":\"kemaskini jadual\",\n            \"id\":$('Loop Data').first().json.id,\n            \"additional_kwargs\": {},\n            \"response_metadata\": {}\n          }\n        }\n      ]        \n    }\n  }\n  ];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        272
+      ],
+      "id": "ab18a20b-8cb8-4513-90de-cf0a8002bace",
+      "name": "Memory Message"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date($input.first().json.tarikh_bulan_ini);\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\n\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = parseInt(now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" }), 10);\n\nconst tarikh = `${year}-${month}-${String(day).padStart(2,\"0\")}`;\nconst tarikh_format = `${String(day).padStart(2,\"0\")}-${month}-${year}`;\n\nconst dayName = ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'];\nconst hari = now.getDay();\n\nreturn {\n  tarikh,\n  hari: dayName[hari],\n  tarikh_format\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        272
+      ],
+      "id": "3f1ca986-8230-4813-b8c5-0bce5189a879",
+      "name": "Tarikh Pengajian"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 16 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -848,
+        16
+      ],
+      "id": "895bf768-f03d-4053-b6aa-122a85346c30",
+      "name": "Alert Pukul 4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        368,
+        -112
+      ],
+      "id": "bdb0f474-ed1a-4796-b28c-020f9db64cfc",
+      "name": "Loop Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = parseInt(now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" }), 10);\n\nconst tarikh_format = `${String(day).padStart(2,\"0\")}-${month}-${year}`;\ntarikh = `${year}-${month}-${String(day).padStart(2,\"0\")}`;\n\nreturn {\n  tarikh,\n  tarikh_format,\n  session:\"masjid_session\"\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        224
+      ],
+      "id": "51c0627f-15f7-42d4-9a26-09d1eefe5566",
+      "name": "Var1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_peringatan",
+              "keyValue": "={{ $json.tarikh }}"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Ya"
+            },
+            {
+              "keyName": "tempat",
+              "keyValue": "Masjid Al-Halimi Batu 5"
+            },
+            {
+              "keyName": "pengajar",
+              "condition": "neq",
+              "keyValue": "Tuan Guru Baba Mukhtari Bin Saleh Ad Dalawi"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        16
+      ],
+      "id": "3e03eb5c-245d-4787-97a1-8cf046991253",
+      "name": "Cari Pengajian Masjid"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_peringatan",
+              "keyValue": "={{ $json.tarikh }}"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Ya"
+            },
+            {
+              "keyName": "tempat",
+              "condition": "neq",
+              "keyValue": "Masjid Al-Halimi Batu 5"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        224
+      ],
+      "id": "d3d9303e-ac31-4aff-a562-69d6931db0d0",
+      "name": "Cari Pengajian Luar"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 8 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -848,
+        224
+      ],
+      "id": "73440cd0-16a6-41a3-8ca1-6f1265053e70",
+      "name": "Alert Pukul 8pagi"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "HN8sWAjmlWfOkjSI",
+          "mode": "list",
+          "cachedResultName": "Masjid - Notification",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/HN8sWAjmlWfOkjSI"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "no_tel",
+              "keyValue": "={{ $('Memory Message').item.json.sessionId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "no_tel": "={{ $('Memory Message').item.json.sessionId }}",
+            "message": "={{ $('Memory Message').item.json.messages[0].data.content }}",
+            "id_penajian": "={{ $('Memory Message').item.json.messages[0].data.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "no_tel",
+              "displayName": "no_tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "id_penajian",
+              "displayName": "id_penajian",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        816,
+        272
+      ],
+      "id": "e587c1cb-f1d6-4c0d-bfff-245a31efba7a",
+      "name": "Insert Data"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "6TDWi5bdTjrwOocH",
+          "mode": "list",
+          "cachedResultName": "Masjid - Anak Khariah",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/6TDWi5bdTjrwOocH"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "no_tel",
+              "keyValue": "={{ $json.sessionId }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "on": 6
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nama",
+              "displayName": "nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "gelaran",
+              "displayName": "gelaran",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "alamat",
+              "displayName": "alamat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_lahir",
+              "displayName": "tarikh_lahir",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "no_tel",
+              "displayName": "no_tel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "gambar",
+              "displayName": "gambar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "on",
+              "displayName": "on",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        640,
+        272
+      ],
+      "id": "d7e92880-26dd-43a0-ae1f-cbc0b46b0dbb",
+      "name": "Update Status User"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_peringatan",
+              "keyValue": "={{ $json.tarikh }}"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Ya"
+            },
+            {
+              "keyName": "tempat",
+              "keyValue": "Masjid Al-Halimi Batu 5"
+            },
+            {
+              "keyName": "pengajar",
+              "keyValue": "Tuan Guru Baba Mukhtari Bin Saleh Ad Dalawi"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        448
+      ],
+      "id": "ff067bde-69b3-4505-af64-4e84543d5f2a",
+      "name": "Cari Pengajian Masjid1"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 1,
+    "errorWorkflow": "X3z9DFNcd6pygcaS"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-27T10:03:41.008Z",
+      "updatedAt": "2025-09-27T10:03:41.008Z",
+      "role": "workflow:owner",
+      "workflowId": "RA6KMQizOR4zvZ2R",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
+    },
+    "node:Kitab Minhajul `Abidin": {
+      "recurrenceRules": [
+        269
+      ]
+    },
+    "node:Sedekah Subuh": {
+      "recurrenceRules": [
+        15
+      ]
+    },
+    "node:Alert Pukul 4": {
+      "recurrenceRules": []
+    },
+    "node:Alert Pukul ": {
+      "recurrenceRules": []
+    },
+    "node:Alert Pukul 8pagi": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-10-11T15:23:34.000Z",
+  "versionId": "36e2bad8-7d69-4761-9db9-a9efbddfd1d5"
+}
