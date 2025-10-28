@@ -1,0 +1,282 @@
+{
+  "createdAt": "2025-10-04T16:22:06.793Z",
+  "updatedAt": "2025-10-21T01:24:59.000Z",
+  "id": "EQ1V0J85cjjZssNz",
+  "name": "FUNGSI /email_banner - Email banner kepada kedai",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Tajuk banner tidak dimasukkan..",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        1328
+      ],
+      "id": "9f988e5c-798b-4a53-b9a8-580f307945f6",
+      "name": "Send a text message2",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "=shuk_session",
+        "chatId": "={{ $('Start').item.json.no_hp }}",
+        "text": "Assalamualaikum.. Sy ada email banner nnt mtk tlg cek.. Terima kasih.",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        672,
+        1312
+      ],
+      "id": "0bff01aa-01ed-4bca-b3e6-03736790953d",
+      "name": "Hantar Mesej",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Start').item.json.email }}",
+        "subject": "={{ $('Start').item.json.text }}",
+        "message": "Assalamualaikum..<br><br>Sila lihat attachment..<br><br>Terima kasih.",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "=data"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        1152
+      ],
+      "id": "bf4d94a9-60d7-4015-b207-0cb9267b8589",
+      "name": "Send a message",
+      "webhookId": "1311e33c-c7d7-42bc-b1a5-adcecf2a662d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Start').item.json.message_document_file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        288,
+        1152
+      ],
+      "id": "cb0f4ab0-59ad-4bea-875b-f454e83f5158",
+      "name": "Get a file",
+      "webhookId": "9ef3ad3e-2ef4-4e74-a637-1c60b249e90a",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d86b4534-dcb6-4f49-9351-7c210fbf7279",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        1152
+      ],
+      "id": "7b553942-1efc-40cf-a0f0-0b1d810fd4ef",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Banner \"{{ $('Start').item.json.text }}\" telah berjaya dihantar kepada {{ $('Start').item.json.email }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        656,
+        1120
+      ],
+      "id": "3f8a1732-119b-4c02-8a61-dd9602e2561c",
+      "name": "Send a text message",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "email",
+              "type": "any"
+            },
+            {
+              "name": "text",
+              "type": "any"
+            },
+            {
+              "name": "message_document_file_id",
+              "type": "any"
+            },
+            {
+              "name": "id_telegram",
+              "type": "any"
+            },
+            {
+              "name": "no_hp",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "id": "c21c1d61-a5b5-4e44-88b8-fcf8fcbbf768",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -128,
+        1152
+      ]
+    }
+  ],
+  "connections": {
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Hantar Mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "fff47f1d-7885-4bef-9581-fb528b296029",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "createdAt": "2025-10-04T16:22:06.797Z",
+      "updatedAt": "2025-10-04T16:22:06.797Z",
+      "role": "workflow:owner",
+      "workflowId": "EQ1V0J85cjjZssNz",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "tags": []
+}
