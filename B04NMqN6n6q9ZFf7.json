@@ -1,0 +1,288 @@
+{
+  "active": false,
+  "connections": {
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T10:22:29.454Z",
+  "id": "B04NMqN6n6q9ZFf7",
+  "isArchived": false,
+  "meta": null,
+  "name": "FUNGSI /email_spam - Jadikan email sebagai SPAM",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Start').item.json.text }}",
+            "label": "delete"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "label",
+              "displayName": "label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        576,
+        1760
+      ],
+      "id": "b2e6e633-a5d5-4ca2-9138-050db138d096",
+      "name": "Insert row1"
+    },
+    {
+      "parameters": {
+        "preBuiltAgentsCalloutTelegram": "",
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Email {{ $('Start').item.json.text }} telah berjaya dijadikan sebagai SPAM.",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        1760
+      ],
+      "id": "3a0a8e34-53c7-4a33-a9d1-618b3f261f4b",
+      "name": "Send a text message4",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2b4f2b6a-9786-40d4-a960-7c7d43171246",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        336,
+        1648
+      ],
+      "id": "b7784598-4e4a-4ebe-92dc-26aa7c0873b7",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "matchType": "anyCondition",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $json.text }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        128,
+        1648
+      ],
+      "id": "2813401d-9348-4216-93c4-0553ad5758ba",
+      "name": "Get row(s)1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "preBuiltAgentsCalloutTelegram": "",
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Email ini telah dijadikan SPAM.",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        1600
+      ],
+      "id": "c6bd6bb7-5583-4cee-a922-5f07e11815b0",
+      "name": "Send a text message3",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "id": "e730942c-45dc-40a4-9792-ed4791d18edd",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -80,
+        1648
+      ],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "id_telegram",
+              "type": "any"
+            },
+            {
+              "name": "text",
+              "type": "any"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": null,
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-29T10:22:29.457Z",
+      "updatedAt": "2025-10-29T10:22:29.457Z",
+      "role": "workflow:owner",
+      "workflowId": "B04NMqN6n6q9ZFf7",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-29T10:22:29.000Z",
+  "versionId": "dcb29ed2-2299-4a43-933d-222013ffb868"
+}
