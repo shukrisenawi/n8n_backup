@@ -805,7 +805,7 @@
         "operation": "Send Image",
         "session": "={{ $('output message').first().json.sessionId[0] }}",
         "chatId": "={{ $('pecahkan mesej').item.json.group }}",
-        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[0] }}\"\n}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.png\",\n  \"url\": \"{{ $json.output[0] }}\"\n}",
         "caption": "={{ $json.output[1]?$json.output[0]:null }}",
         "requestOptions": {}
       },
@@ -823,7 +823,8 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -914,7 +915,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const input = $('Asingkan text biasa dengan gambar').item.json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
+        "jsCode": "const input = $('Asingkan text biasa dengan gambar').first().json.text;\nconst timestamp = Date.now(); // ambil masa sekarang dalam ms\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /\\[(.*?)\\]\\((.*?)\\)/;\n\nlet output = [];\n\nconst match = input.match(regex);\nif (match) {\n  output = [match[1], match[2]];\n} else {\n  output = [input];\n}\n\nreturn {\n  json: {\n    output,\n    timestamp\n  }\n};\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1994,7 +1995,25 @@
     }
   ],
   "origin": "n8n",
-  "pinData": {},
+  "pinData": {
+    "Sedekah Subuh": [
+      {
+        "json": {
+          "timestamp": "2025-10-29T05:50:00.005+08:00",
+          "Readable date": "October 29th 2025, 5:50:00 am",
+          "Readable time": "5:50:00 am",
+          "Day of week": "Wednesday",
+          "Year": "2025",
+          "Month": "October",
+          "Day of month": "29",
+          "Hour": "05",
+          "Minute": "50",
+          "Second": "00",
+          "Timezone": "Asia/Kuala_Lumpur (UTC+08:00)"
+        }
+      }
+    ]
+  },
   "repo": {
     "owner": "shukrisenawi",
     "name": "n8n_backup"
@@ -2044,6 +2063,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-10-26T05:58:03.000Z",
-  "versionId": "a35c7f6c-965d-4a91-997f-3bddb87c6862"
+  "updatedAt": "2025-10-29T08:18:35.000Z",
+  "versionId": "e1c6d826-d38a-4952-996f-3f17e329f03a"
 }
