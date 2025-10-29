@@ -1,0 +1,396 @@
+{
+  "active": false,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asingkan Label": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Asingkan Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-29T10:32:47.015Z",
+  "id": "B1L3dvClBMgfgYWa",
+  "isArchived": false,
+  "meta": null,
+  "name": "FUNGSI /email_label - Set label kepada email",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Asingkan Label').item.json.email }}",
+            "label": "={{ $('Asingkan Label').item.json.label.replace(/_/g, ' ') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "label",
+              "displayName": "label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        928,
+        1632
+      ],
+      "id": "9c743926-8ac0-40eb-9065-fec6a2907625",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "preBuiltAgentsCalloutTelegram": "",
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Email  {{ $('Asingkan Label').item.json.email }} telah berjaya dilabelkan sebagai {{ $('Asingkan Label').item.json.label.replace(/_/g, ' ') }}.",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1072,
+        1632
+      ],
+      "id": "c6a95222-6b3d-4045-b146-ef52d99eeda7",
+      "name": "Send a text message2",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2b4f2b6a-9786-40d4-a960-7c7d43171246",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        1520
+      ],
+      "id": "969a9d20-693d-4db9-a5f6-aec9ed71bf93",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "matchType": "anyCondition",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        480,
+        1520
+      ],
+      "id": "66a29640-660f-47b3-8ca3-07598d944f9e",
+      "name": "Get row(s)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "preBuiltAgentsCalloutTelegram": "",
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "=Email {{ $('Asingkan Label').item.json.email }} telah wujud",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        928,
+        1456
+      ],
+      "id": "b8289728-d812-4569-9722-46db0bde724b",
+      "name": "Send a text message",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const text = $input.first().json.text.split(' ');\n\nreturn [\n  {\n    json: {\n      email: text[0],\n      label: text[1]\n    }\n  }\n];",
+        "notice": ""
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        1344
+      ],
+      "id": "90ba9b6f-2007-4067-b16f-a74943923152",
+      "name": "Asingkan Label",
+      "disabled": false,
+      "issues": {}
+    },
+    {
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        1344
+      ],
+      "id": "a06bace7-7028-4558-b557-d55339a9897b",
+      "name": "If1",
+      "disabled": false,
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a6a207d7-9bc2-44e9-9299-db2d9414ecd0",
+              "leftValue": "={{ $json.label }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": false,
+        "options": {}
+      }
+    },
+    {
+      "parameters": {
+        "preBuiltAgentsCalloutTelegram": "",
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Start').item.json.id_telegram }}",
+        "text": "Label email tidak dimasukkan.",
+        "replyMarkup": "none",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        1328
+      ],
+      "id": "91a3cece-0cb9-4c5e-be86-e8d4167d6f60",
+      "name": "Send a text message3",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": false
+    },
+    {
+      "id": "f1d326e4-013b-486d-ac87-f1fcf53a3363",
+      "typeVersion": 1.1,
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -112,
+        1344
+      ],
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "id_telegram",
+              "type": "any"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": null,
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-29T10:32:47.017Z",
+      "updatedAt": "2025-10-29T10:32:47.017Z",
+      "role": "workflow:owner",
+      "workflowId": "B1L3dvClBMgfgYWa",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-29T10:32:47.000Z",
+  "versionId": "52f5c7c9-943b-43bb-a2f1-7bdf0f7d646b"
+}
