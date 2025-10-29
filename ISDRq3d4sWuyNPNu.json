@@ -46,12 +46,6 @@
         ]
       ]
     },
-    "If row exists": {
-      "main": [
-        [],
-        []
-      ]
-    },
     "Wait": {
       "main": [
         [
@@ -76,30 +70,20 @@
     },
     "If Delete": {
       "main": [
-        [],
         [
           {
-            "node": "Mark a message as read",
+            "node": "Move TRASH",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get many labels",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "Mark a message as read": {
-      "main": [
-        [
-          {
-            "node": "Add label to message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Add label to message": {
-      "main": [
-        []
       ]
     },
     "Check Label": {
@@ -117,25 +101,176 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Delete a message",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Delete a message",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "10.30pm": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Dapatkan Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Mark Read",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Dapatkan Email": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
       "main": [
         [
           {
             "node": "Get all INBOX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read": {
+      "main": [
+        [
+          {
+            "node": "If Delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many labels": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Check Label Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Label Exists": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Create a label",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a label": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Add label",
             "type": "main",
             "index": 0
           }
@@ -167,7 +302,7 @@
       "name": "Trigger at Sunday midnight",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        464,
+        416,
         272
       ],
       "typeVersion": 1.2
@@ -181,7 +316,7 @@
       "name": "Delete SPAM emails",
       "type": "n8n-nodes-base.gmail",
       "position": [
-        960,
+        832,
         272
       ],
       "webhookId": "46b0fe0f-cc00-4994-8364-9048c888e9ef",
@@ -207,7 +342,7 @@
       "name": "Get all SPAM emails",
       "type": "n8n-nodes-base.gmail",
       "position": [
-        752,
+        624,
         272
       ],
       "webhookId": "c47419de-278c-40d1-a5da-c9414d3f89c6",
@@ -226,7 +361,7 @@
         "returnAll": true,
         "filters": {
           "labelIds": [
-            "INBOX"
+            "Label_46"
           ]
         }
       },
@@ -234,8 +369,8 @@
       "name": "Get all INBOX",
       "type": "n8n-nodes-base.gmail",
       "position": [
-        544,
-        480
+        624,
+        832
       ],
       "webhookId": "c47419de-278c-40d1-a5da-c9414d3f89c6",
       "typeVersion": 2.1,
@@ -254,50 +389,21 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        832,
-        480
+        912,
+        832
       ],
       "id": "8ae6244e-63cc-4f82-af0a-edf26882ce93",
       "name": "Loop Over Items"
     },
     {
       "parameters": {
-        "operation": "rowExists",
-        "dataTableId": {
-          "__rl": true,
-          "value": "xCA18cKGI6FJfBpr",
-          "mode": "list",
-          "cachedResultName": "Lain-Lain - Email SPAM",
-          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
-        },
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "email"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.dataTable",
-      "typeVersion": 1,
-      "position": [
-        1104,
-        960
-      ],
-      "id": "d47cf2ef-eb38-43c2-9b94-54fd8aa5c3e0",
-      "name": "If row exists",
-      "alwaysOutputData": true,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "amount": "={{ Math.floor(Math.random()*10,1) }}"
+        "amount": "=1"
       },
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1440,
-        704
+        1520,
+        1008
       ],
       "id": "16ac988d-4da5-4d6d-98bf-8458ddd033ea",
       "name": "Wait",
@@ -311,8 +417,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        1440,
-        496
+        1520,
+        848
       ],
       "id": "baf5ab47-be08-4553-8b2e-f1d75c746d28",
       "name": "Delete a message",
@@ -322,7 +428,8 @@
           "id": "kCS8HaKwPxXvtxOP",
           "name": "Gmail account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -336,7 +443,7 @@
           "conditions": [
             {
               "id": "1f3805c4-6afe-4fcd-88ad-51fc0aa23b7a",
-              "leftValue": "",
+              "leftValue": "={{ $json.label }}",
               "rightValue": "delete",
               "operator": {
                 "type": "string",
@@ -352,63 +459,21 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1376,
-        976
+        1072,
+        496
       ],
       "id": "c6383917-8c64-4ef1-abf9-a295ff09e09d",
       "name": "If Delete"
     },
     {
       "parameters": {
-        "operation": "markAsRead"
-      },
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        1584,
-        976
-      ],
-      "id": "74d68c8e-7092-4d4a-979e-4982e54aecf3",
-      "name": "Mark a message as read",
-      "webhookId": "6323abe9-0209-41bc-89fd-fa9385b62c2e",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "kCS8HaKwPxXvtxOP",
-          "name": "Gmail account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "operation": "addLabels"
-      },
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        1760,
-        976
-      ],
-      "id": "a8ac39a6-d3c6-4c45-b78c-42200f8a7b94",
-      "name": "Add label to message",
-      "webhookId": "aeb94c2f-11f8-48ef-8bd6-aad05474af74",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "kCS8HaKwPxXvtxOP",
-          "name": "Gmail account"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "const labels = $input.first().json.labels;\nconst checkValues = ['UNREAD','Belian','Belian/Hosting','Simpanan','Simpanan/Katakunci','firesale'].map(v => v.toLowerCase());\n\nconst exists = labels.some(label => checkValues.includes((label.name || '').toLowerCase())\n);\n\nfor (const item of $input.all()) {\n  item.json.labelExists = exists;\n}\n\nreturn $input.all();"
+        "jsCode": "const labels = $input.first().json.labels;\nconst checkValues = ['Xguna'].map(v => v.toLowerCase());\n\nconst exists = labels.some(label => checkValues.includes((label.name || '').toLowerCase())\n);\n\nfor (const item of $input.all()) {\n  item.json.labelExists = exists;\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1040,
-        496
+        1104,
+        848
       ],
       "id": "508da8ea-5d01-47ca-a2dc-9bf19489a4c8",
       "name": "Check Label"
@@ -441,31 +506,375 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1232,
-        496
+        1312,
+        848
       ],
       "id": "7d953491-c819-4aca-ae14-41c96e9d2d39",
       "name": "If"
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
+        "pollTimes": {
+          "item": [
             {
-              "field": "cronExpression",
-              "expression": "0 30 22 * * *"
+              "mode": "everyMinute"
             }
           ]
-        }
+        },
+        "filters": {}
       },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
       "position": [
-        352,
-        480
+        416,
+        496
       ],
-      "id": "969397fe-75fe-4919-9fe1-2c94da08a7ea",
-      "name": "10.30pm"
+      "id": "dc3d2174-aa4d-4623-9d1e-33dc58827350",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "xCA18cKGI6FJfBpr",
+          "mode": "list",
+          "cachedResultName": "Lain-Lain - Email SPAM",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/xCA18cKGI6FJfBpr"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        },
+        "limit": 1
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        784,
+        496
+      ],
+      "id": "d47cf2ef-eb38-43c2-9b94-54fd8aa5c3e0",
+      "name": "Get row(s)",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.From;\n\n// Guna regex untuk cari email\nconst match = input.match(/<([^>]+)>/);\n\n// Keluarkan hasil\nconst value = { email: match ? match[1] : input };\n\nreturn [\n  {\n    json:{\n      email:value['email']\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        496
+      ],
+      "id": "0e0dbba8-5297-4fdd-8e60-5579be1e7703",
+      "name": "Dapatkan Email"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        432,
+        832
+      ],
+      "id": "09ff765a-2647-4264-a4ac-877f01f50a39",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "TRASH"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1264,
+        432
+      ],
+      "id": "2af29006-3ebf-42c7-b748-71ac136109e9",
+      "name": "Move TRASH",
+      "webhookId": "aeb94c2f-11f8-48ef-8bd6-aad05474af74",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        496
+      ],
+      "id": "2cd28169-c5ea-419c-a9a9-0e8b75db4830",
+      "name": "Mark Read",
+      "webhookId": "6323abe9-0209-41bc-89fd-fa9385b62c2e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": "={{ [$json.id] }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2288,
+        944
+      ],
+      "id": "7a0518e7-456f-4a9c-a530-34a76ba156b4",
+      "name": "Add label",
+      "webhookId": "aeb94c2f-11f8-48ef-8bd6-aad05474af74",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "label",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1152,
+        624
+      ],
+      "id": "25b5d755-da52-4b31-b9a3-b84be1153857",
+      "name": "Get many labels",
+      "webhookId": "82eb9af8-c076-4c60-bace-620fab9e66c6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3566a90c-8f90-4cd2-ab4e-81b0fe1e634c",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "95ef7275-7dd6-4755-8f91-889b3944faee",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        624
+      ],
+      "id": "dc7f8bdb-8d28-4646-8a3a-8c077d77ad99",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "label",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        624
+      ],
+      "id": "358f1462-a15a-4050-a5a5-407901b41123",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "12760c8d-cc87-4cfe-982d-d263aa2defd7",
+              "leftValue": "={{ $json.label }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1840,
+        624
+      ],
+      "id": "f0a5c9d5-8879-471d-8b2c-e0cd6efb17e5",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const labels = $input.first().json.label;\nconst label = labels.find(l => l.name.toLowerCase() ===  $('Get row(s)').first().json.label.toLowerCase());\n\nreturn [\n  {\n    json:{\n      label\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        624
+      ],
+      "id": "4827d551-234e-4470-8987-7d2463be76b8",
+      "name": "Check Label Exists"
+    },
+    {
+      "parameters": {
+        "resource": "label",
+        "operation": "create",
+        "name": "={{ $('Get row(s)').item.json.label }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2048,
+        576
+      ],
+      "id": "5f0a6479-f55b-460b-9e00-d44ebc96bf18",
+      "name": "Create a label",
+      "webhookId": "e09eeb6b-235f-4826-83a6-3aae83a9b59d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kCS8HaKwPxXvtxOP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6d01c5e7-29d2-40d5-a000-8922d4e7192c",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "b09de210-18d5-463f-8a10-b951a5ebe32d",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2240,
+        576
+      ],
+      "id": "331aaf70-0f48-44c3-ad19-78d45e8dc622",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "202bffdf-6351-4f09-9b0e-4474b547126c",
+              "name": "id",
+              "value": "={{ $json.label.id }}",
+              "type": "string"
+            },
+            {
+              "id": "8c8fd3a6-76ba-40df-917f-a60cf6067b3b",
+              "name": "name",
+              "value": "={{ $json.label.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2048,
+        720
+      ],
+      "id": "45f94f90-11c0-4c12-8ac7-0311638cc664",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "id"
+            },
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        944
+      ],
+      "id": "0b59a68f-dd75-4e67-957d-b43e916e8b98",
+      "name": "Aggregate1"
     }
   ],
   "origin": "n8n",
@@ -496,10 +905,18 @@
     },
     "node:10.30pm": {
       "recurrenceRules": []
+    },
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1761734529,
+        "possibleDuplicates": [
+          "19a2f8fa502c56c7"
+        ]
+      }
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-10-27T14:08:33.000Z",
-  "versionId": "282d7319-4a75-49b9-b382-503a74bd14d8"
+  "updatedAt": "2025-10-29T09:52:15.000Z",
+  "versionId": "a6113744-864e-4773-ba1c-13a342de3171"
 }
