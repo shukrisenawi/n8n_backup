@@ -5,7 +5,75 @@
       "main": [
         [
           {
-            "node": "Send image status",
+            "node": "Cari Parent Id Gambar Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Parent Id Gambar Status": {
+      "main": [
+        [
+          {
+            "node": "Senaraikan File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senaraikan File": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If row exists": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If row exists",
             "type": "main",
             "index": 0
           }
@@ -19,39 +87,206 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Update Status",
+  "name": "Stickertermurah - Update Status",
   "nodes": [
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -336,
-        -64
+        -832,
+        -224
       ],
       "id": "a6bb1440-6b67-4bc8-8c1b-d4438ab7d980",
       "name": "When clicking ‘Execute workflow’"
     },
     {
       "parameters": {
-        "resource": "Status",
-        "operation": "Send Image Status",
-        "requestOptions": {}
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "name = \"Gambar Status\" and mimeType = \"application/vnd.google-apps.folder\"",
+        "returnAll": true,
+        "filter": {},
+        "options": {}
       },
-      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
-      "typeVersion": 202502,
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
       "position": [
-        -48,
-        -64
+        -624,
+        -224
       ],
-      "id": "e5643d58-7f30-4ba6-98e5-148ed0a2821d",
-      "name": "Send image status",
+      "id": "78c4cd9d-f505-4b5d-b897-7e70dcc7b929",
+      "name": "Cari Parent Id Gambar Status",
       "credentials": {
-        "wahaApi": {
-          "id": "OSQWzQbmYRYYqgCf",
-          "name": "WAHA account"
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Whisk"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "='{{ $json.id }}' in parents",
+        "returnAll": true,
+        "filter": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -448,
+        -224
+      ],
+      "id": "2ae9a0aa-e308-4704-a63e-735e00b43647",
+      "name": "Senaraikan File",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Whisk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b96a95-7739-462b-a7bb-3485fd593889",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        288,
+        -208
+      ],
+      "id": "834bd098-aa25-409d-9a06-3037d567b877",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "rowExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "zwEfJzIac7GqCyf3",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Status Update",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/zwEfJzIac7GqCyf3"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "idDrive",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        16,
+        -208
+      ],
+      "id": "f1316670-5660-4afb-8a21-ddd683362bb1",
+      "name": "If row exists",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "zwEfJzIac7GqCyf3",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Status Update",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/zwEfJzIac7GqCyf3"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "platform": "facebook",
+            "idDrive": "={{ $('Loop Over Items').item.json.id }}",
+            "filename": "={{ $('Loop Over Items').item.json.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "idDrive",
+              "displayName": "idDrive",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "filename",
+              "displayName": "filename",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        64
+      ],
+      "id": "b70e459d-f495-48e1-b6ce-e6c77c884c41",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -224,
+        -224
+      ],
+      "id": "45fd1ad7-d5e6-414b-8e3b-7b17efe95984",
+      "name": "Loop Over Items"
     }
   ],
   "origin": "n8n",
@@ -75,6 +310,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-28T14:39:54.000Z",
-  "versionId": "670811ff-89ab-4029-aea5-503f5bf2b7d6"
+  "updatedAt": "2025-10-30T08:24:14.000Z",
+  "versionId": "d1445f0d-e67a-42fb-8e19-597fa6782640"
 }
