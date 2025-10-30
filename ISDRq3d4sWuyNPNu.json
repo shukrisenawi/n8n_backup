@@ -443,7 +443,7 @@
           "conditions": [
             {
               "id": "1f3805c4-6afe-4fcd-88ad-51fc0aa23b7a",
-              "leftValue": "={{ $json.label }}",
+              "leftValue": "={{ $('Get row(s)').item.json.label }}",
               "rightValue": "delete",
               "operator": {
                 "type": "string",
@@ -908,15 +908,15 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1761734529,
+        "lastTimeChecked": 1761819588,
         "possibleDuplicates": [
-          "19a2f8fa502c56c7"
+          "19a349c94916590a"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-10-29T09:52:15.000Z",
-  "versionId": "a6113744-864e-4773-ba1c-13a342de3171"
+  "updatedAt": "2025-10-30T03:17:40.000Z",
+  "versionId": "5a29ebeb-3b0c-4c06-831c-ae441b94a752"
 }
