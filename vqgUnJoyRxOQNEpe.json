@@ -82,17 +82,6 @@
         ]
       ]
     },
-    "Postgres Chat Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Travel Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "data": {
       "main": [
         [
@@ -609,6 +598,17 @@
           }
         ]
       ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Travel Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-10-17T15:02:57.496Z",
@@ -851,27 +851,6 @@
       ],
       "id": "fe60a806-26e6-4a3e-b734-2d2ec728ee7c",
       "name": "Switch"
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('data').item.json.memoryId }}",
-        "contextWindowLength": 10
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        2368,
-        144
-      ],
-      "id": "15fe0ead-6a58-4392-ba21-d8fe2fe5dd61",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "2fuVofc0mvVfTNb4",
-          "name": "Postgres account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1452,7 +1431,7 @@
       "type": "n8n-nodes-base.dataTableTool",
       "typeVersion": 1,
       "position": [
-        2480,
+        2496,
         144
       ],
       "id": "40e49910-aadb-4e1a-b9ae-27051e0d792b",
@@ -2049,6 +2028,27 @@
       ],
       "id": "6ce89783-7720-4393-97a1-d0362dbf244f",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('data').item.json.memoryId }}",
+        "databaseName": "mieayam7140_JamuAsli"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        2368,
+        144
+      ],
+      "id": "fdc60c3f-5bdf-459c-96db-029c8c96bbfd",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -2077,6 +2077,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-10-23T15:31:44.000Z",
-  "versionId": "009c2204-623c-4571-9300-4f62b8140f13"
+  "updatedAt": "2025-10-30T08:23:14.000Z",
+  "versionId": "3d0d4bc9-a7ef-428d-a0d1-f80bb8a841ee"
 }
