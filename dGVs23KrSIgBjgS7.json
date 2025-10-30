@@ -397,17 +397,6 @@
         ]
       ]
     },
-    "Postgres Chat Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Chat",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Switch1": {
       "main": [
         [
@@ -425,17 +414,6 @@
           {
             "node": "AI Agent1",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Postgres Chat Memory1": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_memory",
             "index": 0
           }
         ]
@@ -524,6 +502,28 @@
           {
             "node": "AI Agent1",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
             "index": 0
           }
         ]
@@ -719,7 +719,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.g_test = '120363421710384148@g.us';\n  item.json.g_muslimat = '60134693115-1476278350@g.us';\n  item.json.g_masjid = '60134507038-1525247606@g.us';\n  item.json.g_pegawai = '60134507038-1477703538@g.us';\n  item.json.g_ribat = '120363046203034644@g.us';\n  item.json.g_bukit = '120363296155366232@g.us';\n  item.json.complete_register = 5;\n  item.json.session = $input.first().json.session;\n  item.json.session_memory = $input.first().json.payload.from;\n  item.json.group = $input.first().json.payload.from;\n  item.json.nama_bot = 'masbot';\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.g_test = '120363421710384148@g.us';\n  item.json.g_muslimat = '60134693115-1476278350@g.us';\n  item.json.g_masjid = '60134507038-1525247606@g.us';\n  item.json.g_pegawai = '60134507038-1477703538@g.us';\n  item.json.g_ribat = '120363046203034644@g.us';\n  item.json.g_bukit = '120363296155366232@g.us';\n  item.json.g_live = '120363405149093802@g.us';\n  item.json.complete_register = 5;\n  item.json.session = $input.first().json.session;\n  item.json.session_memory = $input.first().json.payload.from;\n  item.json.group = $input.first().json.payload.from;\n  item.json.nama_bot = 'masbot';\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1649,26 +1649,6 @@
     },
     {
       "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Var').item.json.session_memory }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        1488,
-        432
-      ],
-      "id": "313ac40e-2611-4339-905d-b3d341505bd8",
-      "name": "Postgres Chat Memory",
-      "credentials": {
-        "postgres": {
-          "id": "2fuVofc0mvVfTNb4",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "rules": {
           "values": [
             {
@@ -1748,26 +1728,6 @@
         "openAiApi": {
           "id": "fVROc60J7L6j0kn5",
           "name": "Ai Sumapod"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Var').item.json.session_memory }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
-      "typeVersion": 1.3,
-      "position": [
-        960,
-        752
-      ],
-      "id": "baa6ff2b-d428-4372-bf54-9f4ffb13b3e2",
-      "name": "Postgres Chat Memory1",
-      "credentials": {
-        "postgres": {
-          "id": "2fuVofc0mvVfTNb4",
-          "name": "Postgres account"
         }
       }
     },
@@ -2119,6 +2079,48 @@
       ],
       "id": "612358e5-bccc-4949-b0ec-2678898bb962",
       "name": "Cari Hari Kematian"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Var').item.json.session_memory }}",
+        "databaseName": "mieayam7140_JamuAsli"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        432
+      ],
+      "id": "2f58ba7c-c744-44e4-8140-aa3dc8e639eb",
+      "name": "MongoDB Chat Memory",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Var').item.json.session_memory }}",
+        "databaseName": "=mieayam7140_JamuAsli"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
+      "typeVersion": 1,
+      "position": [
+        944,
+        752
+      ],
+      "id": "2708ab6e-e4ed-4954-bd4b-509aae61eb07",
+      "name": "MongoDB Chat Memory1",
+      "credentials": {
+        "mongoDb": {
+          "id": "IqR2txMNB7MReG93",
+          "name": "MongoDB account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -2146,6 +2148,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-23T06:02:22.000Z",
-  "versionId": "37397a2f-32ca-4cd0-96ed-33e0991c907a"
+  "updatedAt": "2025-10-30T08:20:59.000Z",
+  "versionId": "d8900903-0112-4bf3-aa3f-f268a0e14fc5"
 }
