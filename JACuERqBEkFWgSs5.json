@@ -1995,25 +1995,7 @@
     }
   ],
   "origin": "n8n",
-  "pinData": {
-    "Sedekah Subuh": [
-      {
-        "json": {
-          "timestamp": "2025-10-29T05:50:00.005+08:00",
-          "Readable date": "October 29th 2025, 5:50:00 am",
-          "Readable time": "5:50:00 am",
-          "Day of week": "Wednesday",
-          "Year": "2025",
-          "Month": "October",
-          "Day of month": "29",
-          "Hour": "05",
-          "Minute": "50",
-          "Second": "00",
-          "Timezone": "Asia/Kuala_Lumpur (UTC+08:00)"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "repo": {
     "owner": "shukrisenawi",
     "name": "n8n_backup"
@@ -2063,6 +2045,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-10-29T08:18:35.000Z",
-  "versionId": "e1c6d826-d38a-4952-996f-3f17e329f03a"
+  "updatedAt": "2025-10-30T08:18:52.000Z",
+  "versionId": "e4eb0bd1-95e7-4213-8ecf-e56856a4b7be"
 }
