@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Share file",
             "type": "main",
             "index": 0
           }
@@ -43,17 +43,28 @@
             "index": 0
           }
         ],
+        []
+      ]
+    },
+    "If row exists": {
+      "main": [
+        []
+      ]
+    },
+    "Insert row": {
+      "main": [
         [
           {
-            "node": "Insert row",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If row exists": {
+    "Loop Over Items": {
       "main": [
+        [],
         [
           {
             "node": "If",
@@ -63,17 +74,50 @@
         ]
       ]
     },
-    "Insert row": {
+    "Move file": {
       "main": [
         []
       ]
     },
-    "Loop Over Items": {
+    "Delete row(s)": {
       "main": [
-        [],
+        []
+      ]
+    },
+    "Share file": {
+      "main": [
         [
           {
-            "node": "If row exists",
+            "node": "Link Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Link Image": {
+      "main": [
+        [
+          {
+            "node": "Move file",
             "type": "main",
             "index": 0
           }
@@ -94,8 +138,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -832,
-        -224
+        -592,
+        96
       ],
       "id": "a6bb1440-6b67-4bc8-8c1b-d4438ab7d980",
       "name": "When clicking ‘Execute workflow’"
@@ -112,15 +156,15 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        -624,
-        -224
+        -384,
+        96
       ],
       "id": "78c4cd9d-f505-4b5d-b897-7e70dcc7b929",
       "name": "Cari Parent Id Gambar Status",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "C3mKdKMyyqUTo37x",
-          "name": "Whisk"
+          "name": "Drive"
         }
       }
     },
@@ -136,15 +180,15 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        -448,
-        -224
+        -208,
+        96
       ],
       "id": "2ae9a0aa-e308-4704-a63e-735e00b43647",
       "name": "Senaraikan File",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "C3mKdKMyyqUTo37x",
-          "name": "Whisk"
+          "name": "Drive"
         }
       }
     },
@@ -176,8 +220,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        288,
-        -208
+        448,
+        -192
       ],
       "id": "834bd098-aa25-409d-9a06-3037d567b877",
       "name": "If"
@@ -204,8 +248,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        16,
-        -208
+        -240,
+        -512
       ],
       "id": "f1316670-5660-4afb-8a21-ddd683362bb1",
       "name": "If row exists",
@@ -269,8 +313,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -80,
-        64
+        -16,
+        -368
       ],
       "id": "b70e459d-f495-48e1-b6ce-e6c77c884c41",
       "name": "Insert row"
@@ -282,11 +326,156 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -224,
-        -224
+        176,
+        -208
       ],
       "id": "45fd1ad7-d5e6-414b-8e3b-7b17efe95984",
       "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1P8W3UACDpwknADBPTj7BRi7LNc0h9wn3",
+          "mode": "list",
+          "cachedResultName": "Gambar Status - uploaded",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1P8W3UACDpwknADBPTj7BRi7LNc0h9wn3"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        848,
+        96
+      ],
+      "id": "5d1f4809-c733-495d-9339-5146530a46b5",
+      "name": "Move file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Drive"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "zwEfJzIac7GqCyf3",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Status Update",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/zwEfJzIac7GqCyf3"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('Insert row').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -400
+      ],
+      "id": "c73bed9b-6cab-4efe-aca2-c4535bf0a1bf",
+      "name": "Delete row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        96
+      ],
+      "id": "a850bdda-39e3-4a96-ae15-c824ae977b67",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Drive"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5ce75fc3-050e-4d7d-a316-7c5711ed84a0",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -208,
+        -224
+      ],
+      "id": "56ca91dd-8c00-4d26-ad44-6cae62bbfdfe",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const linkImage = \"https://drive.google.com/uc?id=\"+$('Senaraikan File').first().json.id;\nconst filename = $('Senaraikan File').first().json.name;\nconst id = $('Senaraikan File').first().json.id;\n\nreturn [\n  {\n    json:{\n      id,\n      linkImage,\n      filename\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        96
+      ],
+      "id": "1431f278-ab79-420e-ab11-3d0f7a946557",
+      "name": "Link Image"
     }
   ],
   "origin": "n8n",
@@ -310,6 +499,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-30T08:24:14.000Z",
-  "versionId": "d1445f0d-e67a-42fb-8e19-597fa6782640"
+  "updatedAt": "2025-10-31T10:22:59.000Z",
+  "versionId": "7e25d1b9-08c6-4edd-9e67-b34c2eba4a39"
 }
