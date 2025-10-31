@@ -848,7 +848,8 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -911,7 +912,8 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -2045,6 +2047,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-10-30T08:18:52.000Z",
-  "versionId": "e4eb0bd1-95e7-4213-8ecf-e56856a4b7be"
+  "updatedAt": "2025-10-30T21:54:14.000Z",
+  "versionId": "46f851c2-1c85-4980-96c0-724956378c3b"
 }
