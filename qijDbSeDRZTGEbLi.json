@@ -443,7 +443,7 @@
         [],
         [
           {
-            "node": "Asingkan text biasa dengan gambar",
+            "node": "Message",
             "type": "main",
             "index": 0
           }
@@ -513,6 +513,17 @@
         [
           {
             "node": "Message Pengajian1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Asingkan text biasa dengan gambar",
             "type": "main",
             "index": 0
           }
@@ -1169,7 +1180,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const minggu = $('Aggregate3').first().json.minggu;\nconst parmalinkUrl = $input.first().json.permalink_url;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst messageLive =  `***** Siaran Langsung *****\n\n- _*Masjid Al-Halimi Batu 5*_\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 _LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`_\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  `***** Siaran Langsung *****\n\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 _LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`_\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
+        "jsCode": "const minggu = $('Aggregate3').first().json.minggu;\nconst parmalinkUrl = $input.first().json.permalink_url;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst messageLive =  `***** Siaran Langsung *****\n\n- _*Masjid Al-Halimi Batu 5*_\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  `***** Siaran Langsung *****\n\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1247,7 +1258,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups =  ['120363421710384148@g.us','120363405149093802@g.us'];//group test\n\nif($input.first().json.group[0]=='default')\n  groups = ['60134693115-1476278350@g.us','60134507038-1525247606@g.us','120363046203034644@g.us', '120363296155366232@g.us','120363405149093802@g.us'];\nelse if($input.first().json.group[0])\n  groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message[0] } }));"
+        "jsCode": "let groups =  ['120363421710384148@g.us','60195168839@c.us'];//group test\n\nif($input.first().json.group[0]=='default')\n  groups = ['60134693115-1476278350@g.us','60134507038-1525247606@g.us','120363046203034644@g.us', '120363296155366232@g.us','120363405149093802@g.us'];\nelse if($input.first().json.group[0])\n  groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message[0] } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1271,7 +1282,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2144,
+        2352,
         -80
       ],
       "id": "691ef28d-a654-4404-9d11-209631c8eae1",
@@ -1294,7 +1305,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2064,
+        2272,
         176
       ],
       "id": "5caf58f4-ecc7-43bb-abf7-b9a7c755b3c5",
@@ -1312,13 +1323,13 @@
         "operation": "Send Text",
         "session": "={{ $('Var').item.json.session }}",
         "chatId": "={{ $('pecahkan mesej').item.json.group }}",
-        "text": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
+        "text": "={{ $('Message').item.json.message }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2224,
+        2432,
         176
       ],
       "id": "68fbb1d7-6aed-4c39-914c-19ddbdaac3bf",
@@ -1338,7 +1349,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1904,
+        2112,
         176
       ],
       "id": "d7ef5709-37fe-4470-8c54-28d971b1c968",
@@ -1356,7 +1367,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1728,
+        1936,
         176
       ],
       "id": "b5f71aa8-c956-4949-ac6a-fb1184f5b1a3",
@@ -1375,7 +1386,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1952,
+        2160,
         -80
       ],
       "id": "a788b3af-2e40-4a9b-92a0-0bb1be1a235b",
@@ -1411,7 +1422,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2128,
+        2336,
         -448
       ],
       "id": "38f4aae0-18a2-4556-953a-bdb093793494",
@@ -1424,7 +1435,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1952,
+        2160,
         -448
       ],
       "id": "3fe34cac-50eb-460b-852d-3edfb772a0e6",
@@ -1658,6 +1669,19 @@
           "name": "Facebook Graph account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = $input.first().json.line;\nif($('pecahkan mesej').item.json.group=='120363405149093802@g.us')//'120363405149093802@g.us')\n  message = $('Message Pengajian1').item.json.messageLive;\n\nfor (const item of $input.all()) {\n  item.json.message = message;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        -448
+      ],
+      "id": "b05a7447-7e35-4948-8313-13beb054a5b7",
+      "name": "Message"
     }
   ],
   "origin": "n8n",
@@ -1692,6 +1716,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T10:55:47.000Z",
-  "versionId": "0d831704-dbd1-405e-a6dc-d8a6d3bc06b5"
+  "updatedAt": "2025-10-31T02:25:41.000Z",
+  "versionId": "3b4c7b86-15a0-40c5-9544-349835afeffe"
 }
