@@ -72,6 +72,13 @@
         ],
         [
           {
+            "node": "Remove /upload_status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
             "node": "Help",
             "type": "main",
             "index": 0
@@ -246,6 +253,39 @@
           }
         ]
       ]
+    },
+    "Remove /upload_status": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-06T03:42:43.562Z",
@@ -268,8 +308,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -736,
-        272
+        -1040,
+        1056
       ],
       "id": "fe11bcb6-d948-474d-b790-5ec6b3e46b0b",
       "name": "Telegram Trigger",
@@ -487,6 +527,30 @@
                 },
                 "conditions": [
                   {
+                    "id": "161f7803-083b-4f27-b7cd-d9f1c74dd1fb",
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/upload_status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Upload Status"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
                     "id": "2714d25c-d63b-497e-b5fb-5056555ee103",
                     "leftValue": "={{ $json.message.text }}",
                     "rightValue": "/help",
@@ -510,8 +574,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -432,
-        288
+        -672,
+        928
       ],
       "id": "cad3fdf5-2ea2-4159-86cb-1d91d8fc08f6",
       "name": "Switch"
@@ -523,8 +587,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -560,
-        272
+        -864,
+        1056
       ],
       "id": "87ba61f0-f255-4ba4-9800-c4e631a3bcff",
       "name": "Var"
@@ -747,7 +811,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        80,
+        112,
         2016
       ],
       "id": "98d053a1-1688-444a-9ce9-ca06af4ec842",
@@ -762,12 +826,12 @@
     },
     {
       "parameters": {
-        "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
+        "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto\n- */upload_status* : muatnaik gambar status stickertermurah\n`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -128,
+        -96,
         2016
       ],
       "id": "d1727211-1129-4dea-91c5-558b87505a6c",
@@ -1309,6 +1373,97 @@
       ],
       "id": "969a9d20-693d-4db9-a5f6-aec9ed71bf93",
       "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/upload_status';\nlet text = $input.first().json.message.caption.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        1744
+      ],
+      "id": "bbb12209-f58e-446d-bdbe-a056bf3db59c",
+      "name": "Remove /upload_status"
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.result.file_path }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ElKV6uyHrdo4GMLY9YWxf8TjrENLjs54",
+          "mode": "list",
+          "cachedResultName": "Gambar Status",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ElKV6uyHrdo4GMLY9YWxf8TjrENLjs54"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        240,
+        1744
+      ],
+      "id": "7b103eee-a75d-4196-a9f4-13ecc9912808",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Drive"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.photo[2].file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        1744
+      ],
+      "id": "9e1eb031-8d4d-4e3e-8ca3-f3dd18a695c9",
+      "name": "Get a file",
+      "webhookId": "9ef3ad3e-2ef4-4e74-a637-1c60b249e90a",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Var').item.json.id_telegram }}",
+        "text": "=Gambar telah berjaya dimuat naik.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        1744
+      ],
+      "id": "f0223740-73ef-46c3-8313-5ae3fe4a91db",
+      "name": "Send a text message4",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -1336,6 +1491,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-29T10:35:29.000Z",
-  "versionId": "8d7beb2b-3f29-41c2-9074-dc58d4059b9e"
+  "updatedAt": "2025-10-31T03:08:14.000Z",
+  "versionId": "65867dae-b9ca-4fb8-ad11-e37138907455"
 }
