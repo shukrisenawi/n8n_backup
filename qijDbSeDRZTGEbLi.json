@@ -1180,7 +1180,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const minggu = $('Aggregate3').first().json.minggu;\nconst parmalinkUrl = $input.first().json.permalink_url;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst messageLive =  `***** Siaran Langsung *****\n\n- _*Masjid Al-Halimi Batu 5*_\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  `***** Siaran Langsung *****\n\n- _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n- _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n- _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n- _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n- _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n_Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
+        "jsCode": "const minggu = $('Aggregate3').first().json.minggu;\nconst parmalinkUrl = $input.first().json.permalink_url;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst messageLive =  `***** Siaran Langsung *****\n\n🌙 _*Masjid Al-Halimi Batu 5*_\n👳‍♂️ _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n📖 _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n🗓️ _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n🕰️ _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  `***** Siaran Langsung *****\n\n👳‍♂️ _*`+$('Cari Pengajian Live').first().json.pengajar+`*_\n📖 _*`+$('Cari Pengajian Live').first().json.kitab+`*_\n🗓️ _*`+$('Cari Pengajian Live').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian Live').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`*_\n🕰️ _*(`+$('Cari Pengajian Live').first().json.masa+`)*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1273,8 +1273,8 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Send Image",
-        "session": "={{ $('Var').item.json.session }}",
-        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('pecahkan mesej').first().json.group }}",
         "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ $json.timestamp }}.jpg\",\n  \"url\": \"{{ $json.output[0] }}\"\n}",
         "caption": "={{ $json.output[1]?$json.output[0]:null }}",
         "requestOptions": {}
@@ -1283,7 +1283,7 @@
       "typeVersion": 202502,
       "position": [
         2352,
-        -80
+        -240
       ],
       "id": "691ef28d-a654-4404-9d11-209631c8eae1",
       "name": "Send an image",
@@ -1298,15 +1298,15 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Stop Typing",
-        "session": "={{ $('Var').item.json.session }}",
-        "chatId": "={{ $('Loop Over Items1').item.json.group }}",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items1').first().json.group }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2272,
-        176
+        2192,
+        0
       ],
       "id": "5caf58f4-ecc7-43bb-abf7-b9a7c755b3c5",
       "name": "Stop Typing",
@@ -1321,16 +1321,16 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Send Text",
-        "session": "={{ $('Var').item.json.session }}",
-        "chatId": "={{ $('pecahkan mesej').item.json.group }}",
-        "text": "={{ $('Message').item.json.message }}",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('pecahkan mesej').first().json.group }}",
+        "text": "={{ $('Message').first().json.message }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2432,
-        176
+        2352,
+        0
       ],
       "id": "68fbb1d7-6aed-4c39-914c-19ddbdaac3bf",
       "name": "Send a text message",
@@ -1349,8 +1349,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2112,
-        176
+        2032,
+        0
       ],
       "id": "d7ef5709-37fe-4470-8c54-28d971b1c968",
       "name": "Wait",
@@ -1360,15 +1360,15 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Start Typing",
-        "session": "={{ $('Var').item.json.session }}",
-        "chatId": "={{ $('Loop Over Items1').item.json.group }}",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items1').first().json.group }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1936,
-        176
+        1856,
+        0
       ],
       "id": "b5f71aa8-c956-4949-ac6a-fb1184f5b1a3",
       "name": "Start Typing",
@@ -1386,8 +1386,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2160,
-        -80
+        2176,
+        -240
       ],
       "id": "a788b3af-2e40-4a9b-92a0-0bb1be1a235b",
       "name": "Asingkan label dan link",
@@ -1405,7 +1405,7 @@
           "conditions": [
             {
               "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
-              "leftValue": "={{ $('Asingkan text biasa dengan gambar').item.json.isImage }}",
+              "leftValue": "={{ $('Asingkan text biasa dengan gambar').first().json.isImage }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
@@ -1422,8 +1422,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2336,
-        -448
+        1952,
+        -240
       ],
       "id": "38f4aae0-18a2-4556-953a-bdb093793494",
       "name": "Jika gambar"
@@ -1716,6 +1716,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-31T02:25:41.000Z",
-  "versionId": "3b4c7b86-15a0-40c5-9544-349835afeffe"
+  "updatedAt": "2025-11-01T16:28:20.000Z",
+  "versionId": "ceb0addb-4197-4f7b-b90f-aea31955f6e1"
 }
