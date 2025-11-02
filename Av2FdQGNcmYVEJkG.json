@@ -50,7 +50,7 @@
       "main": [
         [
           {
-            "node": "Mesej Terbaru",
+            "node": "Jika gambar",
             "type": "main",
             "index": 0
           }
@@ -391,35 +391,6 @@
         [
           {
             "node": "Senarai AJK Masjid",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mesej Terbaru": {
-      "main": [
-        [
-          {
-            "node": "Jika Mesej sama",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Jika Mesej sama": {
-      "main": [
-        [
-          {
-            "node": "pecahkan mesej",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Jika gambar",
             "type": "main",
             "index": 0
           }
@@ -1366,8 +1337,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4736,
-        32
+        4640,
+        -192
       ],
       "id": "e194b8ad-0332-4f7c-87eb-5fb8c478d127",
       "name": "Jika gambar"
@@ -1421,8 +1392,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        4768,
-        368
+        4336,
+        64
       ],
       "id": "131e6254-5044-4570-9336-e0f4771524d8",
       "name": "Start Typing",
@@ -1453,8 +1424,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        4928,
-        368
+        4496,
+        64
       ],
       "id": "f5ce818a-e5db-406f-a037-6a54baebb113",
       "name": "Wait",
@@ -1472,8 +1443,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        5248,
-        368
+        4816,
+        64
       ],
       "id": "dbe0aa72-efc6-4137-b94d-90c1e83bc07b",
       "name": "Send a text message",
@@ -1495,8 +1466,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        5088,
-        368
+        4656,
+        64
       ],
       "id": "31571ec5-72cb-45e5-ad41-bf813d17cfdb",
       "name": "Stop Typing",
@@ -1986,9 +1957,18 @@
                 "type": "string",
                 "operation": "contains"
               }
+            },
+            {
+              "id": "8685a915-c6a7-45e2-a785-75fbc6640c18",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@lid",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "looseTypeValidation": true,
         "options": {}
@@ -2108,64 +2088,6 @@
       ],
       "id": "456b8e8f-0736-4835-87d4-01fa6eed3fdb",
       "name": "If"
-    },
-    {
-      "parameters": {
-        "resource": "Chats",
-        "operation": "Get Chats Overview",
-        "session": "={{ $('var').first().json.session }}",
-        "limit": 1,
-        "requestOptions": {}
-      },
-      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
-      "typeVersion": 202502,
-      "position": [
-        4688,
-        -208
-      ],
-      "id": "447c4770-e34b-4dfb-98f8-5110d79dffc3",
-      "name": "Mesej Terbaru",
-      "credentials": {
-        "wahaApi": {
-          "id": "OSQWzQbmYRYYqgCf",
-          "name": "WAHA account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "d1ee6e48-454e-4595-8989-051579cd52c2",
-              "leftValue": "={{ $json.lastMessage.body }}",
-              "rightValue": "={{ $('Asingkan text biasa dengan gambar').item.json.text }}",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "looseTypeValidation": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        4480,
-        0
-      ],
-      "id": "c3f078b9-032a-443e-982a-b537521b054a",
-      "name": "Jika Mesej sama"
     },
     {
       "parameters": {
@@ -5006,6 +4928,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-30T10:27:53.000Z",
-  "versionId": "569332db-31f9-4086-b4bd-c61aeeb57f5c"
+  "updatedAt": "2025-11-02T02:21:10.000Z",
+  "versionId": "55b5468f-2598-4d93-acda-c89b2f5b61c2"
 }
