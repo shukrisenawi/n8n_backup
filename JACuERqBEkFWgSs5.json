@@ -696,6 +696,45 @@
           }
         ]
       ]
+    },
+    "Check Exists": {
+      "main": [
+        [
+          {
+            "node": "Jika Mesej sama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate4": {
+      "main": [
+        [
+          {
+            "node": "Check Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mesej Terbaru": {
+      "main": [
+        [
+          {
+            "node": "Aggregate4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika Mesej sama": {
+      "main": [
+        [],
+        []
+      ]
     }
   },
   "createdAt": "2025-09-25T09:01:27.214Z",
@@ -722,7 +761,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jumadilawal\",\n    \"Jak\": \"Jumadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \"--- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$input.first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($input.first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$input.first().json.subuh+\"\\n - *Zohor*: \"+$input.first().json.zohor+\"\\n - *Asar*: \"+$input.first().json.asar+\"\\n - *Maghrib*: \"+$input.first().json.maghrib+\"\\n - *Isyak*: \"+$input.first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = $('Hadis Selected').first().json.hadis;\n\nconst gambar = \"https://n8n.multivita2u.com/upload/gambar/VKHsB6uXNsiOht5VIxeqElbMjGcCkkLaABpqqu1m.png<br>\";\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+hadis;\n}\n\nreturn $input.all();"
+        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \"--- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$input.first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($input.first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$input.first().json.subuh+\"\\n - *Zohor*: \"+$input.first().json.zohor+\"\\n - *Asar*: \"+$input.first().json.asar+\"\\n - *Maghrib*: \"+$input.first().json.maghrib+\"\\n - *Isyak*: \"+$input.first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = $('Hadis Selected').first().json.hadis;\n\nconst gambar = \"https://n8n.multivita2u.com/upload/gambar/VKHsB6uXNsiOht5VIxeqElbMjGcCkkLaABpqqu1m.png<br>\";\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+hadis;\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -774,7 +813,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups = ['120363421710384148@g.us','60195168839@c.us'];//group test\n\nif($input.first().json.group[0]=='default')\n  groups = ['60134693115-1476278350@g.us','60134507038-1525247606@g.us'];\nelse if($input.first().json.group[0])\n  groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message[0] } }));"
+        "jsCode": "let groups = ['120363421710384148@g.us','60195168839@c.us'];//group test\n\nif($input.first().json.group[0]=='default')\n  groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\nelse if($input.first().json.group[0])\n  groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message[0] } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -958,8 +997,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1632,
-        112
+        1664,
+        256
       ],
       "id": "4a435bf1-675b-45fb-a1c5-01a84448ae11",
       "name": "Jika gambar"
@@ -1994,6 +2033,104 @@
       "id": "174ba664-8b62-4101-97f9-2fca85e4d1de",
       "name": "Wait1",
       "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nlet message=null;\nlet from = $('pecahkan mesej').first().json.group;\n\nfor(const i in data.from ){\n  if(data.from[i]==from){\n    message = data.message[i];\n    break;\n  }\n}\n\nreturn [\n  {\n    json:{\n      from,\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2336,
+        352
+      ],
+      "id": "8b27110d-378b-4372-aae0-fbf46b16cdd5",
+      "name": "Check Exists"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "lastMessage.from",
+              "renameField": true,
+              "outputFieldName": "from"
+            },
+            {
+              "fieldToAggregate": "lastMessage.body",
+              "renameField": true,
+              "outputFieldName": "message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2096,
+        352
+      ],
+      "id": "b9cee01f-ba47-4986-8cb8-14e78959217d",
+      "name": "Aggregate4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d1ee6e48-454e-4595-8989-051579cd52c2",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "={{ $('Asingkan text biasa dengan gambar').first().json.text }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2256,
+        544
+      ],
+      "id": "68a89d1a-81ce-4fd4-b166-0d8985478481",
+      "name": "Jika Mesej sama"
+    },
+    {
+      "parameters": {
+        "resource": "Chats",
+        "operation": "Get Chats Overview",
+        "session": "={{ $('output message').first().json.sessionId[0] }}",
+        "limit": "=6",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1920,
+        352
+      ],
+      "id": "e61f09d9-e91c-4a4e-a2a2-92e1f9139eb8",
+      "name": "Mesej Terbaru",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "origin": "n8n",
@@ -2047,6 +2184,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-10-30T21:54:14.000Z",
-  "versionId": "46f851c2-1c85-4980-96c0-724956378c3b"
+  "updatedAt": "2025-11-01T22:01:54.000Z",
+  "versionId": "a418f242-669d-4b21-8dae-1dcb68377d0b"
 }
