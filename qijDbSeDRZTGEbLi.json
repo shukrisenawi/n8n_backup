@@ -1013,7 +1013,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `***** Siaran Langsung *****\n\nTempat   :   Masjid Al-Halimi Batu 5, Sik Kedah\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :   `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`\n\n#Kitab`+$('Cari Pengajian').first().json.kitab.replace(/\\s+/g, '').replace('(Hadis)','')+`\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK           :    BANK RAKYAT \nPENAMA      :    MASJID AL-HALIMI\nNO AKAUN  :    1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `***** Siaran Langsung *****\n\nTempat   :   Masjid Al-Halimi Batu 5, Sik Kedah\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :   `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+`\n\n#Kitab`+$('Cari Pengajian').first().json.kitab.replace(/\\s+/g, '').replace('(Hadis)','')+`\n\n***************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK           :    BANK RAKYAT \nPENAMA      :    MASJID AL-HALIMI\nNO AKAUN  :    1101498276\n***************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1026,7 +1026,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Pengajian Pemuda Kampung ***\n\nTempat   :   `+$('Cari Pengajian').first().json.tempat+`\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : Isnin Minggu 1 & 4, Rabu Minggu 3, Selepas Solat Isyak\n\n#RibatAbuAlHassan\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+        "jsCode": "const minggu = $input.first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Pengajian Pemuda Kampung ***\n\nTempat   :   `+$('Cari Pengajian').first().json.tempat+`\nPengajar :   `+$('Cari Pengajian').first().json.pengajar+`\nKitab       :   `+$('Cari Pengajian').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : Isnin Minggu 1 & 4, Rabu Minggu 3, Selepas Solat Isyak\n\n#RibatAbuAlHassan\n\n***************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n***************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1039,7 +1039,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const minggu = $('minggu bukit').first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Usrah Pemuda Bukit ***\n\nTempat   :   `+$('minggu bukit').first().json.tempat+`\nPengajar :   `+$('minggu bukit').first().json.pengajar+`\nKitab       :   `+$('minggu bukit').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+` selepas isyak\n\n#UsrahPemudaBukit\n\n*********************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n*********************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+        "jsCode": "const minggu = $('minggu bukit').first().json.minggu;\nlet str_minggu = minggu.length > 1\n  ? minggu.slice(0, -1).join(', ') + ' & ' + minggu.slice(-1)\n  : minggu[0].toString();\nif(str_minggu=='1, 2, 3, 4 & 5')\n  str_minggu = \"Setiap Minggu\";\nelse \n  str_minggu = `Minggu `+str_minggu;\n\nconst message =  `*** Usrah Pemuda Bukit ***\n\nTempat   :   `+$('minggu bukit').first().json.tempat+`\nPengajar :   `+$('minggu bukit').first().json.pengajar+`\nKitab       :   `+$('minggu bukit').first().json.kitab+`\nTarikh      :  `+$('Tarikh & Masa').first().json.tarikhMsia+`\nJadual Pengajian : `+$('Cari Pengajian').first().json.hari.charAt(0).toUpperCase() + $('Cari Pengajian').first().json.hari.slice(1).toLowerCase()+`, `+str_minggu+` selepas isyak\n\n#UsrahPemudaBukit\n\n***************************************************\nSebarang sumbangan kepada masjid boleh disalurkan pada akaun di bawah :\nBANK :                BANK RAKYAT \nPENAMA :          MASJID AL-HALIMI\nNO AKAUN :      1101498276\n***************************************************`;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1619,28 +1619,6 @@
     {
       "parameters": {
         "graphApiVersion": "v23.0",
-        "node": "me",
-        "edge": "live_videos",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.facebookGraphApi",
-      "typeVersion": 1,
-      "position": [
-        1296,
-        912
-      ],
-      "id": "75db7ff1-4300-4736-a058-d503318b7a5f",
-      "name": "Facebook Graph API1",
-      "credentials": {
-        "facebookGraphApi": {
-          "id": "GwhUdTdF8NgkqAOe",
-          "name": "Facebook Graph account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "graphApiVersion": "v23.0",
         "node": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.id }}",
         "edge": "=",
         "allowUnauthorizedCerts": true,
@@ -1716,6 +1694,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-01T16:28:20.000Z",
-  "versionId": "ceb0addb-4197-4f7b-b90f-aea31955f6e1"
+  "updatedAt": "2025-11-03T15:24:31.000Z",
+  "versionId": "9ce7aac4-83bd-466a-9f9a-8996886bef27"
 }
