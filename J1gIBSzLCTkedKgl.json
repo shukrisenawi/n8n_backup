@@ -1,0 +1,33 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-11-05T01:39:40.016Z",
+  "id": "J1gIBSzLCTkedKgl",
+  "isArchived": false,
+  "meta": null,
+  "name": "Stickertermurah - mesej",
+  "nodes": [],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-05T01:39:40.022Z",
+      "updatedAt": "2025-11-05T01:39:40.022Z",
+      "role": "workflow:owner",
+      "workflowId": "J1gIBSzLCTkedKgl",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-05T01:39:40.000Z",
+  "versionId": "8de15c94-5171-4347-b4f2-c9ea7172228b"
+}
