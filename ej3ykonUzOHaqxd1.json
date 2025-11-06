@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Telegram Trigger": {
-      "main": [
-        [
-          {
-            "node": "Var",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Switch": {
       "main": [
         [
@@ -286,6 +275,17 @@
           }
         ]
       ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-06T03:42:43.562Z",
@@ -296,31 +296,6 @@
   },
   "name": "@shbestcreativedesign_bot",
   "nodes": [
-    {
-      "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {
-          "download": true
-        }
-      },
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -1040,
-        1056
-      ],
-      "id": "fe11bcb6-d948-474d-b790-5ec6b3e46b0b",
-      "name": "Telegram Trigger",
-      "webhookId": "858dfe5a-dcdc-4632-b412-ee3cca12f3eb",
-      "credentials": {
-        "telegramApi": {
-          "id": "6kuS0JQRPtO3uUtr",
-          "name": "Telegram account"
-        }
-      }
-    },
     {
       "parameters": {
         "rules": {
@@ -1464,6 +1439,29 @@
           "name": "Telegram account"
         }
       }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1088,
+        1056
+      ],
+      "id": "91348e79-fa73-438a-beb0-b21abce2a52b",
+      "name": "Telegram Trigger",
+      "webhookId": "3d6defe2-abb7-4ea5-ad45-e2438990b820",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -1481,8 +1479,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-09-06T03:42:43.563Z",
       "updatedAt": "2025-09-06T03:42:43.563Z",
+      "createdAt": "2025-09-06T03:42:43.563Z",
       "role": "workflow:owner",
       "workflowId": "ej3ykonUzOHaqxd1",
       "projectId": "xIwyQZxho25VDDOK"
@@ -1491,6 +1489,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-31T03:08:14.000Z",
-  "versionId": "65867dae-b9ca-4fb8-ad11-e37138907455"
+  "updatedAt": "2025-11-05T16:39:30.000Z",
+  "versionId": "f0b8aab9-a8ab-45bf-9adc-32acd68ae1fb"
 }
