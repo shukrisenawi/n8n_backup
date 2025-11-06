@@ -892,8 +892,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-09-06T02:31:05.847Z",
       "updatedAt": "2025-09-06T02:31:05.847Z",
+      "createdAt": "2025-09-06T02:31:05.847Z",
       "role": "workflow:owner",
       "workflowId": "ISDRq3d4sWuyNPNu",
       "projectId": "xIwyQZxho25VDDOK"
@@ -908,10 +908,9 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1762341588,
+        "lastTimeChecked": 1762418144,
         "possibleDuplicates": [
-          "19a53467b0b01170",
-          "19a4f944bc7cc67e"
+          "19a584eb9be329b2"
         ]
       }
     }
