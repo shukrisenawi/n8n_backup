@@ -741,8 +741,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-10-04T01:44:20.560Z",
       "updatedAt": "2025-10-04T01:44:20.560Z",
+      "createdAt": "2025-10-04T01:44:20.560Z",
       "role": "workflow:owner",
       "workflowId": "5uICiHViqK0gCTag",
       "projectId": "xIwyQZxho25VDDOK"
@@ -751,20 +751,20 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2025-10-04T01:43:37.822Z",
       "updatedAt": "2025-10-04T01:43:37.822Z",
+      "createdAt": "2025-10-04T01:43:37.822Z",
       "id": "KOj9OwmUHX8vxex9",
       "name": "RAG"
     },
     {
-      "createdAt": "2025-10-04T01:43:37.826Z",
       "updatedAt": "2025-10-04T01:43:37.826Z",
+      "createdAt": "2025-10-04T01:43:37.826Z",
       "id": "VucNYMr44NLcrkPg",
       "name": "template"
     },
     {
-      "createdAt": "2025-10-04T01:43:37.830Z",
       "updatedAt": "2025-10-04T01:43:37.830Z",
+      "createdAt": "2025-10-04T01:43:37.830Z",
       "id": "pjsd3s9Z9TacUea5",
       "name": "chatbot"
     }
