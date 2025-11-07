@@ -1,0 +1,772 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh & Masa1": {
+      "main": [
+        [
+          {
+            "node": "Program",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Program": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code Count Day",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Count Day": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ambil Gambar & text": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Ambil Gambar & text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var": {
+      "main": [
+        [
+          {
+            "node": "Tarikh & Masa1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "All Groups",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Groups": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T01:41:01.236Z",
+  "id": "ibVZTzT1ikGI8WAZ",
+  "isArchived": false,
+  "meta": null,
+  "name": "MASJID AL-HALIMI - Follow Up Program",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 7 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1264,
+        -352
+      ],
+      "id": "82cbe46f-3ab6-4637-8b8a-ff955db5f0c8",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst seconds = malaysiaDate.getUTCSeconds().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd-mm-YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia            // format dd-mm-YYYY\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -864,
+        -352
+      ],
+      "id": "c3c3cd43-ba4d-493a-b186-a9aec5c4834a",
+      "name": "Tarikh & Masa1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rf6Nzix5FxA3nKY6",
+          "mode": "list",
+          "cachedResultName": "Masjid - Program",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rf6Nzix5FxA3nKY6"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_program",
+              "condition": "gte",
+              "keyValue": "={{ $json.tarikh }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        -352
+      ],
+      "id": "0aeb8918-09c4-4287-91d4-0072063888dd",
+      "name": "Program"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        32,
+        -352
+      ],
+      "id": "6ac84191-cfac-49f0-9bf0-67c7bfe1de2e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputDate = new Date($input.first().json.tarikh); \nconst daysBack = [2, 7];\n\nconst result = { referenceDate: inputDate.toISOString().split('T')[0] };\n\n// Kira tarikh ke belakang\nfor (const d of daysBack) {\n  const temp = new Date(inputDate);\n  temp.setDate(inputDate.getDate() - d);\n  result[`dayMinus${d}`] = temp.toISOString().split('T')[0];\n}\n\n// Beza hari antara tarikh rujukan dan tarikh hari ini (sentiasa positif)\nconst today = new Date();\nconst diffDays = Math.abs(Math.floor((today - inputDate) / (1000 * 60 * 60 * 24)));\nresult.daysDifference = diffDays;\n\nreturn [{ json: result }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        -320
+      ],
+      "id": "9233d6f9-32c8-4538-a2f2-2ad377d2c418",
+      "name": "Code Count Day"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.daysDifference }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    },
+                    "id": "c3fc5fdf-0124-4267-961d-96e5546c8c25"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Hari Program"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "325f8be9-31aa-41dc-ad6f-3e1d831bb78a",
+                    "leftValue": "={{ $json.daysDifference }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Esok Program"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "264709c1-cb75-4477-934b-da51b15e5fd5",
+                    "leftValue": "={{ $json.daysDifference }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "3 Hari Sebelum Program"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "365d726c-31e2-47a9-9cbd-642b9fd76d81",
+                    "leftValue": "={{ $json.daysDifference }}",
+                    "rightValue": "8",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "8 Hari Sebelum Program"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        432,
+        -336
+      ],
+      "id": "c1b917bb-30b1-4822-ba95-a279b101ca69",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items').item.json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images[0] }}\"\n}",
+        "caption": "={{ $json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        896,
+        176
+      ],
+      "id": "65c5b752-1493-4ca5-b24a-d23aa3df57ac",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items1').first().json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        816,
+        384
+      ],
+      "id": "1a2d9030-3272-4b84-a5c6-9beba9ed0eae",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items').item.json.group }}",
+        "text": "={{ $('Ambil Gambar & text').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        976,
+        384
+      ],
+      "id": "29e122a9-e14d-443d-a2fa-5aa61e9de3f6",
+      "name": "Send a text message",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        384
+      ],
+      "id": "9efdc928-f73e-41d1-972a-f3ee1a3747dd",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('Var').first().json.session }}",
+        "chatId": "={{ $('Loop Over Items1').first().json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        304,
+        384
+      ],
+      "id": "09b12487-8bf1-4ce9-935d-fcb668cdb3dc",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = $('Loop Over Items').first().json.poster+`\nJangan lupa program hari ini..\n`\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        -448
+      ],
+      "id": "0f5fa159-d4bf-407e-81ea-62ce7ee2fed3",
+      "name": "Message"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json.message[0];\n\n// Regex untuk detect pattern [Title](Link)\nconst regex = /(https?:\\/\\/[^\\s]+?\\.(jpg|jpeg|png|gif|webp)|https:\\/\\/drive(?:\\.google)?\\.usercontent\\.google\\.com\\/[^\\s]+)/gi;\n\n// Keluarkan semua link gambar\nconst images = input.match(regex) || [];\n\n// Keluarkan teks sahaja (tanpa link gambar)\nconst textOnly = input.replace(regex, '').trim();\n\nreturn {\n  json: {\n    text: textOnly,\n    images: images\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -112
+      ],
+      "id": "ec021eaf-3a0e-4ffc-be8d-f18bf462ce27",
+      "name": "Ambil Gambar & text",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ceb20b3a-bcf6-4a4d-8800-464b0cd133bc",
+              "leftValue": "={{ $json.images[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        112
+      ],
+      "id": "b8c26794-7151-48a9-9cd5-3939dfb10932",
+      "name": "If5"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        144
+      ],
+      "id": "f7543ce2-f816-4e61-b927-c9798a8b1b9e",
+      "name": "Wait1",
+      "webhookId": "044bb79c-e4f7-41a6-8378-9e747c6fda5c"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        848,
+        -336
+      ],
+      "id": "463baa12-92df-47e2-9531-8b0c953c926c",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  item.json.session = 'masjid_session';\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1056,
+        -352
+      ],
+      "id": "815b2f8d-0847-4c2c-92e3-556ce1fa750c",
+      "name": "Var"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -352,
+        -352
+      ],
+      "id": "36f6d124-b660-458f-aabd-319eafed486c",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = $('Loop Over Items').first().json.poster+`\nProgram hari ini..\n`\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        -320
+      ],
+      "id": "aad2b553-6231-492f-b15e-267fa5f9c903",
+      "name": "Message1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = $('Loop Over Items').first().json.poster+`\n\n`+$('Loop Over Items').first().json.message;\n\nreturn [\n  {\n    json:{\n      message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        -160
+      ],
+      "id": "6f24dbed-5177-434b-9818-9e753acee2ca",
+      "name": "Message2"
+    },
+    {
+      "parameters": {
+        "jsCode": "let groups =  ['120363421710384148@g.us','60195168839@c.us'];//group test\n\ngroups = ['60134693115-1476278350@g.us','60134507038-1525247606@g.us','120363046203034644@g.us', '120363296155366232@g.us'];\n\nconst message = $('Program').first().json.catatan;\nconst poster = $input.first().json.poster;\nconst tarikh = $input.first().json.tarikh_program;\n\nreturn groups.map(group => ({ json: { group,message,poster,tarikh } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -352,
+        -144
+      ],
+      "id": "bc8bc483-cfab-49ec-852d-ad6fdb3a6fc5",
+      "name": "All Groups"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-07T01:41:01.240Z",
+      "createdAt": "2025-11-07T01:41:01.240Z",
+      "role": "workflow:owner",
+      "workflowId": "ibVZTzT1ikGI8WAZ",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-07T06:36:10.000Z",
+  "versionId": "55b88f2f-9c2f-4f66-9607-410be48a68e7"
+}
