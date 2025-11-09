@@ -3089,7 +3089,7 @@
         "resource": "Chatting",
         "operation": "Send Text",
         "session": "={{ $('WAHA Trigger').item.json.session }}",
-        "chatId": "={{ $('var1').item.json.no_tel }}",
+        "chatId": "={{ $('var').first().json.from }}",
         "text": "={{ $('AI Agent1').item.json.output.message }}",
         "requestOptions": {}
       },
@@ -3250,11 +3250,14 @@
           "cachedResultName": "Masjid - Anak Khariah",
           "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/6TDWi5bdTjrwOocH"
         },
-        "matchType": "allConditions",
         "filters": {
           "conditions": [
             {
               "keyName": "no_tel",
+              "keyValue": "={{ $('WAHA Trigger').item.json.payload.from }}"
+            },
+            {
+              "keyName": "id_hp",
               "keyValue": "={{ $('WAHA Trigger').item.json.payload.from }}"
             }
           ]
@@ -4318,7 +4321,7 @@
         "resource": "Chatting",
         "operation": "Send Text",
         "session": "={{ $('var user').item.json.session }}",
-        "chatId": "={{ $('var user').item.json.no_hp }}",
+        "chatId": "={{ $('var').first().json.from }}",
         "text": "={{ $('var user').item.json.message }}",
         "requestOptions": {}
       },
@@ -4928,6 +4931,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-02T02:21:10.000Z",
-  "versionId": "55b5468f-2598-4d93-acda-c89b2f5b61c2"
+  "updatedAt": "2025-11-09T02:13:37.000Z",
+  "versionId": "193e1e12-1894-4bda-9e36-8dd1735e1821"
 }
