@@ -70,7 +70,7 @@
             {
               "id": "4ca95c37-ec66-44eb-830e-64f82346930e",
               "leftValue": "={{ $json.query['hub.verify_token'] }}",
-              "rightValue": "hookInstagram",
+              "rightValue": "intagramLogin",
               "operator": {
                 "type": "string",
                 "operation": "equals",
@@ -85,7 +85,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -160,
+        -176,
         -144
       ],
       "id": "a176cd5c-cffe-49fb-8fad-03ac8e0495b4",
@@ -101,7 +101,7 @@
       "typeVersion": 1.4,
       "position": [
         256,
-        -176
+        -80
       ],
       "id": "0fd90586-b589-48af-8b9d-a10be3e399db",
       "name": "Respond to Webhook"
@@ -128,6 +128,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-27T15:21:46.000Z",
-  "versionId": "faeb5cf7-fb74-4d19-b4eb-fd28fceae0f6"
+  "updatedAt": "2025-11-12T04:36:22.000Z",
+  "versionId": "a1b91b40-8f7a-42a2-8928-9ccb6646434e"
 }
