@@ -27,7 +27,9 @@
   "createdAt": "2025-10-27T15:17:30.070Z",
   "id": "USB7Q1FlOVHhLM06",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Stickertermurah - Instagram Webhook",
   "nodes": [
     {
@@ -40,8 +42,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -464,
-        -128
+        -528,
+        -224
       ],
       "id": "b836c0fa-b884-4d29-bfd7-2ce805f92a14",
       "name": "Webhook",
@@ -85,8 +87,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -176,
-        -144
+        -256,
+        -256
       ],
       "id": "a176cd5c-cffe-49fb-8fad-03ac8e0495b4",
       "name": "If"
@@ -100,11 +102,33 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        256,
-        -80
+        176,
+        -192
       ],
       "id": "0fd90586-b589-48af-8b9d-a10be3e399db",
       "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "=v24.0",
+        "node": "17841404234453156",
+        "edge": "scope=email,instagram_basic",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        0
+      ],
+      "id": "0b0e9e17-863f-48af-8a49-0ccc6e9572d6",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "ZaRSuAoLZiRizYPS",
+          "name": "Instagram"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -128,6 +152,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-12T04:36:22.000Z",
-  "versionId": "a1b91b40-8f7a-42a2-8928-9ccb6646434e"
+  "updatedAt": "2025-11-13T03:03:12.000Z",
+  "versionId": "f4b6c6ac-b972-48f9-aaad-1032c23594a0"
 }
