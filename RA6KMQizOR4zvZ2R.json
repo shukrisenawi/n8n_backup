@@ -390,7 +390,8 @@
         16
       ],
       "id": "895bf768-f03d-4053-b6aa-122a85346c30",
-      "name": "Alert Pukul 4"
+      "name": "Alert Pukul 4",
+      "disabled": true
     },
     {
       "parameters": {
@@ -581,7 +582,8 @@
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
-        }
+        },
+        "options": {}
       },
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
@@ -691,7 +693,8 @@
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
-        }
+        },
+        "options": {}
       },
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
@@ -795,7 +798,7 @@
     }
   },
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2025-10-11T15:23:34.000Z",
-  "versionId": "36e2bad8-7d69-4761-9db9-a9efbddfd1d5"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-14T07:03:08.000Z",
+  "versionId": "87766a80-c83a-4620-b946-487a7ba8327c"
 }
