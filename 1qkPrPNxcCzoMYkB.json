@@ -55,7 +55,7 @@
   },
   "createdAt": "2025-10-23T01:44:53.272Z",
   "id": "1qkPrPNxcCzoMYkB",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "MASJID AL-HALIMI - Mass Sender",
   "nodes": [
@@ -168,6 +168,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-23T01:47:48.000Z",
-  "versionId": "e6ea3ab5-01f9-442b-8e79-02ee9a172b29"
+  "updatedAt": "2025-11-15T00:12:54.000Z",
+  "versionId": "8a77938b-e103-443c-a2a5-444a83fc99c9"
 }
