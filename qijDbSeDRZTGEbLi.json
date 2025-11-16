@@ -64,48 +64,7 @@
       "main": [
         [
           {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Out": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [],
-        [
-          {
-            "node": "If1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If1": {
-      "main": [
-        [
-          {
             "node": "Tarikh & Masa",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -132,13 +91,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Switch1": {
@@ -224,13 +177,7 @@
     },
     "Facebook Graph API": {
       "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "minggu bukit": {
@@ -393,23 +340,6 @@
         [
           {
             "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Jika gambar": {
-      "main": [
-        [],
-        []
-      ]
-    },
-    "Asingkan text biasa dengan gambar": {
-      "main": [
-        [
-          {
-            "node": "Jika gambar",
             "type": "main",
             "index": 0
           }
@@ -762,13 +692,22 @@
         "graphApiVersion": "v23.0",
         "node": "me",
         "edge": "feed",
-        "options": {}
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "limit",
+                "value": "1"
+              }
+            ]
+          }
+        }
       },
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        -480,
-        -32
+        -752,
+        -176
       ],
       "id": "2f8d8bfd-ca94-4560-832d-33acb1e08124",
       "name": "Facebook Feed Masjid",
@@ -786,7 +725,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1648,
+        -1440,
         -304
       ],
       "id": "c78c629c-d72d-49c5-a222-08631ff5fd92",
@@ -802,7 +741,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1952,
+        -1744,
         -480
       ],
       "id": "a59c0fb4-a27f-4ed7-a96c-9e8ef8c1a417",
@@ -848,7 +787,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1616,
+        -1408,
         -496
       ],
       "id": "9da90d66-4f31-4008-9098-7f7f48497c43",
@@ -863,7 +802,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        -1360,
+        -1152,
         -512
       ],
       "id": "f786dfee-09a2-4872-a525-155e3302289b",
@@ -930,84 +869,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -1472,
+        -1264,
         -304
       ],
       "id": "309b8e22-df43-4200-869e-f51fb7728bae",
       "name": "Switch"
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "data",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        -272,
-        -32
-      ],
-      "id": "84441991-5d25-4c8b-b954-c3accd9f527f",
-      "name": "Split Out"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        -64,
-        -32
-      ],
-      "id": "7d2e11d1-cf07-4ce5-a617-aab74698d2b7",
-      "name": "Loop Over Items",
-      "executeOnce": false
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "e543a084-1967-4359-94d1-5f931bfd0991",
-              "leftValue": "={{ $json.message }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "notExists",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "93763346-fa32-4e37-b1b4-75e4d2990094",
-              "leftValue": "={{ $json.message }}",
-              "rightValue": ".",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "or"
-        },
-        "looseTypeValidation": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        240,
-        -16
-      ],
-      "id": "c9de93cf-de6e-4c4b-abf7-122064f02814",
-      "name": "If1"
     },
     {
       "parameters": {
@@ -1016,8 +882,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -848,
-        336
+        -752,
+        48
       ],
       "id": "2bcf5c83-ebbe-4576-8302-e9f7fb660278",
       "name": "Tarikh & Masa"
@@ -1050,12 +916,11 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -304,
-        416
+        -208,
+        128
       ],
       "id": "2a1c17d0-6afc-4086-ba50-828493eb418e",
-      "name": "Cari Pengajian",
-      "onError": "continueErrorOutput"
+      "name": "Cari Pengajian"
     },
     {
       "parameters": {
@@ -1071,8 +936,8 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ String($('Loop Over Items').item.json.story) }}",
-                    "rightValue": "Masjid Al-Halimi Batu 5 was live.",
+                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "rightValue": "=live_videos",
                     "operator": {
                       "type": "string",
                       "operation": "equals"
@@ -1143,8 +1008,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -16,
-        320
+        -608,
+        560
       ],
       "id": "a52f245b-7ec1-4392-ab3e-a42c44a14685",
       "name": "Switch1",
@@ -1182,8 +1047,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        448,
-        272
+        -144,
+        512
       ],
       "id": "d2b64250-231f-4406-a697-f4983468934e",
       "name": "minggu kitab"
@@ -1202,8 +1067,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        608,
-        272
+        16,
+        512
       ],
       "id": "93eeffd4-5b2e-41c3-8b4c-0dfc525cbfe2",
       "name": "Aggregate"
@@ -1212,7 +1077,7 @@
       "parameters": {
         "httpRequestMethod": "POST",
         "graphApiVersion": "v23.0",
-        "node": "={{ $('Loop Over Items').item.json.id }}",
+        "node": "={{ $('Facebook Feed Masjid').item.json.data[0].id }}",
         "edge": "=",
         "options": {
           "queryParameters": {
@@ -1228,8 +1093,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1088,
-        368
+        496,
+        608
       ],
       "id": "4bb29096-8e0e-4d66-b1e7-1450f9e666f7",
       "name": "Facebook Graph API",
@@ -1247,8 +1112,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        768,
-        272
+        176,
+        512
       ],
       "id": "99461b6c-3c76-47b7-a666-3572c58ac236",
       "name": "Message Pengajian"
@@ -1260,8 +1125,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        768,
-        592
+        176,
+        832
       ],
       "id": "b192cdd5-751c-46b0-aed7-9fcf566de856",
       "name": "Message Ribat"
@@ -1273,8 +1138,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        768,
-        432
+        176,
+        672
       ],
       "id": "f40c862d-3f0a-4bd0-bc9f-685989002da6",
       "name": "Message Bukit"
@@ -1303,8 +1168,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        384,
-        432
+        -208,
+        672
       ],
       "id": "a799d4e7-4d94-4f2c-97e1-09d8aeedd69b",
       "name": "minggu bukit"
@@ -1323,8 +1188,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        608,
-        432
+        16,
+        672
       ],
       "id": "714de6fe-d34e-4835-aac0-78fbc8e0e31b",
       "name": "Aggregate1"
@@ -1343,8 +1208,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        608,
-        592
+        16,
+        832
       ],
       "id": "baa7ebc9-bf2e-410c-954f-0cbd5a1ca2b3",
       "name": "Aggregate2"
@@ -1479,8 +1344,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1264,
-        -16
+        800,
+        352
       ],
       "id": "9da79b8e-2618-43cb-9743-a3830f158d1e",
       "name": "Code2"
@@ -1492,8 +1357,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        992,
-        -320
+        1088,
+        -192
       ],
       "id": "0df0160d-424c-4de4-aec7-6949711dd825",
       "name": "All Groups"
@@ -1511,8 +1376,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2336,
-        -48
+        1872,
+        320
       ],
       "id": "691ef28d-a654-4404-9d11-209631c8eae1",
       "name": "Send an image",
@@ -1534,8 +1399,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2256,
-        160
+        1792,
+        528
       ],
       "id": "5caf58f4-ecc7-43bb-abf7-b9a7c755b3c5",
       "name": "Stop Typing",
@@ -1558,8 +1423,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2416,
-        160
+        1952,
+        528
       ],
       "id": "68fbb1d7-6aed-4c39-914c-19ddbdaac3bf",
       "name": "Send a text message",
@@ -1578,8 +1443,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1888,
-        160
+        1424,
+        528
       ],
       "id": "d7ef5709-37fe-4470-8c54-28d971b1c968",
       "name": "Wait",
@@ -1596,8 +1461,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1744,
-        160
+        1280,
+        528
       ],
       "id": "b5f71aa8-c956-4949-ac6a-fb1184f5b1a3",
       "name": "Start Typing",
@@ -1610,61 +1475,13 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "loose",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "ffe53d1b-5b9e-4491-b831-eb8d967b0322",
-              "leftValue": "={{ $('Asingkan text biasa dengan gambar').first().json.isImage }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "looseTypeValidation": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1840,
-        672
-      ],
-      "id": "38f4aae0-18a2-4556-953a-bdb093793494",
-      "name": "Jika gambar"
-    },
-    {
-      "parameters": {
-        "jsCode": "let lines = $input.first().json.line;\n\n// Kalau bukan array, tukar jadi array\nif (!Array.isArray(lines)) {\n  lines = [lines];\n}\n\n// Regex utk detect gambar\nconst imageRegex = /(https?:\\/\\/[^\\s]+(\\.jpg|\\.jpeg|\\.png|\\.gif|\\.webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?(export=view&)?id=[^)\\s]+)/i;\n\nreturn lines.map(line => {\n  return {\n    json: {\n      text: line,\n      isImage: imageRegex.test(line) // true kalau link gambar\n    }\n  };\n});"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1872,
-        512
-      ],
-      "id": "3fe34cac-50eb-460b-852d-3edfb772a0e6",
-      "name": "Asingkan text biasa dengan gambar"
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1552,
-        -336
+        1088,
+        32
       ],
       "id": "1201a72c-300a-4180-a187-8a8510649acc",
       "name": "pecahkan mesej",
@@ -1678,8 +1495,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1248,
-        -320
+        784,
+        48
       ],
       "id": "22123a42-f9b8-4b60-bce1-d8953fa006ab",
       "name": "Loop Over Items1",
@@ -1825,8 +1642,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1184,
-        -80
+        -1040,
+        -96
       ],
       "id": "82e287e8-3fe5-4081-af68-e9d9e356e93e",
       "name": "If3"
@@ -1870,8 +1687,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1840,
-        -320
+        1376,
+        48
       ],
       "id": "b05a7447-7e35-4948-8313-13beb054a5b7",
       "name": "Message"
@@ -1990,8 +1807,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2240,
-        -320
+        1776,
+        48
       ],
       "id": "a788b3af-2e40-4a9b-92a0-0bb1be1a235b",
       "name": "Ambil Gambar & text",
@@ -2025,8 +1842,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1904,
-        -112
+        1440,
+        256
       ],
       "id": "eba37a17-2667-489c-b1e4-fcf5f983f337",
       "name": "If5"
@@ -2036,8 +1853,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2160,
-        -80
+        1696,
+        288
       ],
       "id": "8a9d8bb2-c44e-43f1-a25a-6b340b5b4465",
       "name": "Wait1",
@@ -2070,8 +1887,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -688,
-        336
+        -592,
+        48
       ],
       "id": "a10c07d1-12c8-4617-8b7a-61f9bac61e80",
       "name": "Cari Program Live1",
@@ -2105,8 +1922,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -496,
-        336
+        -400,
+        48
       ],
       "id": "8b855796-c98d-4d3e-8c35-2e7c83ca9aa3",
       "name": "If6"
@@ -2118,8 +1935,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        768,
-        -48
+        176,
+        192
       ],
       "id": "4c19d754-54bf-4e5a-8ace-1842857643ee",
       "name": "Message Program1"
@@ -2152,8 +1969,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -16,
-        192
+        -608,
+        432
       ],
       "id": "1a458176-670e-4f5f-8086-a11bcdfd3a78",
       "name": "If7"
@@ -2189,8 +2006,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        256,
-        272
+        -336,
+        512
       ],
       "id": "2360f70d-af4c-49f8-bc32-7c253a22c06f",
       "name": "Cari Pengajian Masjid",
@@ -2302,8 +2119,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        448,
-        96
+        -144,
+        336
       ],
       "id": "2591cf1b-8d35-4610-8fad-79e83721fe41",
       "name": "If9"
@@ -2331,8 +2148,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        608,
-        112
+        16,
+        352
       ],
       "id": "a0230700-90b3-491a-9a50-e5f4724cde70",
       "name": "Cari Pengajian Surau1"
@@ -2344,8 +2161,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        768,
-        112
+        176,
+        352
       ],
       "id": "ed6bec2e-b821-4dec-aa14-9c9bc6ab1446",
       "name": "Message Surau1"
@@ -2383,6 +2200,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-10T05:59:27.000Z",
-  "versionId": "cde11539-84e7-418d-9888-7390f341636a"
+  "updatedAt": "2025-11-15T16:19:34.000Z",
+  "versionId": "2bc15749-f8b4-4ca3-8887-e22c4d6a44a4"
 }
