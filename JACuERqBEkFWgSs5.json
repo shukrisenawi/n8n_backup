@@ -2474,8 +2474,8 @@
             {
               "id": "ac2f2828-35c2-4d8b-b0a8-ed23b4f4444a",
               "name": "group",
-              "value": "60134507038-1525247606@g.us",
-              "type": "string"
+              "value": "['60134507038-1525247606@g.us','60134693115-1476278350@g.us']",
+              "type": "array"
             }
           ]
         },
@@ -2539,7 +2539,8 @@
         -560
       ],
       "id": "27fd39d2-e71c-410f-8a31-c27166a30174",
-      "name": "Cari Kitab1"
+      "name": "Cari Kitab1",
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -2806,6 +2807,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2025-11-14T07:17:30.000Z",
-  "versionId": "c753229c-bfa6-4fb3-9dd1-480beb87b969"
+  "updatedAt": "2025-11-19T02:16:25.000Z",
+  "versionId": "fca930fb-afb9-49c8-9fe8-96268310ea9b"
 }
