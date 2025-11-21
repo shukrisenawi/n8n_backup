@@ -1241,13 +1241,7 @@
     },
     "Stop Typing5": {
       "main": [
-        [
-          {
-            "node": "Send a text message6",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Tambah Kematian": {
@@ -5051,30 +5045,6 @@
     {
       "parameters": {
         "resource": "Chatting",
-        "operation": "Send Text",
-        "session": "={{ $('var').item.json.session }}",
-        "chatId": "={{ $('var').item.json.from }}",
-        "text": "Anda tidak dibenarkan untuk mengakses sistem ini.. Jika ada sebarang soalan sila hubungi admin 019-5168839.",
-        "requestOptions": {}
-      },
-      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
-      "typeVersion": 202502,
-      "position": [
-        1328,
-        -960
-      ],
-      "id": "7822e002-ab96-40c6-b3b6-e4a88447c70d",
-      "name": "Send a text message6",
-      "credentials": {
-        "wahaApi": {
-          "id": "OSQWzQbmYRYYqgCf",
-          "name": "WAHA account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "Chatting",
         "operation": "Start Typing",
         "session": "={{ $('var').item.json.session }}",
         "chatId": "={{ $('var').item.json.from}}",
@@ -5687,6 +5657,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-14T07:27:09.000Z",
-  "versionId": "8b032243-2b2f-4c99-96da-10c3fa45e079"
+  "updatedAt": "2025-11-21T10:19:11.000Z",
+  "versionId": "51336e86-ba3b-4777-8b0d-2b8194aff3be"
 }
