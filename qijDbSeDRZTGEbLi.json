@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Switch",
+            "node": "Tarikh & Masa",
             "type": "main",
             "index": 0
           }
@@ -64,7 +64,7 @@
       "main": [
         [
           {
-            "node": "Tarikh & Masa",
+            "node": "Cari Program Live1",
             "type": "main",
             "index": 0
           }
@@ -75,7 +75,7 @@
       "main": [
         [
           {
-            "node": "Cari Program Live1",
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -258,17 +258,6 @@
         []
       ]
     },
-    "Tarikh & Masa1": {
-      "main": [
-        [
-          {
-            "node": "Cari Program Live",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Code2": {
       "main": [
         [
@@ -391,7 +380,7 @@
       "main": [
         [
           {
-            "node": "Tarikh & Masa1",
+            "node": "Cari Program Live",
             "type": "main",
             "index": 0
           }
@@ -725,7 +714,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1440,
+        -1552,
         -304
       ],
       "id": "c78c629c-d72d-49c5-a222-08631ff5fd92",
@@ -869,7 +858,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -1264,
+        -1200,
         -304
       ],
       "id": "309b8e22-df43-4200-869e-f51fb7728bae",
@@ -877,13 +866,13 @@
     },
     {
       "parameters": {
-        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd/mm/YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Tentukan hari\nconst hariList = ['ahad','isnin','selasa','rabu','khamis','jumaat','sabtu'];\nconst hari = hariList[malaysiaDate.getUTCDay()];\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,\n    hari                   // nama hari dalam BM\n  }\n};\n"
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\nlet waktu;\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd/mm/YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Tentukan hari\nconst hariList = ['ahad','isnin','selasa','rabu','khamis','jumaat','sabtu'];\nconst hari = hariList[malaysiaDate.getUTCDay()];\n\nif(timePart24>=\"06:30:00\"&&timePart24<=\"07:30:00\"){\n  waktu = \"Selepas Solat Subuh\";\n}\nelse if(timePart24>=\"19:15:00\"&&timePart24<=\"20:30:00\"){\n  waktu = \"Selepas Solat Maghrib\";\n}\nelse if(timePart24>=\"20:45:00\"&&timePart24<=\"23:59:59\"){\n  waktu = \"Selepas Solat Isyak\";\n}\nelse{\n  waktu = null;\n}\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,\n    waktu,\n    hari                   // nama hari dalam BM\n  }\n};\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -752,
-        48
+        -1376,
+        -304
       ],
       "id": "2bcf5c83-ebbe-4576-8302-e9f7fb660278",
       "name": "Tarikh & Masa"
@@ -908,6 +897,10 @@
             {
               "keyName": "active",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -1039,6 +1032,10 @@
             {
               "keyName": "live",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -1238,6 +1235,10 @@
             {
               "keyName": "live",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -1274,7 +1275,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const parmalinkUrl = $('Facebook Graph API2').first().json.permalink_url;\n\nconst messageLive =  $('Cari Pengajian Live').first().json.poster+`\n🌙 _*`+$('Cari Pengajian Live').first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $('Cari Pengajian Live').first().json.poster+`\n🌙 _*`+$('Cari Pengajian Live').first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
+        "jsCode": "const parmalinkUrl = $('Facebook Graph API2').first().json.permalink_url;\n\nconst messageLive =  $('Cari Pengajian Live').first().json.poster+`\n🌙 _*`+$('Cari Pengajian Live').first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa').first().json.tarikhMsia+`, `+$('Tarikh & Masa').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $('Cari Pengajian Live').first().json.poster+`\n🌙 _*`+$('Cari Pengajian Live').first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa').first().json.tarikhMsia+`, `+$('Tarikh & Masa').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1309,6 +1310,10 @@
             {
               "keyName": "live",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -1323,19 +1328,6 @@
       "id": "3ccdc4d0-cd0a-4c15-bc59-1cc6d1084a2e",
       "name": "Cari Pengajian Live",
       "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd/mm/YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Tentukan hari\nconst hariList = ['ahad','isnin','selasa','rabu','khamis','jumaat','sabtu'];\nconst hari = hariList[malaysiaDate.getUTCDay()];\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,\n    hari                   // nama hari dalam BM\n  }\n};\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -752,
-        -336
-      ],
-      "id": "5b5fb76e-de88-4e47-872e-1bf1df7b55f9",
-      "name": "Tarikh & Masa1"
     },
     {
       "parameters": {
@@ -1598,7 +1590,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -1040,
+        -976,
         -320
       ],
       "id": "eb33f928-2032-48a6-b6e1-08f49c334f13",
@@ -1713,6 +1705,10 @@
             {
               "keyName": "live",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "waktu_program",
+              "keyValue": "={{ $json.waktu }}"
             }
           ]
         }
@@ -1720,7 +1716,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -592,
+        -672,
         -336
       ],
       "id": "0931de19-ff53-450c-9494-8690962da903",
@@ -1880,6 +1876,10 @@
             {
               "keyName": "live",
               "keyValue": "Ya"
+            },
+            {
+              "keyName": "waktu_program",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         }
@@ -1998,6 +1998,10 @@
             },
             {
               "keyValue": "={{ $('Cari Pengajian').item.json.id }}"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -2027,7 +2031,7 @@
           "conditions": [
             {
               "keyName": "hari",
-              "keyValue": "={{ $('Tarikh & Masa1').item.json.hari }}"
+              "keyValue": "={{ $('Tarikh & Masa').item.json.hari }}"
             }
           ]
         },
@@ -2079,7 +2083,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const parmalinkUrl = $('Facebook Graph API2').first().json.permalink_url;\n\nconst messageLive =  $input.first().json.poster+`\n🌙 _*`+$input.first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $input.first().json.poster+`\n🌙 _*`+$input.first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa1').first().json.tarikhMsia+`, `+$('Tarikh & Masa1').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
+        "jsCode": "const parmalinkUrl = $('Facebook Graph API2').first().json.permalink_url;\n\nconst messageLive =  $input.first().json.poster+`\n🌙 _*`+$input.first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa').first().json.tarikhMsia+`, `+$('Tarikh & Masa').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $input.first().json.poster+`\n🌙 _*`+$input.first().json.tempat+`*_\n📅 _*`+$('Tarikh & Masa').first().json.tarikhMsia+`, `+$('Tarikh & Masa').first().json.masa12+`*_\n\n🔴 LIVE : https://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2140,6 +2144,10 @@
             {
               "keyName": "hari",
               "keyValue": "={{ $('Tarikh & Masa').item.json.hari }}"
+            },
+            {
+              "keyName": "masa",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
             }
           ]
         },
@@ -2200,6 +2208,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-18T15:39:49.000Z",
-  "versionId": "f7cbe76d-db8b-46f5-96c4-ee0153e59529"
+  "updatedAt": "2025-11-21T00:51:38.000Z",
+  "versionId": "a1f36309-c80c-4221-a7f9-1a3369ae4f6c"
 }
