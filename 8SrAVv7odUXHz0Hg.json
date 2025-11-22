@@ -82,6 +82,45 @@
             "node": "Cari Pengajian",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Cari Pengajian Surau",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Update row(s)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row(s)1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Surau": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -198,7 +237,8 @@
           "value": {
             "tarikh_peringatan": "={{ $json.tarikh_reminder??null }}",
             "active": "Ya",
-            "tarikh_bulan_ini": "={{ $('Week').item.json.tarikh??null }}"
+            "tarikh_bulan_ini": "={{ $('Week').item.json.tarikh??null }}",
+            "post": "={{ null }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -331,11 +371,22 @@
               "type": "string",
               "readOnly": false,
               "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
-        }
+        },
+        "options": {}
       },
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
@@ -358,6 +409,219 @@
       ],
       "id": "d208b43a-9b70-4ec0-ad64-d16c2e2f5c00",
       "name": "Tarikh Sekarang"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        464,
+        448
+      ],
+      "id": "e2cfbcb9-f4db-4635-aaf2-bf4342b67d50",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lYJa8ELDISViXCss",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian Surau",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/lYJa8ELDISViXCss"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post": "={{ null }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "kitab",
+              "displayName": "kitab",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari",
+              "displayName": "hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "minggu",
+              "displayName": "minggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "masa",
+              "displayName": "masa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "pengajar",
+              "displayName": "pengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tempat",
+              "displayName": "tempat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "live",
+              "displayName": "live",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_bulan_ini",
+              "displayName": "tarikh_bulan_ini",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_peringatan",
+              "displayName": "tarikh_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "no_hp_peringatan",
+              "displayName": "no_hp_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "sebab_tidak_mengajar",
+              "displayName": "sebab_tidak_mengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        704,
+        464
+      ],
+      "id": "84e2eaa5-a222-40bb-a4db-3718c8352b5d",
+      "name": "Update row(s)1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lYJa8ELDISViXCss",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian Surau",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/lYJa8ELDISViXCss"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        224,
+        448
+      ],
+      "id": "cb5136c9-c87e-4c91-94dd-51922a6b46a9",
+      "name": "Cari Pengajian Surau"
     }
   ],
   "origin": "n8n",
@@ -389,6 +653,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-10T07:07:38.000Z",
-  "versionId": "1516d506-e22e-4188-96cc-0c09cff0595e"
+  "updatedAt": "2025-11-21T15:11:12.000Z",
+  "versionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987"
 }
