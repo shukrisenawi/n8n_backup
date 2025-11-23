@@ -716,7 +716,7 @@
             "index": 0
           },
           {
-            "node": "Send a text message5",
+            "node": "Status Pengajian",
             "type": "main",
             "index": 0
           }
@@ -1355,6 +1355,17 @@
         [
           {
             "node": "Send a text message8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Status Pengajian": {
+      "main": [
+        [
+          {
+            "node": "Send a text message5",
             "type": "main",
             "index": 0
           }
@@ -2940,7 +2951,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1744,
+        1952,
         64
       ],
       "id": "1d8e7b70-caa2-463d-acc2-9656d7a4f4e6",
@@ -3240,7 +3251,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1904,
+        2112,
         64
       ],
       "id": "4b472adc-6b0d-4549-87f8-5949cc50fb87",
@@ -3260,7 +3271,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1600,
+        1808,
         64
       ],
       "id": "49c4f963-f9df-4020-bff5-b75ce8d85902",
@@ -4797,13 +4808,13 @@
         "operation": "Send Text",
         "session": "={{ $('WAHA Trigger').item.json.session }}",
         "chatId": "60195168839@c.us",
-        "text": "={{ $('Cari Pengajian').first().json.active=='Ya' ?'Assalamualaikum.. pengajian esk berjalan seperti biasa..':'Assalamualaikum.. pengajian esk DIBATALKAN..' }}",
+        "text": "={{ $json.pengajian }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        2176,
+        2464,
         -16
       ],
       "id": "06072105-ec38-4d49-8c23-cdbee34af931",
@@ -5623,6 +5634,19 @@
           "name": "WAHA account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "let pengajian='';\n\nif($(\"Cari Pengajian\").item.json.active=='Ya')\n  pengajian = 'Assalamualaikum.. pengajian esk berjalan seperti biasa..';\nelse\n  pengajian = 'Assalamualaikum.. pengajian esk DIBATALKAN..' ;\n\nreturn [\n  {\n    json:{\n      pengajian\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2352,
+        -16
+      ],
+      "id": "23a05418-7ac8-453e-968d-4a44db6cdbc7",
+      "name": "Status Pengajian"
     }
   ],
   "origin": "n8n",
@@ -5657,6 +5681,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-21T10:19:11.000Z",
-  "versionId": "51336e86-ba3b-4777-8b0d-2b8194aff3be"
+  "updatedAt": "2025-11-23T04:00:03.000Z",
+  "versionId": "a591735f-8c77-46c4-8b5b-56cc43bd5910"
 }
