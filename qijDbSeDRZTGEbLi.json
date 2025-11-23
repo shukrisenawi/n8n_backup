@@ -64,7 +64,7 @@
       "main": [
         [
           {
-            "node": "Cari Program Live1",
+            "node": "Masa Post",
             "type": "main",
             "index": 0
           }
@@ -228,7 +228,7 @@
       "main": [
         [
           {
-            "node": "Message Pengajian1",
+            "node": "Update Pengajian",
             "type": "main",
             "index": 0
           }
@@ -442,7 +442,7 @@
       "main": [
         [
           {
-            "node": "Message Program",
+            "node": "Cari Program Live2",
             "type": "main",
             "index": 0
           }
@@ -591,7 +591,7 @@
       "main": [
         [
           {
-            "node": "Message Surau",
+            "node": "Update row(s)",
             "type": "main",
             "index": 0
           }
@@ -661,6 +661,61 @@
         [
           {
             "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Program Live2": {
+      "main": [
+        [
+          {
+            "node": "Update Program",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Program": {
+      "main": [
+        [
+          {
+            "node": "Message Program",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Pengajian": {
+      "main": [
+        [
+          {
+            "node": "Message Pengajian1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row(s)": {
+      "main": [
+        [
+          {
+            "node": "Message Surau",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Masa Post": {
+      "main": [
+        [
+          {
+            "node": "Cari Program Live1",
             "type": "main",
             "index": 0
           }
@@ -900,7 +955,7 @@
             },
             {
               "keyName": "masa",
-              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
+              "keyValue": "={{ $('Masa Post').item.json.waktuPost }}"
             }
           ]
         },
@@ -909,8 +964,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -208,
-        128
+        -240,
+        64
       ],
       "id": "2a1c17d0-6afc-4086-ba50-828493eb418e",
       "name": "Cari Pengajian"
@@ -1001,8 +1056,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -608,
-        560
+        -624,
+        704
       ],
       "id": "a52f245b-7ec1-4392-ab3e-a42c44a14685",
       "name": "Switch1",
@@ -1044,7 +1099,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -144,
+        -192,
         512
       ],
       "id": "d2b64250-231f-4406-a697-f4983468934e",
@@ -1064,7 +1119,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        16,
+        -32,
         512
       ],
       "id": "93eeffd4-5b2e-41c3-8b4c-0dfc525cbfe2",
@@ -1090,8 +1145,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        496,
-        608
+        432,
+        544
       ],
       "id": "4bb29096-8e0e-4d66-b1e7-1450f9e666f7",
       "name": "Facebook Graph API",
@@ -1109,7 +1164,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
+        128,
         512
       ],
       "id": "99461b6c-3c76-47b7-a666-3572c58ac236",
@@ -1122,7 +1177,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
+        128,
         832
       ],
       "id": "b192cdd5-751c-46b0-aed7-9fcf566de856",
@@ -1135,7 +1190,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
+        128,
         672
       ],
       "id": "f40c862d-3f0a-4bd0-bc9f-685989002da6",
@@ -1165,7 +1220,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -208,
+        -256,
         672
       ],
       "id": "a799d4e7-4d94-4f2c-97e1-09d8aeedd69b",
@@ -1185,7 +1240,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        16,
+        -32,
         672
       ],
       "id": "714de6fe-d34e-4835-aac0-78fbc8e0e31b",
@@ -1205,7 +1260,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        16,
+        -32,
         832
       ],
       "id": "baa7ebc9-bf2e-410c-954f-0cbd5a1ca2b3",
@@ -1280,8 +1335,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
-        -464
+        704,
+        -480
       ],
       "id": "8423e52a-5c0c-4727-a966-8a0394f16f29",
       "name": "Message Pengajian1"
@@ -1314,6 +1369,11 @@
             {
               "keyName": "masa",
               "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
+            },
+            {
+              "keyName": "post",
+              "condition": "neq",
+              "keyValue": "Ya"
             }
           ]
         },
@@ -1349,8 +1409,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1088,
-        -192
+        1664,
+        -256
       ],
       "id": "0df0160d-424c-4de4-aec7-6949711dd825",
       "name": "All Groups"
@@ -1523,7 +1583,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        784,
+        1408,
         -240
       ],
       "id": "50f72a79-aeaf-4408-9b64-d195d518c969",
@@ -1759,12 +1819,12 @@
     },
     {
       "parameters": {
-        "jsCode": "const parmalinkUrl = $input.first().json.permalink_url;\nconst messageLive =  $('Cari Program Live').first().json.poster+`\n🔴 LIVE : `+$('Cari Program Live').first().json.program+`\n\nhttps://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $('Cari Program Live').first().json.poster+`\n🔴 LIVE : `+$('Cari Program Live').first().json.program+`\n\nhttps://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
+        "jsCode": "const parmalinkUrl = $('Facebook Graph API2').first().json.permalink_url;\nconst messageLive =  $('Cari Program Live').first().json.poster+`\n🔴 LIVE : `+$('Cari Program Live').first().json.program+`\n\nhttps://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲\n\n_Klik link di bawah untuk ke Group Live pengajian :_\n_https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt_\n`;\n\nconst message =  $('Cari Program Live').first().json.poster+`\n🔴 LIVE : `+$('Cari Program Live').first().json.program+`\n\nhttps://www.facebook.com/share/`+parmalinkUrl.split(\"/\").slice(-2).join(\"/\")+`\n\n📢 _Jom sama-sama sebarkan siaran ni, semoga lebih ramai dapat manfaat. Mudah-mudahan Allah berkati usaha kita semua._ 🤲`;\nreturn [\n  {\n    json:{\n      message,\n      messageLive,\n      group:['default']\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
+        688,
         -624
       ],
       "id": "1997f263-b9e9-4cff-9476-9ee4bc4e54bd",
@@ -1790,7 +1850,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        784,
+        1408,
         -464
       ],
       "id": "f78de3d5-b8c6-45c3-b802-dd802e9b9097",
@@ -1879,7 +1939,7 @@
             },
             {
               "keyName": "waktu_program",
-              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
+              "keyValue": "={{ $json.waktuPost }}"
             }
           ]
         }
@@ -1887,7 +1947,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -592,
+        -640,
         48
       ],
       "id": "a10c07d1-12c8-4617-8b7a-61f9bac61e80",
@@ -1922,7 +1982,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -400,
+        -448,
         48
       ],
       "id": "8b855796-c98d-4d3e-8c35-2e7c83ca9aa3",
@@ -1935,7 +1995,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
+        128,
         192
       ],
       "id": "4c19d754-54bf-4e5a-8ace-1842857643ee",
@@ -1969,7 +2029,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -608,
+        -656,
         432
       ],
       "id": "1a458176-670e-4f5f-8086-a11bcdfd3a78",
@@ -2010,7 +2070,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -336,
+        -384,
         512
       ],
       "id": "2360f70d-af4c-49f8-bc32-7c253a22c06f",
@@ -2032,6 +2092,11 @@
             {
               "keyName": "hari",
               "keyValue": "={{ $('Tarikh & Masa').item.json.hari }}"
+            },
+            {
+              "keyName": "post",
+              "condition": "neq",
+              "keyValue": "Ya"
             }
           ]
         },
@@ -2088,7 +2153,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        480,
+        704,
         -304
       ],
       "id": "44bed53b-88b7-4570-a19a-0a7fadb46552",
@@ -2123,7 +2188,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -144,
+        -192,
         336
       ],
       "id": "2591cf1b-8d35-4610-8fad-79e83721fe41",
@@ -2147,7 +2212,7 @@
             },
             {
               "keyName": "masa",
-              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
+              "keyValue": "={{ $('Masa Post').item.json.waktuPost }}"
             }
           ]
         },
@@ -2156,7 +2221,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        16,
+        -32,
         352
       ],
       "id": "a0230700-90b3-491a-9a50-e5f4724cde70",
@@ -2169,11 +2234,484 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        176,
+        128,
         352
       ],
       "id": "ed6bec2e-b821-4dec-aa14-9c9bc6ab1446",
       "name": "Message Surau1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rf6Nzix5FxA3nKY6",
+          "mode": "list",
+          "cachedResultName": "Masjid - Program",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rf6Nzix5FxA3nKY6"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh_program",
+              "keyValue": "={{ $('Var').item.json.tarikh }}"
+            },
+            {
+              "keyName": "live",
+              "keyValue": "Ya"
+            },
+            {
+              "keyName": "waktu_program",
+              "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
+            },
+            {
+              "keyName": "post",
+              "condition": "neq",
+              "keyValue": "Ya"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        112,
+        -624
+      ],
+      "id": "39541108-c48d-4f18-b220-ddff228ca9e1",
+      "name": "Cari Program Live2",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rf6Nzix5FxA3nKY6",
+          "mode": "list",
+          "cachedResultName": "Masjid - Program",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rf6Nzix5FxA3nKY6"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post": "Ya"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "program",
+              "displayName": "program",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "catatan",
+              "displayName": "catatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "penceramah",
+              "displayName": "penceramah",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "waktu_program",
+              "displayName": "waktu_program",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_program",
+              "displayName": "tarikh_program",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari_program",
+              "displayName": "hari_program",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "live",
+              "displayName": "live",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -624
+      ],
+      "id": "d7f5d4f7-aa56-4e6e-b91d-c42a82407487",
+      "name": "Update Program"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $('Cari Pengajian Live').item.json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post": "Ya"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "kitab",
+              "displayName": "kitab",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari",
+              "displayName": "hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "minggu",
+              "displayName": "minggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "masa",
+              "displayName": "masa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "pengajar",
+              "displayName": "pengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tempat",
+              "displayName": "tempat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "live",
+              "displayName": "live",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_bulan_ini",
+              "displayName": "tarikh_bulan_ini",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_peringatan",
+              "displayName": "tarikh_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "no_hp_peringatan",
+              "displayName": "no_hp_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "sebab_tidak_mengajar",
+              "displayName": "sebab_tidak_mengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -480
+      ],
+      "id": "472b7446-cefd-416e-bb25-37710726ad34",
+      "name": "Update Pengajian"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "lYJa8ELDISViXCss",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian Surau",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/lYJa8ELDISViXCss"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post": "Ya"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "kitab",
+              "displayName": "kitab",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari",
+              "displayName": "hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "masa",
+              "displayName": "masa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "pengajar",
+              "displayName": "pengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tempat",
+              "displayName": "tempat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -304
+      ],
+      "id": "e3922a46-1628-4576-b555-b08442da0fa7",
+      "name": "Update row(s)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\nlet waktuPost;\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n\nif(timePart24>=\"06:30:00\"&&timePart24<=\"09:00:00\"){\n  waktuPost = \"Selepas Solat Subuh\";\n}\nelse if(timePart24>=\"19:15:00\"&&timePart24<=\"21:30:00\"){\n  waktuPost = \"Selepas Solat Maghrib\";\n}\nelse if(timePart24>=\"21:31:00\"&&timePart24<=\"23:59:59\"){\n  waktuPost = \"Selepas Solat Isyak\";\n}\nelse{\n  waktuPost = null;\n}\n\n// Hantar hasil\nreturn {\n  json: {\n    waktuPost           // nama hari dalam BM\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        48
+      ],
+      "id": "e9660332-4381-4ff6-8d61-503ec764db5d",
+      "name": "Masa Post"
     }
   ],
   "origin": "n8n",
@@ -2208,6 +2746,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-21T00:51:38.000Z",
-  "versionId": "a1f36309-c80c-4221-a7f9-1a3369ae4f6c"
+  "updatedAt": "2025-11-21T15:06:49.000Z",
+  "versionId": "34e02143-11ef-490a-b203-623c6f0c577d"
 }
