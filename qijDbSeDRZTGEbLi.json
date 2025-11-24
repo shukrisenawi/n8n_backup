@@ -602,7 +602,7 @@
       "main": [
         [
           {
-            "node": "minggu kitab1",
+            "node": "Cari Pengajian Live1",
             "type": "main",
             "index": 0
           }
@@ -716,6 +716,17 @@
         [
           {
             "node": "Cari Program Live1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Pengajian Live1": {
+      "main": [
+        [
+          {
+            "node": "minggu kitab1",
             "type": "main",
             "index": 0
           }
@@ -1302,8 +1313,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        80,
-        -480
+        128,
+        -368
       ],
       "id": "4f22c19e-b5b3-44d3-95ea-ba785124e864",
       "name": "minggu kitab1"
@@ -1322,8 +1333,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        240,
-        -480
+        288,
+        -368
       ],
       "id": "5e7ba0af-e6fb-404d-bcd1-966502ac45f9",
       "name": "Aggregate3"
@@ -1336,7 +1347,7 @@
       "typeVersion": 2,
       "position": [
         704,
-        -480
+        -368
       ],
       "id": "8423e52a-5c0c-4727-a966-8a0394f16f29",
       "name": "Message Pengajian1"
@@ -1369,11 +1380,6 @@
             {
               "keyName": "masa",
               "keyValue": "={{ $('Tarikh & Masa').item.json.waktu }}"
-            },
-            {
-              "keyName": "post",
-              "condition": "neq",
-              "keyValue": "Ya"
             }
           ]
         },
@@ -1382,8 +1388,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -272,
-        -432
+        -368,
+        -224
       ],
       "id": "3ccdc4d0-cd0a-4c15-bc59-1cc6d1084a2e",
       "name": "Cari Pengajian Live",
@@ -1396,7 +1402,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        800,
+        1152,
         352
       ],
       "id": "9da79b8e-2618-43cb-9743-a3830f158d1e",
@@ -1428,8 +1434,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1872,
-        320
+        2256,
+        336
       ],
       "id": "691ef28d-a654-4404-9d11-209631c8eae1",
       "name": "Send an image",
@@ -1451,8 +1457,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1792,
-        528
+        2176,
+        544
       ],
       "id": "5caf58f4-ecc7-43bb-abf7-b9a7c755b3c5",
       "name": "Stop Typing",
@@ -1475,8 +1481,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1952,
-        528
+        2336,
+        544
       ],
       "id": "68fbb1d7-6aed-4c39-914c-19ddbdaac3bf",
       "name": "Send a text message",
@@ -1495,8 +1501,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1424,
-        528
+        1808,
+        544
       ],
       "id": "d7ef5709-37fe-4470-8c54-28d971b1c968",
       "name": "Wait",
@@ -1513,8 +1519,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        1280,
-        528
+        1664,
+        544
       ],
       "id": "b5f71aa8-c956-4949-ac6a-fb1184f5b1a3",
       "name": "Start Typing",
@@ -1532,8 +1538,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1088,
-        32
+        1472,
+        48
       ],
       "id": "1201a72c-300a-4180-a187-8a8510649acc",
       "name": "pecahkan mesej",
@@ -1547,8 +1553,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        784,
-        48
+        1136,
+        64
       ],
       "id": "22123a42-f9b8-4b60-bce1-d8953fa006ab",
       "name": "Loop Over Items1",
@@ -1739,8 +1745,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1376,
-        48
+        1760,
+        64
       ],
       "id": "b05a7447-7e35-4948-8313-13beb054a5b7",
       "name": "Message"
@@ -1863,8 +1869,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1776,
-        48
+        2160,
+        64
       ],
       "id": "a788b3af-2e40-4a9b-92a0-0bb1be1a235b",
       "name": "Ambil Gambar & text",
@@ -1898,8 +1904,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1440,
-        256
+        1824,
+        272
       ],
       "id": "eba37a17-2667-489c-b1e4-fcf5f983f337",
       "name": "If5"
@@ -1909,8 +1915,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1696,
-        288
+        2080,
+        304
       ],
       "id": "8a9d8bb2-c44e-43f1-a25a-6b340b5b4465",
       "name": "Wait1",
@@ -2105,8 +2111,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        256,
-        -304
+        144,
+        -112
       ],
       "id": "765555c7-d13b-4245-a2f0-44ff6aed378a",
       "name": "Cari Pengajian Surau"
@@ -2140,8 +2146,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -112,
-        -432
+        -224,
+        -224
       ],
       "id": "189e9d48-a9b8-4639-a0e9-4128b442f732",
       "name": "If8"
@@ -2153,8 +2159,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        704,
-        -304
+        720,
+        -112
       ],
       "id": "44bed53b-88b7-4570-a19a-0a7fadb46552",
       "name": "Message Surau"
@@ -2585,8 +2591,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        448,
-        -480
+        464,
+        -368
       ],
       "id": "472b7446-cefd-416e-bb25-37710726ad34",
       "name": "Update Pengajian"
@@ -2694,11 +2700,12 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        464,
-        -304
+        480,
+        -112
       ],
       "id": "e3922a46-1628-4576-b555-b08442da0fa7",
-      "name": "Update row(s)"
+      "name": "Update row(s)",
+      "disabled": true
     },
     {
       "parameters": {
@@ -2712,6 +2719,41 @@
       ],
       "id": "e9660332-4381-4ff6-8d61-503ec764db5d",
       "name": "Masa Post"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "post",
+              "condition": "neq",
+              "keyValue": "Ya"
+            },
+            {
+              "keyValue": "={{ $('Cari Pengajian Live').item.json.id }}"
+            }
+          ]
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        -368
+      ],
+      "id": "8ed08840-a05d-4b3e-930d-264f8e5b0bc2",
+      "name": "Cari Pengajian Live1",
+      "alwaysOutputData": false
     }
   ],
   "origin": "n8n",
@@ -2746,6 +2788,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-21T15:06:49.000Z",
-  "versionId": "34e02143-11ef-490a-b203-623c6f0c577d"
+  "updatedAt": "2025-11-23T13:31:25.000Z",
+  "versionId": "4ef47751-49e3-480c-8610-73299244dc58"
 }
