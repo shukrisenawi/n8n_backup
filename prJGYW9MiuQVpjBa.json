@@ -1,5 +1,132 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "6724d658-c88c-4936-9d2f-b58eef558b3f",
+    "workflowId": "prJGYW9MiuQVpjBa",
+    "nodes": [
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "filters": {}
+        },
+        "type": "n8n-nodes-base.gmailTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -352,
+          -64
+        ],
+        "id": "75af6528-e372-450c-a8d2-0a941d9e0120",
+        "name": "Gmail Trigger",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "XuByhqEk8OVuFDeP",
+            "name": "Gmail PASTI"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.From }}",
+                      "rightValue": "kedahpastinegeri@gmail.com",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      },
+                      "id": "4fb23b23-e55c-461f-aeb0-e849276dbc63"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "PASTI KEDAH"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.3,
+        "position": [
+          -144,
+          -64
+        ],
+        "id": "955930c6-1ea7-46a2-bc32-8d86f75ff96b",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "session": "=masjid_session",
+          "chatId": "=60195168839",
+          "text": "=Email daripada PASTI KEDAH : {{ $json.Subject }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          64,
+          -64
+        ],
+        "id": "2aa53e79-3737-4af6-8a27-3a345fa7b8ff",
+        "name": "Send a text message",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Gmail Trigger": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "6724d658-c88c-4936-9d2f-b58eef558b3f",
   "connections": {
     "Gmail Trigger": {
       "main": [
