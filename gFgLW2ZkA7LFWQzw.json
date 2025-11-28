@@ -1,5 +1,139 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "93c6472d-02c8-4cec-9765-195bc53589b8",
+    "workflowId": "gFgLW2ZkA7LFWQzw",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 0 0 * * *"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -496,
+          -208
+        ],
+        "id": "c7799714-8208-4f2b-a45c-f24110367fe0",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nreturn {\n  tarikh,\n  tarikh_format\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -320,
+          -208
+        ],
+        "id": "de40fe7e-37e2-471c-b297-18d46abcf619",
+        "name": "Tarikh Sekarang"
+      },
+      {
+        "parameters": {
+          "operation": "deleteRows",
+          "dataTableId": {
+            "__rl": true,
+            "value": "n86Um1hF9bOnUjqJ",
+            "mode": "list",
+            "cachedResultName": "Masjid - Pengumuman",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/n86Um1hF9bOnUjqJ"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "tarikh_akhir",
+                "condition": "lt",
+                "keyValue": "={{ $json.tarikh }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -96,
+          -208
+        ],
+        "id": "d4b7018e-6411-45f1-988d-0a36ee2222c2",
+        "name": "Delete Pengumuman"
+      },
+      {
+        "parameters": {
+          "operation": "deleteRows",
+          "dataTableId": {
+            "__rl": true,
+            "value": "rf6Nzix5FxA3nKY6",
+            "mode": "list",
+            "cachedResultName": "Masjid - Program",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rf6Nzix5FxA3nKY6"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "tarikh_program",
+                "condition": "lt",
+                "keyValue": "={{ $json.tarikh }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          -96,
+          -48
+        ],
+        "id": "125a6d5c-9700-4c5b-a7b4-7d955642c19d",
+        "name": "Delete Program"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Tarikh Sekarang",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh Sekarang": {
+        "main": [
+          [
+            {
+              "node": "Delete Pengumuman",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Delete Program",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "93c6472d-02c8-4cec-9765-195bc53589b8",
   "connections": {
     "Schedule Trigger": {
       "main": [
