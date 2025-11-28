@@ -1,5 +1,632 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987",
+    "workflowId": "8SrAVv7odUXHz0Hg",
+    "nodes": [
+      {
+        "parameters": {
+          "jsCode": "function getDateFromInput(hari, minggu, tahun = parseInt($('Tarikh Sekarang').first().json.tahun)) {\n  const days = [\"ahad\", \"isnin\", \"selasa\", \"rabu\", \"khamis\", \"jumaat\", \"sabtu\"];\n\n  // bulan semasa\n  let bulan = parseInt($('Tarikh Sekarang').first().json.bulan);//new Date().getMonth() + 1;\n\n  // mula dari hari pertama bulan semasa\n  let date = new Date(tahun, bulan - 1, 1);\n  let targetDayIndex = days.indexOf(hari.toLowerCase());\n\n  if (targetDayIndex === -1) {\n    throw new Error(\"Hari tidak sah\");\n  }\n\n  let count = 0;\n  let resultDate = null;\n\n  // loop cari hari ke-n (minggu)\n  while (date.getMonth() === bulan - 1) {\n    if (date.getDay() === targetDayIndex) {\n      count++;\n      if (count === minggu) {\n        resultDate = new Date(date);\n        break;\n      }\n    }\n    date.setDate(date.getDate() + 1);\n  }\n\n  if (!resultDate) {\n    throw new Error(\"Gabungan hari/minggu tak wujud bulan ni\");\n  }\n\n  // format YYYY-MM-DD\n  let y = resultDate.getFullYear();\n  let m = String(resultDate.getMonth() + 1).padStart(2, \"0\");\n  let d = String(resultDate.getDate()).padStart(2, \"0\");\n\n  return `${y}-${m}-${d}`;\n}\n\n// ---- contoh penggunaan ----\nconst inputHari = $input.first().json.hari;//$input.first().json.hari;    // contoh: \"selasa\"\nconst inputMinggu =parseInt($input.first().json.minggu);//$input.first().json.minggu; // contoh: 4\n\nreturn [\n  {\n    json: {\n      id:$input.first().json.id,\n      tarikh: getDateFromInput(inputHari, inputMinggu)\n    }\n  }\n];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          704,
+          -112
+        ],
+        "id": "54c6494c-7772-482c-b26a-dff1bcfea463",
+        "name": "Week",
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          368,
+          -128
+        ],
+        "id": "6d87cf24-a0e1-4127-b6cb-7cc23518a82a",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 0 1 1 * *"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -336,
+          -128
+        ],
+        "id": "63b6fc6e-3751-4b77-8b57-f291b766ba54",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "jsCode": "let tarikh_reminder = null;\nlet date;\n\n// if((data.Tempat == \"Ribat Abu AL-Hassan\" || data.Tempat == \"Bangsal Haji Nordin Bukit\" || data.Kitab == \"Minhajul 'Abidin\" || data.Kitab == \"Muhimmah\") && data['No Hp Peringatan']!=null){\nif($('Loop Over Items').first().json.no_hp_peringatan){\n  \n  date = new Date($input.first().json.tarikh);\n  date.setDate(date.getDate() - 1);\n  tarikh_reminder = date.toISOString().split(\"T\")[0];\n  \n}\n\nreturn [\n  {\n    json:{\n      tarikh_reminder\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          496,
+          208
+        ],
+        "id": "5b831cb5-8107-4efc-8c89-2358e41c0417",
+        "name": "Tarikh Peringatan"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ssP2ikwXFWiluBNx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          128,
+          -128
+        ],
+        "id": "4e92df9c-0780-4f48-9fd4-00ffbb97a771",
+        "name": "Cari Pengajian"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ssP2ikwXFWiluBNx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyValue": "={{ $('Week').item.json.id }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "tarikh_peringatan": "={{ $json.tarikh_reminder??null }}",
+              "active": "Ya",
+              "tarikh_bulan_ini": "={{ $('Week').item.json.tarikh??null }}",
+              "post": "={{ null }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "kitab",
+                "displayName": "kitab",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "hari",
+                "displayName": "hari",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "minggu",
+                "displayName": "minggu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "masa",
+                "displayName": "masa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "pengajar",
+                "displayName": "pengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tempat",
+                "displayName": "tempat",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "live",
+                "displayName": "live",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_bulan_ini",
+                "displayName": "tarikh_bulan_ini",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "tarikh_peringatan",
+                "displayName": "tarikh_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "no_hp_peringatan",
+                "displayName": "no_hp_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "active",
+                "displayName": "active",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "sebab_tidak_mengajar",
+                "displayName": "sebab_tidak_mengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "poster",
+                "displayName": "poster",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "post",
+                "displayName": "post",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          704,
+          208
+        ],
+        "id": "0330131a-87a5-4257-9164-7a9f26805684",
+        "name": "Update row(s)"
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nreturn {\n  tarikh,\n  hari:day,\n  bulan:month,\n  tahun:year,\n  tarikh_format\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -112,
+          -128
+        ],
+        "id": "d208b43a-9b70-4ec0-ad64-d16c2e2f5c00",
+        "name": "Tarikh Sekarang"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          464,
+          448
+        ],
+        "id": "e2cfbcb9-f4db-4635-aaf2-bf4342b67d50",
+        "name": "Loop Over Items1"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "lYJa8ELDISViXCss",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian Surau",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/lYJa8ELDISViXCss"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyValue": "={{ $json.id }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "post": "={{ null }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "kitab",
+                "displayName": "kitab",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "hari",
+                "displayName": "hari",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "minggu",
+                "displayName": "minggu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "masa",
+                "displayName": "masa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "pengajar",
+                "displayName": "pengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tempat",
+                "displayName": "tempat",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "live",
+                "displayName": "live",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_bulan_ini",
+                "displayName": "tarikh_bulan_ini",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_peringatan",
+                "displayName": "tarikh_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "no_hp_peringatan",
+                "displayName": "no_hp_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "active",
+                "displayName": "active",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "sebab_tidak_mengajar",
+                "displayName": "sebab_tidak_mengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "poster",
+                "displayName": "poster",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "post",
+                "displayName": "post",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          704,
+          464
+        ],
+        "id": "84e2eaa5-a222-40bb-a4db-3718c8352b5d",
+        "name": "Update row(s)1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "lYJa8ELDISViXCss",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian Surau",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/lYJa8ELDISViXCss"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          224,
+          448
+        ],
+        "id": "cb5136c9-c87e-4c91-94dd-51922a6b46a9",
+        "name": "Cari Pengajian Surau"
+      }
+    ],
+    "connections": {
+      "Week": {
+        "main": [
+          [
+            {
+              "node": "Tarikh Peringatan",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Week",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Tarikh Sekarang",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh Peringatan": {
+        "main": [
+          [
+            {
+              "node": "Update row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cari Pengajian": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update row(s)": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh Sekarang": {
+        "main": [
+          [
+            {
+              "node": "Cari Pengajian",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Cari Pengajian Surau",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Update row(s)1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update row(s)1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cari Pengajian Surau": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987",
   "connections": {
     "Week": {
       "main": [
