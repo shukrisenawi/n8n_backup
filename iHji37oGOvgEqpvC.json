@@ -1,5 +1,290 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "cffe2ad0-73bc-4e9f-8990-241c04248b63",
+    "workflowId": "iHji37oGOvgEqpvC",
+    "nodes": [
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Stop Typing",
+          "session": "={{ $('Var').item.json.session }}",
+          "chatId": "={{ $('Var').item.json.no_hp }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          736,
+          48
+        ],
+        "id": "15848ae0-e136-4016-83b9-c05c01d38c73",
+        "name": "Stop Typing",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "session": "={{ $('Var').item.json.session }}",
+          "chatId": "={{ $('Var').item.json.no_hp }}",
+          "text": "={{ $('Message').item.json.message }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          896,
+          48
+        ],
+        "id": "ad6c88e7-88be-4490-81e0-1f81ea871395",
+        "name": "Send a text message",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": "={{ Math.floor(Math.random()*5,1) }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          592,
+          48
+        ],
+        "id": "11041531-778f-41d6-b615-60508132597c",
+        "name": "Wait",
+        "webhookId": "fed00e73-ccfa-4b99-afed-35a5341d30c6"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Start Typing",
+          "session": "={{ $('Var').item.json.session }}",
+          "chatId": "={{ $('Var').item.json.no_hp }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          448,
+          48
+        ],
+        "id": "26f72e2a-296e-4ac9-a633-eb6a7132c74c",
+        "name": "Start Typing",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nreturn {\n  tarikh,\n  hari:day,\n  bulan:month,\n  tahun:year,\n  session:'masjid_session',\n  no_hp:'60195168839@c.us',\n  tarikh_format\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -272,
+          48
+        ],
+        "id": "3ad25a85-a57d-4ec5-b33f-ba87a0dfd2b6",
+        "name": "Var"
+      },
+      {
+        "parameters": {
+          "jsCode": "const message = \"Assalamualaikum..Pengajian kitab Tauhid rumah Hj Rasyid esok ada x?\";\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          272,
+          48
+        ],
+        "id": "f8b7e465-9eea-4733-a81e-649b7c475adb",
+        "name": "Message"
+      },
+      {
+        "parameters": {
+          "jsCode": "function getDateFromInput(hari, minggu, tahun = parseInt($input.first().json.tahun)) {\n  const days = [\"ahad\", \"isnin\", \"selasa\", \"rabu\", \"khamis\", \"jumaat\", \"sabtu\"];\n\n  // bulan semasa\n  let bulan = parseInt($input.first().json.bulan);//new Date().getMonth() + 1;\n\n  // mula dari hari pertama bulan semasa\n  let date = new Date(tahun, bulan - 1, 1);\n  let targetDayIndex = days.indexOf(hari.toLowerCase());\n\n  if (targetDayIndex === -1) {\n    throw new Error(\"Hari tidak sah\");\n  }\n\n  let count = 0;\n  let resultDate = null;\n\n  // loop cari hari ke-n (minggu)\n  while (date.getMonth() === bulan - 1) {\n    if (date.getDay() === targetDayIndex) {\n      count++;\n      if (count === minggu) {\n        resultDate = new Date(date);\n        break;\n      }\n    }\n    date.setDate(date.getDate() + 1);\n  }\n  if (!resultDate) {\n    throw new Error(\"Gabungan hari/minggu tak wujud bulan ni\");\n  }\n\n  // format YYYY-MM-DD\n  let y = resultDate.getFullYear();\n  let m = String(resultDate.getMonth() + 1).padStart(2, \"0\");\n  let d = String(resultDate.getDate()).padStart(2, \"0\");\n\n  return `${y}-${m}-${d}`;\n}\n\n// ---- contoh penggunaan ----\nconst inputHari = 'jumaat';//$input.first().json.hari;    // contoh: \"selasa\"\nconst inputMinggu =2;//$input.first().json.minggu; // contoh: 4\nconst tarikh_pengajian =getDateFromInput(inputHari, inputMinggu);\nconst varTarikh = tarikh_pengajian.split('-');\nconst tarikh_reminder = `${varTarikh[0]}-${varTarikh[1]}-`+String(parseInt(varTarikh[2])-1);\n\nreturn [\n  {\n    json: {\n      id:$input.first().json.id,\n      tarikh_pengajian,\n      tarikh_reminder\n    }\n  }\n];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -128,
+          48
+        ],
+        "id": "5a27ae56-a666-466c-bf0d-927a3ab7cdec",
+        "name": "Tarikh Pengajian"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 0 9 * * 4"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -448,
+          48
+        ],
+        "id": "cb2990c6-9cff-42cd-8b29-95805c3605d1",
+        "name": "Alert Pukul 4"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "d38e6351-8bde-4c36-b4fe-b319441e786e",
+                "leftValue": "={{ $('Var').item.json.tarikh }}",
+                "rightValue": "={{ $json.tarikh_reminder }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          32,
+          48
+        ],
+        "id": "49c7f2c5-0b9a-4f27-8085-81e41baf5022",
+        "name": "If"
+      }
+    ],
+    "connections": {
+      "Stop Typing": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message": {
+        "main": [
+          []
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Stop Typing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start Typing": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Var": {
+        "main": [
+          [
+            {
+              "node": "Tarikh Pengajian",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Message": {
+        "main": [
+          [
+            {
+              "node": "Start Typing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh Pengajian": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Alert Pukul 4": {
+        "main": [
+          [
+            {
+              "node": "Var",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Message",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "cffe2ad0-73bc-4e9f-8990-241c04248b63",
   "connections": {
     "Stop Typing": {
       "main": [
