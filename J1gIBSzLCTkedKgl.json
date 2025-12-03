@@ -2,13 +2,375 @@
   "active": false,
   "activeVersion": null,
   "activeVersionId": null,
-  "connections": {},
+  "connections": {
+    "WAHA Trigger": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "var": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Start Typing4": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing4": {
+      "main": [
+        [
+          {
+            "node": "Send a text message7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-11-05T01:39:40.016Z",
   "id": "J1gIBSzLCTkedKgl",
   "isArchived": false,
   "meta": null,
   "name": "Stickertermurah - mesej",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+      "typeVersion": 202502,
+      "position": [
+        -400,
+        -256
+      ],
+      "id": "04bdfb75-16e4-4bdb-8ec1-0091451ecbca",
+      "name": "WAHA Trigger",
+      "webhookId": "d3b6fbd1-107f-47c2-b6ed-2d85c4e64724"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $json.from }}",
+        "messageId": "={{ $json.message_id }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -96,
+        64
+      ],
+      "id": "bee02b43-2296-415f-8be3-ee1ef90803ab",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst now = new Date();\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\ntarikh =  `${year}-${month}-${day}`;\n\n\nfor (const item of $input.all()) {\n\n  const payload = $('WAHA Trigger').first().json.payload;\n\n  item.json.message_post = payload.body;\n  item.json.session = $('WAHA Trigger').first().json.session;  \n  item.json.sessionId = payload.from;\n  item.json.from = payload.from;\n  item.json.message_id = payload.id;\n  item.json.hasMedia = payload.hasMedia;\n  item.json.mimetype = payload.media ? payload.media.mimetype : false;  \n  item.json.tarikh = tarikh;\n  \n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        -80
+      ],
+      "id": "649ef8b1-6195-43bb-bce3-3dfb5393d339",
+      "name": "var"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@c.us",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "8685a915-c6a7-45e2-a785-75fbc6640c18",
+              "leftValue": "={{ $json.payload.from }}",
+              "rightValue": "@lid",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -96,
+        -240
+      ],
+      "id": "a6f3afcd-6f46-416e-8071-4fa3e3e38c8c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c6e8e48b-57da-41d4-a9f6-53027b165b6c",
+              "leftValue": "={{$('var').item.json.message_post}}",
+              "rightValue": "Assalamualaikum.. nk join group LIVE Masjid",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        -112
+      ],
+      "id": "f230d4f6-9e15-4029-b699-c9c84bc05b05",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "=Waalaikumussalam.. sila klik link group ini.. https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1088,
+        -128
+      ],
+      "id": "9ff79463-5503-45b4-ad31-6f4711889941",
+      "name": "Send a text message7",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from}}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        624,
+        -128
+      ],
+      "id": "f4cafd49-4d65-4616-8f0c-406807e918ef",
+      "name": "Start Typing4",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*3,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        768,
+        -128
+      ],
+      "id": "8948d682-9f6b-4fdc-90d5-f2548e64ce4b",
+      "name": "Wait5",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        912,
+        -128
+      ],
+      "id": "0acc624f-5b5f-4a35-80c5-1b6b708fbb2f",
+      "name": "Stop Typing4",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$('var').item.json.message_post}}",
+                    "rightValue": "Assalamualaikum/Hi.. blh sy tahu harga pakej sticker..",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9d63e2dd-535c-43d0-ba30-d136968e8e8c"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Iklan Bisnes Meletup"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ff8f9032-ee0d-454a-8d23-11acb3795da1",
+                    "leftValue": "={{$('var').item.json.message_post}}",
+                    "rightValue": "Assalamualaikum/Hi.. blh sy tahu harga sticker..",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Iklan Hilang Pelanggan"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -96,
+        272
+      ],
+      "id": "646a9334-432d-4fef-a00f-299142d85eed",
+      "name": "Switch"
+    }
+  ],
   "origin": "n8n",
   "pinData": {},
   "repo": {
@@ -30,6 +392,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-05T01:39:40.000Z",
-  "versionId": "8de15c94-5171-4347-b4f2-c9ea7172228b"
+  "updatedAt": "2025-12-03T06:53:20.000Z",
+  "versionId": "b8e34bde-0241-49f0-aab4-61f991a56f66"
 }
