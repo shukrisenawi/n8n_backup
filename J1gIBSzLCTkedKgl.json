@@ -1,7 +1,717 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-04T04:36:28.569Z",
+    "createdAt": "2025-12-04T04:36:28.569Z",
+    "versionId": "62cc8e5e-13f6-49ac-be8b-a5313f14c284",
+    "workflowId": "J1gIBSzLCTkedKgl",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "@devlikeapro/n8n-nodes-waha.wahaTrigger",
+        "typeVersion": 202502,
+        "position": [
+          -400,
+          -256
+        ],
+        "id": "04bdfb75-16e4-4bdb-8ec1-0091451ecbca",
+        "name": "WAHA Trigger",
+        "webhookId": "d3b6fbd1-107f-47c2-b6ed-2d85c4e64724"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Seen",
+          "session": "={{ $('var').item.json.session }}",
+          "chatId": "={{ $json.from }}",
+          "messageId": "={{ $json.message_id }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          -80,
+          144
+        ],
+        "id": "bee02b43-2296-415f-8be3-ee1ef90803ab",
+        "name": "Send Seen",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst now = new Date();\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\ntarikh =  `${year}-${month}-${day}`;\n\n\nfor (const item of $input.all()) {\n\n  const payload = $('WAHA Trigger').first().json.payload;\n\n  item.json.message_post = payload.body;\n  item.json.session = $('WAHA Trigger').first().json.session;  \n  item.json.sessionId = payload.from;\n  item.json.from = payload.from;\n  item.json.message_id = payload.id;\n  item.json.hasMedia = payload.hasMedia;\n  item.json.mimetype = payload.media ? payload.media.mimetype : false;  \n  item.json.tarikh = tarikh;\n  \n}\n\nreturn $input.all();"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          80,
+          -240
+        ],
+        "id": "649ef8b1-6195-43bb-bce3-3dfb5393d339",
+        "name": "var"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "ccfd0b2b-48e0-4b9d-a4ce-e80de98e8961",
+                "leftValue": "={{ $json.payload.from }}",
+                "rightValue": "@c.us",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              },
+              {
+                "id": "8685a915-c6a7-45e2-a785-75fbc6640c18",
+                "leftValue": "={{ $json.payload.from }}",
+                "rightValue": "@lid",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -96,
+          -240
+        ],
+        "id": "a6f3afcd-6f46-416e-8071-4fa3e3e38c8c",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Start Typing",
+          "session": "={{ $('var').item.json.session }}",
+          "chatId": "={{ $('var').item.json.from}}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          560,
+          160
+        ],
+        "id": "f4cafd49-4d65-4616-8f0c-406807e918ef",
+        "name": "Start Typing4",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": "={{ Math.floor(Math.random()*3,1) }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          720,
+          160
+        ],
+        "id": "8948d682-9f6b-4fdc-90d5-f2548e64ce4b",
+        "name": "Wait5",
+        "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Stop Typing",
+          "session": "={{ $('var').item.json.session }}",
+          "chatId": "={{ $('var').item.json.from }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          880,
+          160
+        ],
+        "id": "0acc624f-5b5f-4a35-80c5-1b6b708fbb2f",
+        "name": "Stop Typing4",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const message=$('Cek Mesej').first().json.reply;\n\nconst lines = message\n  .split('<br>')\n  .map(line => line.trim())       // buang ruang kosong\n  .filter(line => line.length > 0); // buang baris kosong\n\n// Kembalikan setiap baris sebagai item berasingan\nreturn lines.map(line => ({ json: { message: line } }));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          64,
+          144
+        ],
+        "id": "c88989da-aa84-4201-94ad-67304e4625d1",
+        "name": "Message"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          336,
+          144
+        ],
+        "id": "1f075255-a0cc-42d6-977d-afcca20d4423",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Split ikut newline dan buang ruang kosong\nconst lines = $('Loop Over Items').first().json.message\n  .split('\\n')\n  .map(line => line.trim())\n  .filter(line => line.length > 0);\n\n// Regex untuk semak link imej (Drive/jpg/png/gif/webp)\nconst imageRegex = /(https?:\\/\\/[^\\s]+(?:jpg|jpeg|png|gif|webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[A-Za-z0-9_-]+)/i;\n\nlet imageItem = null;\nlet textItems = [];\n\n// Logik utama\nfor (let i = 0; i < lines.length; i++) {\n  const line = lines[i];\n  if (imageRegex.test(line)) {\n    // Kalau line ini pautan imej\n    const caption = lines[i + 1] || ''; // baris selepas link sebagai caption (jika ada)\n    imageItem = {\n      json: {\n        type: 'image',\n        imageUrl: line,\n        caption: caption\n      }\n    };\n    i++; // skip caption line\n  } else {\n    // Kalau bukan imej, anggap teks biasa\n    textItems.push({\n      json: {\n        type: 'text',\n        message: line\n      }\n    });\n  }\n}\n\n// Gabungkan hasil\nconst result = [];\nif (imageItem) result.push(imageItem);\nif (textItems.length) result.push(...textItems);\n\nreturn result;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          720,
+          400
+        ],
+        "id": "46825ae9-0e52-404d-a53e-800b80c4b8eb",
+        "name": "Cek Image"
+      },
+      {
+        "parameters": {
+          "amount": "={{ Math.floor(Math.random()*5,1) }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1328,
+          416
+        ],
+        "id": "198cd6eb-5ed4-4ac5-aaa3-b78ea64e959e",
+        "name": "Wait",
+        "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "5b597685-623a-4584-a2fc-a78479332b2f",
+                "leftValue": "={{ $json.type }}",
+                "rightValue": "image",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          864,
+          400
+        ],
+        "id": "71f5a252-9e79-48a3-a1c9-e185656ec00f",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "session": "={{ $('var').item.json.session }}",
+          "chatId": "={{ $('var').item.json.from }}",
+          "text": "={{ $json.message }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1104,
+          416
+        ],
+        "id": "db96d56b-b755-4651-bc04-ecf8ad20d57c",
+        "name": "Send a text message",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Image",
+          "session": "={{ $('var').item.json.session }}",
+          "chatId": "={{ $('var').item.json.from }}",
+          "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"filename.jpg\",\n  \"url\": \"{{ $json.imageUrl }}\"\n}",
+          "caption": "={{ $json.caption }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1104,
+          256
+        ],
+        "id": "63dee609-f5f4-4fb1-9037-20e1a2aeb78d",
+        "name": "Send an image",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\nlet waktu;\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd/mm/YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Tentukan hari\nconst hariList = ['ahad','isnin','selasa','rabu','khamis','jumaat','sabtu'];\nconst hari = hariList[malaysiaDate.getUTCDay()];\n\nif(timePart24>=\"06:30:00\"&&timePart24<=\"07:30:00\"){\n  waktu = \"Selepas Solat Subuh\";\n}\nelse if(timePart24>=\"19:15:00\"&&timePart24<=\"20:30:00\"){\n  waktu = \"Selepas Solat Maghrib\";\n}\nelse if(timePart24>=\"20:45:00\"&&timePart24<=\"23:59:59\"){\n  waktu = \"Selepas Solat Isyak\";\n}\nelse{\n  waktu = null;\n}\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,\n    waktu,\n    hari                   // nama hari dalam BM\n  }\n};\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          240,
+          -240
+        ],
+        "id": "26daabfb-f251-4605-baf8-09fb0612b1a2",
+        "name": "Tarikh & Masa"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "6ef76318-ee1c-4ed2-89a2-ea8bf134ad17",
+                "leftValue": "={{ $json.id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          224,
+          -48
+        ],
+        "id": "37f7815e-5e23-44ca-942e-5c2a41eb68c4",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "rJccaZc2SQ3arzXr",
+            "mode": "list",
+            "cachedResultName": "Stickertermurah - Mesej",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rJccaZc2SQ3arzXr"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "from",
+                "keyValue": "={{ $('WAHA Trigger').item.json.payload.from }}"
+              },
+              {
+                "keyName": "mesej",
+                "keyValue": "={{ $('WAHA Trigger').item.json.payload.body }}"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          80,
+          -48
+        ],
+        "id": "734c904b-c3e0-49c1-93cf-700f5d58ab1c",
+        "name": "Cari Mesej",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "jsCode": "const text = [\n  'Assalamualaikum/Hi.. blh sy tahu harga pakej sticker..',\n  'Assalamualaikum/Hi.. blh sy tahu harga sticker..', 'Assalamualaikum/Hi.. sy berminat untuk membuat tempahan sticker..',\n  { test: 'bagus' }\n];\n\nconst input = $('WAHA Trigger').first().json.payload.body?.trim();\nconst masa = $input.first().json.masa24;\n\nconst on = '07:00:00';\nconst end = '23:59:59';\n\nlet run = false;\nlet reply = null;\n\n// Semak masa dahulu\nif (masa >= on && masa <= end) {\n  // Semak sama ada input match mana-mana string dalam array\n  run = text.some(t => typeof t === 'string' && t === input);\n\n  if (run) {\n    reply = `\nWaalaikumussalam..\n<br>\nSy shukri\n<br>\nhttps://drive.google.com/uc?export=view&id=1HawZV1oB-5torn4xS_feevEOPfhl8b8c\nHarga pakej sticker\n<br>\nCik nk bt sticker untuk produk apa ya..\n`;\n  }\n}\n\n// Jika input adalah key dalam mana-mana objek dalam array\nif (!run) {\n  const foundObj = text.find(t => typeof t === 'object' && t[input] !== undefined);\n  if (foundObj) {\n    run = true;\n    reply = foundObj[input].toString();\n  }\n}\n\nreturn [{ json: { run, reply } }];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          400,
+          -240
+        ],
+        "id": "24c50f1c-26db-4474-97b5-067878fd3340",
+        "name": "Cek Mesej"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a10f5198-9c44-4e72-9bac-2d7be5e7e2ca",
+                "leftValue": "={{ $json.run }}",
+                "rightValue": false,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -96,
+          -48
+        ],
+        "id": "938ff859-d0e5-4cfb-b75d-e3892efb6113",
+        "name": "Jika ada mesej"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "rJccaZc2SQ3arzXr",
+            "mode": "list",
+            "cachedResultName": "Stickertermurah - Mesej",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rJccaZc2SQ3arzXr"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "from": "={{ $('WAHA Trigger').item.json.payload.from }}",
+              "mesej": "={{ $('WAHA Trigger').item.json.payload.body }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "from",
+                "displayName": "from",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "mesej",
+                "displayName": "mesej",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          464,
+          -48
+        ],
+        "id": "7c88add2-a120-4901-b886-aca0e134aa1b",
+        "name": "Simpan Mesej"
+      }
+    ],
+    "connections": {
+      "WAHA Trigger": {
+        "main": [
+          [],
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send Seen": {
+        "main": [
+          [
+            {
+              "node": "Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "var": {
+        "main": [
+          [
+            {
+              "node": "Tarikh & Masa",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "var",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start Typing4": {
+        "main": [
+          [
+            {
+              "node": "Wait5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait5": {
+        "main": [
+          [
+            {
+              "node": "Stop Typing4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Stop Typing4": {
+        "main": [
+          [
+            {
+              "node": "Cek Image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Message": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Start Typing4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cek Image": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Send an image",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send an image": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh & Masa": {
+        "main": [
+          [
+            {
+              "node": "Cek Mesej",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cari Mesej": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Simpan Mesej",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "Cek Mesej": {
+        "main": [
+          [
+            {
+              "node": "Jika ada mesej",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Jika ada mesej": {
+        "main": [
+          [
+            {
+              "node": "Cari Mesej",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simpan Mesej": {
+        "main": [
+          [
+            {
+              "node": "Send Seen",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Mohamad Shukri Senawi",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "62cc8e5e-13f6-49ac-be8b-a5313f14c284",
   "connections": {
     "WAHA Trigger": {
       "main": [
@@ -19,7 +729,7 @@
       "main": [
         [
           {
-            "node": "Switch",
+            "node": "Message",
             "type": "main",
             "index": 0
           }
@@ -30,7 +740,7 @@
       "main": [
         [
           {
-            "node": "Send Seen",
+            "node": "Tarikh & Masa",
             "type": "main",
             "index": 0
           }
@@ -46,12 +756,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "If5": {
-      "main": [
-        [],
-        []
       ]
     },
     "Start Typing4": {
@@ -80,7 +784,159 @@
       "main": [
         [
           {
-            "node": "Send a text message7",
+            "node": "Cek Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Start Typing4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Image": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send an image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh & Masa": {
+      "main": [
+        [
+          {
+            "node": "Cek Mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Mesej": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Simpan Mesej",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Cek Mesej": {
+      "main": [
+        [
+          {
+            "node": "Jika ada mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jika ada mesej": {
+      "main": [
+        [
+          {
+            "node": "Cari Mesej",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Mesej": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
             "type": "main",
             "index": 0
           }
@@ -91,7 +947,9 @@
   "createdAt": "2025-11-05T01:39:40.016Z",
   "id": "J1gIBSzLCTkedKgl",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Stickertermurah - mesej",
   "nodes": [
     {
@@ -118,8 +976,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        -96,
-        64
+        -80,
+        144
       ],
       "id": "bee02b43-2296-415f-8be3-ee1ef90803ab",
       "name": "Send Seen",
@@ -137,8 +995,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -96,
-        -80
+        80,
+        -240
       ],
       "id": "649ef8b1-6195-43bb-bce3-3dfb5393d339",
       "name": "var"
@@ -188,64 +1046,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "c6e8e48b-57da-41d4-a9f6-53027b165b6c",
-              "leftValue": "={{$('var').item.json.message_post}}",
-              "rightValue": "Assalamualaikum.. nk join group LIVE Masjid",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        384,
-        -112
-      ],
-      "id": "f230d4f6-9e15-4029-b699-c9c84bc05b05",
-      "name": "If5"
-    },
-    {
-      "parameters": {
-        "resource": "Chatting",
-        "operation": "Send Text",
-        "session": "={{ $('var').item.json.session }}",
-        "chatId": "={{ $('var').item.json.from }}",
-        "text": "=Waalaikumussalam.. sila klik link group ini.. https://chat.whatsapp.com/GlvTwSX9RFX1CpJ5j3rSTq?mode=wwt",
-        "requestOptions": {}
-      },
-      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
-      "typeVersion": 202502,
-      "position": [
-        1088,
-        -128
-      ],
-      "id": "9ff79463-5503-45b4-ad31-6f4711889941",
-      "name": "Send a text message7",
-      "credentials": {
-        "wahaApi": {
-          "id": "OSQWzQbmYRYYqgCf",
-          "name": "WAHA account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "resource": "Chatting",
         "operation": "Start Typing",
         "session": "={{ $('var').item.json.session }}",
@@ -255,8 +1055,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        624,
-        -128
+        560,
+        160
       ],
       "id": "f4cafd49-4d65-4616-8f0c-406807e918ef",
       "name": "Start Typing4",
@@ -274,8 +1074,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        768,
-        -128
+        720,
+        160
       ],
       "id": "8948d682-9f6b-4fdc-90d5-f2548e64ce4b",
       "name": "Wait5",
@@ -292,8 +1092,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        912,
-        -128
+        880,
+        160
       ],
       "id": "0acc624f-5b5f-4a35-80c5-1b6b708fbb2f",
       "name": "Stop Typing4",
@@ -306,69 +1106,319 @@
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
+        "jsCode": "const message=$('Cek Mesej').first().json.reply;\n\nconst lines = message\n  .split('<br>')\n  .map(line => line.trim())       // buang ruang kosong\n  .filter(line => line.length > 0); // buang baris kosong\n\n// Kembalikan setiap baris sebagai item berasingan\nreturn lines.map(line => ({ json: { message: line } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        64,
+        144
+      ],
+      "id": "c88989da-aa84-4201-94ad-67304e4625d1",
+      "name": "Message"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        336,
+        144
+      ],
+      "id": "1f075255-a0cc-42d6-977d-afcca20d4423",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split ikut newline dan buang ruang kosong\nconst lines = $('Loop Over Items').first().json.message\n  .split('\\n')\n  .map(line => line.trim())\n  .filter(line => line.length > 0);\n\n// Regex untuk semak link imej (Drive/jpg/png/gif/webp)\nconst imageRegex = /(https?:\\/\\/[^\\s]+(?:jpg|jpeg|png|gif|webp)|https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[A-Za-z0-9_-]+)/i;\n\nlet imageItem = null;\nlet textItems = [];\n\n// Logik utama\nfor (let i = 0; i < lines.length; i++) {\n  const line = lines[i];\n  if (imageRegex.test(line)) {\n    // Kalau line ini pautan imej\n    const caption = lines[i + 1] || ''; // baris selepas link sebagai caption (jika ada)\n    imageItem = {\n      json: {\n        type: 'image',\n        imageUrl: line,\n        caption: caption\n      }\n    };\n    i++; // skip caption line\n  } else {\n    // Kalau bukan imej, anggap teks biasa\n    textItems.push({\n      json: {\n        type: 'text',\n        message: line\n      }\n    });\n  }\n}\n\n// Gabungkan hasil\nconst result = [];\nif (imageItem) result.push(imageItem);\nif (textItems.length) result.push(...textItems);\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        400
+      ],
+      "id": "46825ae9-0e52-404d-a53e-800b80c4b8eb",
+      "name": "Cek Image"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1328,
+        416
+      ],
+      "id": "198cd6eb-5ed4-4ac5-aaa3-b78ea64e959e",
+      "name": "Wait",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
             {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{$('var').item.json.message_post}}",
-                    "rightValue": "Assalamualaikum/Hi.. blh sy tahu harga pakej sticker..",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "9d63e2dd-535c-43d0-ba30-d136968e8e8c"
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Iklan Bisnes Meletup"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "ff8f9032-ee0d-454a-8d23-11acb3795da1",
-                    "leftValue": "={{$('var').item.json.message_post}}",
-                    "rightValue": "Assalamualaikum/Hi.. blh sy tahu harga sticker..",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Iklan Hilang Pelanggan"
+              "id": "5b597685-623a-4584-a2fc-a78479332b2f",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "image",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
             }
-          ]
+          ],
+          "combinator": "and"
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.3,
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        864,
+        400
+      ],
+      "id": "71f5a252-9e79-48a3-a1c9-e185656ec00f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "text": "={{ $json.message }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1104,
+        416
+      ],
+      "id": "db96d56b-b755-4651-bc04-ecf8ad20d57c",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('var').item.json.session }}",
+        "chatId": "={{ $('var').item.json.from }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"filename.jpg\",\n  \"url\": \"{{ $json.imageUrl }}\"\n}",
+        "caption": "={{ $json.caption }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1104,
+        256
+      ],
+      "id": "63dee609-f5f4-4fb1-9037-20e1a2aeb78d",
+      "name": "Send an image",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil tarikh asal daripada input (contoh field: created_time)\nconst inputDate = new Date();\nlet waktu;\n\n// Ubah ke zon masa Malaysia (UTC+8)\nconst malaysiaDate = new Date(inputDate.getTime() + (8 * 60 * 60 * 1000));\n\n// Pisahkan tarikh dan masa (24 jam)\nconst datePart = malaysiaDate.toISOString().split('T')[0];\nconst timePart24 = malaysiaDate.toISOString().split('T')[1].split('.')[0];\n\n// Tukar ke format 12 jam\nlet hours = malaysiaDate.getUTCHours();\nconst minutes = malaysiaDate.getUTCMinutes().toString().padStart(2, '0');\nconst ampm = hours >= 12 ? 'PM' : 'AM';\nhours = hours % 12 || 12;\nconst timePart12 = `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;\n\n// Format tarikh gaya Malaysia (dd/mm/YYYY)\nconst day = malaysiaDate.getUTCDate().toString().padStart(2, '0');\nconst month = (malaysiaDate.getUTCMonth() + 1).toString().padStart(2, '0');\nconst year = malaysiaDate.getUTCFullYear();\nconst tarikhMsia = `${day}/${month}/${year}`;\n\n// Tentukan hari\nconst hariList = ['ahad','isnin','selasa','rabu','khamis','jumaat','sabtu'];\nconst hari = hariList[malaysiaDate.getUTCDay()];\n\nif(timePart24>=\"06:30:00\"&&timePart24<=\"07:30:00\"){\n  waktu = \"Selepas Solat Subuh\";\n}\nelse if(timePart24>=\"19:15:00\"&&timePart24<=\"20:30:00\"){\n  waktu = \"Selepas Solat Maghrib\";\n}\nelse if(timePart24>=\"20:45:00\"&&timePart24<=\"23:59:59\"){\n  waktu = \"Selepas Solat Isyak\";\n}\nelse{\n  waktu = null;\n}\n\n// Hantar hasil\nreturn {\n  json: {\n    tarikh: datePart,     // format asal ISO (YYYY-MM-DD)\n    masa24: timePart24,   // masa 24 jam\n    masa12: timePart12,   // masa 12 jam\n    tarikhMsia,\n    waktu,\n    hari                   // nama hari dalam BM\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        -240
+      ],
+      "id": "26daabfb-f251-4605-baf8-09fb0612b1a2",
+      "name": "Tarikh & Masa"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6ef76318-ee1c-4ed2-89a2-ea8bf134ad17",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "37f7815e-5e23-44ca-942e-5c2a41eb68c4",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "rJccaZc2SQ3arzXr",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Mesej",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rJccaZc2SQ3arzXr"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "from",
+              "keyValue": "={{ $('WAHA Trigger').item.json.payload.from }}"
+            },
+            {
+              "keyName": "mesej",
+              "keyValue": "={{ $('WAHA Trigger').item.json.payload.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -48
+      ],
+      "id": "734c904b-c3e0-49c1-93cf-700f5d58ab1c",
+      "name": "Cari Mesej",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = [\n  'Assalamualaikum/Hi.. blh sy tahu harga pakej sticker..',\n  'Assalamualaikum/Hi.. blh sy tahu harga sticker..', 'Assalamualaikum/Hi.. sy berminat untuk membuat tempahan sticker..',\n  { test: 'bagus' }\n];\n\nconst input = $('WAHA Trigger').first().json.payload.body?.trim();\nconst masa = $input.first().json.masa24;\n\nconst on = '07:00:00';\nconst end = '23:59:59';\n\nlet run = false;\nlet reply = null;\n\n// Semak masa dahulu\nif (masa >= on && masa <= end) {\n  // Semak sama ada input match mana-mana string dalam array\n  run = text.some(t => typeof t === 'string' && t === input);\n\n  if (run) {\n    reply = `\nWaalaikumussalam..\n<br>\nSy shukri\n<br>\nhttps://drive.google.com/uc?export=view&id=1HawZV1oB-5torn4xS_feevEOPfhl8b8c\nHarga pakej sticker\n<br>\nCik nk bt sticker untuk produk apa ya..\n`;\n  }\n}\n\n// Jika input adalah key dalam mana-mana objek dalam array\nif (!run) {\n  const foundObj = text.find(t => typeof t === 'object' && t[input] !== undefined);\n  if (foundObj) {\n    run = true;\n    reply = foundObj[input].toString();\n  }\n}\n\nreturn [{ json: { run, reply } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -240
+      ],
+      "id": "24c50f1c-26db-4474-97b5-067878fd3340",
+      "name": "Cek Mesej"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a10f5198-9c44-4e72-9bac-2d7be5e7e2ca",
+              "leftValue": "={{ $json.run }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
       "position": [
         -96,
-        272
+        -48
       ],
-      "id": "646a9334-432d-4fef-a00f-299142d85eed",
-      "name": "Switch"
+      "id": "938ff859-d0e5-4cfb-b75d-e3892efb6113",
+      "name": "Jika ada mesej"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "rJccaZc2SQ3arzXr",
+          "mode": "list",
+          "cachedResultName": "Stickertermurah - Mesej",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/rJccaZc2SQ3arzXr"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "from": "={{ $('WAHA Trigger').item.json.payload.from }}",
+            "mesej": "={{ $('WAHA Trigger').item.json.payload.body }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "from",
+              "displayName": "from",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "mesej",
+              "displayName": "mesej",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -48
+      ],
+      "id": "7c88add2-a120-4901-b886-aca0e134aa1b",
+      "name": "Simpan Mesej"
     }
   ],
   "origin": "n8n",
@@ -391,7 +1441,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-12-03T06:53:20.000Z",
-  "versionId": "b8e34bde-0241-49f0-aab4-61f991a56f66"
+  "triggerCount": 1,
+  "updatedAt": "2025-12-04T04:36:28.000Z",
+  "versionId": "62cc8e5e-13f6-49ac-be8b-a5313f14c284"
 }
