@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-28T03:28:50.060Z",
-    "createdAt": "2025-11-28T03:28:50.060Z",
-    "versionId": "76b5cc2e-9d52-4499-b8e1-b097d5e1254a",
+    "updatedAt": "2025-12-05T00:25:56.634Z",
+    "createdAt": "2025-12-05T00:25:56.634Z",
+    "versionId": "31535010-322b-491d-83c3-f026432f924c",
     "workflowId": "qijDbSeDRZTGEbLi",
     "nodes": [
       {
@@ -631,7 +631,7 @@
             "conditions": [
               {
                 "keyName": "tarikh_bulan_ini",
-                "keyValue": "={{ $('Var').item.json.tarikh }}"
+                "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
               },
               {
                 "keyName": "active",
@@ -1030,7 +1030,7 @@
             "conditions": [
               {
                 "keyName": "tarikh_program",
-                "keyValue": "={{ $('Var').item.json.tarikh }}"
+                "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
               },
               {
                 "keyName": "live",
@@ -1201,7 +1201,7 @@
             "conditions": [
               {
                 "keyName": "tarikh_program",
-                "keyValue": "={{ $('Var').item.json.tarikh }}"
+                "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
               },
               {
                 "keyName": "live",
@@ -1458,7 +1458,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          -192,
+          -240,
           336
         ],
         "id": "2591cf1b-8d35-4610-8fad-79e83721fe41",
@@ -1525,7 +1525,7 @@
             "conditions": [
               {
                 "keyName": "tarikh_program",
-                "keyValue": "={{ $('Var').item.json.tarikh }}"
+                "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
               },
               {
                 "keyName": "live",
@@ -2627,13 +2627,7 @@
               "index": 0
             }
           ],
-          [
-            {
-              "node": "Cari Pengajian Surau",
-              "type": "main",
-              "index": 0
-            }
-          ]
+          []
         ]
       },
       "Message Surau": {
@@ -2656,13 +2650,7 @@
               "index": 0
             }
           ],
-          [
-            {
-              "node": "Cari Pengajian Surau1",
-              "type": "main",
-              "index": 0
-            }
-          ]
+          []
         ]
       },
       "Cari Pengajian Surau1": {
@@ -2758,7 +2746,7 @@
     "name": null,
     "description": null
   },
-  "activeVersionId": "76b5cc2e-9d52-4499-b8e1-b097d5e1254a",
+  "activeVersionId": "31535010-322b-491d-83c3-f026432f924c",
   "connections": {
     "Var": {
       "main": [
@@ -3366,13 +3354,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Cari Pengajian Surau",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Message Surau": {
@@ -3395,13 +3377,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Cari Pengajian Surau1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Cari Pengajian Surau1": {
@@ -4126,7 +4102,7 @@
           "conditions": [
             {
               "keyName": "tarikh_bulan_ini",
-              "keyValue": "={{ $('Var').item.json.tarikh }}"
+              "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
             },
             {
               "keyName": "active",
@@ -4525,7 +4501,7 @@
           "conditions": [
             {
               "keyName": "tarikh_program",
-              "keyValue": "={{ $('Var').item.json.tarikh }}"
+              "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
             },
             {
               "keyName": "live",
@@ -4696,7 +4672,7 @@
           "conditions": [
             {
               "keyName": "tarikh_program",
-              "keyValue": "={{ $('Var').item.json.tarikh }}"
+              "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
             },
             {
               "keyName": "live",
@@ -4953,7 +4929,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -192,
+        -240,
         336
       ],
       "id": "2591cf1b-8d35-4610-8fad-79e83721fe41",
@@ -5020,7 +4996,7 @@
           "conditions": [
             {
               "keyName": "tarikh_program",
-              "keyValue": "={{ $('Var').item.json.tarikh }}"
+              "keyValue": "={{ $('Tarikh & Masa').item.json.tarikh }}"
             },
             {
               "keyName": "live",
@@ -5547,6 +5523,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-28T03:28:53.000Z",
-  "versionId": "76b5cc2e-9d52-4499-b8e1-b097d5e1254a"
+  "updatedAt": "2025-12-05T00:32:17.000Z",
+  "versionId": "31535010-322b-491d-83c3-f026432f924c"
 }
