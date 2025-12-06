@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "55b88f2f-9c2f-4f66-9607-410be48a68e7",
+    "updatedAt": "2025-12-06T11:06:50.374Z",
+    "createdAt": "2025-12-06T11:06:50.374Z",
+    "versionId": "2d2f4107-342e-4550-8580-32320ebdc77f",
     "workflowId": "ibVZTzT1ikGI8WAZ",
     "nodes": [
       {
@@ -538,13 +538,7 @@
       },
       "Switch": {
         "main": [
-          [
-            {
-              "node": "Message",
-              "type": "main",
-              "index": 0
-            }
-          ],
+          [],
           [],
           [
             {
@@ -742,11 +736,11 @@
         ]
       }
     },
-    "authors": "system migration",
+    "authors": "Mohamad Shukri Senawi",
     "name": null,
     "description": null
   },
-  "activeVersionId": "55b88f2f-9c2f-4f66-9607-410be48a68e7",
+  "activeVersionId": "2d2f4107-342e-4550-8580-32320ebdc77f",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -806,13 +800,7 @@
     },
     "Switch": {
       "main": [
-        [
-          {
-            "node": "Message",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [],
         [
           {
@@ -1514,6 +1502,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-07T06:36:10.000Z",
-  "versionId": "55b88f2f-9c2f-4f66-9607-410be48a68e7"
+  "updatedAt": "2025-12-06T11:06:50.000Z",
+  "versionId": "2d2f4107-342e-4550-8580-32320ebdc77f"
 }
