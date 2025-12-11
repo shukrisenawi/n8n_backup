@@ -1,7 +1,62 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "71c46562-ad7a-4782-b079-423f54aa354e",
+    "workflowId": "NX1ljLrWO0NvsFJT",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "c055762a-8fe7-4141-a639-df2372f30060",
+        "typeVersion": 1.1,
+        "name": "When Executed by Another Workflow",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "position": [
+          240,
+          340
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          460,
+          340
+        ],
+        "id": "c047a2c0-1331-44fe-a24d-13fa1ba10abb",
+        "name": "Send a text message",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "71c46562-ad7a-4782-b079-423f54aa354e",
   "connections": {
     "When Executed by Another Workflow": {
       "main": [
