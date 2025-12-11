@@ -1,7 +1,89 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-11-27T14:14:23.304Z",
+    "createdAt": "2025-11-27T14:14:23.304Z",
+    "versionId": "bc7cd783-5b9c-49bc-a50b-b7fdd2741174",
+    "workflowId": "X3z9DFNcd6pygcaS",
+    "nodes": [
+      {
+        "parameters": {},
+        "name": "Error Trigger",
+        "type": "n8n-nodes-base.errorTrigger",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          0
+        ],
+        "id": "c8f6151b-f054-4578-b4c1-5332e8042d24"
+      },
+      {
+        "parameters": {
+          "chatId": "=309812676",
+          "text": "={{ $json.message }}",
+          "additionalFields": {
+            "parse_mode": "HTML"
+          }
+        },
+        "name": "Notify Telegram",
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1,
+        "position": [
+          224,
+          0
+        ],
+        "id": "af9c158e-1b29-40ea-b1f5-3974a0d436fc",
+        "webhookId": "13c616bf-a3ad-4035-998a-1dfe6021b89f",
+        "credentials": {
+          "telegramApi": {
+            "id": "6kuS0JQRPtO3uUtr",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Hello, this workflow is made by khaisa. please visit shop.khaisa.com for more tailored support\n\n// Perfect error access untuk N8N v1.99.1\nconst errorData = $input.first().json;\nconst execution = errorData.execution;\nconst workflow = errorData.workflow;\nconst error = execution.error;\n\nconst message = `🚨 <b>WORKFLOW ERROR</b>\\n\\n` +\n  `📋 Workflow: <b>${workflow.name}</b>\\n` +\n  `❌ Error: <code>${error.message}</code>\\n` +\n  `🔍 Execution: <a href=\"${execution.url}\">${execution.id}</a>\\n`;\n\nreturn {\n  message: message,\n  parse_mode: 'HTML',\n  chat_id: '621412350'\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          0,
+          0
+        ],
+        "id": "219696dd-3161-4dc6-a585-8c7e8f69a4ef",
+        "name": "Prepare Messages"
+      }
+    ],
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Messages": {
+        "main": [
+          [
+            {
+              "node": "Notify Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "bc7cd783-5b9c-49bc-a50b-b7fdd2741174",
   "connections": {
     "Error Trigger": {
       "main": [
