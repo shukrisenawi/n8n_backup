@@ -2,13 +2,92 @@
   "active": false,
   "activeVersion": null,
   "activeVersionId": null,
-  "connections": {},
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-12-10T15:59:27.074Z",
   "id": "fOPqAHMntu1RhQ0y",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "STICKERTERMURAH - Whatsapp Official",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "d6fc22f3-82bc-46b0-9531-cdc5d271236c",
+      "name": "WhatsApp Trigger",
+      "webhookId": "6201bb22-4a7e-43f8-8947-34c43c3ea64d",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "8ifK87RwIwvOn2OL",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -192,
+        -80
+      ],
+      "id": "19b211cc-9dc4-4b40-a516-bc4b85f85bb7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "recipientPhoneNumber": "60195168839",
+        "textBody": "test",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        -80
+      ],
+      "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
+      "name": "Send message",
+      "webhookId": "3843e01f-c424-484c-8d8c-b2f150401153"
+    }
+  ],
   "origin": "n8n",
   "pinData": {},
   "repo": {
@@ -30,6 +109,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-10T15:59:27.000Z",
-  "versionId": "ebc0d53b-5cd2-4faa-8722-30ee59b4b409"
+  "updatedAt": "2025-12-12T03:27:35.679Z",
+  "versionId": "f5e3812c-8110-4917-8ab0-4cf940599b9e"
 }
