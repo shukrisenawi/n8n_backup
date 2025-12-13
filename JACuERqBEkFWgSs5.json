@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "fca930fb-afb9-49c8-9fe8-96268310ea9b",
+    "updatedAt": "2025-12-13T01:19:24.000Z",
+    "createdAt": "2025-12-13T01:19:16.583Z",
+    "versionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -1667,7 +1667,7 @@
       },
       {
         "parameters": {
-          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.message = \"*Pengajian kitab ptg ini ditangguhkan..*\";\n}\n\nreturn $input.all();"
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.message = \"*Pengajian kitab Muhimmah ptg ini ditangguhkan..*\";\n}\n\nreturn $input.all();"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -2748,11 +2748,11 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version 11c9fa27",
+    "description": ""
   },
-  "activeVersionId": "fca930fb-afb9-49c8-9fe8-96268310ea9b",
+  "activeVersionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d",
   "connections": {
     "Aggregate": {
       "main": [
@@ -5365,7 +5365,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.message = \"*Pengajian kitab ptg ini ditangguhkan..*\";\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.message = \"*Pengajian kitab Muhimmah ptg ini ditangguhkan..*\";\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -5560,6 +5560,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2025-11-19T02:16:25.000Z",
-  "versionId": "fca930fb-afb9-49c8-9fe8-96268310ea9b"
+  "updatedAt": "2025-12-13T01:19:16.581Z",
+  "versionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d"
 }
