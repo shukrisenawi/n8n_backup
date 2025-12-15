@@ -16,13 +16,7 @@
     },
     "AI Agent": {
       "main": [
-        [
-          {
-            "node": "Send message",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -73,19 +67,26 @@
     {
       "parameters": {
         "operation": "send",
-        "recipientPhoneNumber": "60195168839",
+        "phoneNumberId": "883084341560195",
+        "recipientPhoneNumber": "601169409606",
         "textBody": "test",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1.1,
       "position": [
-        160,
-        -80
+        -352,
+        304
       ],
       "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
       "name": "Send message",
-      "webhookId": "3843e01f-c424-484c-8d8c-b2f150401153"
+      "webhookId": "3843e01f-c424-484c-8d8c-b2f150401153",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "zg5MiptRKPlRyuk3",
+          "name": "WhatsApp account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -109,6 +110,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-12T03:27:35.679Z",
-  "versionId": "f5e3812c-8110-4917-8ab0-4cf940599b9e"
+  "updatedAt": "2025-12-15T02:11:24.402Z",
+  "versionId": "2bf0bb4d-9c42-46a6-b94e-78614762d637"
 }
