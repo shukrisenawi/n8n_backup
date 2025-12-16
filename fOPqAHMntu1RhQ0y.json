@@ -5,16 +5,10 @@
   "connections": {
     "WhatsApp Trigger": {
       "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
-    "AI Agent": {
+    "Send message": {
       "main": [
         []
       ]
@@ -38,8 +32,8 @@
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
-        -400,
-        -80
+        -640,
+        64
       ],
       "id": "d6fc22f3-82bc-46b0-9531-cdc5d271236c",
       "name": "WhatsApp Trigger",
@@ -53,30 +47,17 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3,
-      "position": [
-        -192,
-        -80
-      ],
-      "id": "19b211cc-9dc4-4b40-a516-bc4b85f85bb7",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
         "operation": "send",
-        "phoneNumberId": "883084341560195",
-        "recipientPhoneNumber": "601169409606",
+        "phoneNumberId": "834873836387138",
+        "recipientPhoneNumber": "60195168839",
         "textBody": "test",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1.1,
       "position": [
-        -352,
-        304
+        -256,
+        16
       ],
       "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
       "name": "Send message",
@@ -87,6 +68,33 @@
           "name": "WhatsApp account"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v22.0/834873836387138/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAVrW2NFPZBcBQBH0D7D8dCgWDQPZCEJ4EbnB2IXbKW3VuzYDWXnTZAW7vWKeHh3SJ26HMtwOBCDSNZBRZB5o36fyMYGrZBx70SZB50OmRsr6IJ4PAgyMvaM1NmBHRS0AU4LCFwVy5FeUa5DYLAO0ywufV0WbynQ9DG4xDenqdxKajeFiViRPmAoIwE4cZA3gOTn94uGvi60XVDvef481p89ZA0IkZCTp5QhPq2fLkwcfJGc3uIFCxBU3JvSM9CZBxLoOKZAfUQTxjpJZBWEauZBXWkjiwVU2HibJuUUf7rAJYds4ZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"60195168839\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"nombor_baru\",\n    \"language\": {\n      \"code\": \"en_US\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -432,
+        288
+      ],
+      "id": "067edac9-fb2c-45de-98b2-fb5ab5751d45",
+      "name": "HTTP Request"
     }
   ],
   "origin": "n8n",
@@ -110,6 +118,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-15T02:11:24.402Z",
-  "versionId": "2bf0bb4d-9c42-46a6-b94e-78614762d637"
+  "updatedAt": "2025-12-16T07:25:13.840Z",
+  "versionId": "e4ea911d-71d9-4800-9118-bb0b8b48702b"
 }
