@@ -5,12 +5,140 @@
   "connections": {
     "WhatsApp Trigger": {
       "main": [
-        []
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Send message": {
       "main": [
         []
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Contact List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contact List": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Start Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -32,8 +160,8 @@
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
-        -640,
-        64
+        -992,
+        208
       ],
       "id": "d6fc22f3-82bc-46b0-9531-cdc5d271236c",
       "name": "WhatsApp Trigger",
@@ -43,7 +171,8 @@
           "id": "8ifK87RwIwvOn2OL",
           "name": "WhatsApp OAuth account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -56,8 +185,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1.1,
       "position": [
-        -256,
-        16
+        -464,
+        400
       ],
       "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
       "name": "Send message",
@@ -78,23 +207,353 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer EAAVrW2NFPZBcBQBH0D7D8dCgWDQPZCEJ4EbnB2IXbKW3VuzYDWXnTZAW7vWKeHh3SJ26HMtwOBCDSNZBRZB5o36fyMYGrZBx70SZB50OmRsr6IJ4PAgyMvaM1NmBHRS0AU4LCFwVy5FeUa5DYLAO0ywufV0WbynQ9DG4xDenqdxKajeFiViRPmAoIwE4cZA3gOTn94uGvi60XVDvef481p89ZA0IkZCTp5QhPq2fLkwcfJGc3uIFCxBU3JvSM9CZBxLoOKZAfUQTxjpJZBWEauZBXWkjiwVU2HibJuUUf7rAJYds4ZD"
+              "value": "Bearer EAAVrW2NFPZBcBQKZBIifnvkGf8sWFHDYtuWlKL7kF2WVCAOoEPgO11hnwidsIsNxcos3rjRZCXqWFL5AlZC83NpsfqFEDl7ZBJtCaUcGhAiE9nD3f8fPZBixiaC7EoQR2FZBZBZB3d512cHk2pRgnZCzUABQjF5RCSikZCuyO3pBZCQBBY0BxhneB52MO9MAYceFd8QcXQZDZD"
             }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"60195168839\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"nombor_baru\",\n    \"language\": {\n      \"code\": \"en_US\"\n    }\n  }\n}",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"ganti_no_baru\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://drive.google.com/uc?export=view&id=1BDZHoyTnw2z9S091246-k--zlOq0gRLa\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -432,
-        288
+        -160,
+        -64
       ],
       "id": "067edac9-fb2c-45de-98b2-fb5ab5751d45",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -976,
+        -80
+      ],
+      "id": "4a9155b5-4253-41d0-b7d4-084c2beff5b4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Sent",
+              "lookupValue": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -784,
+        -80
+      ],
+      "id": "3f743c51-77d1-41c4-85df-7c1c69caba57",
+      "name": "Get Contact List",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "Nama",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -608,
+        -80
+      ],
+      "id": "d10f2e82-949c-45b9-a995-92a448196077",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "858948a9-ef24-4cc5-b79f-0ee26fcb5152",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sent": "1",
+            "row_number": "={{ $('Get Contact List').item.json.row_number }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Hari",
+              "displayName": "Hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Bulan",
+              "displayName": "Bulan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tahun",
+              "displayName": "Tahun",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Sent",
+              "displayName": "Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        -64
+      ],
+      "id": "93e76c14-df6d-42c8-aef2-2930a3af61b5",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        -64
+      ],
+      "id": "66ede9f3-28b9-45a1-9c55-ea2c897ebde4",
+      "name": "Wait",
+      "webhookId": "8970ca28-89fc-4208-97d6-85e2f0dd269a"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "=masjid_session",
+        "chatId": "=60195168839@c.us",
+        "text": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }} :\n\n{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -64,
+        208
+      ],
+      "id": "666b3f2c-5b42-401d-85cf-5524bccbd2ca",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "=masjid_session",
+        "chatId": "=60195168839@c.us",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -592,
+        208
+      ],
+      "id": "42e674f5-6602-4ad0-b8b9-b595be861520",
+      "name": "Start Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -448,
+        208
+      ],
+      "id": "541e11ec-722b-410d-9659-d39a57961ff6",
+      "name": "Wait1",
+      "webhookId": "8f51b741-a42d-4d17-b43c-df0599832b43"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "=masjid_session",
+        "chatId": "=60195168839@c.us",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        -304,
+        208
+      ],
+      "id": "d7619c1a-ed1d-47a7-a6b4-ee95d58f74a5",
+      "name": "Stop Typing",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee7fcfec-4e6c-49db-9dbb-05c4ac839699",
+              "leftValue": "=$('WhatsApp Trigger').item.json.messages[0].text.body",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -800,
+        208
+      ],
+      "id": "40066243-8531-4764-90a0-8de8a1004d62",
+      "name": "If"
     }
   ],
   "origin": "n8n",
@@ -104,7 +563,13 @@
     "name": "n8n_backup"
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timeSavedPerExecution": 1
   },
   "shared": [
     {
@@ -117,7 +582,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-12-16T07:25:13.840Z",
-  "versionId": "e4ea911d-71d9-4800-9118-bb0b8b48702b"
+  "triggerCount": 1,
+  "updatedAt": "2025-12-16T17:43:51.788Z",
+  "versionId": "faa72f6c-2bd6-4cc3-8700-1f38bd08e3a3"
 }
