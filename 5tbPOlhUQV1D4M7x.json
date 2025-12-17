@@ -1,0 +1,123 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Get many contacts": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-16T14:43:10.094Z",
+  "id": "5tbPOlhUQV1D4M7x",
+  "isArchived": false,
+  "meta": null,
+  "name": "Stickertermurah - add contact to excel",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "fields": [
+          "phoneNumbers",
+          "names"
+        ],
+        "options": {
+          "sortOrder": "LAST_MODIFIED_DESCENDING"
+        }
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        -352
+      ],
+      "id": "0d38e8db-c04c-4a1e-84ca-dc25687db355",
+      "name": "Get many contacts",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleContactsOAuth2Api": {
+          "id": "KE5ABsHAMWKUjXVM",
+          "name": "Google Contacts account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -464,
+        -352
+      ],
+      "id": "8609ae26-aafa-4151-881f-1e5c60cae067",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -352
+      ],
+      "id": "c0d3fb3f-275b-4ece-88c7-38a9bb913821",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-16T14:43:10.098Z",
+      "createdAt": "2025-12-16T14:43:10.098Z",
+      "role": "workflow:owner",
+      "workflowId": "5tbPOlhUQV1D4M7x",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-16T16:45:04.498Z",
+  "versionId": "2fe50a14-e348-4ffb-b25b-51bc96000b18"
+}
