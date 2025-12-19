@@ -1,0 +1,638 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Senarai Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Google Contact": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Contact": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Cari Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete rows or columns from sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cari Contact": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-19T04:40:33.000Z",
+  "id": "j1dAIGIIwdh7UVob",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Stickertermurah - Ejus Contact",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -240
+      ],
+      "id": "17c06372-4390-4018-b628-0c281f786170",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -288,
+        -240
+      ],
+      "id": "5c185c46-1b14-4a6f-9e79-25b8071ab9ba",
+      "name": "Senarai Contact",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -384,
+        176
+      ],
+      "id": "bea220be-7db3-43a3-8df6-8937c1182d7b",
+      "name": "Senarai Google Contact",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -176,
+        176
+      ],
+      "id": "9da2baf8-064a-4203-96d7-b5fe1de06cc6",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        112,
+        432
+      ],
+      "id": "42032e79-4f49-4714-bcb1-4dcf5e10881c",
+      "name": "Wait",
+      "webhookId": "94ff33c5-7257-4dd6-b5a7-2dc54a143704"
+    },
+    {
+      "parameters": {
+        "jsCode": "let contact = $input.first().json['No Hp'].toString();\nlet exists = false;\n\n// Check if ada space\nif (contact.includes(\" \")) {\n    contact = contact.replace(/\\s+/g, ''); // buang semua space\n    exists = true;\n}\n\nreturn [\n  {\n    json: {\n      contact,\n      exists\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        192
+      ],
+      "id": "c233077b-d214-4ad6-ae0e-a5191206bd93",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "283c77a3-589e-45ae-90c1-fcd6059e6ca5",
+              "leftValue": "={{ $json.exists }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        240,
+        192
+      ],
+      "id": "3188ede2-9acc-4bc1-9b8e-27f9a1ad2564",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Loop Over Items').item.json.row_number }}",
+            "No Hp": "={{ $json.contact }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -64,
+        432
+      ],
+      "id": "fc66c135-ad0d-434a-83c2-a8faf4f1fef3",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        -240
+      ],
+      "id": "f4e65b83-5104-4c5e-9123-711293ec6b49",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2ec99d8f-c5e0-4fdb-ac88-3707a34b0863",
+              "leftValue": "={{ $json['No Hp'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        544,
+        -224
+      ],
+      "id": "96e8e9ab-5f9a-4aca-a952-ed311f98df76",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Nama",
+              "lookupValue": "={{ $json.Nama }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        176,
+        -224
+      ],
+      "id": "8725248d-4c9c-4cca-96f6-506bcc9aa6cb",
+      "name": "Cari Contact",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Loop Over Items1').item.json.row_number }}",
+            "No Hp": "={{ $('Cari Contact').item.json['No Hp'] }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sent",
+              "displayName": "Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        176,
+        -48
+      ],
+      "id": "53e7c17b-abea-4c8c-b97c-6fecd9d4e009",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "startIndex": "={{ $('Cari Contact').item.json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        -48
+      ],
+      "id": "cda6268e-a5e8-41ae-ae95-45c5771f2335",
+      "name": "Delete rows or columns from sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-19T04:40:33.006Z",
+      "createdAt": "2025-12-19T04:40:33.006Z",
+      "role": "workflow:owner",
+      "workflowId": "j1dAIGIIwdh7UVob",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-19T11:18:38.995Z",
+  "versionId": "8a0d1557-8a8a-4fa1-976f-6bb2d92d14a2"
+}
