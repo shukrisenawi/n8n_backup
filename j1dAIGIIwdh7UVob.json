@@ -5,13 +5,7 @@
   "connections": {
     "When clicking ‘Execute workflow’": {
       "main": [
-        [
-          {
-            "node": "Senarai Contact",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Senarai Google Contact": {
@@ -133,7 +127,7 @@
       "main": [
         [
           {
-            "node": "If1",
+            "node": "If2",
             "type": "main",
             "index": 0
           }
@@ -155,7 +149,132 @@
       "main": [
         [
           {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
             "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Senarai Contact1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet2": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items2",
             "type": "main",
             "index": 0
           }
@@ -176,8 +295,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -496,
-        -240
+        -560,
+        48
       ],
       "id": "17c06372-4390-4018-b628-0c281f786170",
       "name": "When clicking ‘Execute workflow’"
@@ -197,6 +316,14 @@
           "mode": "list",
           "cachedResultName": "Sheet1",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "No Hp",
+              "lookupValue": "={{ \"\" }}"
+            }
+          ]
         },
         "options": {}
       },
@@ -236,8 +363,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -384,
-        176
+        -288,
+        608
       ],
       "id": "bea220be-7db3-43a3-8df6-8937c1182d7b",
       "name": "Senarai Google Contact",
@@ -255,8 +382,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -176,
-        176
+        -80,
+        608
       ],
       "id": "9da2baf8-064a-4203-96d7-b5fe1de06cc6",
       "name": "Loop Over Items"
@@ -268,8 +395,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        112,
-        432
+        208,
+        864
       ],
       "id": "42032e79-4f49-4714-bcb1-4dcf5e10881c",
       "name": "Wait",
@@ -282,8 +409,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        96,
-        192
+        192,
+        624
       ],
       "id": "c233077b-d214-4ad6-ae0e-a5191206bd93",
       "name": "Code in JavaScript"
@@ -316,8 +443,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        240,
-        192
+        336,
+        624
       ],
       "id": "3188ede2-9acc-4bc1-9b8e-27f9a1ad2564",
       "name": "If"
@@ -388,8 +515,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -64,
-        432
+        32,
+        864
       ],
       "id": "fc66c135-ad0d-434a-83c2-a8faf4f1fef3",
       "name": "Update row in sheet",
@@ -425,7 +552,7 @@
           "conditions": [
             {
               "id": "2ec99d8f-c5e0-4fdb-ac88-3707a34b0863",
-              "leftValue": "={{ $json['No Hp'] }}",
+              "leftValue": "={{ $('Loop Over Items1').item.json['No Hp'] }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -442,8 +569,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        544,
-        -224
+        1088,
+        -240
       ],
       "id": "96e8e9ab-5f9a-4aca-a952-ed311f98df76",
       "name": "If1"
@@ -482,6 +609,7 @@
       ],
       "id": "8725248d-4c9c-4cca-96f6-506bcc9aa6cb",
       "name": "Cari Contact",
+      "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "U0ZMoxWRU8t5JEF5",
@@ -509,11 +637,11 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "row_number": "={{ $('Loop Over Items1').item.json.row_number }}",
+            "Nama": "={{ $('Loop Over Items1').item.json.Nama }}",
             "No Hp": "={{ $('Cari Contact').item.json['No Hp'] }}"
           },
           "matchingColumns": [
-            "row_number"
+            "Nama"
           ],
           "schema": [
             {
@@ -524,7 +652,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": true
+              "removed": false
             },
             {
               "id": "No Hp",
@@ -533,7 +661,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Sent",
@@ -554,7 +683,7 @@
               "type": "number",
               "canBeUsedToMatch": true,
               "readOnly": true,
-              "removed": false
+              "removed": true
             }
           ],
           "attemptToConvertTypes": false,
@@ -565,8 +694,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        176,
-        -48
+        384,
+        0
       ],
       "id": "53e7c17b-abea-4c8c-b97c-6fecd9d4e009",
       "name": "Update row in sheet1",
@@ -599,8 +728,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        384,
-        -48
+        1008,
+        0
       ],
       "id": "cda6268e-a5e8-41ae-ae95-45c5771f2335",
       "name": "Delete rows or columns from sheet",
@@ -609,7 +738,301 @@
           "id": "U0ZMoxWRU8t5JEF5",
           "name": "Google Sheets account"
         }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "0ae0d209-beb0-4b6b-b605-4f3e119650c3",
+      "name": "Wait1",
+      "webhookId": "1c1eeed2-8494-4b66-8ef4-f7d109373b12"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2bfdc740-11b8-4e7b-a027-cf9fc459ccf1",
+              "leftValue": "={{ $json['No Hp'] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        400,
+        -224
+      ],
+      "id": "4f1b83b3-a83f-4af4-9753-c8d3b145ba0c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        -176
+      ],
+      "id": "30bf0680-8759-4223-9a48-4356dac2e1dc",
+      "name": "Delete rows or columns from sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
       }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Nama",
+              "lookupValue": "={{ $('Loop Over Items1').item.json.Nama }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        -176
+      ],
+      "id": "ffd62fdc-4c91-4e44-aa1c-200cba4adfd3",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -240,
+        256
+      ],
+      "id": "c9feb27d-3c89-426b-a2b8-3c49cfd74700",
+      "name": "Senarai Contact1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -32,
+        256
+      ],
+      "id": "f604a289-fcb9-4a9d-ab26-928260951e72",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        704,
+        272
+      ],
+      "id": "516206ae-2dd2-4ac8-b530-3c23688fe6bf",
+      "name": "Delete rows or columns from sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8",
+          "mode": "list",
+          "cachedResultName": "Senarai Customer Sehingga 19/12/2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QmtKDj5-pt0xz80RBxeQ3Zc1d7xxJSY5mIdvuZ3-Pi8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Nama",
+              "lookupValue": "={{ $json.Nama }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        272
+      ],
+      "id": "f9eb7bdb-d9a0-4e9d-bb96-29c88fa16761",
+      "name": "Get row(s) in sheet1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        912,
+        272
+      ],
+      "id": "d74f9d4f-f3e2-4023-a9ae-b69110ee956f",
+      "name": "Wait2",
+      "webhookId": "cb640ad5-0aef-40e0-a208-a5c51668dd50"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fb2a005e-790f-4f3b-9d43-fae25db5d673",
+              "leftValue": "={{ $json.row_number }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        272
+      ],
+      "id": "3f3a72eb-c588-4ef5-a472-ff3b0aebd192",
+      "name": "If3"
     }
   ],
   "origin": "n8n",
@@ -633,6 +1056,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-19T11:18:38.995Z",
-  "versionId": "8a0d1557-8a8a-4fa1-976f-6bb2d92d14a2"
+  "updatedAt": "2025-12-19T15:12:33.905Z",
+  "versionId": "bae1d1f0-dec7-4725-871a-4ef72786f32e"
 }
