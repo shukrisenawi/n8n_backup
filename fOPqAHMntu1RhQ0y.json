@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-19T16:50:14.000Z",
-    "createdAt": "2025-12-19T16:50:08.065Z",
-    "versionId": "45bcdf95-7bfc-4914-b722-16510c94ecf1",
+    "updatedAt": "2025-12-21T09:48:28.000Z",
+    "createdAt": "2025-12-21T09:48:22.805Z",
+    "versionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -34,7 +34,7 @@
           "operation": "send",
           "phoneNumberId": "885063301360713",
           "recipientPhoneNumber": "={{ $json.messages[0].from }}",
-          "textBody": "Maaf no hp ini hanya digunakan oleh sistem..\n\nNo hp admin stickertermurah ialah : 011-6940 9606\n\nKlik link di bawah untuk mesej terus kepada admin:\nhttps://wa.me/601169409606\n\nTerima kasih.",
+          "textBody": "Maaf no hp ini hanya digunakan oleh sistem..\n\nNo hp admin stickertermurah ialah : 011-6940 9606\n\nJika anda ingin membuat tempahan sila gunakan kod : \n\n>> FREEPOS\n\nuntuk dapatkan penghantaran percuma. Sah sehingga 1/2/2026\n\nKlik link di bawah untuk mesej terus kepada admin:\nhttps://wa.me/601169409606\n\nTerima kasih.",
           "additionalFields": {}
         },
         "type": "n8n-nodes-base.whatsApp",
@@ -68,7 +68,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"iklan_no_whatsapp\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://drive.google.com/uc?export=view&id=1BDZHoyTnw2z9S091246-k--zlOq0gRLa\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"iklan_no_whatsapp\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://drive.google.com/uc?export=view&id=1BDZHoyTnw2z9S091246-k--zlOq0gRLa\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -181,10 +181,10 @@
             "mappingMode": "defineBelow",
             "value": {
               "Sent": "1",
-              "row_number": "={{ $('Get Contact List').item.json.row_number }}"
+              "Nama": "={{ $('Loop Over Items').item.json.json.Nama }}"
             },
             "matchingColumns": [
-              "row_number"
+              "Nama"
             ],
             "schema": [
               {
@@ -195,7 +195,7 @@
                 "display": true,
                 "type": "string",
                 "canBeUsedToMatch": true,
-                "removed": true
+                "removed": false
               },
               {
                 "id": "Hari",
@@ -255,7 +255,7 @@
                 "type": "number",
                 "canBeUsedToMatch": true,
                 "readOnly": true,
-                "removed": false
+                "removed": true
               }
             ],
             "attemptToConvertTypes": false,
@@ -773,10 +773,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 45bcdf95",
+    "name": "Version a3cbc85a",
     "description": ""
   },
-  "activeVersionId": "45bcdf95-7bfc-4914-b722-16510c94ecf1",
+  "activeVersionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -956,7 +956,7 @@
         "operation": "send",
         "phoneNumberId": "885063301360713",
         "recipientPhoneNumber": "={{ $json.messages[0].from }}",
-        "textBody": "Maaf no hp ini hanya digunakan oleh sistem..\n\nNo hp admin stickertermurah ialah : 011-6940 9606\n\nKlik link di bawah untuk mesej terus kepada admin:\nhttps://wa.me/601169409606\n\nTerima kasih.",
+        "textBody": "Maaf no hp ini hanya digunakan oleh sistem..\n\nNo hp admin stickertermurah ialah : 011-6940 9606\n\nJika anda ingin membuat tempahan sila gunakan kod : \n\n>> FREEPOS\n\nuntuk dapatkan penghantaran percuma. Sah sehingga 1/2/2026\n\nKlik link di bawah untuk mesej terus kepada admin:\nhttps://wa.me/601169409606\n\nTerima kasih.",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
@@ -1033,7 +1033,7 @@
           "values": [
             {
               "lookupColumn": "Sent",
-              "lookupValue": "3"
+              "lookupValue": "0"
             }
           ]
         },
@@ -1103,10 +1103,10 @@
           "mappingMode": "defineBelow",
           "value": {
             "Sent": "1",
-            "row_number": "={{ $('Get Contact List').item.json.row_number }}"
+            "Nama": "={{ $('Loop Over Items').item.json.json.Nama }}"
           },
           "matchingColumns": [
-            "row_number"
+            "Nama"
           ],
           "schema": [
             {
@@ -1117,7 +1117,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": true
+              "removed": false
             },
             {
               "id": "Hari",
@@ -1177,7 +1177,7 @@
               "type": "number",
               "canBeUsedToMatch": true,
               "readOnly": true,
-              "removed": false
+              "removed": true
             }
           ],
           "attemptToConvertTypes": false,
@@ -1578,6 +1578,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-19T16:50:54.974Z",
-  "versionId": "f7271c93-47c7-41f4-a21c-bf1738c1a1e0"
+  "updatedAt": "2025-12-21T09:48:22.804Z",
+  "versionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d"
 }
