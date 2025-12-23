@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-21T09:48:28.000Z",
-    "createdAt": "2025-12-21T09:48:22.805Z",
-    "versionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d",
+    "updatedAt": "2025-12-23T00:56:10.000Z",
+    "createdAt": "2025-12-23T00:56:04.218Z",
+    "versionId": "af9492e4-101c-4c8d-842c-c61d5b58b41a",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -68,7 +68,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"iklan_no_whatsapp\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://drive.google.com/uc?export=view&id=1BDZHoyTnw2z9S091246-k--zlOq0gRLa\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"Puan Aisyah\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"tempahan sticker\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"dipos hari ini\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada perubahan alamat\"\n          }\n        ]\n      }\n    ]\n  }\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -773,10 +773,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version a3cbc85a",
+    "name": "Version af9492e4",
     "description": ""
   },
-  "activeVersionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d",
+  "activeVersionId": "af9492e4-101c-4c8d-842c-c61d5b58b41a",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -990,7 +990,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"iklan_no_whatsapp\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://drive.google.com/uc?export=view&id=1BDZHoyTnw2z9S091246-k--zlOq0gRLa\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*.\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada perubahan alamat\"\n          }\n        ]\n      }\n    ]\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1578,6 +1578,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-21T09:48:22.804Z",
-  "versionId": "a3cbc85a-8b41-496d-a1ff-7e754bdf6b5d"
+  "updatedAt": "2025-12-23T03:59:37.212Z",
+  "versionId": "284b84cb-9af5-48b2-a3a2-6202cec038c9"
 }
