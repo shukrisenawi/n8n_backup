@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-24T07:34:05.000Z",
-    "createdAt": "2025-12-24T07:33:58.964Z",
-    "versionId": "47f9f16e-e225-4150-9609-92d3d0151183",
+    "updatedAt": "2025-12-25T10:16:16.000Z",
+    "createdAt": "2025-12-25T10:16:08.801Z",
+    "versionId": "87432015-686c-4146-a4dd-347d68e0ef66",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -68,7 +68,7 @@
           },
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*.\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada perubahan alamat\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"😄\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* _(bukan no whatsapp ini)_, no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*. Sebagai tanda penghargaan kami, gunakan kod kupon *FREEPOS* untuk dapatkan penghantaran percuma untuk setiap pembelian sticker. Sah sehingga 1/2/2026\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada sebarang pertanyaan boleh\"\n          }\n        ]\n      }\n    ]\n  }\n}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
@@ -872,10 +872,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 47f9f16e",
+    "name": "Version 87432015",
     "description": ""
   },
-  "activeVersionId": "47f9f16e-e225-4150-9609-92d3d0151183",
+  "activeVersionId": "87432015-686c-4146-a4dd-347d68e0ef66",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -1111,7 +1111,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*.\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada perubahan alamat\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"makluman_2\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"😄\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* _(bukan no whatsapp ini)_, no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*. Sebagai tanda penghargaan kami, gunakan kod kupon *FREEPOS* untuk dapatkan penghantaran percuma untuk setiap pembelian sticker. Sah sehingga 1/2/2026\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada sebarang pertanyaan boleh\"\n          }\n        ]\n      }\n    ]\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1322,9 +1322,7 @@
       }
     },
     {
-      "parameters": {
-        "amount": 2
-      },
+      "parameters": {},
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
@@ -1646,7 +1644,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const limit = 100;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
+        "jsCode": "const limit = 500;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1776,6 +1774,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-24T07:33:58.963Z",
-  "versionId": "47f9f16e-e225-4150-9609-92d3d0151183"
+  "updatedAt": "2025-12-25T11:03:35.762Z",
+  "versionId": "74496ff2-2fc9-4ef9-b914-f191488353dd"
 }
