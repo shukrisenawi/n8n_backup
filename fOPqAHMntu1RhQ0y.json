@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-25T10:16:16.000Z",
-    "createdAt": "2025-12-25T10:16:08.801Z",
-    "versionId": "87432015-686c-4146-a4dd-347d68e0ef66",
+    "updatedAt": "2025-12-25T14:40:58.000Z",
+    "createdAt": "2025-12-25T14:40:52.783Z",
+    "versionId": "385f8318-5d37-41ee-a354-a532cf8b4945",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -149,6 +149,7 @@
       },
       {
         "parameters": {
+          "batchSize": 20,
           "options": {}
         },
         "type": "n8n-nodes-base.splitInBatches",
@@ -266,7 +267,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          208,
+          224,
           -64
         ],
         "id": "93e76c14-df6d-42c8-aef2-2930a3af61b5",
@@ -280,7 +281,7 @@
       },
       {
         "parameters": {
-          "amount": 2
+          "amount": 60
         },
         "type": "n8n-nodes-base.wait",
         "typeVersion": 1.1,
@@ -603,12 +604,12 @@
       },
       {
         "parameters": {
-          "jsCode": "const limit = 100;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
+          "jsCode": "const limit = 500;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -608,
+          -592,
           -80
         ],
         "id": "1a6c42de-5753-4f3e-9fa5-01979394470d",
@@ -630,64 +631,11 @@
       },
       {
         "parameters": {
-          "dataTableId": {
-            "__rl": true,
-            "value": "HgStRf1w4KXqNvpE",
-            "mode": "list",
-            "cachedResultName": "Stickertermurah - Mesej Reply",
-            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/HgStRf1w4KXqNvpE"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "no_hp": "={{ $json.metadata.display_phone_number }}",
-              "mesej": "={{ $('WhatsApp Trigger').item.json.messages[0].text.body }}"
-            },
-            "matchingColumns": [],
-            "schema": [
-              {
-                "id": "no_hp",
-                "displayName": "no_hp",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "readOnly": false,
-                "removed": false
-              },
-              {
-                "id": "mesej",
-                "displayName": "mesej",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "readOnly": false,
-                "removed": false
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1,
-        "position": [
-          -432,
-          192
-        ],
-        "id": "264b2fd3-73cc-409a-abce-de7b277aba4e",
-        "name": "Insert row",
-        "disabled": true
-      },
-      {
-        "parameters": {
           "resource": "Chatting",
           "operation": "Send Text",
           "session": "=masjid_session",
-          "chatId": "={{ $json.metadata.display_phone_number }}",
-          "text": "={{ $json.metadata.display_phone_number }}\n{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
+          "chatId": "=60195168839",
+          "text": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}\n{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
           "requestOptions": {}
         },
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
@@ -848,7 +796,7 @@
           ]
         ]
       },
-      "Insert row": {
+      "Send a text message": {
         "main": [
           [
             {
@@ -858,24 +806,13 @@
             }
           ]
         ]
-      },
-      "Send a text message": {
-        "main": [
-          [
-            {
-              "node": "Insert row",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 87432015",
+    "name": "Version 385f8318",
     "description": ""
   },
-  "activeVersionId": "87432015-686c-4146-a4dd-347d68e0ef66",
+  "activeVersionId": "385f8318-5d37-41ee-a354-a532cf8b4945",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -1018,22 +955,11 @@
         ]
       ]
     },
-    "Insert row": {
-      "main": [
-        [
-          {
-            "node": "Send message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Send a text message": {
       "main": [
         [
           {
-            "node": "Insert row",
+            "node": "Send message",
             "type": "main",
             "index": 0
           }
@@ -1192,6 +1118,7 @@
     },
     {
       "parameters": {
+        "batchSize": 20,
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
@@ -1309,7 +1236,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        208,
+        224,
         -64
       ],
       "id": "93e76c14-df6d-42c8-aef2-2930a3af61b5",
@@ -1322,7 +1249,9 @@
       }
     },
     {
-      "parameters": {},
+      "parameters": {
+        "amount": 60
+      },
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
@@ -1649,7 +1578,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -608,
+        -592,
         -80
       ],
       "id": "1a6c42de-5753-4f3e-9fa5-01979394470d",
@@ -1671,64 +1600,11 @@
     },
     {
       "parameters": {
-        "dataTableId": {
-          "__rl": true,
-          "value": "HgStRf1w4KXqNvpE",
-          "mode": "list",
-          "cachedResultName": "Stickertermurah - Mesej Reply",
-          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/HgStRf1w4KXqNvpE"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "no_hp": "={{ $json.metadata.display_phone_number }}",
-            "mesej": "={{ $('WhatsApp Trigger').item.json.messages[0].text.body }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "no_hp",
-              "displayName": "no_hp",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "mesej",
-              "displayName": "mesej",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.dataTable",
-      "typeVersion": 1,
-      "position": [
-        -432,
-        192
-      ],
-      "id": "264b2fd3-73cc-409a-abce-de7b277aba4e",
-      "name": "Insert row",
-      "disabled": true
-    },
-    {
-      "parameters": {
         "resource": "Chatting",
         "operation": "Send Text",
         "session": "=masjid_session",
-        "chatId": "={{ $json.metadata.display_phone_number }}",
-        "text": "={{ $json.metadata.display_phone_number }}\n{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
+        "chatId": "=60195168839",
+        "text": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}\n{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
@@ -1774,6 +1650,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-25T11:03:35.762Z",
-  "versionId": "74496ff2-2fc9-4ef9-b914-f191488353dd"
+  "updatedAt": "2025-12-25T14:40:52.782Z",
+  "versionId": "385f8318-5d37-41ee-a354-a532cf8b4945"
 }
