@@ -1,0 +1,583 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Check phone number is registered in WhatsApp.": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contact List": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "LIMIT SENT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LIMIT SENT": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Contact List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Check phone number is registered in WhatsApp.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-26T15:12:19.933Z",
+  "id": "lO2v1YhstXQhSigl",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Stickertermurah - check phone valid",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "Contacts",
+        "operation": "Check Exists",
+        "session": "masjid_session",
+        "phone": "={{ $json.json['No Hp'] }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        624,
+        112
+      ],
+      "id": "84954e55-9340-4f79-95f4-5c9f2361df4b",
+      "name": "Check phone number is registered in WhatsApp.",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ead38773-30a4-4830-950f-1b0ab155f741",
+              "leftValue": "={{ $json.numberExists }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        320
+      ],
+      "id": "b59b09df-7771-4e9c-b04b-71a26d03a862",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        96
+      ],
+      "id": "d318dc59-f834-437f-b3af-f01c3a953477",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Active",
+              "lookupValue": "={{ \"\" }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -480,
+        96
+      ],
+      "id": "cabe9e30-faf2-4590-aee7-8b68888a2119",
+      "name": "Get Contact List",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "Nama",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        96
+      ],
+      "id": "d09bbf6e-4297-4a50-8c49-90c5d22ddaf1",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "jsCode": "const limit = 2000000;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        96
+      ],
+      "id": "8768170f-07c2-4c6e-8564-8574d52b25b4",
+      "name": "LIMIT SENT"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        64,
+        96
+      ],
+      "id": "dae69dd3-bfdc-478b-9aa3-a25eb494eeac",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        352,
+        96
+      ],
+      "id": "41ebe9bb-571d-4a5e-8c69-8ffafcaa1f91",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 300
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        512
+      ],
+      "id": "1df0fc7d-19e1-448b-84e3-2a38143ba352",
+      "name": "Wait",
+      "webhookId": "9b12099e-5a42-4fcc-a6e7-17ec950a06d0"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Active": "1",
+            "No Hp": "={{ $('Loop Over Items').item.json.json['No Hp'] }}"
+          },
+          "matchingColumns": [
+            "No Hp"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sent",
+              "displayName": "Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Deliver",
+              "displayName": "Deliver",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Read",
+              "displayName": "Read",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Active",
+              "displayName": "Active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        688,
+        320
+      ],
+      "id": "06a74176-782b-4814-bd26-5a799a9cfc06",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Active": "0",
+            "No Hp": "={{ $('Loop Over Items').item.json.json['No Hp'] }}"
+          },
+          "matchingColumns": [
+            "No Hp"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sent",
+              "displayName": "Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Deliver",
+              "displayName": "Deliver",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Read",
+              "displayName": "Read",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Active",
+              "displayName": "Active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        688,
+        464
+      ],
+      "id": "1153e190-3763-46f6-aab8-def00d0571e1",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-26T15:12:19.937Z",
+      "createdAt": "2025-12-26T15:12:19.937Z",
+      "role": "workflow:owner",
+      "workflowId": "lO2v1YhstXQhSigl",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-26T15:35:18.427Z",
+  "versionId": "0df5a46b-6f36-4e3e-a201-fe4711c864d5"
+}
