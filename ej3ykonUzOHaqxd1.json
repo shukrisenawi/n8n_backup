@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "f0b8aab9-a8ab-45bf-9adc-32acd68ae1fb",
+    "updatedAt": "2025-12-27T02:27:53.000Z",
+    "createdAt": "2025-12-27T02:27:49.890Z",
+    "versionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7",
     "workflowId": "ej3ykonUzOHaqxd1",
     "nodes": [
       {
@@ -236,6 +236,30 @@
                   },
                   "conditions": [
                     {
+                      "id": "7d8fa9a7-ae95-41ea-afa4-3efe867bb85a",
+                      "leftValue": "={{ $json.message.text }}",
+                      "rightValue": "/send",
+                      "operator": {
+                        "type": "string",
+                        "operation": "startsWith"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "Hantar Bulk Whatsapp"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "loose",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
                       "id": "2714d25c-d63b-497e-b5fb-5056555ee103",
                       "leftValue": "={{ $json.message.text }}",
                       "rightValue": "/help",
@@ -260,7 +284,7 @@
         "typeVersion": 3.3,
         "position": [
           -672,
-          928
+          912
         ],
         "id": "cad3fdf5-2ea2-4159-86cb-1d91d8fc08f6",
         "name": "Switch"
@@ -497,7 +521,7 @@
         "typeVersion": 1.2,
         "position": [
           112,
-          2016
+          2176
         ],
         "id": "98d053a1-1688-444a-9ce9-ca06af4ec842",
         "name": "Send a text message1",
@@ -511,13 +535,13 @@
       },
       {
         "parameters": {
-          "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto\n- */upload_status* : muatnaik gambar status stickertermurah\n`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
+          "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto\n- */upload_status* : muatnaik gambar status stickertermurah\n- */send* : hantar 1 mesej\n- */send <kuantiti>* : hantar ikut jumlah kuantiti\n`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
           -96,
-          2016
+          2176
         ],
         "id": "d1727211-1129-4dea-91c5-558b87505a6c",
         "name": "Help"
@@ -1172,6 +1196,412 @@
             "name": "Telegram account"
           }
         }
+      },
+      {
+        "parameters": {
+          "jsCode": "const textRemove = '/send ';\nlet text = $input.first().json.message.text.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -96,
+          1968
+        ],
+        "id": "41a3bf2e-a2cc-4298-982a-e55f2dc1d96e",
+        "name": "Remove /send"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://graph.facebook.com/v22.0/885063301360713/messages",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer EAAVrW2NFPZBcBQLGGUrdLn9hFhUJ3ycXG9km1uLNWY0ZAjOorqHhjJrNHgCaiM3RrBoVW2TzfImYyNMU4gCNblg9NAqBpOp7H1BZCuTABbpQldYz0s4WZCTPUXvU9Bho71RQKM1lpYMeHhOJ7zBmuuANHlHkiT7ZBBaljyGZCUYLNZAkDVhWUTZBIAxU1NgPc5eIIwZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"{{$('Var Send').first().json.template}}\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"😄\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* _(bukan no whatsapp ini)_, no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*. Sebagai tanda penghargaan kami, gunakan kod kupon *FREEPOS* untuk dapatkan penghantaran percuma untuk setiap pembelian sticker. Sah sehingga 1/2/2026\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada sebarang pertanyaan boleh\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1328,
+          1984
+        ],
+        "id": "4aea31b2-c5a6-4095-b26e-b23045da4aa5",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Sent",
+                "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          400,
+          1968
+        ],
+        "id": "4d5e65c1-49ad-4040-b8b0-ebb22da83cca",
+        "name": "Get Contact List",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "compare": "selectedFields",
+          "fieldsToCompare": "['No Hp']",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.removeDuplicates",
+        "typeVersion": 2,
+        "position": [
+          560,
+          1968
+        ],
+        "id": "42868f6a-f6be-4eca-9c6a-bda2c173940a",
+        "name": "Remove Duplicates"
+      },
+      {
+        "parameters": {
+          "batchSize": 20,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          1104,
+          1968
+        ],
+        "id": "a4220d3f-cf29-4136-be32-4d2f01867c94",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Sent": "1",
+              "No Hp": "={{ $('Loop Over Items').item.json.json['No Hp'] }}"
+            },
+            "matchingColumns": [
+              "No Hp"
+            ],
+            "schema": [
+              {
+                "id": "Nama",
+                "displayName": "Nama",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "No Hp",
+                "displayName": "No Hp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Sent",
+                "displayName": "Sent",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Deliver",
+                "displayName": "Deliver",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Read",
+                "displayName": "Read",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Active",
+                "displayName": "Active",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1504,
+          1984
+        ],
+        "id": "460b1283-a3bf-403d-b616-f860d0299b3b",
+        "name": "Update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": "={{  $('Var Send').first().json.wait }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1664,
+          1984
+        ],
+        "id": "6c40d91e-43fc-46ff-8e81-47a8de4eb36b",
+        "name": "Wait",
+        "webhookId": "8970ca28-89fc-4208-97d6-85e2f0dd269a"
+      },
+      {
+        "parameters": {
+          "jsCode": "const limit = $('Var Send').first().json.quantity;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          752,
+          1968
+        ],
+        "id": "aa61e080-0e6b-4010-82c6-edccb8878e5e",
+        "name": "LIMIT SENT"
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "data",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          912,
+          1968
+        ],
+        "id": "b65e49d2-2266-4b34-ba65-e96f21e9b31d",
+        "name": "Split Out"
+      },
+      {
+        "parameters": {
+          "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 60;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          64,
+          1968
+        ],
+        "id": "2f2405c2-d2a0-4d12-a92e-c90cab0705ec",
+        "name": "Var Send"
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('Var').first().json.id_telegram }}",
+          "text": "={{ $('Var Send').first().json.quantity }} mesej telah berjaya dihantar. Baris mula {{ $('Baris Mula').first().json.row_number }}, baris seterusnya {{ $json.row_number }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          1744,
+          1808
+        ],
+        "id": "a3795c03-cf28-4f49-924c-989c3801b56c",
+        "name": "Send a text message5",
+        "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+        "credentials": {
+          "telegramApi": {
+            "id": "6kuS0JQRPtO3uUtr",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Sent",
+                "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+              }
+            ]
+          },
+          "options": {
+            "returnFirstMatch": true
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          240,
+          1968
+        ],
+        "id": "d64bdd33-d18d-4de9-86e4-647858f3dc85",
+        "name": "Baris Mula",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Sent",
+                "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+              }
+            ]
+          },
+          "options": {
+            "returnFirstMatch": true
+          }
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1552,
+          1808
+        ],
+        "id": "f03de690-c49c-48b1-b04a-2cafa60584d0",
+        "name": "Baris Akhir",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1376,
+          1808
+        ],
+        "id": "5146e3e1-bfa0-4224-8412-9d6af29d3e34",
+        "name": "Aggregate"
       }
     ],
     "connections": {
@@ -1236,6 +1666,13 @@
           [
             {
               "node": "Remove /upload_status",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Remove /send",
               "type": "main",
               "index": 0
             }
@@ -1460,13 +1897,163 @@
             }
           ]
         ]
+      },
+      "Remove /send": {
+        "main": [
+          [
+            {
+              "node": "Var Send",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Contact List": {
+        "main": [
+          [
+            {
+              "node": "Remove Duplicates",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Remove Duplicates": {
+        "main": [
+          [
+            {
+              "node": "LIMIT SENT",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [
+            {
+              "node": "Aggregate",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update row in sheet": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LIMIT SENT": {
+        "main": [
+          [
+            {
+              "node": "Split Out",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Var Send": {
+        "main": [
+          [
+            {
+              "node": "Baris Mula",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Baris Mula": {
+        "main": [
+          [
+            {
+              "node": "Get Contact List",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Baris Akhir": {
+        "main": [
+          [
+            {
+              "node": "Send a text message5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate": {
+        "main": [
+          [
+            {
+              "node": "Baris Akhir",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version f427f6ab",
+    "description": ""
   },
-  "activeVersionId": "f0b8aab9-a8ab-45bf-9adc-32acd68ae1fb",
+  "activeVersionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7",
   "connections": {
     "Switch": {
       "main": [
@@ -1529,6 +2116,13 @@
         [
           {
             "node": "Remove /upload_status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove /send",
             "type": "main",
             "index": 0
           }
@@ -1748,6 +2342,156 @@
         [
           {
             "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove /send": {
+      "main": [
+        [
+          {
+            "node": "Var Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contact List": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "LIMIT SENT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LIMIT SENT": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Var Send": {
+      "main": [
+        [
+          {
+            "node": "Baris Mula",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baris Mula": {
+      "main": [
+        [
+          {
+            "node": "Get Contact List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baris Akhir": {
+      "main": [
+        [
+          {
+            "node": "Send a text message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Baris Akhir",
             "type": "main",
             "index": 0
           }
@@ -1993,6 +2737,30 @@
                 },
                 "conditions": [
                   {
+                    "id": "7d8fa9a7-ae95-41ea-afa4-3efe867bb85a",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/send",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Hantar Bulk Whatsapp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
                     "id": "2714d25c-d63b-497e-b5fb-5056555ee103",
                     "leftValue": "={{ $json.message.text }}",
                     "rightValue": "/help",
@@ -2017,7 +2785,7 @@
       "typeVersion": 3.3,
       "position": [
         -672,
-        928
+        912
       ],
       "id": "cad3fdf5-2ea2-4159-86cb-1d91d8fc08f6",
       "name": "Switch"
@@ -2254,7 +3022,7 @@
       "typeVersion": 1.2,
       "position": [
         112,
-        2016
+        2176
       ],
       "id": "98d053a1-1688-444a-9ce9-ca06af4ec842",
       "name": "Send a text message1",
@@ -2268,13 +3036,13 @@
     },
     {
       "parameters": {
-        "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto\n- */upload_status* : muatnaik gambar status stickertermurah\n`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
+        "jsCode": "const message = `\n- *<muat naik gambar> /cula* : memuat naik gambar cula\n- */cula reset* : memadam semua cula\n- */gambar <prompt>* : mencipta gambar\n- */cari_gambar <text carian>* : mencari gambar\n- */rate RM<nilai ringgit> <currency>* : tukar RM kepada Matawang lain\n- */rate <currency><nilai>* : tukar Matawang lain kepada RM\n- *<muat naik banner> /email_banner <tajuk banner>* : email gambar banner kepada kedai banner\n- */email_label <email>* : set label email\n- */email_spam <email>* : padam email auto\n- */upload_status* : muatnaik gambar status stickertermurah\n- */send* : hantar 1 mesej\n- */send <kuantiti>* : hantar ikut jumlah kuantiti\n`;\n  \n\nreturn [{\n  json:{\n    message\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         -96,
-        2016
+        2176
       ],
       "id": "d1727211-1129-4dea-91c5-558b87505a6c",
       "name": "Help"
@@ -2929,6 +3697,412 @@
           "name": "Telegram account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "const textRemove = '/send ';\nlet text = $input.first().json.message.text.replace(textRemove,'');\n\nreturn [{\n  json:{\n    text\n  }\n}]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        1968
+      ],
+      "id": "41a3bf2e-a2cc-4298-982a-e55f2dc1d96e",
+      "name": "Remove /send"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v22.0/885063301360713/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAVrW2NFPZBcBQLGGUrdLn9hFhUJ3ycXG9km1uLNWY0ZAjOorqHhjJrNHgCaiM3RrBoVW2TzfImYyNMU4gCNblg9NAqBpOp7H1BZCuTABbpQldYz0s4WZCTPUXvU9Bho71RQKM1lpYMeHhOJ7zBmuuANHlHkiT7ZBBaljyGZCUYLNZAkDVhWUTZBIAxU1NgPc5eIIwZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.json['No Hp'] }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"{{$('Var Send').first().json.template}}\",\n    \"language\": {\n      \"code\": \"en_US\"\n    },\n    \"components\": [\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"😄\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"no whatsapp baru kami ialah *011-69409606* _(bukan no whatsapp ini)_, no whatsapp lama kami tidak digunakan lg. Jika ada sebarang perubahan kami\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"beritahu di instagram kami *@stickertermurah*. Sebagai tanda penghargaan kami, gunakan kod kupon *FREEPOS* untuk dapatkan penghantaran percuma untuk setiap pembelian sticker. Sah sehingga 1/2/2026\"\n          },\n          {\n            \"type\": \"text\",\n            \"text\": \"ada sebarang pertanyaan boleh\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1328,
+        1984
+      ],
+      "id": "4aea31b2-c5a6-4095-b26e-b23045da4aa5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Sent",
+              "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        400,
+        1968
+      ],
+      "id": "4d5e65c1-49ad-4040-b8b0-ebb22da83cca",
+      "name": "Get Contact List",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "['No Hp']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        560,
+        1968
+      ],
+      "id": "42868f6a-f6be-4eca-9c6a-bda2c173940a",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "batchSize": 20,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1104,
+        1968
+      ],
+      "id": "a4220d3f-cf29-4136-be32-4d2f01867c94",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sent": "1",
+            "No Hp": "={{ $('Loop Over Items').item.json.json['No Hp'] }}"
+          },
+          "matchingColumns": [
+            "No Hp"
+          ],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No Hp",
+              "displayName": "No Hp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sent",
+              "displayName": "Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deliver",
+              "displayName": "Deliver",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Read",
+              "displayName": "Read",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Active",
+              "displayName": "Active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1504,
+        1984
+      ],
+      "id": "460b1283-a3bf-403d-b616-f860d0299b3b",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{  $('Var Send').first().json.wait }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1664,
+        1984
+      ],
+      "id": "6c40d91e-43fc-46ff-8e81-47a8de4eb36b",
+      "name": "Wait",
+      "webhookId": "8970ca28-89fc-4208-97d6-85e2f0dd269a"
+    },
+    {
+      "parameters": {
+        "jsCode": "const limit = $('Var Send').first().json.quantity;\nconst data = $('Get Contact List').all().slice(0, limit);\n\nreturn [\n  {\n    json:{\n      data\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        1968
+      ],
+      "id": "aa61e080-0e6b-4010-82c6-edccb8878e5e",
+      "name": "LIMIT SENT"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        912,
+        1968
+      ],
+      "id": "b65e49d2-2266-4b34-ba65-e96f21e9b31d",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 60;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        64,
+        1968
+      ],
+      "id": "2f2405c2-d2a0-4d12-a92e-c90cab0705ec",
+      "name": "Var Send"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Var').first().json.id_telegram }}",
+        "text": "={{ $('Var Send').first().json.quantity }} mesej telah berjaya dihantar. Baris mula {{ $('Baris Mula').first().json.row_number }}, baris seterusnya {{ $json.row_number }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1744,
+        1808
+      ],
+      "id": "a3795c03-cf28-4f49-924c-989c3801b56c",
+      "name": "Send a text message5",
+      "webhookId": "1d73c499-c159-4bfb-a4b8-33569f2ced3d",
+      "credentials": {
+        "telegramApi": {
+          "id": "6kuS0JQRPtO3uUtr",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Sent",
+              "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        1968
+      ],
+      "id": "d64bdd33-d18d-4de9-86e4-647858f3dc85",
+      "name": "Baris Mula",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Sent",
+              "lookupValue": "={{ $('Var Send').first().json.send_no }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1552,
+        1808
+      ],
+      "id": "f03de690-c49c-48b1-b04a-2cafa60584d0",
+      "name": "Baris Akhir",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1376,
+        1808
+      ],
+      "id": "5146e3e1-bfa0-4224-8412-9d6af29d3e34",
+      "name": "Aggregate"
     }
   ],
   "origin": "n8n",
@@ -2956,6 +4130,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-05T16:39:30.000Z",
-  "versionId": "f0b8aab9-a8ab-45bf-9adc-32acd68ae1fb"
+  "updatedAt": "2025-12-27T02:27:49.889Z",
+  "versionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7"
 }
