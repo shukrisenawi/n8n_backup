@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-27T02:09:32.000Z",
-    "createdAt": "2025-12-27T02:09:23.419Z",
-    "versionId": "734ffc10-51dd-4610-ac7c-76ecda33ea05",
+    "updatedAt": "2025-12-28T14:31:25.000Z",
+    "createdAt": "2025-12-28T14:31:19.079Z",
+    "versionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -677,8 +677,7 @@
             "id": "OSQWzQbmYRYYqgCf",
             "name": "WAHA account"
           }
-        },
-        "disabled": true
+        }
       },
       {
         "parameters": {
@@ -973,10 +972,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 734ffc10",
+    "name": "Version 7e68fef6",
     "description": ""
   },
-  "activeVersionId": "734ffc10-51dd-4610-ac7c-76ecda33ea05",
+  "activeVersionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -1817,8 +1816,7 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -1978,6 +1976,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-27T02:09:23.418Z",
-  "versionId": "734ffc10-51dd-4610-ac7c-76ecda33ea05"
+  "updatedAt": "2025-12-28T14:31:19.077Z",
+  "versionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8"
 }
