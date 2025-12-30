@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-28T14:31:25.000Z",
-    "createdAt": "2025-12-28T14:31:19.079Z",
-    "versionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8",
+    "updatedAt": "2025-12-29T16:02:38.000Z",
+    "createdAt": "2025-12-29T16:02:33.788Z",
+    "versionId": "59009d65-05c7-40d5-b947-86a841393641",
     "workflowId": "fOPqAHMntu1RhQ0y",
     "nodes": [
       {
@@ -40,7 +40,7 @@
         "type": "n8n-nodes-base.whatsApp",
         "typeVersion": 1.1,
         "position": [
-          -32,
+          176,
           192
         ],
         "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
@@ -506,7 +506,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          -32,
+          176,
           368
         ],
         "id": "c6a0d47d-66e1-494d-a8b5-533b0e4210ba",
@@ -615,7 +615,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          -32,
+          176,
           528
         ],
         "id": "cfbea182-f50d-4650-ab37-a154d36fa213",
@@ -666,7 +666,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          -368,
+          -160,
           192
         ],
         "id": "e64bf804-310d-46a6-94d4-22ae96c0bf92",
@@ -678,6 +678,39 @@
             "name": "WAHA account"
           }
         }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "7c78bbbb-baf6-474b-8d1c-fce56989ac03",
+                "leftValue": "={{ $json.statuses[0].errors[0].message }}",
+                "rightValue": "Message undeliverable",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -272,
+          640
+        ],
+        "id": "9e113e54-c363-43e1-9a5c-ba907a351786",
+        "name": "If"
       },
       {
         "parameters": {
@@ -700,7 +733,7 @@
             "mappingMode": "defineBelow",
             "value": {
               "No Hp": "={{ $('WhatsApp Trigger').item.json.statuses[0].recipient_id }}",
-              "Sent": "0",
+              "Sent": "-",
               "Error": "={{ $json.statuses[0].errors[0].message }}"
             },
             "matchingColumns": [
@@ -797,11 +830,86 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          -32,
+          176,
+          864
+        ],
+        "id": "630a6055-6404-4745-9d21-cc42f504c843",
+        "name": "Update row in sheet4",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "startIndex": "={{ $json.row_number }}"
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          336,
+          704
+        ],
+        "id": "e7a33e14-c954-4a03-b2d3-286b1db1da74",
+        "name": "Delete rows or columns from sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+            "mode": "list",
+            "cachedResultName": "customer",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Sheet1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "No Hp",
+                "lookupValue": "={{ $json.statuses[0].recipient_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          176,
           704
         ],
         "id": "131a2607-8d7f-4101-b34f-94ce678ac727",
-        "name": "Update row in sheet3",
+        "name": "Get row(s) in sheet",
         "credentials": {
           "googleSheetsOAuth2Api": {
             "id": "U0ZMoxWRU8t5JEF5",
@@ -930,7 +1038,7 @@
           ],
           [
             {
-              "node": "Update row in sheet3",
+              "node": "If",
               "type": "main",
               "index": 0
             }
@@ -969,13 +1077,42 @@
             }
           ]
         ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Update row in sheet4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          [
+            {
+              "node": "Delete rows or columns from sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 7e68fef6",
+    "name": "Version 59009d65",
     "description": ""
   },
-  "activeVersionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8",
+  "activeVersionId": "59009d65-05c7-40d5-b947-86a841393641",
   "connections": {
     "WhatsApp Trigger": {
       "main": [
@@ -1096,7 +1233,7 @@
         ],
         [
           {
-            "node": "Update row in sheet3",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -1130,6 +1267,35 @@
         [
           {
             "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update row in sheet4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet",
             "type": "main",
             "index": 0
           }
@@ -1179,7 +1345,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1.1,
       "position": [
-        -32,
+        176,
         192
       ],
       "id": "2118cae4-9af0-458c-9e7c-4061dd74fbbc",
@@ -1645,7 +1811,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -32,
+        176,
         368
       ],
       "id": "c6a0d47d-66e1-494d-a8b5-533b0e4210ba",
@@ -1754,7 +1920,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -32,
+        176,
         528
       ],
       "id": "cfbea182-f50d-4650-ab37-a154d36fa213",
@@ -1805,7 +1971,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        -368,
+        -160,
         192
       ],
       "id": "e64bf804-310d-46a6-94d4-22ae96c0bf92",
@@ -1817,6 +1983,39 @@
           "name": "WAHA account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7c78bbbb-baf6-474b-8d1c-fce56989ac03",
+              "leftValue": "={{ $json.statuses[0].errors[0].message }}",
+              "rightValue": "Message undeliverable",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -272,
+        640
+      ],
+      "id": "9e113e54-c363-43e1-9a5c-ba907a351786",
+      "name": "If"
     },
     {
       "parameters": {
@@ -1839,7 +2038,7 @@
           "mappingMode": "defineBelow",
           "value": {
             "No Hp": "={{ $('WhatsApp Trigger').item.json.statuses[0].recipient_id }}",
-            "Sent": "0",
+            "Sent": "-",
             "Error": "={{ $json.statuses[0].errors[0].message }}"
           },
           "matchingColumns": [
@@ -1936,11 +2135,86 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -32,
+        176,
+        864
+      ],
+      "id": "630a6055-6404-4745-9d21-cc42f504c843",
+      "name": "Update row in sheet4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        336,
+        704
+      ],
+      "id": "e7a33e14-c954-4a03-b2d3-286b1db1da74",
+      "name": "Delete rows or columns from sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8",
+          "mode": "list",
+          "cachedResultName": "customer",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nYbg4hePo9LcDXn-vovS1E8C9AdYpT5wmzVm-MkTRM8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "No Hp",
+              "lookupValue": "={{ $json.statuses[0].recipient_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        176,
         704
       ],
       "id": "131a2607-8d7f-4101-b34f-94ce678ac727",
-      "name": "Update row in sheet3",
+      "name": "Get row(s) in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "U0ZMoxWRU8t5JEF5",
@@ -1976,6 +2250,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-28T14:31:19.077Z",
-  "versionId": "7e68fef6-0ed1-4067-8f36-1ae0525cf8b8"
+  "updatedAt": "2025-12-29T16:02:33.787Z",
+  "versionId": "59009d65-05c7-40d5-b947-86a841393641"
 }
