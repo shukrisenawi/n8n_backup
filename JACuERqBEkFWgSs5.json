@@ -2996,13 +2996,7 @@
     },
     "If": {
       "main": [
-        [
-          {
-            "node": "All Groups",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Kitab Minhajul `Abidin": {
@@ -3777,8 +3771,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        896,
-        112
+        912,
+        80
       ],
       "id": "5ccc1989-dc72-4568-a1c8-fa0f4a1041d5",
       "name": "All Groups"
@@ -5560,6 +5554,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2025-12-13T01:19:16.581Z",
-  "versionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d"
+  "updatedAt": "2026-01-02T04:43:29.175Z",
+  "versionId": "f5661ffa-9a86-4f3b-bb60-0cd96c818804"
 }
