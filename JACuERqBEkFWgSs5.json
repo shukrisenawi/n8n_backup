@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-13T01:19:24.000Z",
-    "createdAt": "2025-12-13T01:19:16.583Z",
-    "versionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d",
+    "updatedAt": "2026-01-03T11:07:01.000Z",
+    "createdAt": "2026-01-03T11:06:59.487Z",
+    "versionId": "5cb14276-c707-4a1b-b6a9-6972eb05a079",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -2749,10 +2749,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 11c9fa27",
+    "name": "Version 5cb14276",
     "description": ""
   },
-  "activeVersionId": "11c9fa27-fb1a-4489-9a79-794593e9ce6d",
+  "activeVersionId": "5cb14276-c707-4a1b-b6a9-6972eb05a079",
   "connections": {
     "Aggregate": {
       "main": [
@@ -2996,7 +2996,13 @@
     },
     "If": {
       "main": [
-        []
+        [
+          {
+            "node": "All Groups",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Kitab Minhajul `Abidin": {
@@ -3771,8 +3777,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        912,
-        80
+        896,
+        112
       ],
       "id": "5ccc1989-dc72-4568-a1c8-fa0f4a1041d5",
       "name": "All Groups"
@@ -5554,6 +5560,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-01-02T04:43:29.175Z",
-  "versionId": "f5661ffa-9a86-4f3b-bb60-0cd96c818804"
+  "updatedAt": "2026-01-03T11:06:59.486Z",
+  "versionId": "5cb14276-c707-4a1b-b6a9-6972eb05a079"
 }
