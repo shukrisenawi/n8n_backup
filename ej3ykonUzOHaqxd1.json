@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-27T02:27:53.000Z",
-    "createdAt": "2025-12-27T02:27:49.890Z",
-    "versionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7",
+    "updatedAt": "2026-01-06T09:33:10.000Z",
+    "createdAt": "2026-01-06T09:33:06.489Z",
+    "versionId": "3c228626-51d4-416d-94e2-cdc3e16c89f5",
     "workflowId": "ej3ykonUzOHaqxd1",
     "nodes": [
       {
@@ -1468,7 +1468,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 60;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
+          "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 180;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -2050,10 +2050,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version f427f6ab",
+    "name": "Version 3c228626",
     "description": ""
   },
-  "activeVersionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7",
+  "activeVersionId": "3c228626-51d4-416d-94e2-cdc3e16c89f5",
   "connections": {
     "Switch": {
       "main": [
@@ -3969,7 +3969,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 60;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
+        "jsCode": "const text = $('Remove /send').first().json.text.split(' ');\nconst quantity = text[0]!='/send'?text[0]:1;\nconst send_no = 0;\nconst template = \"makluman_2\";\nconst wait = 180;\n\nreturn [\n  {\n    json: {\n      label: text[0],\n      quantity,\n      send_no,\n      template,\n      wait\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -4130,6 +4130,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-27T02:27:49.889Z",
-  "versionId": "f427f6ab-7b33-4b04-b6cb-664695d920b7"
+  "updatedAt": "2026-01-06T09:33:06.487Z",
+  "versionId": "3c228626-51d4-416d-94e2-cdc3e16c89f5"
 }
