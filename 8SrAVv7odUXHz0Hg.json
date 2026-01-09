@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987",
+    "updatedAt": "2026-01-09T01:47:23.000Z",
+    "createdAt": "2026-01-09T01:47:21.896Z",
+    "versionId": "486a2f28-4981-4d86-a0f0-4674c7b2c2fa",
     "workflowId": "8SrAVv7odUXHz0Hg",
     "nodes": [
       {
@@ -55,7 +55,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let tarikh_reminder = null;\nlet date;\n\n// if((data.Tempat == \"Ribat Abu AL-Hassan\" || data.Tempat == \"Bangsal Haji Nordin Bukit\" || data.Kitab == \"Minhajul 'Abidin\" || data.Kitab == \"Muhimmah\") && data['No Hp Peringatan']!=null){\nif($('Loop Over Items').first().json.no_hp_peringatan){\n  \n  date = new Date($input.first().json.tarikh);\n  date.setDate(date.getDate() - 1);\n  tarikh_reminder = date.toISOString().split(\"T\")[0];\n  \n}\n\nreturn [\n  {\n    json:{\n      tarikh_reminder\n    }\n  }\n];"
+          "jsCode": "let tarikh_reminder = null;\nlet date;\n\n// if((data.Tempat == \"Ribat Abu AL-Hassan\" || data.Tempat == \"Bangsal Haji Nordin Bukit\" || data.Kitab == \"Minhajul 'Abidin\" || data.Kitab == \"Muhimmah\") && data['No Hp Peringatan']!=null){\nif($('Loop Over Items').first().json.no_hp_peringatan){\n  \n  date = new Date($input.first().json.tarikh);\n  if($('Loop Over Items').first().json.pengajar==\"Ustaz Atiqullah Bin Muhammad Rifaee\"||$('Loop Over Items').first().json.pengajar==\"Ustaz Muhammad Yusuff bin Marzuki\"||$('Loop Over Items').first().json.pengajar==\"Ustaz Mohd Zikri Bin Ab Kadir\")\n    date.setDate(date.getDate());\n  else\n    date.setDate(date.getDate() - 1);\n  tarikh_reminder = date.toISOString().split(\"T\")[0];\n  \n}\n\nreturn [\n  {\n    json:{\n      tarikh_reminder\n    }\n  }\n];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -622,11 +622,11 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version 486a2f28",
+    "description": ""
   },
-  "activeVersionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987",
+  "activeVersionId": "486a2f28-4981-4d86-a0f0-4674c7b2c2fa",
   "connections": {
     "Week": {
       "main": [
@@ -810,7 +810,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let tarikh_reminder = null;\nlet date;\n\n// if((data.Tempat == \"Ribat Abu AL-Hassan\" || data.Tempat == \"Bangsal Haji Nordin Bukit\" || data.Kitab == \"Minhajul 'Abidin\" || data.Kitab == \"Muhimmah\") && data['No Hp Peringatan']!=null){\nif($('Loop Over Items').first().json.no_hp_peringatan){\n  \n  date = new Date($input.first().json.tarikh);\n  date.setDate(date.getDate() - 1);\n  tarikh_reminder = date.toISOString().split(\"T\")[0];\n  \n}\n\nreturn [\n  {\n    json:{\n      tarikh_reminder\n    }\n  }\n];"
+        "jsCode": "let tarikh_reminder = null;\nlet date;\n\n// if((data.Tempat == \"Ribat Abu AL-Hassan\" || data.Tempat == \"Bangsal Haji Nordin Bukit\" || data.Kitab == \"Minhajul 'Abidin\" || data.Kitab == \"Muhimmah\") && data['No Hp Peringatan']!=null){\nif($('Loop Over Items').first().json.no_hp_peringatan){\n  \n  date = new Date($input.first().json.tarikh);\n  if($('Loop Over Items').first().json.pengajar==\"Ustaz Atiqullah Bin Muhammad Rifaee\"||$('Loop Over Items').first().json.pengajar==\"Ustaz Muhammad Yusuff bin Marzuki\"||$('Loop Over Items').first().json.pengajar==\"Ustaz Mohd Zikri Bin Ab Kadir\")\n    date.setDate(date.getDate());\n  else\n    date.setDate(date.getDate() - 1);\n  tarikh_reminder = date.toISOString().split(\"T\")[0];\n  \n}\n\nreturn [\n  {\n    json:{\n      tarikh_reminder\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1280,6 +1280,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-21T15:11:12.000Z",
-  "versionId": "ae1e0f6d-e4a4-4dd7-ae50-ab7484e66987"
+  "updatedAt": "2026-01-09T01:47:21.895Z",
+  "versionId": "486a2f28-4981-4d86-a0f0-4674c7b2c2fa"
 }
