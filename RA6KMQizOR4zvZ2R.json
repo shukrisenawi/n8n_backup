@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "87766a80-c83a-4620-b946-487a7ba8327c",
+    "updatedAt": "2026-01-09T02:44:35.000Z",
+    "createdAt": "2026-01-09T02:42:49.535Z",
+    "versionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90",
     "workflowId": "RA6KMQizOR4zvZ2R",
     "nodes": [
       {
@@ -120,7 +120,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const message = \"Assalamualaikum ustaz.. Pengajian kitab \"+$('Loop Data').first().json.kitab+\", \"+$input.first().json.tarikh_format+\" (\"+$input.first().json.hari+\") ada dak.\";\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
+          "jsCode": "let message = `Assalamualaikum ustaz..\n  \nPengajian kitab `+$('Loop Data').first().json.kitab+`,  `+$input.first().json.tarikh_format+` (`+$input.first().json.hari+`) ada dak.\n  \nBalas 'Ya' jika ada pengajian, 'Tidak' jika pengajian ingin dibatalkan.`;\n\nif($('Loop Data').first().json.pengajar==\"Ustaz Atiqullah Bin Muhammad Rifaee\"||$('Loop Data').first().json.pengajar==\"Ustaz Muhammad Yusuff bin Marzuki\"||$('Loop Data').first().json.pengajar==\"Ustaz Mohd Zikri Bin Ab Kadir\")\n  message = `Assalamualaikum ustaz..\nSy robot dari Masjid Al-Halimi Bt 5..\n  \nPengajian kitab `+$('Loop Data').first().json.kitab+` (`+$input.first().json.tarikh_format+`) hari ini ada dak.\n  \nBalas 'Ya' jika ada pengajian, 'Tidak' jika pengajian ingin dibatalkan.`;\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -159,27 +159,6 @@
       },
       {
         "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "cronExpression",
-                "expression": "0 0 16 * * *"
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.scheduleTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -848,
-          16
-        ],
-        "id": "895bf768-f03d-4053-b6aa-122a85346c30",
-        "name": "Alert Pukul 4",
-        "disabled": true
-      },
-      {
-        "parameters": {
           "options": {}
         },
         "type": "n8n-nodes-base.splitInBatches",
@@ -199,7 +178,7 @@
         "typeVersion": 2,
         "position": [
           -672,
-          224
+          256
         ],
         "id": "51c0627f-15f7-42d4-9a26-09d1eefe5566",
         "name": "Var1"
@@ -281,7 +260,7 @@
         "typeVersion": 1,
         "position": [
           -512,
-          224
+          256
         ],
         "id": "d3d9303e-ac31-4aff-a562-69d6931db0d0",
         "name": "Cari Pengajian Luar"
@@ -301,7 +280,7 @@
         "typeVersion": 1.2,
         "position": [
           -848,
-          224
+          256
         ],
         "id": "73440cd0-16a6-41a3-8ca1-6f1265053e70",
         "name": "Alert Pukul 8pagi"
@@ -527,10 +506,30 @@
         "typeVersion": 1,
         "position": [
           -512,
-          448
+          480
         ],
         "id": "ff067bde-69b3-4505-af64-4e84543d5f2a",
         "name": "Cari Pengajian Masjid1"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 0 9 * * *"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -848,
+          16
+        ],
+        "id": "895bf768-f03d-4053-b6aa-122a85346c30",
+        "name": "Alert Pukul 9pg"
       }
     ],
     "connections": {
@@ -628,17 +627,6 @@
           [
             {
               "node": "Message",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Alert Pukul 4": {
-        "main": [
-          [
-            {
-              "node": "Var",
               "type": "main",
               "index": 0
             }
@@ -744,13 +732,24 @@
             }
           ]
         ]
+      },
+      "Alert Pukul 9pg": {
+        "main": [
+          [
+            {
+              "node": "Var",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version b597be7a",
+    "description": ""
   },
-  "activeVersionId": "87766a80-c83a-4620-b946-487a7ba8327c",
+  "activeVersionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90",
   "connections": {
     "Stop Typing": {
       "main": [
@@ -852,17 +851,6 @@
         ]
       ]
     },
-    "Alert Pukul 4": {
-      "main": [
-        [
-          {
-            "node": "Var",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Loop Data": {
       "main": [
         [
@@ -957,6 +945,17 @@
         [
           {
             "node": "Loop Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert Pukul 9pg": {
+      "main": [
+        [
+          {
+            "node": "Var",
             "type": "main",
             "index": 0
           }
@@ -1086,7 +1085,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const message = \"Assalamualaikum ustaz.. Pengajian kitab \"+$('Loop Data').first().json.kitab+\", \"+$input.first().json.tarikh_format+\" (\"+$input.first().json.hari+\") ada dak.\";\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
+        "jsCode": "let message = `Assalamualaikum ustaz..\n  \nPengajian kitab `+$('Loop Data').first().json.kitab+`,  `+$input.first().json.tarikh_format+` (`+$input.first().json.hari+`) ada dak.\n  \nBalas 'Ya' jika ada pengajian, 'Tidak' jika pengajian ingin dibatalkan.`;\n\nif($('Loop Data').first().json.pengajar==\"Ustaz Atiqullah Bin Muhammad Rifaee\"||$('Loop Data').first().json.pengajar==\"Ustaz Muhammad Yusuff bin Marzuki\"||$('Loop Data').first().json.pengajar==\"Ustaz Mohd Zikri Bin Ab Kadir\")\n  message = `Assalamualaikum ustaz..\nSy robot dari Masjid Al-Halimi Bt 5..\n  \nPengajian kitab `+$('Loop Data').first().json.kitab+` (`+$input.first().json.tarikh_format+`) hari ini ada dak.\n  \nBalas 'Ya' jika ada pengajian, 'Tidak' jika pengajian ingin dibatalkan.`;\n\nreturn [\n  {\n    json:{\n      message: message\n    }\n  }\n]"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1125,27 +1124,6 @@
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "cronExpression",
-              "expression": "0 0 16 * * *"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -848,
-        16
-      ],
-      "id": "895bf768-f03d-4053-b6aa-122a85346c30",
-      "name": "Alert Pukul 4",
-      "disabled": true
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "type": "n8n-nodes-base.splitInBatches",
@@ -1165,7 +1143,7 @@
       "typeVersion": 2,
       "position": [
         -672,
-        224
+        256
       ],
       "id": "51c0627f-15f7-42d4-9a26-09d1eefe5566",
       "name": "Var1"
@@ -1247,7 +1225,7 @@
       "typeVersion": 1,
       "position": [
         -512,
-        224
+        256
       ],
       "id": "d3d9303e-ac31-4aff-a562-69d6931db0d0",
       "name": "Cari Pengajian Luar"
@@ -1267,7 +1245,7 @@
       "typeVersion": 1.2,
       "position": [
         -848,
-        224
+        256
       ],
       "id": "73440cd0-16a6-41a3-8ca1-6f1265053e70",
       "name": "Alert Pukul 8pagi"
@@ -1493,10 +1471,30 @@
       "typeVersion": 1,
       "position": [
         -512,
-        448
+        480
       ],
       "id": "ff067bde-69b3-4505-af64-4e84543d5f2a",
       "name": "Cari Pengajian Masjid1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 0 9 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -848,
+        16
+      ],
+      "id": "895bf768-f03d-4053-b6aa-122a85346c30",
+      "name": "Alert Pukul 9pg"
     }
   ],
   "origin": "n8n",
@@ -1546,10 +1544,13 @@
     },
     "node:Alert Pukul 8pagi": {
       "recurrenceRules": []
+    },
+    "node:Alert Pukul 9pg": {
+      "recurrenceRules": []
     }
   },
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-11-14T07:03:08.000Z",
-  "versionId": "87766a80-c83a-4620-b946-487a7ba8327c"
+  "triggerCount": 2,
+  "updatedAt": "2026-01-09T02:42:49.534Z",
+  "versionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90"
 }
