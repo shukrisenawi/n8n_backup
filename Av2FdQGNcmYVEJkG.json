@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T15:00:54.155Z",
-    "createdAt": "2025-11-27T15:00:54.155Z",
-    "versionId": "4cb322fa-fc66-40c3-a924-03c4ebb11f22",
+    "updatedAt": "2026-01-09T02:49:57.000Z",
+    "createdAt": "2026-01-09T02:49:52.014Z",
+    "versionId": "e1d78a75-7a99-4a53-913c-3871fab043df",
     "workflowId": "Av2FdQGNcmYVEJkG",
     "nodes": [
       {
@@ -4262,7 +4262,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let pengajian='';\n\nif($(\"Cari Pengajian\").first().json.active=='Ya')\n  pengajian = 'Assalamualaikum.. pengajian esk berjalan seperti biasa..';\nelse\n  pengajian = 'Assalamualaikum.. pengajian esk DIBATALKAN..' ;\n\nreturn [\n  {\n    json:{\n      pengajian\n    }\n  }\n];"
+          "jsCode": "let pengajian='';\n\nlet status = \"esk\";\nif($(\"Cari Pengajian\").first().json.tarikh_bulan_ini==$(\"var1\").first().json.tarikh)\n  status = \"hari ini\";\n\nif($(\"Cari Pengajian\").first().json.active=='Ya')\n  pengajian = 'Assalamualaikum.. pengajian '+status+' berjalan seperti biasa..';\nelse\n  pengajian = 'Assalamualaikum.. pengajian '+status+' DIBATALKAN..' ;\n\nreturn [\n  {\n    json:{\n      pengajian\n    }\n  }\n];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -5754,10 +5754,10 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": null,
-    "description": null
+    "name": "Version e1d78a75",
+    "description": ""
   },
-  "activeVersionId": "4cb322fa-fc66-40c3-a924-03c4ebb11f22",
+  "activeVersionId": "e1d78a75-7a99-4a53-913c-3871fab043df",
   "connections": {
     "AI Chat": {
       "main": [
@@ -11439,7 +11439,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let pengajian='';\n\nif($(\"Cari Pengajian\").first().json.active=='Ya')\n  pengajian = 'Assalamualaikum.. pengajian esk berjalan seperti biasa..';\nelse\n  pengajian = 'Assalamualaikum.. pengajian esk DIBATALKAN..' ;\n\nreturn [\n  {\n    json:{\n      pengajian\n    }\n  }\n];"
+        "jsCode": "let pengajian='';\n\nlet status = \"esk\";\nif($(\"Cari Pengajian\").first().json.tarikh_bulan_ini==$(\"var1\").first().json.tarikh)\n  status = \"hari ini\";\n\nif($(\"Cari Pengajian\").first().json.active=='Ya')\n  pengajian = 'Assalamualaikum.. pengajian '+status+' berjalan seperti biasa..';\nelse\n  pengajian = 'Assalamualaikum.. pengajian '+status+' DIBATALKAN..' ;\n\nreturn [\n  {\n    json:{\n      pengajian\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -11545,6 +11545,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-27T15:00:54.000Z",
-  "versionId": "4cb322fa-fc66-40c3-a924-03c4ebb11f22"
+  "updatedAt": "2026-01-09T02:49:52.012Z",
+  "versionId": "e1d78a75-7a99-4a53-913c-3871fab043df"
 }
