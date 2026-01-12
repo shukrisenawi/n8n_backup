@@ -876,7 +876,8 @@
     },
     "authors": "system migration",
     "name": null,
-    "description": null
+    "description": null,
+    "autosaved": false
   },
   "activeVersionId": "5a29ebeb-3b0c-4c06-831c-ae441b94a752",
   "connections": {
@@ -1787,9 +1788,9 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1768127764,
+        "lastTimeChecked": 1768200057,
         "possibleDuplicates": [
-          "19baca09899e8f9d"
+          "19bb0efb3e4d548a"
         ]
       }
     }
