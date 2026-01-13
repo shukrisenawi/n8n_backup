@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-09T02:49:57.000Z",
-    "createdAt": "2026-01-09T02:49:52.014Z",
-    "versionId": "e1d78a75-7a99-4a53-913c-3871fab043df",
+    "updatedAt": "2026-01-12T14:50:28.000Z",
+    "createdAt": "2026-01-12T14:50:10.223Z",
+    "versionId": "1fb76ee8-95c4-4f56-a779-238072e89124",
     "workflowId": "Av2FdQGNcmYVEJkG",
     "nodes": [
       {
@@ -1761,6 +1761,16 @@
               {
                 "id": "poster",
                 "displayName": "poster",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "post",
+                "displayName": "post",
                 "required": false,
                 "defaultMatch": false,
                 "display": true,
@@ -4334,6 +4344,245 @@
         "id": "4c118ef7-999a-42c9-9b0a-201f5a9fa1c4",
         "name": "Wait8",
         "webhookId": "fed00e73-ccfa-4b99-afed-35a5341d30c6"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "b8d6accf-c53d-404b-a5bf-cbc363174fa6",
+                "leftValue": "={{ $('Cari Pengajian').item.json.minggu }}",
+                "rightValue": "2",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "727bb62b-1507-42ed-a0bf-8aef4c531e2f",
+                "leftValue": "={{ $('Cari Pengajian').item.json.pengajar }}",
+                "rightValue": "Tuan Guru Baba Mukhtari Bin Saleh Ad Dalawi",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "0b05f56a-9787-40a9-9bef-b186fd2d4903",
+                "leftValue": "={{ $('Cari Pengajian').item.json.active }}",
+                "rightValue": "Ya",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          2224,
+          -384
+        ],
+        "id": "c85fbe8c-66bf-4838-850e-6b9d669bad24",
+        "name": "If6"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ssP2ikwXFWiluBNx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "kitab",
+                "keyValue": "Muhimmah"
+              },
+              {
+                "keyName": "tarikh_bulan_ini",
+                "keyValue": "={{ $('Cari Pengajian').item.json.tarikh_bulan_ini }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "active": "Tidak"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "kitab",
+                "displayName": "kitab",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "hari",
+                "displayName": "hari",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "minggu",
+                "displayName": "minggu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "masa",
+                "displayName": "masa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "pengajar",
+                "displayName": "pengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tempat",
+                "displayName": "tempat",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "live",
+                "displayName": "live",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_bulan_ini",
+                "displayName": "tarikh_bulan_ini",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_peringatan",
+                "displayName": "tarikh_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "no_hp_peringatan",
+                "displayName": "no_hp_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "active",
+                "displayName": "active",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "sebab_tidak_mengajar",
+                "displayName": "sebab_tidak_mengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "poster",
+                "displayName": "poster",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "post",
+                "displayName": "post",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          2432,
+          -368
+        ],
+        "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
+        "name": "Kemaskini Pengajian2"
       }
     ],
     "connections": {
@@ -5344,6 +5593,13 @@
               "type": "main",
               "index": 0
             }
+          ],
+          [
+            {
+              "node": "If6",
+              "type": "main",
+              "index": 0
+            }
           ]
         ]
       },
@@ -5751,14 +6007,26 @@
             }
           ]
         ]
+      },
+      "If6": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Kemaskini Pengajian2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version e1d78a75",
+    "name": "Version 1fb76ee8",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "e1d78a75-7a99-4a53-913c-3871fab043df",
+  "activeVersionId": "1fb76ee8-95c4-4f56-a779-238072e89124",
   "connections": {
     "AI Chat": {
       "main": [
@@ -6767,6 +7035,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -7169,6 +7444,18 @@
         [
           {
             "node": "Send a text message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Kemaskini Pengajian2",
             "type": "main",
             "index": 0
           }
@@ -8939,6 +9226,16 @@
             {
               "id": "poster",
               "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -11512,6 +11809,245 @@
       "id": "4c118ef7-999a-42c9-9b0a-201f5a9fa1c4",
       "name": "Wait8",
       "webhookId": "fed00e73-ccfa-4b99-afed-35a5341d30c6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b8d6accf-c53d-404b-a5bf-cbc363174fa6",
+              "leftValue": "={{ $('Cari Pengajian').item.json.minggu }}",
+              "rightValue": "2",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "727bb62b-1507-42ed-a0bf-8aef4c531e2f",
+              "leftValue": "={{ $('Cari Pengajian').item.json.pengajar }}",
+              "rightValue": "Tuan Guru Baba Mukhtari Bin Saleh Ad Dalawi",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "0b05f56a-9787-40a9-9bef-b186fd2d4903",
+              "leftValue": "={{ $('Cari Pengajian').item.json.active }}",
+              "rightValue": "Ya",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2224,
+        -384
+      ],
+      "id": "c85fbe8c-66bf-4838-850e-6b9d669bad24",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ssP2ikwXFWiluBNx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Jadual Pengajian",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "kitab",
+              "keyValue": "Muhimmah"
+            },
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ $('Cari Pengajian').item.json.tarikh_bulan_ini }}"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "active": "Tidak"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "kitab",
+              "displayName": "kitab",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "hari",
+              "displayName": "hari",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "minggu",
+              "displayName": "minggu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "masa",
+              "displayName": "masa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "pengajar",
+              "displayName": "pengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tempat",
+              "displayName": "tempat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "live",
+              "displayName": "live",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_bulan_ini",
+              "displayName": "tarikh_bulan_ini",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "tarikh_peringatan",
+              "displayName": "tarikh_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "no_hp_peringatan",
+              "displayName": "no_hp_peringatan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "sebab_tidak_mengajar",
+              "displayName": "sebab_tidak_mengajar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "poster",
+              "displayName": "poster",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        2432,
+        -368
+      ],
+      "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
+      "name": "Kemaskini Pengajian2"
     }
   ],
   "origin": "n8n",
@@ -11546,6 +12082,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T02:49:52.012Z",
-  "versionId": "e1d78a75-7a99-4a53-913c-3871fab043df"
+  "updatedAt": "2026-01-12T14:50:10.221Z",
+  "versionId": "1fb76ee8-95c4-4f56-a779-238072e89124"
 }
