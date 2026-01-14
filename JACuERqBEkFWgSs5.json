@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-13T08:14:00.000Z",
-    "createdAt": "2026-01-13T08:13:50.310Z",
-    "versionId": "ef3916f1-c9e6-41b1-a2d8-fbfed1709040",
+    "updatedAt": "2026-01-13T12:21:36.000Z",
+    "createdAt": "2026-01-13T12:21:35.124Z",
+    "versionId": "776da190-d839-4ff2-aac5-48190d16006e",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -3065,11 +3065,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version ef3916f1",
+    "name": "Version 776da190",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "ef3916f1-c9e6-41b1-a2d8-fbfed1709040",
+  "activeVersionId": "776da190-d839-4ff2-aac5-48190d16006e",
   "connections": {
     "Aggregate": {
       "main": [
@@ -6193,6 +6193,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-01-13T08:13:50.309Z",
-  "versionId": "ef3916f1-c9e6-41b1-a2d8-fbfed1709040"
+  "updatedAt": "2026-01-13T12:21:35.122Z",
+  "versionId": "776da190-d839-4ff2-aac5-48190d16006e"
 }
