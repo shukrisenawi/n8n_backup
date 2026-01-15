@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-13T12:21:36.000Z",
-    "createdAt": "2026-01-13T12:21:35.124Z",
-    "versionId": "776da190-d839-4ff2-aac5-48190d16006e",
+    "updatedAt": "2026-01-15T08:55:28.000Z",
+    "createdAt": "2026-01-15T08:55:26.536Z",
+    "versionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -22,7 +22,7 @@
       },
       {
         "parameters": {
-          "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = $('Hadis Selected').first().json.hadis;\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+hadis;\n}\n\nreturn $input.all();"
+          "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n** *GILIRAN BERBUKA PUASA* **\\n--> *Kumpulan :*  \"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\\n\";\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+buka_puasa+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+buka_puasa+hadis;\n}\n\nreturn $input.all();"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -79,8 +79,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1104,
-          112
+          1088,
+          96
         ],
         "id": "5ccc1989-dc72-4568-a1c8-fa0f4a1041d5",
         "name": "All Groups"
@@ -500,7 +500,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -1408,
+          -1472,
           -128
         ],
         "id": "7c5bb16b-ec57-4dfd-b8e0-56a53e7ec8b7",
@@ -514,7 +514,7 @@
         "type": "n8n-nodes-base.aggregate",
         "typeVersion": 1,
         "position": [
-          -1632,
+          -1648,
           -128
         ],
         "id": "43f60bb7-76ca-439b-a118-2a2b5d975365",
@@ -528,8 +528,8 @@
         "type": "n8n-nodes-base.aggregate",
         "typeVersion": 1,
         "position": [
-          -944,
-          -336
+          -1856,
+          -304
         ],
         "id": "0bcc038e-46c5-4010-b6bb-318fbc78bc42",
         "name": "Aggregate2"
@@ -541,8 +541,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -784,
-          -336
+          -1696,
+          -304
         ],
         "id": "75865f46-bef1-4928-a4d2-fc76a2d1a5c1",
         "name": "Hadis Selected"
@@ -615,8 +615,8 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          -1120,
-          -336
+          -2032,
+          -304
         ],
         "id": "dc728937-d0c8-4aee-8aeb-8f33fa565f98",
         "name": "Cari Hadis",
@@ -645,8 +645,8 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          -624,
-          -336
+          -1536,
+          -304
         ],
         "id": "f7e30df5-56d2-4f89-b915-d8d76a99c4bd",
         "name": "Cari Waktu Solat",
@@ -1822,7 +1822,7 @@
         "type": "n8n-nodes-base.googleDrive",
         "typeVersion": 3,
         "position": [
-          -1120,
+          -1072,
           -32
         ],
         "id": "79ccd5fd-a3e6-4eae-9b06-9ae2a37f54c7",
@@ -2017,6 +2017,157 @@
         ],
         "id": "407bee67-64f1-4500-87c6-ab6d34ba3410",
         "name": "Aggregate3"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ZUoAjVvehXqvzquT",
+            "mode": "list",
+            "cachedResultName": "Masjid - Giliran Berbuka Puasa",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ZUoAjVvehXqvzquT"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "tarikh",
+                "keyValue": "={{ $('Tarikh Sekarang').first().json.tarikh }}"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -2208,
+          -304
+        ],
+        "id": "9b8b4069-8819-402a-992b-00b2808ae5de",
+        "name": "Cari Giliran Berbuka Puasa",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "resource": "fileFolder",
+          "returnAll": true,
+          "filter": {
+            "folderId": {
+              "__rl": true,
+              "value": "1o3CCG5hiX95WK0XGPQQXiHaaDBY662gv",
+              "mode": "list",
+              "cachedResultName": "Gambar Program",
+              "cachedResultUrl": "https://drive.google.com/drive/folders/1o3CCG5hiX95WK0XGPQQXiHaaDBY662gv"
+            }
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          -1088,
+          -384
+        ],
+        "id": "368488af-edcf-4192-99e7-478990852a17",
+        "name": "Search files and folders1",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "C3mKdKMyyqUTo37x",
+            "name": "Drive"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -2720,
+          -576
+        ],
+        "id": "a0e18af0-ab86-4fea-8802-c19ac61514c9",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          -896,
+          -384
+        ],
+        "id": "6626ecb1-8a77-4dff-8d92-fab8d6ccd8f1",
+        "name": "Loop Over Items2"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "66b8a008-4ae8-4ef1-8a89-6eaeeb767937",
+                "leftValue": "={{ $json.dateFile }}",
+                "rightValue": "={{ $('Tarikh Sekarang').item.json.tarikh }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -560,
+          -368
+        ],
+        "id": "5dff66c7-5daa-40f3-b5ea-732e5df79734",
+        "name": "If3"
+      },
+      {
+        "parameters": {
+          "jsCode": "const name = $input.first().json.name;\nconst filename = $input.first().json.id;\nconst name_extract = name.split('.');\nconst dateFile = name_extract[0];\n\nreturn [\n  {\n    json:{\n      filename,\n      dateFile\n    }\n  }  \n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -720,
+          -368
+        ],
+        "id": "d3467ca5-fc67-4686-889a-4c6d187543dd",
+        "name": "dapatkan tarikh"
+      },
+      {
+        "parameters": {
+          "fieldsToAggregate": {
+            "fieldToAggregate": [
+              {
+                "fieldToAggregate": "name"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          -1232,
+          -176
+        ],
+        "id": "44acb366-1789-4db2-9d14-9a2783d71575",
+        "name": "Aggregate4"
       }
     ],
     "connections": {
@@ -2297,7 +2448,7 @@
         "main": [
           [
             {
-              "node": "Cari Hadis",
+              "node": "Cari Giliran Berbuka Puasa",
               "type": "main",
               "index": 0
             }
@@ -2374,7 +2525,7 @@
         "main": [
           [
             {
-              "node": "Search files and folders",
+              "node": "Search files and folders1",
               "type": "main",
               "index": 0
             }
@@ -3062,14 +3213,99 @@
             }
           ]
         ]
+      },
+      "Cari Giliran Berbuka Puasa": {
+        "main": [
+          [
+            {
+              "node": "Cari Hadis",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          []
+        ]
+      },
+      "Search files and folders1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items2": {
+        "main": [
+          [
+            {
+              "node": "Aggregate4",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "dapatkan tarikh",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields5",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "dapatkan tarikh": {
+        "main": [
+          [
+            {
+              "node": "If3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate4": {
+        "main": [
+          [
+            {
+              "node": "Search files and folders",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 776da190",
+    "name": "Version 08b98cb8",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "776da190-d839-4ff2-aac5-48190d16006e",
+  "activeVersionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7",
   "connections": {
     "Aggregate": {
       "main": [
@@ -3348,7 +3584,7 @@
       "main": [
         [
           {
-            "node": "Cari Hadis",
+            "node": "Cari Giliran Berbuka Puasa",
             "type": "main",
             "index": 0
           }
@@ -3425,7 +3661,7 @@
       "main": [
         [
           {
-            "node": "Search files and folders",
+            "node": "Search files and folders1",
             "type": "main",
             "index": 0
           }
@@ -4113,6 +4349,91 @@
           }
         ]
       ]
+    },
+    "Cari Giliran Berbuka Puasa": {
+      "main": [
+        [
+          {
+            "node": "Cari Hadis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Search files and folders1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "dapatkan tarikh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dapatkan tarikh": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate4": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-25T09:01:27.214Z",
@@ -4139,7 +4460,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = $('Hadis Selected').first().json.hadis;\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+hadis;\n}\n\nreturn $input.all();"
+        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\nfor (const data of $('Aggregate').first().json.data) {\n  \n  pengajian += \"\\n\";\n  \n  if(data.kitab!=\"Surah Yaasin\"){\n    if(data.pengajar){\n      pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    }else{\n      pengajian +=\"--- Tiada Pengajian ---\\n\";\n    }\n    \n  }else{\n    \n    pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n    \n  }    \n\n  if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n  pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n  \n  if(data.live=='Ya')\n    pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n  \n  \n  if(data.active==\"Tidak\"){   \n    pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n  }\n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n** *GILIRAN BERBUKA PUASA* **\\n--> *Kumpulan :*  \"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\\n\";\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+buka_puasa+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+buka_puasa+hadis;\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -4196,8 +4517,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1104,
-        112
+        1088,
+        96
       ],
       "id": "5ccc1989-dc72-4568-a1c8-fa0f4a1041d5",
       "name": "All Groups"
@@ -4617,7 +4938,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1408,
+        -1472,
         -128
       ],
       "id": "7c5bb16b-ec57-4dfd-b8e0-56a53e7ec8b7",
@@ -4631,7 +4952,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        -1632,
+        -1648,
         -128
       ],
       "id": "43f60bb7-76ca-439b-a118-2a2b5d975365",
@@ -4645,8 +4966,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        -944,
-        -336
+        -1856,
+        -304
       ],
       "id": "0bcc038e-46c5-4010-b6bb-318fbc78bc42",
       "name": "Aggregate2"
@@ -4658,8 +4979,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -784,
-        -336
+        -1696,
+        -304
       ],
       "id": "75865f46-bef1-4928-a4d2-fc76a2d1a5c1",
       "name": "Hadis Selected"
@@ -4732,8 +5053,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -1120,
-        -336
+        -2032,
+        -304
       ],
       "id": "dc728937-d0c8-4aee-8aeb-8f33fa565f98",
       "name": "Cari Hadis",
@@ -4762,8 +5083,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -624,
-        -336
+        -1536,
+        -304
       ],
       "id": "f7e30df5-56d2-4f89-b915-d8d76a99c4bd",
       "name": "Cari Waktu Solat",
@@ -5939,7 +6260,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        -1120,
+        -1072,
         -32
       ],
       "id": "79ccd5fd-a3e6-4eae-9b06-9ae2a37f54c7",
@@ -6134,6 +6455,157 @@
       ],
       "id": "407bee67-64f1-4500-87c6-ab6d34ba3410",
       "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "ZUoAjVvehXqvzquT",
+          "mode": "list",
+          "cachedResultName": "Masjid - Giliran Berbuka Puasa",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ZUoAjVvehXqvzquT"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh",
+              "keyValue": "={{ $('Tarikh Sekarang').first().json.tarikh }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -2208,
+        -304
+      ],
+      "id": "9b8b4069-8819-402a-992b-00b2808ae5de",
+      "name": "Cari Giliran Berbuka Puasa",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1o3CCG5hiX95WK0XGPQQXiHaaDBY662gv",
+            "mode": "list",
+            "cachedResultName": "Gambar Program",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1o3CCG5hiX95WK0XGPQQXiHaaDBY662gv"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1088,
+        -384
+      ],
+      "id": "368488af-edcf-4192-99e7-478990852a17",
+      "name": "Search files and folders1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "C3mKdKMyyqUTo37x",
+          "name": "Drive"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2720,
+        -576
+      ],
+      "id": "a0e18af0-ab86-4fea-8802-c19ac61514c9",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -896,
+        -384
+      ],
+      "id": "6626ecb1-8a77-4dff-8d92-fab8d6ccd8f1",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "66b8a008-4ae8-4ef1-8a89-6eaeeb767937",
+              "leftValue": "={{ $json.dateFile }}",
+              "rightValue": "={{ $('Tarikh Sekarang').item.json.tarikh }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -560,
+        -368
+      ],
+      "id": "5dff66c7-5daa-40f3-b5ea-732e5df79734",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const name = $input.first().json.name;\nconst filename = $input.first().json.id;\nconst name_extract = name.split('.');\nconst dateFile = name_extract[0];\n\nreturn [\n  {\n    json:{\n      filename,\n      dateFile\n    }\n  }  \n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        -368
+      ],
+      "id": "d3467ca5-fc67-4686-889a-4c6d187543dd",
+      "name": "dapatkan tarikh"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -1232,
+        -176
+      ],
+      "id": "44acb366-1789-4db2-9d14-9a2783d71575",
+      "name": "Aggregate4"
     }
   ],
   "origin": "n8n",
@@ -6193,6 +6665,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-01-13T12:21:35.122Z",
-  "versionId": "776da190-d839-4ff2-aac5-48190d16006e"
+  "updatedAt": "2026-01-15T08:55:26.534Z",
+  "versionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7"
 }
