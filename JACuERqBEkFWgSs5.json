@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-15T08:55:28.000Z",
-    "createdAt": "2026-01-15T08:55:26.536Z",
-    "versionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7",
+    "updatedAt": "2026-01-15T22:12:45.000Z",
+    "createdAt": "2026-01-15T22:12:43.337Z",
+    "versionId": "fd1e323e-cb5a-4af8-b33f-bba1840c5836",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -2079,17 +2079,6 @@
         }
       },
       {
-        "parameters": {},
-        "type": "n8n-nodes-base.manualTrigger",
-        "typeVersion": 1,
-        "position": [
-          -2720,
-          -576
-        ],
-        "id": "a0e18af0-ab86-4fea-8802-c19ac61514c9",
-        "name": "When clicking ‘Execute workflow’"
-      },
-      {
         "parameters": {
           "options": {}
         },
@@ -3225,11 +3214,6 @@
           ]
         ]
       },
-      "When clicking ‘Execute workflow’": {
-        "main": [
-          []
-        ]
-      },
       "Search files and folders1": {
         "main": [
           [
@@ -3301,11 +3285,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 08b98cb8",
+    "name": "Version fd1e323e",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7",
+  "activeVersionId": "fd1e323e-cb5a-4af8-b33f-bba1840c5836",
   "connections": {
     "Aggregate": {
       "main": [
@@ -4359,11 +4343,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        []
       ]
     },
     "Search files and folders1": {
@@ -6509,23 +6488,13 @@
       ],
       "id": "368488af-edcf-4192-99e7-478990852a17",
       "name": "Search files and folders1",
+      "alwaysOutputData": true,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "C3mKdKMyyqUTo37x",
           "name": "Drive"
         }
       }
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -2720,
-        -576
-      ],
-      "id": "a0e18af0-ab86-4fea-8802-c19ac61514c9",
-      "name": "When clicking ‘Execute workflow’"
     },
     {
       "parameters": {
@@ -6576,7 +6545,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const name = $input.first().json.name;\nconst filename = $input.first().json.id;\nconst name_extract = name.split('.');\nconst dateFile = name_extract[0];\n\nreturn [\n  {\n    json:{\n      filename,\n      dateFile\n    }\n  }  \n];"
+        "jsCode": "const name = $input.first().json.name??\"\";\nconst filename = $input.first().json.id??\"\";\nconst name_extract = name.split('.');\nconst dateFile = name_extract[0]??\"\";\n\nreturn [\n  {\n    json:{\n      filename,\n      dateFile\n    }\n  }  \n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -6665,6 +6634,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-01-15T08:55:26.534Z",
-  "versionId": "08b98cb8-4218-4c73-a3ed-ab40f0b723b7"
+  "updatedAt": "2026-01-15T22:14:40.938Z",
+  "versionId": "9f4e7a65-466d-4f9b-bb71-0e2c89b676b8"
 }
