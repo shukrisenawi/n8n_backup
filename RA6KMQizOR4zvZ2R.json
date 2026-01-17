@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-09T02:44:35.000Z",
-    "createdAt": "2026-01-09T02:42:49.535Z",
-    "versionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90",
+    "updatedAt": "2026-01-17T03:23:30.000Z",
+    "createdAt": "2026-01-17T03:23:28.127Z",
+    "versionId": "0d059acd-d8fb-4e93-99ca-1e833926a0e4",
     "workflowId": "RA6KMQizOR4zvZ2R",
     "nodes": [
       {
@@ -279,7 +279,7 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          -848,
+          -1440,
           256
         ],
         "id": "73440cd0-16a6-41a3-8ca1-6f1265053e70",
@@ -525,11 +525,147 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          -848,
+          -1360,
           16
         ],
         "id": "895bf768-f03d-4053-b6aa-122a85346c30",
         "name": "Alert Pukul 9pg"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "SCfcQz2GOgEMU9Nx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Config",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/SCfcQz2GOgEMU9Nx"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -1184,
+          16
+        ],
+        "id": "0d79ee92-d77c-4ab6-97be-1fd042ab856a",
+        "name": "config"
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1008,
+          16
+        ],
+        "id": "d50d21bf-2577-43a7-a3e2-d25db26bb767",
+        "name": "run"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "a429bfa6-be41-4398-a1ab-612bc98d38de",
+                "leftValue": "={{ $json.run }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -864,
+          16
+        ],
+        "id": "0de95e34-2039-4109-bd48-252dcec3c992",
+        "name": "If4"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "SCfcQz2GOgEMU9Nx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Config",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/SCfcQz2GOgEMU9Nx"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -1280,
+          256
+        ],
+        "id": "a2dd4933-31d3-4f38-8c0b-386d422cca6d",
+        "name": "config1"
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1104,
+          256
+        ],
+        "id": "73cc2192-385a-43a8-976a-717604c606d5",
+        "name": "run1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "a429bfa6-be41-4398-a1ab-612bc98d38de",
+                "leftValue": "={{ $json.run }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -896,
+          256
+        ],
+        "id": "93266882-3e84-462a-b38f-b91c3051e1ea",
+        "name": "If"
       }
     ],
     "connections": {
@@ -693,7 +829,7 @@
         "main": [
           [
             {
-              "node": "Var1",
+              "node": "config1",
               "type": "main",
               "index": 0
             }
@@ -737,7 +873,73 @@
         "main": [
           [
             {
+              "node": "config",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "config": {
+        "main": [
+          [
+            {
+              "node": "run",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "run": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
               "node": "Var",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "config1": {
+        "main": [
+          [
+            {
+              "node": "run1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "run1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Var1",
               "type": "main",
               "index": 0
             }
@@ -746,11 +948,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version b597be7a",
+    "name": "Version 0d059acd",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90",
+  "activeVersionId": "0d059acd-d8fb-4e93-99ca-1e833926a0e4",
   "connections": {
     "Stop Typing": {
       "main": [
@@ -912,7 +1114,7 @@
       "main": [
         [
           {
-            "node": "Var1",
+            "node": "config1",
             "type": "main",
             "index": 0
           }
@@ -956,7 +1158,73 @@
       "main": [
         [
           {
+            "node": "config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config": {
+      "main": [
+        [
+          {
+            "node": "run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "run": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
             "node": "Var",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config1": {
+      "main": [
+        [
+          {
+            "node": "run1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "run1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Var1",
             "type": "main",
             "index": 0
           }
@@ -1245,7 +1513,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -848,
+        -1440,
         256
       ],
       "id": "73440cd0-16a6-41a3-8ca1-6f1265053e70",
@@ -1491,11 +1759,147 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -848,
+        -1360,
         16
       ],
       "id": "895bf768-f03d-4053-b6aa-122a85346c30",
       "name": "Alert Pukul 9pg"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "SCfcQz2GOgEMU9Nx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Config",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/SCfcQz2GOgEMU9Nx"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -1184,
+        16
+      ],
+      "id": "0d79ee92-d77c-4ab6-97be-1fd042ab856a",
+      "name": "config"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1008,
+        16
+      ],
+      "id": "d50d21bf-2577-43a7-a3e2-d25db26bb767",
+      "name": "run"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a429bfa6-be41-4398-a1ab-612bc98d38de",
+              "leftValue": "={{ $json.run }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -864,
+        16
+      ],
+      "id": "0de95e34-2039-4109-bd48-252dcec3c992",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "SCfcQz2GOgEMU9Nx",
+          "mode": "list",
+          "cachedResultName": "Masjid - Config",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/SCfcQz2GOgEMU9Nx"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -1280,
+        256
+      ],
+      "id": "a2dd4933-31d3-4f38-8c0b-386d422cca6d",
+      "name": "config1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        256
+      ],
+      "id": "73cc2192-385a-43a8-976a-717604c606d5",
+      "name": "run1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a429bfa6-be41-4398-a1ab-612bc98d38de",
+              "leftValue": "={{ $json.run }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -896,
+        256
+      ],
+      "id": "93266882-3e84-462a-b38f-b91c3051e1ea",
+      "name": "If"
     }
   ],
   "origin": "n8n",
@@ -1552,6 +1956,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-01-09T02:42:49.534Z",
-  "versionId": "b597be7a-0de1-47f9-b3f6-c989418e3e90"
+  "updatedAt": "2026-01-17T03:24:15.900Z",
+  "versionId": "0d059acd-d8fb-4e93-99ca-1e833926a0e4"
 }
