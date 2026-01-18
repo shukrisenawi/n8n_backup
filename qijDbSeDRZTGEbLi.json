@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-17T03:26:43.000Z",
-    "createdAt": "2026-01-17T03:26:40.677Z",
-    "versionId": "e9be8426-a42b-4031-b563-7b506862ee38",
+    "updatedAt": "2026-01-18T08:24:13.000Z",
+    "createdAt": "2026-01-18T08:24:04.179Z",
+    "versionId": "4f73fdd6-93a6-4002-baf8-ebc190a2306b",
     "workflowId": "qijDbSeDRZTGEbLi",
     "nodes": [
       {
@@ -141,7 +141,7 @@
                   },
                   "conditions": [
                     {
-                      "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                      "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                       "rightValue": "live_videos",
                       "operator": {
                         "type": "string",
@@ -166,7 +166,7 @@
                   "conditions": [
                     {
                       "id": "44ad03dc-e843-45df-8f9f-98f698d25b7e",
-                      "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                      "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                       "rightValue": "feed",
                       "operator": {
                         "type": "string",
@@ -259,7 +259,7 @@
                   },
                   "conditions": [
                     {
-                      "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                      "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                       "rightValue": "=live_videos",
                       "operator": {
                         "type": "string",
@@ -873,7 +873,7 @@
                   },
                   "conditions": [
                     {
-                      "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                      "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.status }}",
                       "rightValue": "live",
                       "operator": {
                         "type": "string",
@@ -898,7 +898,7 @@
                   "conditions": [
                     {
                       "id": "180c31ef-1bef-43c3-a187-eb478d9bd1bc",
-                      "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                      "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.status }}",
                       "rightValue": "vod",
                       "operator": {
                         "type": "string",
@@ -938,7 +938,7 @@
             "conditions": [
               {
                 "id": "052bb662-1d96-49b5-ba9c-a33ca645be8a",
-                "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.verb }}",
+                "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.verb }}",
                 "rightValue": "add",
                 "operator": {
                   "type": "string",
@@ -948,7 +948,7 @@
               },
               {
                 "id": "3379c999-b16f-4ada-bcd1-84223845c95c",
-                "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.published }}",
+                "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.published }}",
                 "rightValue": 1,
                 "operator": {
                   "type": "number",
@@ -973,7 +973,7 @@
       {
         "parameters": {
           "graphApiVersion": "v23.0",
-          "node": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.id }}",
+          "node": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.id }}",
           "edge": "=",
           "allowUnauthorizedCerts": true,
           "options": {
@@ -2844,11 +2844,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version e9be8426",
+    "name": "Version 4f73fdd6",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "e9be8426-a42b-4031-b563-7b506862ee38",
+  "activeVersionId": "4f73fdd6-93a6-4002-baf8-ebc190a2306b",
   "connections": {
     "Var": {
       "main": [
@@ -3747,7 +3747,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                     "rightValue": "live_videos",
                     "operator": {
                       "type": "string",
@@ -3772,7 +3772,7 @@
                 "conditions": [
                   {
                     "id": "44ad03dc-e843-45df-8f9f-98f698d25b7e",
-                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                     "rightValue": "feed",
                     "operator": {
                       "type": "string",
@@ -3865,7 +3865,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].field }}",
+                    "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].field }}",
                     "rightValue": "=live_videos",
                     "operator": {
                       "type": "string",
@@ -4479,7 +4479,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                    "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.status }}",
                     "rightValue": "live",
                     "operator": {
                       "type": "string",
@@ -4504,7 +4504,7 @@
                 "conditions": [
                   {
                     "id": "180c31ef-1bef-43c3-a187-eb478d9bd1bc",
-                    "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.status }}",
+                    "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.status }}",
                     "rightValue": "vod",
                     "operator": {
                       "type": "string",
@@ -4544,7 +4544,7 @@
           "conditions": [
             {
               "id": "052bb662-1d96-49b5-ba9c-a33ca645be8a",
-              "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.verb }}",
+              "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.verb }}",
               "rightValue": "add",
               "operator": {
                 "type": "string",
@@ -4554,7 +4554,7 @@
             },
             {
               "id": "3379c999-b16f-4ada-bcd1-84223845c95c",
-              "leftValue": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.published }}",
+              "leftValue": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.published }}",
               "rightValue": 1,
               "operator": {
                 "type": "number",
@@ -4579,7 +4579,7 @@
     {
       "parameters": {
         "graphApiVersion": "v23.0",
-        "node": "={{ $('Webhook').item.json.body.entry[0].changes[0].value.id }}",
+        "node": "={{ $('Webhook').first().json.body.entry[0].changes[0].value.id }}",
         "edge": "=",
         "allowUnauthorizedCerts": true,
         "options": {
@@ -5726,6 +5726,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-17T03:26:40.676Z",
-  "versionId": "e9be8426-a42b-4031-b563-7b506862ee38"
+  "updatedAt": "2026-01-18T08:24:04.178Z",
+  "versionId": "4f73fdd6-93a6-4002-baf8-ebc190a2306b"
 }
