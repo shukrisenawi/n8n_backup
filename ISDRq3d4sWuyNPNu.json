@@ -1499,7 +1499,7 @@
     {
       "parameters": {
         "operation": "markAsRead",
-        "messageId": "={{ $('Gmail Trigger').item.json.id }}"
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
       },
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
@@ -1788,15 +1788,15 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1768647356,
+        "lastTimeChecked": 1768719738,
         "possibleDuplicates": [
-          "19bcb98f50fd6624"
+          "19bcfe96aa52bbda"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-10-30T03:17:40.000Z",
-  "versionId": "5a29ebeb-3b0c-4c06-831c-ae441b94a752"
+  "updatedAt": "2026-01-18T08:05:40.649Z",
+  "versionId": "8609dab2-7b28-4848-9864-e2519581cde4"
 }
