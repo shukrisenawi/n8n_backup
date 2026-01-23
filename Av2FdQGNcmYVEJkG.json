@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-12T14:50:28.000Z",
-    "createdAt": "2026-01-12T14:50:10.223Z",
-    "versionId": "1fb76ee8-95c4-4f56-a779-238072e89124",
+    "updatedAt": "2026-01-22T21:57:59.000Z",
+    "createdAt": "2026-01-22T21:57:57.043Z",
+    "versionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8",
     "workflowId": "Av2FdQGNcmYVEJkG",
     "nodes": [
       {
@@ -4579,7 +4579,7 @@
         "typeVersion": 1,
         "position": [
           2432,
-          -368
+          -400
         ],
         "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
         "name": "Kemaskini Pengajian2"
@@ -6010,23 +6010,23 @@
       },
       "If6": {
         "main": [
-          [],
           [
             {
               "node": "Kemaskini Pengajian2",
               "type": "main",
               "index": 0
             }
-          ]
+          ],
+          []
         ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 1fb76ee8",
+    "name": "Version fe5694e9",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "1fb76ee8-95c4-4f56-a779-238072e89124",
+  "activeVersionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8",
   "connections": {
     "AI Chat": {
       "main": [
@@ -7452,14 +7452,14 @@
     },
     "If6": {
       "main": [
-        [],
         [
           {
             "node": "Kemaskini Pengajian2",
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     }
   },
@@ -12044,7 +12044,7 @@
       "typeVersion": 1,
       "position": [
         2432,
-        -368
+        -400
       ],
       "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
       "name": "Kemaskini Pengajian2"
@@ -12082,6 +12082,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-01-12T14:50:10.221Z",
-  "versionId": "1fb76ee8-95c4-4f56-a779-238072e89124"
+  "updatedAt": "2026-01-22T21:57:57.040Z",
+  "versionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8"
 }
