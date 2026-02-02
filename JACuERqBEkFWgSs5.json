@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-17T03:22:14.000Z",
-    "createdAt": "2026-01-17T03:22:07.201Z",
-    "versionId": "a225160b-66d8-4c2c-8115-98cf6306deb4",
+    "updatedAt": "2026-02-02T01:47:00.000Z",
+    "createdAt": "2026-02-02T01:46:58.509Z",
+    "versionId": "278e2afd-6e28-4b48-8d17-a14995787c6e",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -53,8 +53,8 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          2400,
-          400
+          2272,
+          416
         ],
         "id": "eea4d1d7-7f9a-4d6f-ad58-be280d438f03",
         "name": "Code2"
@@ -495,7 +495,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"****************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"****************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
+          "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -3910,11 +3910,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version a225160b",
+    "name": "Version 278e2afd",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "a225160b-66d8-4c2c-8115-98cf6306deb4",
+  "activeVersionId": "278e2afd-6e28-4b48-8d17-a14995787c6e",
   "connections": {
     "Aggregate": {
       "main": [
@@ -5742,7 +5742,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"****************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"****************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
+        "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -7883,6 +7883,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-01-17T03:22:21.415Z",
-  "versionId": "deda15f3-d628-4658-8cd9-6c064bdde82e"
+  "updatedAt": "2026-02-02T01:46:58.507Z",
+  "versionId": "278e2afd-6e28-4b48-8d17-a14995787c6e"
 }
