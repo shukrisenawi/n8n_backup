@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-02-02T01:47:00.000Z",
-    "createdAt": "2026-02-02T01:46:58.509Z",
-    "versionId": "278e2afd-6e28-4b48-8d17-a14995787c6e",
+    "updatedAt": "2026-02-17T11:03:18.000Z",
+    "createdAt": "2026-02-17T11:03:14.484Z",
+    "versionId": "25d92900-7e16-4408-ae9e-09a8bd3f858d",
     "workflowId": "JACuERqBEkFWgSs5",
     "nodes": [
       {
@@ -22,7 +22,7 @@
       },
       {
         "parameters": {
-          "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\ntry{\n  for (const data of $('Aggregate').first().json.data) {\n    \n    pengajian += \"\\n\";\n    \n    if(data.kitab!=\"Surah Yaasin\"){\n      if(data.pengajar){\n        pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      }else{\n        pengajian +=\"--- Tiada Pengajian ---\\n\";\n      }\n      \n    }else{\n      \n      pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      \n    }    \n  \n    if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n    pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n    \n    if(data.live=='Ya')\n      pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n    \n    \n    if(data.active==\"Tidak\"){   \n      pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n    }\n  }\n} catch (error) {\n    \n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n** *GILIRAN BERBUKA PUASA* **\\n--> *Kumpulan :*  \"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\\n\";\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+buka_puasa+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+buka_puasa+hadis;\n}\n\nreturn $input.all();"
+          "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\ntry{\n  for (const data of $('Aggregate').first().json.data) {\n    \n    pengajian += \"\\n\";\n    \n    if(data.kitab!=\"Surah Yaasin\"){\n      if(data.pengajar){\n        pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      }else{\n        pengajian +=\"--- Tiada Pengajian ---\\n\";\n      }\n      \n    }else{\n      \n      pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      \n    }    \n  \n    if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n    pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n    \n    if(data.live=='Ya')\n      pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n    \n    \n    if(data.active==\"Tidak\"){   \n      pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n    }\n  }\n} catch (error) {\n    \n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n\\n** *GILIRAN JAMUAN BERBUKA PUASA* **\\n\\n\"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\";\nlet imam_bilal = \"\";\nif($('Cari Giliran Imam Bilal').first().json.imam)\n  imam_bilal = \"\\n** *IMAM & BILAL* **\\n\\n Imam : \"+$('Cari Giliran Imam Bilal').first().json.imam+\"\\n Bilal : \"+$('Cari Giliran Imam Bilal').first().json.bilal+\"\\n\";\n\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+buka_puasa+imam_bilal+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+buka_puasa+imam_bilal+pengumuman+hadis;\n}\n\nreturn $input.all();"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -495,7 +495,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
+          "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- \"+item.pengumuman+\"\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -2533,7 +2533,7 @@
       },
       {
         "parameters": {
-          "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+          "jsCode": "const items = $input.all();\nlet run = true;\nconst dateNow = $('Tarikh Sekarang').first().json.tarikh;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -2577,6 +2577,36 @@
         ],
         "id": "e32e1d7f-ceea-4cbf-a67f-a5c976053770",
         "name": "If10"
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "7103Xkb3dRSe48Lu",
+            "mode": "list",
+            "cachedResultName": "Masjid - Imam Bilal Puasa",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/7103Xkb3dRSe48Lu"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "tarikh",
+                "keyValue": "={{ $('Tarikh Sekarang').first().json.tarikh }}"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          -2400,
+          -304
+        ],
+        "id": "08c5196b-3c9f-4874-bdd2-09232196caed",
+        "name": "Cari Giliran Imam Bilal",
+        "alwaysOutputData": true
       }
     ],
     "connections": {
@@ -2857,7 +2887,7 @@
         "main": [
           [
             {
-              "node": "Cari Giliran Berbuka Puasa",
+              "node": "Cari Giliran Imam Bilal",
               "type": "main",
               "index": 0
             }
@@ -3907,14 +3937,25 @@
             }
           ]
         ]
+      },
+      "Cari Giliran Imam Bilal": {
+        "main": [
+          [
+            {
+              "node": "Cari Giliran Berbuka Puasa",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 278e2afd",
+    "name": "Version 25d92900",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "278e2afd-6e28-4b48-8d17-a14995787c6e",
+  "activeVersionId": "25d92900-7e16-4408-ae9e-09a8bd3f858d",
   "connections": {
     "Aggregate": {
       "main": [
@@ -4193,7 +4234,7 @@
       "main": [
         [
           {
-            "node": "Cari Giliran Berbuka Puasa",
+            "node": "Cari Giliran Imam Bilal",
             "type": "main",
             "index": 0
           }
@@ -5243,6 +5284,17 @@
           }
         ]
       ]
+    },
+    "Cari Giliran Imam Bilal": {
+      "main": [
+        [
+          {
+            "node": "Cari Giliran Berbuka Puasa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-25T09:01:27.214Z",
@@ -5269,7 +5321,7 @@
     },
     {
       "parameters": {
-        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\ntry{\n  for (const data of $('Aggregate').first().json.data) {\n    \n    pengajian += \"\\n\";\n    \n    if(data.kitab!=\"Surah Yaasin\"){\n      if(data.pengajar){\n        pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      }else{\n        pengajian +=\"--- Tiada Pengajian ---\\n\";\n      }\n      \n    }else{\n      \n      pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      \n    }    \n  \n    if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n    pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n    \n    if(data.live=='Ya')\n      pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n    \n    \n    if(data.active==\"Tidak\"){   \n      pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n    }\n  }\n} catch (error) {\n    \n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n** *GILIRAN BERBUKA PUASA* **\\n--> *Kumpulan :*  \"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\\n\";\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+pengumuman+buka_puasa+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+pengumuman+buka_puasa+hadis;\n}\n\nreturn $input.all();"
+        "jsCode": "function replaceDateHijrah(dateHijrah){\n  const parts = dateHijrah.split(\"-\");\n  const bulan = parts[1];\n  const bulanMap = {\n    \"Muh\": \"Muharram\",\n    \"Saf\": \"Safar\",\n    \"Raw\": \"Rabiulawal\",\n    \"Rak\": \"Rabiulakhir\",\n    \"Jaw\": \"Jamadilawal\",\n    \"Jak\": \"Jamadilakhir\",\n    \"Rej\": \"Rejab\",\n    \"Syb\": \"Syaaban\",\n    \"Ram\": \"Ramadan\",\n    \"Syw\": \"Syawal\",\n    \"Zkh\": \"Zulkaedah\",\n    \"Zhj\": \"Zulhijjah\"\n  };\n  \n  let bulanBaru = bulanMap[bulan] || bulan;\n  \n  return parts[0]+\" \"+bulanBaru+\" \"+parts[2]+\"H\";  \n}\n\nconst tarikh = \" --- *MASJID AL-HALIMI BATU 5* ---\\n--- *\"+$('Cari Waktu Solat').first().json.hari+\", \"+$('Tarikh Sekarang').first().json.tarikh_format+\" / \"+replaceDateHijrah($('Cari Waktu Solat').first().json.tarikh_hijrah)+\"* ---\\n\\n\";\n\nconst solat = \"** *WAKTU SOLAT* ** \\n\\n - *Subuh*: \"+$('Cari Waktu Solat').first().json.subuh+\"\\n - *Zohor*: \"+$('Cari Waktu Solat').first().json.zohor+\"\\n - *Asar*: \"+$('Cari Waktu Solat').first().json.asar+\"\\n - *Maghrib*: \"+$('Cari Waktu Solat').first().json.maghrib+\"\\n - *Isyak*: \"+$('Cari Waktu Solat').first().json.isyak;\n\nlet pengajian =\"\";\n\ntry{\n  for (const data of $('Aggregate').first().json.data) {\n    \n    pengajian += \"\\n\";\n    \n    if(data.kitab!=\"Surah Yaasin\"){\n      if(data.pengajar){\n        pengajian += \"*Pengajar :* \"+data.pengajar+\"\\n\"+\"*Kitab :* \"+data.kitab+\"\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      }else{\n        pengajian +=\"--- Tiada Pengajian ---\\n\";\n      }\n      \n    }else{\n      \n      pengajian += \"*Program :* Bacaan Surah Yaasin\\n\"+\"*Masa :* \"+data.masa+\"\\n\"; \n      \n    }    \n  \n    if(data.tempat && data.tempat!=\"Masjid Al-Halimi Batu 5\")\n    pengajian += \"*Tempat :* \"+data.tempat+\"\\n\";\n    \n    if(data.live=='Ya')\n      pengajian += \"*Live Facebook :* Masjid Al-Halimi Batu 5\\n\";\n    \n    \n    if(data.active==\"Tidak\"){   \n      pengajian += \"*Pengajian : DIBATALKAN*\\n\"\n    }\n  }\n} catch (error) {\n    \n}\n\nconst pengumuman = $('Senarai Pengumuman').first().json.pengumuman;\nconst hadis = \"\";//$('Hadis Selected').first().json.hadis;\nlet buka_puasa = \"\";\nif($('Cari Giliran Berbuka Puasa').first().json.kumpulan)\n  buka_puasa = \"\\n\\n** *GILIRAN JAMUAN BERBUKA PUASA* **\\n\\n\"+$('Cari Giliran Berbuka Puasa').first().json.kumpulan+\"\\n\";\nlet imam_bilal = \"\";\nif($('Cari Giliran Imam Bilal').first().json.imam)\n  imam_bilal = \"\\n** *IMAM & BILAL* **\\n\\n Imam : \"+$('Cari Giliran Imam Bilal').first().json.imam+\"\\n Bilal : \"+$('Cari Giliran Imam Bilal').first().json.bilal+\"\\n\";\n\n\nconst gambar = $input.first().json.filename;\n\nfor (const item of $input.all()) {\n  if(pengajian=='')\n    item.json.message_jadual = gambar+tarikh+solat+buka_puasa+imam_bilal+pengumuman+hadis;\n  else\n    item.json.message_jadual = gambar+tarikh+solat+\"\\n\\n** *PENGAJIAN KITAB* **\\n\"+pengajian+buka_puasa+imam_bilal+pengumuman+hadis;\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -5742,7 +5794,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- *\"+item.pengumuman+\"*\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
+        "jsCode": "let pengumuman = \"\";\nlet senaraiPengumuman = '';\nif($input.first().json.data[0].pengumuman){\n  for(const item of $('Aggregate1').first().json.data){\n    if((!item.tarikh_mula||String($('Tarikh Sekarang').first().json.tarikh)>=String(item.tarikh_mula)) && String($('Tarikh Sekarang').first().json.tarikh)<=String(item.tarikh_akhir)){\n      senaraiPengumuman += \"- \"+item.pengumuman+\"\\n\";\n    }\n  }\n}\n\nif(senaraiPengumuman){\n  pengumuman = \"\\n** *PENGUMUMAN* ** \\n\\n\";\n  pengumuman += \"**************************************\\n\";\n  pengumuman +=senaraiPengumuman;\n  pengumuman += \"**************************************\\n\";\n}\n\nreturn [\n  {\n    json:{\n      pengumuman\n    }\n  }\n]"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -7780,7 +7832,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const now = new Date();\n\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst items = $input.all();\nlet run = true;\nconst dateNow = `${year}-${month}-${day}`;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
+        "jsCode": "const items = $input.all();\nlet run = true;\nconst dateNow = $('Tarikh Sekarang').first().json.tarikh;\n\n// Guna object untuk simpan key-value\nconst config = {};\n\n// Ulang setiap item dan tambah ke dalam object\nitems.forEach(item => {\n  const name = item.json.name;\n  const value = item.json.value;\n  config[name] = value;\n});\n\nif(dateNow >= config[\"pengajian_off\"] &&dateNow < config[\"pengajian_on\"]){\n  run = false;\n}\n\n// Keluarkan hasil dalam format JSON\nreturn [{ json: { config, run, dateNow } }];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -7824,6 +7876,36 @@
       ],
       "id": "e32e1d7f-ceea-4cbf-a67f-a5c976053770",
       "name": "If10"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "7103Xkb3dRSe48Lu",
+          "mode": "list",
+          "cachedResultName": "Masjid - Imam Bilal Puasa",
+          "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/7103Xkb3dRSe48Lu"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "tarikh",
+              "keyValue": "={{ $('Tarikh Sekarang').first().json.tarikh }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -2400,
+        -304
+      ],
+      "id": "08c5196b-3c9f-4874-bdd2-09232196caed",
+      "name": "Cari Giliran Imam Bilal",
+      "alwaysOutputData": true
     }
   ],
   "origin": "n8n",
@@ -7883,6 +7965,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-02-02T01:46:58.507Z",
-  "versionId": "278e2afd-6e28-4b48-8d17-a14995787c6e"
+  "updatedAt": "2026-02-17T11:03:14.482Z",
+  "versionId": "25d92900-7e16-4408-ae9e-09a8bd3f858d"
 }
