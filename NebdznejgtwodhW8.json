@@ -1,0 +1,37 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2026-03-08T02:56:48.312Z",
+  "id": "NebdznejgtwodhW8",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 3",
+  "nodes": [],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-08T02:56:48.315Z",
+      "createdAt": "2026-03-08T02:56:48.315Z",
+      "role": "workflow:owner",
+      "workflowId": "NebdznejgtwodhW8",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-08T03:01:00.000Z",
+  "versionId": "f1c79b57-c179-4970-b3d5-32f966115536"
+}
