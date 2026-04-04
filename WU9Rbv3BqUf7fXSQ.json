@@ -1,0 +1,53 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {},
+  "createdAt": "2026-04-04T02:56:00.521Z",
+  "id": "WU9Rbv3BqUf7fXSQ",
+  "isArchived": false,
+  "meta": null,
+  "name": "Hantar Mesej Group AJK",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "9578a313-40a9-4191-af87-b54e1b2b4212",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -368,
+        -32
+      ],
+      "id": "7518af92-cba0-4ccb-ae7a-b66e88775bd9",
+      "name": "Webhook",
+      "webhookId": "9578a313-40a9-4191-af87-b54e1b2b4212"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-04T02:56:00.531Z",
+      "createdAt": "2026-04-04T02:56:00.531Z",
+      "role": "workflow:owner",
+      "workflowId": "WU9Rbv3BqUf7fXSQ",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-04T03:34:11.239Z",
+  "versionId": "29aff29a-32be-482e-86f8-4c153468d639"
+}
