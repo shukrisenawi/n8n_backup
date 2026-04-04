@@ -277,7 +277,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Notification",
+  "name": "Hantar Mesej Group Guru",
   "nodes": [
     {
       "parameters": {
@@ -839,6 +839,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-03-24T06:10:22.147Z",
+  "updatedAt": "2026-04-04T02:56:32.375Z",
   "versionId": "869b2466-5c2a-4d97-9d5f-f6dfb79f86f6"
 }
