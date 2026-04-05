@@ -2,27 +2,56 @@
   "active": false,
   "activeVersion": null,
   "activeVersionId": null,
-  "connections": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
   "createdAt": "2026-04-04T02:56:00.521Z",
   "id": "WU9Rbv3BqUf7fXSQ",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Hantar Mesej Group AJK",
   "nodes": [
     {
       "parameters": {
+        "httpMethod": "POST",
         "path": "9578a313-40a9-4191-af87-b54e1b2b4212",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -368,
-        -32
+        -832,
+        -96
       ],
       "id": "7518af92-cba0-4ccb-ae7a-b66e88775bd9",
       "name": "Webhook",
       "webhookId": "9578a313-40a9-4191-af87-b54e1b2b4212"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -608,
+        -112
+      ],
+      "id": "8f249342-e67a-4ad5-8e48-1e0d90643d69",
+      "name": "Code in JavaScript"
     }
   ],
   "origin": "n8n",
@@ -48,6 +77,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-04-04T03:34:11.239Z",
-  "versionId": "29aff29a-32be-482e-86f8-4c153468d639"
+  "updatedAt": "2026-04-04T17:01:05.851Z",
+  "versionId": "1ed81cac-6afd-4589-835a-c1abad00e172"
 }
