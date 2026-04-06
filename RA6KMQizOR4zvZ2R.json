@@ -1913,7 +1913,10 @@
     "timezone": "Asia/Kuala_Lumpur",
     "callerPolicy": "workflowsFromSameOwner",
     "timeSavedPerExecution": 1,
-    "errorWorkflow": "X3z9DFNcd6pygcaS"
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -1956,6 +1959,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-01-18T08:26:50.449Z",
+  "updatedAt": "2026-04-06T09:59:14.319Z",
   "versionId": "0d059acd-d8fb-4e93-99ca-1e833926a0e4"
 }
