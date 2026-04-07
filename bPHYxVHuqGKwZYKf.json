@@ -1,69 +1,642 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-07T10:23:07.000Z",
+    "createdAt": "2026-04-07T10:23:01.486Z",
+    "versionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033",
+    "workflowId": "bPHYxVHuqGKwZYKf",
+    "nodes": [
+      {
+        "parameters": {
+          "url": "https://pastikawasansik.my.id/api/n8n/users/birthdates",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpBearerAuth",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.4,
+        "position": [
+          -128,
+          176
+        ],
+        "id": "d4d566df-2869-4da2-a4ab-40849ddfe141",
+        "name": "HTTP Request",
+        "credentials": {
+          "httpBearerAuth": {
+            "id": "2YArxsKCXQm8BhCR",
+            "name": "Akaun Hari Jadi PASTI"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {}
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -272,
+          176
+        ],
+        "id": "ac70d99d-a726-4ddd-8647-c9c52baa78b1",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          896,
+          400
+        ],
+        "id": "b81ce39e-1b19-4c41-baee-4edabc75ac4f",
+        "name": "All Groups"
+      },
+      {
+        "parameters": {
+          "jsCode": "const raw = $input.first().json.message;\n\n// cari url gambar\nconst imageMatch = raw.match(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/i);\nconst images = imageMatch ? imageMatch[0] : null;\n\n// buang url gambar dari text\nconst text = raw\n  .replace(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/ig, '')\n  .trim();\n\nreturn [\n  {\n    json: {\n      images,\n      text\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          736,
+          576
+        ],
+        "id": "3c2a9109-93ed-4a0e-96d8-971a606699c1",
+        "name": "Ambil Gambar & text",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "ceb20b3a-bcf6-4a4d-8800-464b0cd133bc",
+                "leftValue": "={{ $json.images[0] }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          912,
+          576
+        ],
+        "id": "c3dc33f8-64a9-4dad-98c3-60b879e8a482",
+        "name": "If5"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Image",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('All Groups').item.json.group }}",
+          "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images }}\"\n}",
+          "caption": "={{ $json.text }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1232,
+          576
+        ],
+        "id": "8509a219-230b-4aae-b663-fb8d9732c65c",
+        "name": "Send an image1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Stop Typing",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('All Groups').item.json.group }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1040,
+          816
+        ],
+        "id": "f54aab0f-4028-4a50-aa9c-35b187d17268",
+        "name": "Stop Typing1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('All Groups').item.json.group }}",
+          "text": "={{ $('Ambil Gambar & text').item.json.text }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1200,
+          816
+        ],
+        "id": "b1603463-56ba-4b96-91e0-594503462a73",
+        "name": "Send a text message1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": "={{ Math.floor(Math.random()*5,1) }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          880,
+          816
+        ],
+        "id": "4ff56fe2-6284-40e6-9bae-43b4fcf70ea3",
+        "name": "Wait2",
+        "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Start Typing",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('All Groups').item.json.group }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          736,
+          816
+        ],
+        "id": "2d44cbd3-65e3-4e8d-a52b-4a301955efc4",
+        "name": "Start Typing1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1088,
+          576
+        ],
+        "id": "8c05d478-8309-4e8c-95f7-c9cbff461808",
+        "name": "Wait3",
+        "webhookId": "044bb79c-e4f7-41a6-8378-9e747c6fda5c"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan Selamat Hari Jadi kepada `+$('Loop Over Items1').first().json.nama+`. Semoga panjang umur dalam keberkatan dan dimurahkan rezeki.`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          736,
+          400
+        ],
+        "id": "9c509d65-defa-4862-9f79-a711062bb773",
+        "name": "config"
+      },
+      {
+        "parameters": {
+          "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nconst cek_tarikh_hari_jadi = `${month}-${day}`;\nconst hari_jadi = $input.first().json.tarikh_lahir.slice(5);\n\nlet ok = false;\n\nif(cek_tarikh_hari_jadi==hari_jadi)\n{\n  ok = true;\n}\n\nreturn {\n  ok,\n  tarikh,\n  tarikh_format\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          288,
+          416
+        ],
+        "id": "8fd8851f-9cdb-48be-8e83-8e7b3f5ce2c0",
+        "name": "Tarikh Sekarang"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          272,
+          176
+        ],
+        "id": "c8057842-6218-475b-9d03-6687c4843951",
+        "name": "Loop Over Items1"
+      },
+      {
+        "parameters": {
+          "fieldToSplitOut": "data",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitOut",
+        "typeVersion": 1,
+        "position": [
+          80,
+          176
+        ],
+        "id": "5cc39e75-1228-4228-aff5-c4ec348abe92",
+        "name": "Split Out"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "db2e25f5-6c28-44a3-a386-ad5d5353d27e",
+                "leftValue": "={{ $json.ok }}",
+                "rightValue": true,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          464,
+          416
+        ],
+        "id": "a1f04653-282b-4d84-bfa2-44d2454a3e04",
+        "name": "If"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Split Out",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "All Groups": {
+        "main": [
+          [
+            {
+              "node": "Ambil Gambar & text",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Ambil Gambar & text": {
+        "main": [
+          [
+            {
+              "node": "If5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If5": {
+        "main": [
+          [
+            {
+              "node": "Wait3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Start Typing1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send an image1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Stop Typing1": {
+        "main": [
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message1": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait2": {
+        "main": [
+          [
+            {
+              "node": "Stop Typing1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start Typing1": {
+        "main": [
+          [
+            {
+              "node": "Wait2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait3": {
+        "main": [
+          [
+            {
+              "node": "Send an image1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "config": {
+        "main": [
+          [
+            {
+              "node": "All Groups",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Tarikh Sekarang",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tarikh Sekarang": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Split Out": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "config",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Loop Over Items1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version f7bfc47b",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033",
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "config",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Start Typing": {
+    "HTTP Request": {
       "main": [
         [
           {
-            "node": "Stop Typing",
+            "node": "Split Out",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Stop Typing": {
+    "All Groups": {
       "main": [
         [
           {
-            "node": "Send a text message",
+            "node": "Ambil Gambar & text",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items": {
+    "Ambil Gambar & text": {
       "main": [
-        [],
         [
           {
-            "node": "Start Typing",
+            "node": "If5",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Send a text message": {
+    "If5": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Senarai Hari Jadi": {
+    "Send an image1": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Send an image1",
             "type": "main",
             "index": 0
           }
@@ -74,7 +647,59 @@
       "main": [
         [
           {
-            "node": "Senarai Hari Jadi",
+            "node": "All Groups",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Tarikh Sekarang",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tarikh Sekarang": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "config",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
@@ -91,30 +716,123 @@
   "name": "Hari Jadi",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
+      "parameters": {
+        "url": "https://pastikawasansik.my.id/api/n8n/users/birthdates",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
       "position": [
-        -256,
-        0
+        -128,
+        176
       ],
-      "id": "145047d2-7b8d-41c6-9297-77f8ef90af71",
-      "name": "When clicking ‘Execute workflow’"
+      "id": "d4d566df-2869-4da2-a4ab-40849ddfe141",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "2YArxsKCXQm8BhCR",
+          "name": "Akaun Hari Jadi PASTI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -272,
+        176
+      ],
+      "id": "ac70d99d-a726-4ddd-8647-c9c52baa78b1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        400
+      ],
+      "id": "b81ce39e-1b19-4c41-baee-4edabc75ac4f",
+      "name": "All Groups"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.message;\n\n// cari url gambar\nconst imageMatch = raw.match(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/i);\nconst images = imageMatch ? imageMatch[0] : null;\n\n// buang url gambar dari text\nconst text = raw\n  .replace(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/ig, '')\n  .trim();\n\nreturn [\n  {\n    json: {\n      images,\n      text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        576
+      ],
+      "id": "3c2a9109-93ed-4a0e-96d8-971a606699c1",
+      "name": "Ambil Gambar & text",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ceb20b3a-bcf6-4a4d-8800-464b0cd133bc",
+              "leftValue": "={{ $json.images[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        576
+      ],
+      "id": "c3dc33f8-64a9-4dad-98c3-60b879e8a482",
+      "name": "If5"
     },
     {
       "parameters": {
         "resource": "Chatting",
-        "operation": "Start Typing",
+        "operation": "Send Image",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('All Groups').item.json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images }}\"\n}",
+        "caption": "={{ $json.text }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        544,
-        -48
+        1232,
+        576
       ],
-      "id": "5bfcb1c4-65a5-464b-8b61-9787a1200188",
-      "name": "Start Typing",
+      "id": "8509a219-230b-4aae-b663-fb8d9732c65c",
+      "name": "Send an image1",
       "credentials": {
         "wahaApi": {
           "id": "OSQWzQbmYRYYqgCf",
@@ -126,22 +844,124 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Stop Typing",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('All Groups').item.json.group }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        544,
-        64
+        1040,
+        816
       ],
-      "id": "523567d4-fb60-423e-bd54-8a5bfe761185",
-      "name": "Stop Typing",
+      "id": "f54aab0f-4028-4a50-aa9c-35b187d17268",
+      "name": "Stop Typing1",
       "credentials": {
         "wahaApi": {
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('All Groups').item.json.group }}",
+        "text": "={{ $('Ambil Gambar & text').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1200,
+        816
+      ],
+      "id": "b1603463-56ba-4b96-91e0-594503462a73",
+      "name": "Send a text message1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        816
+      ],
+      "id": "4ff56fe2-6284-40e6-9bae-43b4fcf70ea3",
+      "name": "Wait2",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('All Groups').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        736,
+        816
+      ],
+      "id": "2d44cbd3-65e3-4e8d-a52b-4a301955efc4",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1088,
+        576
+      ],
+      "id": "8c05d478-8309-4e8c-95f7-c9cbff461808",
+      "name": "Wait3",
+      "webhookId": "044bb79c-e4f7-41a6-8378-9e747c6fda5c"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan Selamat Hari Jadi kepada `+$('Loop Over Items1').first().json.nama+`. Semoga panjang umur dalam keberkatan dan dimurahkan rezeki.`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        400
+      ],
+      "id": "9c509d65-defa-4862-9f79-a711062bb773",
+      "name": "config"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nconst cek_tarikh_hari_jadi = `${month}-${day}`;\nconst hari_jadi = $input.first().json.tarikh_lahir.slice(5);\n\nlet ok = false;\n\nif(cek_tarikh_hari_jadi==hari_jadi)\n{\n  ok = true;\n}\n\nreturn {\n  ok,\n  tarikh,\n  tarikh_format\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        416
+      ],
+      "id": "8fd8851f-9cdb-48be-8e83-8e7b3f5ce2c0",
+      "name": "Tarikh Sekarang"
     },
     {
       "parameters": {
@@ -150,58 +970,58 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        368,
-        -16
+        272,
+        176
       ],
-      "id": "14777d07-cd7c-43bd-afd8-4370701c6b9d",
-      "name": "Loop Over Items"
+      "id": "c8057842-6218-475b-9d03-6687c4843951",
+      "name": "Loop Over Items1"
     },
     {
       "parameters": {
-        "resource": "Chatting",
-        "operation": "Send Text",
-        "requestOptions": {}
+        "fieldToSplitOut": "data",
+        "options": {}
       },
-      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
-      "typeVersion": 202502,
-      "position": [
-        544,
-        192
-      ],
-      "id": "71431d6a-63f9-474a-a5ed-b6584f24f9d2",
-      "name": "Send a text message",
-      "credentials": {
-        "wahaApi": {
-          "id": "OSQWzQbmYRYYqgCf",
-          "name": "WAHA account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
       "position": [
         80,
-        0
+        176
       ],
-      "id": "49062ffe-1ab0-4810-b17a-25b277108b50",
-      "name": "Senarai Hari Jadi"
+      "id": "5cc39e75-1228-4228-aff5-c4ec348abe92",
+      "name": "Split Out"
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.session = \"masjid_session\";\n}\n\nreturn $input.all();"
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "db2e25f5-6c28-44a3-a386-ad5d5353d27e",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
       "position": [
-        -80,
-        0
+        464,
+        416
       ],
-      "id": "b787a2ae-54ad-46ae-bf28-145628aa76f9",
-      "name": "config"
+      "id": "a1f04653-282b-4d84-bfa2-44d2454a3e04",
+      "name": "If"
     }
   ],
   "origin": "n8n",
@@ -224,9 +1044,13 @@
       "projectId": "xIwyQZxho25VDDOK"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2026-03-16T03:45:52.248Z",
-  "versionId": "400f665a-448f-4041-af47-eacc637c4e0e"
+  "triggerCount": 1,
+  "updatedAt": "2026-04-07T10:23:01.484Z",
+  "versionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033"
 }
