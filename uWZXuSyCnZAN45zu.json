@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-06T17:23:34.000Z",
-    "createdAt": "2026-04-06T17:23:29.103Z",
-    "versionId": "23293c1d-95c0-4a60-89c2-fe1af01f099d",
+    "updatedAt": "2026-04-08T04:11:35.000Z",
+    "createdAt": "2026-04-08T04:11:33.244Z",
+    "versionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27",
     "workflowId": "uWZXuSyCnZAN45zu",
     "nodes": [
       {
@@ -36,7 +36,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\nif($input.first().json.body.group=='real')\n  groups = ['60134818841-1494722259@g.us'];//group mgp\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -73,7 +73,7 @@
             "conditions": [
               {
                 "id": "f6f32dba-8dfa-4add-82ac-589eb029a66d",
-                "leftValue": "={{ $json.message[0] }}",
+                "leftValue": "={{ $json.message }}",
                 "rightValue": "",
                 "operator": {
                   "type": "string",
@@ -472,11 +472,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 23293c1d",
+    "name": "Version 4393e196",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "23293c1d-95c0-4a60-89c2-fe1af01f099d",
+  "activeVersionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27",
   "connections": {
     "Code2": {
       "main": [
@@ -691,7 +691,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\nif($input.first().json.body.group=='real')\n  groups = ['60134818841-1494722259@g.us'];//group mgp\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -973,6 +973,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-07T09:55:38.094Z",
-  "versionId": "1b9d7433-6b28-4411-9c7e-81404a778e5d"
+  "updatedAt": "2026-04-08T04:11:33.243Z",
+  "versionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27"
 }
