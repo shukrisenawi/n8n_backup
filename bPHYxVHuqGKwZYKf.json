@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-07T10:23:07.000Z",
-    "createdAt": "2026-04-07T10:23:01.486Z",
-    "versionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033",
+    "updatedAt": "2026-04-08T04:38:21.000Z",
+    "createdAt": "2026-04-08T04:38:17.353Z",
+    "versionId": "010de290-cccb-40a8-bc97-933a802c9029",
     "workflowId": "bPHYxVHuqGKwZYKf",
     "nodes": [
       {
@@ -47,7 +47,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\nif($('HTTP Request').first().json.meta.group_active_whatsapp=='real')\n  groups = ['60134818841-1494722259@g.us'];//group MGP\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -230,7 +230,7 @@
       },
       {
         "parameters": {
-          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan Selamat Hari Jadi kepada `+$('Loop Over Items1').first().json.nama+`. Semoga panjang umur dalam keberkatan dan dimurahkan rezeki.`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan 🥳 *SELAMAT HARI JADI* kepada *`+$('Loop Over Items1').first().json.nama.toUpperCase()+`*.\n\n🤲 _Semoga panjang umur dalam keberkatan dan dimurahkan rezeki._`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -275,7 +275,7 @@
         "type": "n8n-nodes-base.splitOut",
         "typeVersion": 1,
         "position": [
-          80,
+          48,
           176
         ],
         "id": "5cc39e75-1228-4228-aff5-c4ec348abe92",
@@ -509,11 +509,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version f7bfc47b",
+    "name": "Version 010de290",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033",
+  "activeVersionId": "010de290-cccb-40a8-bc97-933a802c9029",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -756,7 +756,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\nif($('HTTP Request').first().json.meta.group_active_whatsapp=='real')\n  groups = ['60134818841-1494722259@g.us'];//group MGP\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -939,7 +939,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan Selamat Hari Jadi kepada `+$('Loop Over Items1').first().json.nama+`. Semoga panjang umur dalam keberkatan dan dimurahkan rezeki.`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan 🥳 *SELAMAT HARI JADI* kepada *`+$('Loop Over Items1').first().json.nama.toUpperCase()+`*.\n\n🤲 _Semoga panjang umur dalam keberkatan dan dimurahkan rezeki._`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -984,7 +984,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        80,
+        48,
         176
       ],
       "id": "5cc39e75-1228-4228-aff5-c4ec348abe92",
@@ -1051,6 +1051,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-07T10:23:01.484Z",
-  "versionId": "f7bfc47b-9cca-4742-85f9-7b03991ae033"
+  "updatedAt": "2026-04-08T04:38:17.352Z",
+  "versionId": "010de290-cccb-40a8-bc97-933a802c9029"
 }
