@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-06T17:22:58.000Z",
-    "createdAt": "2026-04-06T17:22:39.343Z",
-    "versionId": "96352c9f-714d-4b96-b665-ece0b19762e5",
+    "updatedAt": "2026-04-08T04:11:18.000Z",
+    "createdAt": "2026-04-08T04:11:13.442Z",
+    "versionId": "251876d0-2622-41d3-a969-d6bd99a060e1",
     "workflowId": "WU9Rbv3BqUf7fXSQ",
     "nodes": [
       {
@@ -15,7 +15,7 @@
         "type": "n8n-nodes-base.webhook",
         "typeVersion": 2.1,
         "position": [
-          -544,
+          -416,
           80
         ],
         "id": "7518af92-cba0-4ccb-ae7a-b66e88775bd9",
@@ -37,7 +37,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($input.first().json.body.group=='real')\n  groups = ['120363366715423108@g.us'];//group AJK\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -74,7 +74,7 @@
             "conditions": [
               {
                 "id": "f6f32dba-8dfa-4add-82ac-589eb029a66d",
-                "leftValue": "={{ $json.message[0] }}",
+                "leftValue": "={{ $json.message }}",
                 "rightValue": "",
                 "operator": {
                   "type": "string",
@@ -289,7 +289,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -368,
+          -240,
           80
         ],
         "id": "8f249342-e67a-4ad5-8e48-1e0d90643d69",
@@ -474,11 +474,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 96352c9f",
+    "name": "Version 251876d0",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "96352c9f-714d-4b96-b665-ece0b19762e5",
+  "activeVersionId": "251876d0-2622-41d3-a969-d6bd99a060e1",
   "connections": {
     "Webhook": {
       "main": [
@@ -695,7 +695,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\n// if($input.first().json.group[0]=='default')\n//   groups = ['60134507038-1525247606@g.us','60134693115-1476278350@g.us'];\n// else if($input.first().json.group[0])\n//   groups = [$input.first().json.group[0]];\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($input.first().json.body.group=='real')\n  groups = ['120363366715423108@g.us'];//group AJK\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -977,6 +977,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-07T09:55:16.264Z",
-  "versionId": "dbd82573-bb17-4500-b77c-2f064b187fea"
+  "updatedAt": "2026-04-08T04:11:13.441Z",
+  "versionId": "251876d0-2622-41d3-a969-d6bd99a060e1"
 }
