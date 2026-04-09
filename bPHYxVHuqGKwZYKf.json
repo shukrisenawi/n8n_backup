@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-08T04:38:21.000Z",
-    "createdAt": "2026-04-08T04:38:17.353Z",
-    "versionId": "010de290-cccb-40a8-bc97-933a802c9029",
+    "updatedAt": "2026-04-09T02:32:34.000Z",
+    "createdAt": "2026-04-09T02:32:27.929Z",
+    "versionId": "f8fb1e0a-6dbc-4c0f-b45c-49900ab82ab3",
     "workflowId": "bPHYxVHuqGKwZYKf",
     "nodes": [
       {
@@ -32,7 +32,10 @@
         "parameters": {
           "rule": {
             "interval": [
-              {}
+              {
+                "field": "cronExpression",
+                "expression": "0 0 8 * * *"
+              }
             ]
           }
         },
@@ -509,11 +512,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 010de290",
+    "name": "Version f8fb1e0a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "010de290-cccb-40a8-bc97-933a802c9029",
+  "activeVersionId": "f8fb1e0a-6dbc-4c0f-b45c-49900ab82ab3",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -741,7 +744,10 @@
       "parameters": {
         "rule": {
           "interval": [
-            {}
+            {
+              "field": "cronExpression",
+              "expression": "0 0 8 * * *"
+            }
           ]
         }
       },
@@ -1051,6 +1057,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-08T04:38:17.352Z",
-  "versionId": "010de290-cccb-40a8-bc97-933a802c9029"
+  "updatedAt": "2026-04-09T02:32:27.928Z",
+  "versionId": "f8fb1e0a-6dbc-4c0f-b45c-49900ab82ab3"
 }
