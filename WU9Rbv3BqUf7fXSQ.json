@@ -963,7 +963,10 @@
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
-    "availableInMCP": false
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "shared": [
     {
@@ -977,6 +980,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-08T04:11:13.441Z",
+  "updatedAt": "2026-04-10T13:39:20.879Z",
   "versionId": "251876d0-2622-41d3-a969-d6bd99a060e1"
 }
