@@ -1,13 +1,14 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-08T04:11:35.000Z",
-    "createdAt": "2026-04-08T04:11:33.244Z",
-    "versionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27",
+    "updatedAt": "2026-04-24T10:47:24.000Z",
+    "createdAt": "2026-04-24T10:47:18.977Z",
+    "versionId": "c7a43100-a77b-4b86-9cb9-a670fed5adbd",
     "workflowId": "uWZXuSyCnZAN45zu",
     "nodes": [
       {
         "parameters": {
+          "httpMethod": "POST",
           "path": "3caf9b20-d664-491b-81db-57984d626341",
           "options": {}
         },
@@ -472,11 +473,11 @@
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 4393e196",
+    "name": "Version c7a43100",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27",
+  "activeVersionId": "c7a43100-a77b-4b86-9cb9-a670fed5adbd",
   "connections": {
     "Code2": {
       "main": [
@@ -663,6 +664,7 @@
   "nodes": [
     {
       "parameters": {
+        "httpMethod": "POST",
         "path": "3caf9b20-d664-491b-81db-57984d626341",
         "options": {}
       },
@@ -976,6 +978,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-04-10T13:39:05.138Z",
-  "versionId": "4393e196-c819-4ea3-9c0b-972bec4c3d27"
+  "updatedAt": "2026-04-24T10:47:18.975Z",
+  "versionId": "c7a43100-a77b-4b86-9cb9-a670fed5adbd"
 }
