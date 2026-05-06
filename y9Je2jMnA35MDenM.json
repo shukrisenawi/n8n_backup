@@ -1,61 +1,11 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-11-27T14:14:23.304Z",
-    "createdAt": "2025-11-27T14:14:23.304Z",
-    "versionId": "daed7702-80f9-43ae-9f50-4c0ab86c9da5",
+    "updatedAt": "2026-05-06T04:44:46.000Z",
+    "createdAt": "2026-05-06T04:44:43.085Z",
+    "versionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9",
     "workflowId": "y9Je2jMnA35MDenM",
     "nodes": [
-      {
-        "parameters": {
-          "table": {
-            "__rl": true,
-            "value": "scan_cula",
-            "mode": "list",
-            "cachedResultName": "scan_cula"
-          },
-          "dataMode": "defineBelow",
-          "valuesToSend": {
-            "values": [
-              {
-                "column": "no_kp",
-                "value": "={{ $('Loop Over Items').item.json.no_kp }}"
-              },
-              {
-                "column": "nama_pemilih",
-                "value": "={{ $('Loop Over Items').item.json.nama_pemilih }}"
-              },
-              {
-                "column": "alamat",
-                "value": "={{ $('Loop Over Items').item.json.alamat }}"
-              },
-              {
-                "column": "cula",
-                "value": "={{ $('Loop Over Items').item.json.cula }}"
-              },
-              {
-                "column": "approve",
-                "value": "0"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.mySql",
-        "typeVersion": 2.4,
-        "position": [
-          1728,
-          752
-        ],
-        "id": "23a3802a-b38a-4ed6-a381-90340481eb08",
-        "name": "Insert",
-        "credentials": {
-          "mySql": {
-            "id": "WVOsGLIu4O9V3X6j",
-            "name": "MySQL account"
-          }
-        }
-      },
       {
         "parameters": {
           "chatId": "={{ $('Start').item.json.message_chat_id }}",
@@ -82,52 +32,11 @@
       },
       {
         "parameters": {
-          "operation": "select",
-          "table": {
-            "__rl": true,
-            "value": "scan_cula",
-            "mode": "list",
-            "cachedResultName": "scan_cula"
-          },
-          "limit": 1,
-          "where": {
-            "values": [
-              {
-                "column": "no_kp",
-                "value": "={{ $json.no_kp }}"
-              },
-              {
-                "column": "nama_pemilih",
-                "value": "={{ $json.nama_pemilih }}"
-              }
-            ]
-          },
-          "combineConditions": "OR",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.mySql",
-        "typeVersion": 2.4,
-        "position": [
-          1728,
-          528
-        ],
-        "id": "ce2fa42c-32a2-4124-912c-6ad3eecc2c85",
-        "name": "Select rows from a table",
-        "alwaysOutputData": true,
-        "credentials": {
-          "mySql": {
-            "id": "WVOsGLIu4O9V3X6j",
-            "name": "MySQL account"
-          }
-        }
-      },
-      {
-        "parameters": {
           "conditions": {
             "options": {
               "caseSensitive": true,
               "leftValue": "",
-              "typeValidation": "strict",
+              "typeValidation": "loose",
               "version": 2
             },
             "conditions": [
@@ -144,12 +53,13 @@
             ],
             "combinator": "and"
           },
+          "looseTypeValidation": true,
           "options": {}
         },
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          1952,
+          2160,
           528
         ],
         "id": "ff38528b-42a5-4b8e-9bc3-c4695560df87",
@@ -279,7 +189,7 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          1952,
+          2160,
           304
         ],
         "id": "8fa1808d-cb19-44b0-b506-7ca81b4eb5ea",
@@ -543,33 +453,6 @@
       },
       {
         "parameters": {
-          "operation": "deleteTable",
-          "table": {
-            "__rl": true,
-            "value": "scan_cula",
-            "mode": "list",
-            "cachedResultName": "scan_cula"
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.mySql",
-        "typeVersion": 2.5,
-        "position": [
-          672,
-          464
-        ],
-        "id": "7416240c-1924-4563-ad3b-68345904ca8d",
-        "name": "Delete table or rows",
-        "credentials": {
-          "mySql": {
-            "id": "WVOsGLIu4O9V3X6j",
-            "name": "MySQL account"
-          }
-        },
-        "onError": "continueErrorOutput"
-      },
-      {
-        "parameters": {
           "chatId": "={{ $('Start').item.json.message_chat_id }}",
           "text": "Data gagal dikosongkan (Error : ).",
           "additionalFields": {
@@ -579,8 +462,8 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          752,
-          672
+          784,
+          704
         ],
         "id": "83f5b8cd-201f-4fbb-bebf-a6952a098759",
         "name": "Send a text message1",
@@ -591,6 +474,198 @@
             "name": "Telegram account"
           }
         }
+      },
+      {
+        "parameters": {
+          "operation": "clear",
+          "documentId": {
+            "__rl": true,
+            "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+          },
+          "keepFirstRow": true
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          640,
+          480
+        ],
+        "id": "e174d008-32e4-4637-b0f1-c40390f3b2c3",
+        "name": "Clear sheet",
+        "retryOnFail": false,
+        "alwaysOutputData": false,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        },
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "no_kp",
+                "lookupValue": "={{ $json.no_kp }}"
+              },
+              {
+                "lookupColumn": "nama_pemilih",
+                "lookupValue": "={{ $json.nama_pemilih }}"
+              }
+            ]
+          },
+          "combineFilters": "OR",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1728,
+          512
+        ],
+        "id": "e64e54a7-d180-4b22-875d-e29eafa394fb",
+        "name": "Cari Jika Dah Add",
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "no_kp": "={{ $('Loop Over Items').item.json.no_kp }}",
+              "nama_pemilih": "={{ $('Loop Over Items').item.json.nama_pemilih }}",
+              "alamat": "={{ $('Loop Over Items').item.json.no_kp }}",
+              "cula": "={{ $('Loop Over Items').item.json.cula }}",
+              "no": "={{ $('Loop Over Items').item.json.no }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "no",
+                "displayName": "no",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "no_kp",
+                "displayName": "no_kp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "nama_pemilih",
+                "displayName": "nama_pemilih",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "alamat",
+                "displayName": "alamat",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "cula",
+                "displayName": "cula",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1728,
+          752
+        ],
+        "id": "2f19d793-38c3-4467-8d28-08b01c00142a",
+        "name": "Simpan Dalam Table",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": 3
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          1536,
+          784
+        ],
+        "id": "e18d8553-a9f7-43ba-b44c-35282803af1d",
+        "name": "Wait",
+        "webhookId": "2dc671d0-a2e1-4f6f-9eb1-b4e2ebdc0d48"
       }
     ],
     "connections": {
@@ -611,28 +686,6 @@
           []
         ]
       },
-      "Insert": {
-        "main": [
-          [
-            {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Select rows from a table": {
-        "main": [
-          [
-            {
-              "node": "If1",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "If1": {
         "main": [
           [
@@ -644,7 +697,7 @@
           ],
           [
             {
-              "node": "Insert",
+              "node": "Simpan Dalam Table",
               "type": "main",
               "index": 0
             }
@@ -662,7 +715,7 @@
           ],
           [
             {
-              "node": "Select rows from a table",
+              "node": "Cari Jika Dah Add",
               "type": "main",
               "index": 0
             }
@@ -724,7 +777,7 @@
           ],
           [
             {
-              "node": "Delete table or rows",
+              "node": "Clear sheet",
               "type": "main",
               "index": 0
             }
@@ -805,7 +858,12 @@
           ]
         ]
       },
-      "Delete table or rows": {
+      "Send a text message1": {
+        "main": [
+          []
+        ]
+      },
+      "Clear sheet": {
         "main": [
           [
             {
@@ -822,14 +880,47 @@
             }
           ]
         ]
+      },
+      "Cari Jika Dah Add": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simpan Dalam Table": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version 8513d0f3",
+    "description": "",
+    "autosaved": true
   },
-  "activeVersionId": "daed7702-80f9-43ae-9f50-4c0ab86c9da5",
+  "activeVersionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9",
   "connections": {
     "If2": {
       "main": [
@@ -848,28 +939,6 @@
         []
       ]
     },
-    "Insert": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Select rows from a table": {
-      "main": [
-        [
-          {
-            "node": "If1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If1": {
       "main": [
         [
@@ -881,7 +950,7 @@
         ],
         [
           {
-            "node": "Insert",
+            "node": "Simpan Dalam Table",
             "type": "main",
             "index": 0
           }
@@ -899,7 +968,7 @@
         ],
         [
           {
-            "node": "Select rows from a table",
+            "node": "Cari Jika Dah Add",
             "type": "main",
             "index": 0
           }
@@ -961,7 +1030,7 @@
         ],
         [
           {
-            "node": "Delete table or rows",
+            "node": "Clear sheet",
             "type": "main",
             "index": 0
           }
@@ -1042,7 +1111,12 @@
         ]
       ]
     },
-    "Delete table or rows": {
+    "Send a text message1": {
+      "main": [
+        []
+      ]
+    },
+    "Clear sheet": {
       "main": [
         [
           {
@@ -1059,64 +1133,49 @@
           }
         ]
       ]
+    },
+    "Cari Jika Dah Add": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Dalam Table": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-10-04T02:54:13.659Z",
   "id": "y9Je2jMnA35MDenM",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "FUNGSI /cula - JPRD Cula Gambar",
   "nodes": [
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "scan_cula",
-          "mode": "list",
-          "cachedResultName": "scan_cula"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "no_kp",
-              "value": "={{ $('Loop Over Items').item.json.no_kp }}"
-            },
-            {
-              "column": "nama_pemilih",
-              "value": "={{ $('Loop Over Items').item.json.nama_pemilih }}"
-            },
-            {
-              "column": "alamat",
-              "value": "={{ $('Loop Over Items').item.json.alamat }}"
-            },
-            {
-              "column": "cula",
-              "value": "={{ $('Loop Over Items').item.json.cula }}"
-            },
-            {
-              "column": "approve",
-              "value": "0"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1728,
-        752
-      ],
-      "id": "23a3802a-b38a-4ed6-a381-90340481eb08",
-      "name": "Insert",
-      "credentials": {
-        "mySql": {
-          "id": "WVOsGLIu4O9V3X6j",
-          "name": "MySQL account"
-        }
-      }
-    },
     {
       "parameters": {
         "chatId": "={{ $('Start').item.json.message_chat_id }}",
@@ -1143,52 +1202,11 @@
     },
     {
       "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "scan_cula",
-          "mode": "list",
-          "cachedResultName": "scan_cula"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "no_kp",
-              "value": "={{ $json.no_kp }}"
-            },
-            {
-              "column": "nama_pemilih",
-              "value": "={{ $json.nama_pemilih }}"
-            }
-          ]
-        },
-        "combineConditions": "OR",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1728,
-        528
-      ],
-      "id": "ce2fa42c-32a2-4124-912c-6ad3eecc2c85",
-      "name": "Select rows from a table",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "WVOsGLIu4O9V3X6j",
-          "name": "MySQL account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict",
+            "typeValidation": "loose",
             "version": 2
           },
           "conditions": [
@@ -1205,12 +1223,13 @@
           ],
           "combinator": "and"
         },
+        "looseTypeValidation": true,
         "options": {}
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1952,
+        2160,
         528
       ],
       "id": "ff38528b-42a5-4b8e-9bc3-c4695560df87",
@@ -1340,7 +1359,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1952,
+        2160,
         304
       ],
       "id": "8fa1808d-cb19-44b0-b506-7ca81b4eb5ea",
@@ -1604,33 +1623,6 @@
     },
     {
       "parameters": {
-        "operation": "deleteTable",
-        "table": {
-          "__rl": true,
-          "value": "scan_cula",
-          "mode": "list",
-          "cachedResultName": "scan_cula"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.5,
-      "position": [
-        672,
-        464
-      ],
-      "id": "7416240c-1924-4563-ad3b-68345904ca8d",
-      "name": "Delete table or rows",
-      "credentials": {
-        "mySql": {
-          "id": "WVOsGLIu4O9V3X6j",
-          "name": "MySQL account"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
         "chatId": "={{ $('Start').item.json.message_chat_id }}",
         "text": "Data gagal dikosongkan (Error : ).",
         "additionalFields": {
@@ -1640,8 +1632,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        752,
-        672
+        784,
+        704
       ],
       "id": "83f5b8cd-201f-4fbb-bebf-a6952a098759",
       "name": "Send a text message1",
@@ -1652,6 +1644,198 @@
           "name": "Telegram account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+        },
+        "keepFirstRow": true
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        480
+      ],
+      "id": "e174d008-32e4-4637-b0f1-c40390f3b2c3",
+      "name": "Clear sheet",
+      "retryOnFail": false,
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "no_kp",
+              "lookupValue": "={{ $json.no_kp }}"
+            },
+            {
+              "lookupColumn": "nama_pemilih",
+              "lookupValue": "={{ $json.nama_pemilih }}"
+            }
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1728,
+        512
+      ],
+      "id": "e64e54a7-d180-4b22-875d-e29eafa394fb",
+      "name": "Cari Jika Dah Add",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "no_kp": "={{ $('Loop Over Items').item.json.no_kp }}",
+            "nama_pemilih": "={{ $('Loop Over Items').item.json.nama_pemilih }}",
+            "alamat": "={{ $('Loop Over Items').item.json.no_kp }}",
+            "cula": "={{ $('Loop Over Items').item.json.cula }}",
+            "no": "={{ $('Loop Over Items').item.json.no }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "no",
+              "displayName": "no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "no_kp",
+              "displayName": "no_kp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nama_pemilih",
+              "displayName": "nama_pemilih",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "alamat",
+              "displayName": "alamat",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cula",
+              "displayName": "cula",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1728,
+        752
+      ],
+      "id": "2f19d793-38c3-4467-8d28-08b01c00142a",
+      "name": "Simpan Dalam Table",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1536,
+        784
+      ],
+      "id": "e18d8553-a9f7-43ba-b44c-35282803af1d",
+      "name": "Wait",
+      "webhookId": "2dc671d0-a2e1-4f6f-9eb1-b4e2ebdc0d48"
     }
   ],
   "origin": "n8n",
@@ -1661,7 +1845,8 @@
     "name": "n8n_backup"
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -1675,6 +1860,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-09T04:02:40.000Z",
-  "versionId": "daed7702-80f9-43ae-9f50-4c0ab86c9da5"
+  "updatedAt": "2026-05-06T04:44:43.081Z",
+  "versionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9"
 }
