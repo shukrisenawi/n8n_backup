@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-05-06T04:44:46.000Z",
-    "createdAt": "2026-05-06T04:44:43.085Z",
-    "versionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9",
+    "updatedAt": "2026-05-07T02:35:20.000Z",
+    "createdAt": "2026-05-07T02:35:18.949Z",
+    "versionId": "f37e3bf2-32f3-4b8a-b814-1c228491bf0a",
     "workflowId": "y9Je2jMnA35MDenM",
     "nodes": [
       {
@@ -121,8 +121,8 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          1056,
-          464
+          1072,
+          480
         ],
         "id": "6849362c-5a9a-4e59-8ce7-cd9ab07b26d6",
         "name": "If3"
@@ -189,8 +189,8 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          2160,
-          304
+          2128,
+          320
         ],
         "id": "8fa1808d-cb19-44b0-b506-7ca81b4eb5ea",
         "name": "Send a text message2",
@@ -240,7 +240,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          -96,
+          -176,
           272
         ],
         "id": "07e44d71-bf99-4a6e-ae84-36fb344d098c",
@@ -324,7 +324,7 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          128,
+          48,
           240
         ],
         "id": "9fc8d133-53e4-4705-bfae-e4cfe1409bb7",
@@ -447,7 +447,7 @@
         "name": "Start",
         "type": "n8n-nodes-base.executeWorkflowTrigger",
         "position": [
-          -304,
+          -368,
           272
         ]
       },
@@ -666,6 +666,146 @@
         "id": "e18d8553-a9f7-43ba-b44c-35282803af1d",
         "name": "Wait",
         "webhookId": "2dc671d0-a2e1-4f6f-9eb1-b4e2ebdc0d48"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 909559321,
+            "mode": "list",
+            "cachedResultName": "ON/OFF",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=909559321"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "row_number": 2,
+              "STATUS": "1"
+            },
+            "matchingColumns": [
+              "row_number"
+            ],
+            "schema": [
+              {
+                "id": "STATUS",
+                "displayName": "STATUS",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1280,
+          352
+        ],
+        "id": "30477996-9e35-4986-b908-59e2f1d70790",
+        "name": "Update row in sheet",
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+            "mode": "list",
+            "cachedResultName": "Cula",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 909559321,
+            "mode": "list",
+            "cachedResultName": "ON/OFF",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=909559321"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "row_number": 2,
+              "STATUS": "0"
+            },
+            "matchingColumns": [
+              "row_number"
+            ],
+            "schema": [
+              {
+                "id": "STATUS",
+                "displayName": "STATUS",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1936,
+          320
+        ],
+        "id": "733d7502-44b2-4f0a-bb9a-6b86b0e0508f",
+        "name": "Update row in sheet1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "U0ZMoxWRU8t5JEF5",
+            "name": "Google Sheets account"
+          }
+        }
       }
     ],
     "connections": {
@@ -759,7 +899,7 @@
         "main": [
           [
             {
-              "node": "Send a text message2",
+              "node": "Update row in sheet1",
               "type": "main",
               "index": 0
             }
@@ -832,6 +972,11 @@
       "If3": {
         "main": [
           [
+            {
+              "node": "Update row in sheet",
+              "type": "main",
+              "index": 0
+            },
             {
               "node": "Loop Over Items",
               "type": "main",
@@ -913,14 +1058,30 @@
             }
           ]
         ]
+      },
+      "Update row in sheet": {
+        "main": [
+          []
+        ]
+      },
+      "Update row in sheet1": {
+        "main": [
+          [
+            {
+              "node": "Send a text message2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 8513d0f3",
+    "name": "Version f37e3bf2",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9",
+  "activeVersionId": "f37e3bf2-32f3-4b8a-b814-1c228491bf0a",
   "connections": {
     "If2": {
       "main": [
@@ -1012,7 +1173,7 @@
       "main": [
         [
           {
-            "node": "Send a text message2",
+            "node": "Update row in sheet1",
             "type": "main",
             "index": 0
           }
@@ -1085,6 +1246,11 @@
     "If3": {
       "main": [
         [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          },
           {
             "node": "Loop Over Items",
             "type": "main",
@@ -1161,6 +1327,22 @@
         [
           {
             "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
             "type": "main",
             "index": 0
           }
@@ -1291,8 +1473,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1056,
-        464
+        1072,
+        480
       ],
       "id": "6849362c-5a9a-4e59-8ce7-cd9ab07b26d6",
       "name": "If3"
@@ -1359,8 +1541,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2160,
-        304
+        2128,
+        320
       ],
       "id": "8fa1808d-cb19-44b0-b506-7ca81b4eb5ea",
       "name": "Send a text message2",
@@ -1410,7 +1592,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -96,
+        -176,
         272
       ],
       "id": "07e44d71-bf99-4a6e-ae84-36fb344d098c",
@@ -1494,7 +1676,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        128,
+        48,
         240
       ],
       "id": "9fc8d133-53e4-4705-bfae-e4cfe1409bb7",
@@ -1617,7 +1799,7 @@
       "name": "Start",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "position": [
-        -304,
+        -368,
         272
       ]
     },
@@ -1836,6 +2018,146 @@
       "id": "e18d8553-a9f7-43ba-b44c-35282803af1d",
       "name": "Wait",
       "webhookId": "2dc671d0-a2e1-4f6f-9eb1-b4e2ebdc0d48"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 909559321,
+          "mode": "list",
+          "cachedResultName": "ON/OFF",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=909559321"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": 2,
+            "STATUS": "1"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "STATUS",
+              "displayName": "STATUS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1280,
+        352
+      ],
+      "id": "30477996-9e35-4986-b908-59e2f1d70790",
+      "name": "Update row in sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU",
+          "mode": "list",
+          "cachedResultName": "Cula",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 909559321,
+          "mode": "list",
+          "cachedResultName": "ON/OFF",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AF1_jmW0e9kybpBbT6y4I6yHpAvScwSGj-Qb_ZEPsUU/edit#gid=909559321"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": 2,
+            "STATUS": "0"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "STATUS",
+              "displayName": "STATUS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1936,
+        320
+      ],
+      "id": "733d7502-44b2-4f0a-bb9a-6b86b0e0508f",
+      "name": "Update row in sheet1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U0ZMoxWRU8t5JEF5",
+          "name": "Google Sheets account"
+        }
+      }
     }
   ],
   "origin": "n8n",
@@ -1860,6 +2182,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-05-06T04:44:43.081Z",
-  "versionId": "8513d0f3-47b0-4817-9a94-bac0de0570e9"
+  "updatedAt": "2026-05-07T02:35:18.945Z",
+  "versionId": "f37e3bf2-32f3-4b8a-b814-1c228491bf0a"
 }
