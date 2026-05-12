@@ -6665,7 +6665,7 @@
         "operation": "Send Image",
         "session": "={{ $('output message').first().json.sessionId[0] }}",
         "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
-        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images[0] }}\"\n}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"2026-05-10T22:49:55.012Z.jpg\",\n  \"url\": \"https://drive.google.com/uc?export=view&id=1t8ylR7VEnnS5UFbWX_U7vM8Kl0GUZuZx\"\n}",
         "caption": "={{ $json.text }}",
         "requestOptions": {}
       },
@@ -7966,6 +7966,6 @@
   },
   "tags": [],
   "triggerCount": 5,
-  "updatedAt": "2026-05-08T00:25:55.644Z",
-  "versionId": "7c9584b2-6b67-417a-a4b3-b5852b2da03b"
+  "updatedAt": "2026-05-10T22:50:28.098Z",
+  "versionId": "932e50bf-d5c3-4247-a47b-28c1bb265b60"
 }
