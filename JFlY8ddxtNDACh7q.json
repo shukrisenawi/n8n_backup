@@ -1,0 +1,985 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-05-31T06:27:56.000Z",
+    "createdAt": "2026-05-31T06:27:38.964Z",
+    "versionId": "c93f5aa8-d2e5-4733-97eb-e182d53e978b",
+    "workflowId": "JFlY8ddxtNDACh7q",
+    "nodes": [
+      {
+        "parameters": {
+          "jsCode": "const input =$input.first().json.message;\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"<br>\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line:line,group:$input.first().json.group } }));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          368,
+          432
+        ],
+        "id": "99db388b-f95b-445b-a024-a570e6f39014",
+        "name": "Code2"
+      },
+      {
+        "parameters": {
+          "jsCode": "let groups = ['120363427083902263@g.us'];//group Syarikat\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.body.message } }));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -32,
+          112
+        ],
+        "id": "6c5e5e65-74f1-4f0d-9323-6a7770a94e3c",
+        "name": "All Groups"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          752,
+          448
+        ],
+        "id": "bd1e34db-2696-4eb1-84ac-bc71f9fdd641",
+        "name": "Loop Over Items",
+        "alwaysOutputData": false
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f6f32dba-8dfa-4add-82ac-589eb029a66d",
+                "leftValue": "={{ $json.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -288,
+          128
+        ],
+        "id": "da6accd6-6e24-459b-8416-5fa942f2c6db",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "jsCode": "const raw = $('pecahkan mesej1').first().json.message;\n\n// cari url gambar\nconst imageMatch = raw.match(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/i);\nconst images = imageMatch ? imageMatch[0] : null;\n\n// buang url gambar dari text\nconst text = raw\n  .replace(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/ig, '')\n  .trim();\n\nreturn [\n  {\n    json: {\n      images,\n      text\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          512,
+          144
+        ],
+        "id": "1c7ba8d7-72a4-433d-be8c-744ebc5641f8",
+        "name": "Ambil Gambar & text",
+        "alwaysOutputData": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "ceb20b3a-bcf6-4a4d-8800-464b0cd133bc",
+                "leftValue": "={{ $json.images[0] }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          576,
+          352
+        ],
+        "id": "86b0f4e0-1b8a-4e8d-b822-2337baaa750f",
+        "name": "If5"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Image",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+          "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images }}\"\n}",
+          "caption": "={{ $json.text }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1008,
+          416
+        ],
+        "id": "986b38d8-2de7-46db-b678-f3488ef7ec99",
+        "name": "Send an image1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Stop Typing",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          928,
+          624
+        ],
+        "id": "4cfc8eee-51ac-4a09-967d-7c9c34cd6197",
+        "name": "Stop Typing1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Send Text",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+          "text": "={{ $('Ambil Gambar & text').item.json.text }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          1088,
+          624
+        ],
+        "id": "f3334908-aa49-40c1-851a-52e0c8c2b2b0",
+        "name": "Send a text message1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "amount": "={{ Math.floor(Math.random()*5,1) }}"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          560,
+          624
+        ],
+        "id": "7e3ae73a-6f79-49f4-a8a7-3edc5614e5d6",
+        "name": "Wait2",
+        "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+      },
+      {
+        "parameters": {
+          "resource": "Chatting",
+          "operation": "Start Typing",
+          "session": "={{ $('config').item.json.sessionId }}",
+          "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+          "requestOptions": {}
+        },
+        "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+        "typeVersion": 202502,
+        "position": [
+          416,
+          624
+        ],
+        "id": "5e17dcad-c412-4358-865a-3b22c4b88fd2",
+        "name": "Start Typing1",
+        "credentials": {
+          "wahaApi": {
+            "id": "OSQWzQbmYRYYqgCf",
+            "name": "WAHA account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          224,
+          128
+        ],
+        "id": "471bf6e4-2b2c-4154-afda-772d5ad83ce1",
+        "name": "pecahkan mesej1",
+        "alwaysOutputData": false,
+        "executeOnce": false
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          864,
+          352
+        ],
+        "id": "4a724836-da40-4de1-9432-a6d440652975",
+        "name": "Wait3",
+        "webhookId": "044bb79c-e4f7-41a6-8378-9e747c6fda5c"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = ($input.first().json.body.gambar!=null?$input.first().json.body.gambar+`\n  `:\"\")+$input.first().json.body.text+`\n  `+$input.first().json.body.link;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -672,
+          128
+        ],
+        "id": "5f550638-fb51-4dec-8354-0f6227d68171",
+        "name": "config"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "368036b6-64ef-43a1-b296-3dc3ec12ebef",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -880,
+          128
+        ],
+        "id": "33f249e7-f02f-4cc9-81a9-83890e0a3dfe",
+        "name": "Webhook1",
+        "webhookId": "368036b6-64ef-43a1-b296-3dc3ec12ebef"
+      }
+    ],
+    "connections": {
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "All Groups": {
+        "main": [
+          [
+            {
+              "node": "pecahkan mesej1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "All Groups",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Ambil Gambar & text": {
+        "main": [
+          [
+            {
+              "node": "If5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If5": {
+        "main": [
+          [
+            {
+              "node": "Wait3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Start Typing1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send an image1": {
+        "main": [
+          [
+            {
+              "node": "pecahkan mesej1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Stop Typing1": {
+        "main": [
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message1": {
+        "main": [
+          [
+            {
+              "node": "pecahkan mesej1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait2": {
+        "main": [
+          [
+            {
+              "node": "Stop Typing1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start Typing1": {
+        "main": [
+          [
+            {
+              "node": "Wait2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "pecahkan mesej1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Ambil Gambar & text",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait3": {
+        "main": [
+          [
+            {
+              "node": "Send an image1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "config": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook1": {
+        "main": [
+          [
+            {
+              "node": "config",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Mohamad Shukri Senawi",
+    "name": "Version c93f5aa8",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "c93f5aa8-d2e5-4733-97eb-e182d53e978b",
+  "connections": {
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Groups": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "All Groups",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ambil Gambar & text": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an image1": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stop Typing1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "pecahkan mesej1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Stop Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pecahkan mesej1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Ambil Gambar & text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Send an image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-05-31T02:01:56.801Z",
+  "id": "JFlY8ddxtNDACh7q",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Order",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const input =$input.first().json.message;\n\n// Step 2: split ikut \\n\nlet lines = input.split(\"<br>\").map(x => x.trim()).filter(x => x !== \"\");\n\n// Return setiap baris jadi item berasingan\nreturn lines.map(line => ({ json: { line:line,group:$input.first().json.group } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        432
+      ],
+      "id": "99db388b-f95b-445b-a024-a570e6f39014",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "jsCode": "let groups = ['120363427083902263@g.us'];//group Syarikat\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.body.message } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        112
+      ],
+      "id": "6c5e5e65-74f1-4f0d-9323-6a7770a94e3c",
+      "name": "All Groups"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        752,
+        448
+      ],
+      "id": "bd1e34db-2696-4eb1-84ac-bc71f9fdd641",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f6f32dba-8dfa-4add-82ac-589eb029a66d",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -288,
+        128
+      ],
+      "id": "da6accd6-6e24-459b-8416-5fa942f2c6db",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $('pecahkan mesej1').first().json.message;\n\n// cari url gambar\nconst imageMatch = raw.match(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/i);\nconst images = imageMatch ? imageMatch[0] : null;\n\n// buang url gambar dari text\nconst text = raw\n  .replace(/https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif)/ig, '')\n  .trim();\n\nreturn [\n  {\n    json: {\n      images,\n      text\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        512,
+        144
+      ],
+      "id": "1c7ba8d7-72a4-433d-be8c-744ebc5641f8",
+      "name": "Ambil Gambar & text",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ceb20b3a-bcf6-4a4d-8800-464b0cd133bc",
+              "leftValue": "={{ $json.images[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        352
+      ],
+      "id": "86b0f4e0-1b8a-4e8d-b822-2337baaa750f",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Image",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+        "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images }}\"\n}",
+        "caption": "={{ $json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1008,
+        416
+      ],
+      "id": "986b38d8-2de7-46db-b678-f3488ef7ec99",
+      "name": "Send an image1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Stop Typing",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        928,
+        624
+      ],
+      "id": "4cfc8eee-51ac-4a09-967d-7c9c34cd6197",
+      "name": "Stop Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+        "text": "={{ $('Ambil Gambar & text').item.json.text }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        1088,
+        624
+      ],
+      "id": "f3334908-aa49-40c1-851a-52e0c8c2b2b0",
+      "name": "Send a text message1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*5,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        624
+      ],
+      "id": "7e3ae73a-6f79-49f4-a8a7-3edc5614e5d6",
+      "name": "Wait2",
+      "webhookId": "3b24a82b-7471-433c-baa0-10bbe1fbacd9"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Start Typing",
+        "session": "={{ $('config').item.json.sessionId }}",
+        "chatId": "={{ $('pecahkan mesej1').item.json.group }}",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-waha.WAHA",
+      "typeVersion": 202502,
+      "position": [
+        416,
+        624
+      ],
+      "id": "5e17dcad-c412-4358-865a-3b22c4b88fd2",
+      "name": "Start Typing1",
+      "credentials": {
+        "wahaApi": {
+          "id": "OSQWzQbmYRYYqgCf",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        224,
+        128
+      ],
+      "id": "471bf6e4-2b2c-4154-afda-772d5ad83ce1",
+      "name": "pecahkan mesej1",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        864,
+        352
+      ],
+      "id": "4a724836-da40-4de1-9432-a6d440652975",
+      "name": "Wait3",
+      "webhookId": "044bb79c-e4f7-41a6-8378-9e747c6fda5c"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = ($input.first().json.body.gambar!=null?$input.first().json.body.gambar+`\n  `:\"\")+$input.first().json.body.text+`\n  `+$input.first().json.body.link;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        128
+      ],
+      "id": "5f550638-fb51-4dec-8354-0f6227d68171",
+      "name": "config"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "368036b6-64ef-43a1-b296-3dc3ec12ebef",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        128
+      ],
+      "id": "33f249e7-f02f-4cc9-81a9-83890e0a3dfe",
+      "name": "Webhook1",
+      "webhookId": "368036b6-64ef-43a1-b296-3dc3ec12ebef"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "shukrisenawi",
+    "name": "n8n_backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "timezone": "Asia/Kuala_Lumpur",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true,
+    "saveExecutionProgress": true
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-05-31T02:01:56.806Z",
+      "createdAt": "2026-05-31T02:01:56.806Z",
+      "role": "workflow:owner",
+      "workflowId": "JFlY8ddxtNDACh7q",
+      "projectId": "xIwyQZxho25VDDOK"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-05-31T06:28:48.286Z",
+  "versionId": "c93f5aa8-d2e5-4733-97eb-e182d53e978b"
+}
