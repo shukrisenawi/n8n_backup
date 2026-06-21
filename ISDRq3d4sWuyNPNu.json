@@ -874,6 +874,7 @@
         ]
       }
     },
+    "nodeGroups": [],
     "authors": "system migration",
     "name": null,
     "description": null,
@@ -1788,10 +1789,10 @@
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1781948446,
+        "lastTimeChecked": 1782038130,
         "possibleDuplicates": [
-          "19ee4677cb5f9e64",
-          "19ee3d47bc04cadf"
+          "19ee9bfee86e5fb4",
+          "19ee934905233249"
         ]
       }
     }
