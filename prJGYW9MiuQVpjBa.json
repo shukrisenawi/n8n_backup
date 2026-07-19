@@ -160,6 +160,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Trigger Email PASTI SIK",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
