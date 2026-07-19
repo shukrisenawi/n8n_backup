@@ -3702,6 +3702,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Stickertermurah",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
