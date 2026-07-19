@@ -20,6 +20,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Clear Waiting Message",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
