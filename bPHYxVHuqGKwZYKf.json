@@ -718,6 +718,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Hari Jadi",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1056,7 +1057,12 @@
   ],
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
