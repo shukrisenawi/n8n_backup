@@ -464,6 +464,7 @@
   "isArchived": false,
   "meta": null,
   "name": "FUNGSI /email_label - Set label kepada email",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
