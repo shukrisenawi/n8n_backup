@@ -22,6 +22,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Clear Mongo DB",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
