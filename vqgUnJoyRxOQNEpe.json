@@ -620,6 +620,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Instagram DM",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
