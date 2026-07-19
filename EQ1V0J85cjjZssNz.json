@@ -331,6 +331,7 @@
   "isArchived": false,
   "meta": null,
   "name": "FUNGSI /email_banner - Email banner kepada kedai",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
