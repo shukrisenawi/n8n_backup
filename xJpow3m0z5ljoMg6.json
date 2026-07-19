@@ -96,6 +96,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Stickertermurah - Database",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
