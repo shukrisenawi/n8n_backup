@@ -115,6 +115,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Error Workflow",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
