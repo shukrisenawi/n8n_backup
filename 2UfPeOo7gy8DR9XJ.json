@@ -66,6 +66,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Analyze Image using unli.dev",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
