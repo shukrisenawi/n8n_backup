@@ -117,6 +117,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Error Monitoring",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
