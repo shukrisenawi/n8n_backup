@@ -110,6 +110,7 @@
     "templateId": "5368"
   },
   "name": "Manage Google Calendar via WhatsApp with GPT-4 Virtual Assistant",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
