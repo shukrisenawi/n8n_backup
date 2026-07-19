@@ -664,6 +664,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Hantar Mesej Group AJK",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
