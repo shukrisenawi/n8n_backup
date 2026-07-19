@@ -56,6 +56,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Masjid Al-Halimi - Waktu Solat ke database",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
