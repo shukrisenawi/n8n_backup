@@ -1259,6 +1259,7 @@
     "templateId": "4400"
   },
   "name": "Build a PDF Document RAG System with Mistral OCR, Qdrant and Gemini AI",
+  "nodeGroups": [],
   "nodes": [
     {
       "id": "01a1b5b8-353f-4bfe-8bd0-c5dff1214c86",
