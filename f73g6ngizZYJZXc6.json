@@ -484,6 +484,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Set a human fallback for AI workflows",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
