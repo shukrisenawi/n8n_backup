@@ -48,6 +48,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Cuba",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
