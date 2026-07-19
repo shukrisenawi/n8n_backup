@@ -128,6 +128,7 @@
     "templateId": "6632"
   },
   "name": "Auto-Respond to Instagram, Facebook & WhatsApp with Llama 3.2 ",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
