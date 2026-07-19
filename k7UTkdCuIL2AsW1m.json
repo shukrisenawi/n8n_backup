@@ -86,6 +86,7 @@
   "isArchived": false,
   "meta": null,
   "name": "RAG System V2 - Chatbot",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
