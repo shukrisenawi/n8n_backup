@@ -622,6 +622,7 @@
   "isArchived": false,
   "meta": null,
   "name": "FUNGSI /rate - Tukar Currency",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
