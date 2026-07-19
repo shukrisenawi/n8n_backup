@@ -285,6 +285,7 @@
     "templateId": "2466"
   },
   "name": "Respond to WhatsApp Messages with AI Like a Pro!",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
