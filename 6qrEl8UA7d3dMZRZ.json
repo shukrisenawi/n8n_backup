@@ -221,6 +221,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "GitHub Delete Folder Recursive",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
