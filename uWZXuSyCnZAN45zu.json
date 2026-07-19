@@ -662,6 +662,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Hantar Mesej Group Guru",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
