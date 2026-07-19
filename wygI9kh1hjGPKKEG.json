@@ -42,6 +42,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Create Order J&T",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
