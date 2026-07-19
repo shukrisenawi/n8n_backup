@@ -840,6 +840,7 @@
   "isArchived": true,
   "meta": null,
   "name": "test",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
