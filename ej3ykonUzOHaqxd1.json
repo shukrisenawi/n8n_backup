@@ -2508,6 +2508,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "@shbestcreativedesign_bot",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
