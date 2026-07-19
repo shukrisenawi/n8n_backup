@@ -60,6 +60,7 @@
   "isArchived": true,
   "meta": null,
   "name": "MASJID AL-HALIMI - Mass Sender",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
