@@ -1293,6 +1293,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - RAG Update",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -2025,7 +2026,7 @@
   ],
   "staticData": {
     "node:File Updated": {
-      "lastTimeChecked": "2026-07-17T23:03:58Z"
+      "lastTimeChecked": "2026-07-19T07:38:42Z"
     }
   },
   "tags": [],
