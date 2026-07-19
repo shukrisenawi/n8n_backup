@@ -1005,6 +1005,7 @@
   "isArchived": false,
   "meta": null,
   "name": "MASJID AL-HALIMI - Follow Up Program",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1499,7 +1500,12 @@
   ],
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
