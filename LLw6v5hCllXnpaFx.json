@@ -38,6 +38,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Export Google Sheet ke Datatable",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
