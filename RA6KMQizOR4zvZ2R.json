@@ -1240,6 +1240,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - Notification",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1952,10 +1953,20 @@
       "recurrenceRules": []
     },
     "node:Alert Pukul 8pagi": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     },
     "node:Alert Pukul 9pg": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
