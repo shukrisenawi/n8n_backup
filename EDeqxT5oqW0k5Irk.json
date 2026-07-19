@@ -947,6 +947,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - RAG Upload",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1499,7 +1500,7 @@
   ],
   "staticData": {
     "node:File Created": {
-      "lastTimeChecked": "2026-07-17T23:03:57Z"
+      "lastTimeChecked": "2026-07-19T07:38:42Z"
     }
   },
   "tags": [],
