@@ -157,6 +157,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Add Contact",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
