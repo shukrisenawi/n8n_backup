@@ -482,6 +482,7 @@
   "isArchived": false,
   "meta": null,
   "name": "Sent Message",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
