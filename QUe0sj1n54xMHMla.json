@@ -88,6 +88,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Chat AI",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
