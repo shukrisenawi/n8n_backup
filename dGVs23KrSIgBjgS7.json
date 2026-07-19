@@ -2665,6 +2665,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - Group Pegawai",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
