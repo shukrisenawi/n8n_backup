@@ -79,6 +79,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Daftar Anak Khariah",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
