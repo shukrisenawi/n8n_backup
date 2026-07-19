@@ -33,6 +33,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Stickertermurah - Instagram Webhook",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
