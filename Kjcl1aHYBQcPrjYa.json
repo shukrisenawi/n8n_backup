@@ -53,6 +53,7 @@
   "isArchived": true,
   "meta": null,
   "name": "Sent Whatsapp",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
