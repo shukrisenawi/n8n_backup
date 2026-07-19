@@ -327,6 +327,7 @@
   "isArchived": false,
   "meta": null,
   "name": "FUNGSI /email_spam - Jadikan email sebagai SPAM",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
