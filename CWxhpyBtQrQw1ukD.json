@@ -918,6 +918,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "FUNGSI /gambar - Generate Gambar",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
