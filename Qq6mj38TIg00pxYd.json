@@ -176,6 +176,7 @@
     "templateId": "5457"
   },
   "name": "Automate Instagram & Facebook Posting with Meta Graph API & System User Tokens",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
