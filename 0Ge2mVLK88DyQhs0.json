@@ -134,6 +134,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Stickertermurah - Update Status",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
