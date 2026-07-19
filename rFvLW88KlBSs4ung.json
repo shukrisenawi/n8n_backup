@@ -1502,6 +1502,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Lain - lain - Automated n8n Workflow Backup to GitHub with Deletion Tracking",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
@@ -2324,7 +2325,12 @@
   ],
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
