@@ -388,6 +388,7 @@
   "isArchived": false,
   "meta": null,
   "name": "PASTI CAWANGAN - Pengajian Ustaz Ilyas",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -591,7 +592,12 @@
   ],
   "staticData": {
     "node:Alert Pukul 4": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
