@@ -5305,6 +5305,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - Post Group",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -7941,12 +7942,18 @@
     },
     "node:Kitab Minhajul `Abidin": {
       "recurrenceRules": [
-        279
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
       ]
     },
     "node:Sedekah Subuh": {
       "recurrenceRules": [
-        15
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
       ]
     },
     "node:Ribat": {
@@ -7956,13 +7963,28 @@
       "recurrenceRules": []
     },
     "node:Pengajian Luar": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     },
     "node:Batal Kitab Maghrib": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     },
     "node:Batal Kitab Muslimat": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
