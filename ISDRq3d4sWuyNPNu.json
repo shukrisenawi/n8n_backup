@@ -1167,6 +1167,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Automatically Delete Spam Emails in Gmail on Schedule",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1782,17 +1783,22 @@
   ],
   "staticData": {
     "node:Trigger at Sunday midnight": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     },
     "node:10.30pm": {
       "recurrenceRules": []
     },
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1784355663,
+        "lastTimeChecked": 1784446878,
         "possibleDuplicates": [
-          "19f73e2b332bb256",
-          "19f72b6f9d55e63a"
+          "19f79528763abda0",
+          "19f7950f652f0e67"
         ]
       }
     }
