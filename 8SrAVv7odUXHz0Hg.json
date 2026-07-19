@@ -762,6 +762,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "MASJID AL-HALIMI - Reinput tarikh pengajian",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
@@ -1277,7 +1278,12 @@
   ],
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
     }
   },
   "tags": [],
