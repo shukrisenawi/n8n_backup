@@ -243,6 +243,7 @@
   "isArchived": false,
   "meta": null,
   "name": "FUNGSI /cula - JPRD Cula",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
