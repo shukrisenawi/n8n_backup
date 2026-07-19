@@ -353,6 +353,7 @@
     "templateId": "4008"
   },
   "name": "AI-Powered Auto-Generate Exam Questions and Answers from Google Docs with Gemini",
+  "nodeGroups": [],
   "nodes": [
     {
       "id": "4e037d6e-93a9-4c1b-b84a-dbbcf77beaf5",
