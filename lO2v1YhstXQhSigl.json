@@ -140,6 +140,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Stickertermurah - check phone valid",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
