@@ -77,6 +77,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Test",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
