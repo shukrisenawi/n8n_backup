@@ -426,6 +426,7 @@
     "templateId": "4827"
   },
   "name": "AI-Powered WhatsApp Chatbot for Text, Voice, Images, and PDF with RAG",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
