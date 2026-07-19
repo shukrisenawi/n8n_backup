@@ -1358,6 +1358,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "FUNGSI /cula - JPRD Cula Gambar",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
