@@ -203,6 +203,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Whisk Generator",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
