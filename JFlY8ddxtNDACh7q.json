@@ -662,6 +662,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Order",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
