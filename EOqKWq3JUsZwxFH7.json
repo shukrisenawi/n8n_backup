@@ -66,6 +66,7 @@
   "isArchived": true,
   "meta": null,
   "name": "Sent Message",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
