@@ -10,6 +10,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow",
+  "nodeGroups": [],
   "nodes": [],
   "origin": "n8n",
   "pinData": {},
