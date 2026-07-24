@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-22T21:57:59.000Z",
-    "createdAt": "2026-01-22T21:57:57.043Z",
-    "versionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8",
+    "updatedAt": "2026-07-23T14:53:53.000Z",
+    "createdAt": "2026-07-23T14:53:50.379Z",
+    "versionId": "1ae93f09-7530-4ca5-bbaf-196de13b416e",
     "workflowId": "Av2FdQGNcmYVEJkG",
     "nodes": [
       {
@@ -4578,11 +4578,11 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          2432,
+          2496,
           -400
         ],
         "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
-        "name": "Kemaskini Pengajian2"
+        "name": "Kemaskini Pengajian Muhimmah"
       }
     ],
     "connections": {
@@ -6010,24 +6010,18 @@
       },
       "If6": {
         "main": [
-          [
-            {
-              "node": "Kemaskini Pengajian2",
-              "type": "main",
-              "index": 0
-            }
-          ],
+          [],
           []
         ]
       }
     },
     "nodeGroups": [],
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version fe5694e9",
+    "name": "Version 1ae93f09",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8",
+  "activeVersionId": "1ae93f09-7530-4ca5-bbaf-196de13b416e",
   "connections": {
     "AI Chat": {
       "main": [
@@ -7453,13 +7447,7 @@
     },
     "If6": {
       "main": [
-        [
-          {
-            "node": "Kemaskini Pengajian2",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         []
       ]
     }
@@ -12045,11 +12033,11 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        2432,
+        2496,
         -400
       ],
       "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
-      "name": "Kemaskini Pengajian2"
+      "name": "Kemaskini Pengajian Muhimmah"
     }
   ],
   "origin": "n8n",
@@ -12063,7 +12051,8 @@
     "timezone": "Asia/Kuala_Lumpur",
     "callerPolicy": "workflowsFromSameOwner",
     "timeSavedPerExecution": 1,
-    "errorWorkflow": "X3z9DFNcd6pygcaS"
+    "errorWorkflow": "X3z9DFNcd6pygcaS",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -12084,6 +12073,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-01-22T21:57:57.040Z",
-  "versionId": "fe5694e9-5ffa-4e79-94e3-4dc2824f40c8"
+  "updatedAt": "2026-07-23T14:53:50.374Z",
+  "versionId": "1ae93f09-7530-4ca5-bbaf-196de13b416e"
 }
