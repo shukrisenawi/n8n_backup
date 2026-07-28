@@ -3,27 +3,11 @@
   "activeVersion": null,
   "activeVersionId": null,
   "connections": {
-    "HTTP Request": {
-      "main": [
-        []
-      ]
-    },
     "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "Ambil data Hari Jadi Pemilih",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "All Groups": {
-      "main": [
-        [
-          {
-            "node": "Ambil Gambar & text",
+            "node": "config",
             "type": "main",
             "index": 0
           }
@@ -125,17 +109,6 @@
         ]
       ]
     },
-    "config": {
-      "main": [
-        [
-          {
-            "node": "All Groups",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Tarikh Sekarang": {
       "main": [
         [
@@ -161,14 +134,20 @@
     },
     "Split Out": {
       "main": [
-        []
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "If": {
       "main": [
         [
           {
-            "node": "config",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -183,6 +162,39 @@
       ]
     },
     "Ambil data Hari Jadi Pemilih": {
+      "main": [
+        [
+          {
+            "node": "filter data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config": {
+      "main": [
+        [
+          {
+            "node": "Ambil data Hari Jadi Pemilih",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Ambil Gambar & text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter data": {
       "main": [
         [
           {
@@ -203,28 +215,6 @@
   "nodes": [
     {
       "parameters": {
-        "url": "https://paskawasansik.com/api/voters/birthdays?key=",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBearerAuth",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.4,
-      "position": [
-        -288,
-        -272
-      ],
-      "id": "989a0e46-f8d5-4110-bb94-4674aca7996c",
-      "name": "HTTP Request",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "2YArxsKCXQm8BhCR",
-          "name": "Akaun Hari Jadi PASTI"
-        }
-      }
-    },
-    {
-      "parameters": {
         "rule": {
           "interval": [
             {
@@ -237,24 +227,11 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        -688,
+        -768,
         -160
       ],
       "id": "754a79c1-4969-432a-b7a1-9c57dd3e985b",
       "name": "Schedule Trigger"
-    },
-    {
-      "parameters": {
-        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\nif($('HTTP Request').first().json.meta.group_active_whatsapp=='real')\n  groups = ['60134818841-1494722259@g.us'];//group MGP\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        496,
-        64
-      ],
-      "id": "155d23ff-0151-45a4-98fb-c41afe6493ca",
-      "name": "All Groups"
     },
     {
       "parameters": {
@@ -263,8 +240,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        336,
-        240
+        896,
+        80
       ],
       "id": "cd68bc9c-a9e8-42b2-82fc-067286c92d19",
       "name": "Ambil Gambar & text",
@@ -298,8 +275,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        512,
-        240
+        1152,
+        64
       ],
       "id": "6caf574a-dc79-473e-8799-cbd38b3bc536",
       "name": "If5"
@@ -308,7 +285,7 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Send Image",
-        "session": "={{ $('config').item.json.sessionId }}",
+        "session": "={{ $('config2').item.json.sessionId }}",
         "chatId": "={{ $('All Groups').item.json.group }}",
         "file": "={\n  \"mimetype\": \"image/jpeg\",\n  \"filename\": \"{{ new Date().toISOString() }}.jpg\",\n  \"url\": \"{{ $json.images }}\"\n}",
         "caption": "={{ $json.text }}",
@@ -317,8 +294,8 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        832,
-        240
+        1488,
+        48
       ],
       "id": "5d83bd91-1b67-4951-8adb-0bf06f5d3984",
       "name": "Send an image1",
@@ -327,20 +304,21 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
         "resource": "Chatting",
         "operation": "Stop Typing",
-        "session": "={{ $('config').item.json.sessionId }}",
+        "session": "={{ $('config2').item.json.sessionId }}",
         "chatId": "={{ $('All Groups').item.json.group }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        640,
+        1264,
         480
       ],
       "id": "b04abbfc-b33d-4a58-91b2-a659401bfd5b",
@@ -350,13 +328,14 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
         "resource": "Chatting",
         "operation": "Send Text",
-        "session": "={{ $('config').item.json.sessionId }}",
+        "session": "={{ $('config2').item.json.sessionId }}",
         "chatId": "={{ $('All Groups').item.json.group }}",
         "text": "={{ $('Ambil Gambar & text').item.json.text }}",
         "requestOptions": {}
@@ -364,7 +343,7 @@
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        800,
+        1424,
         480
       ],
       "id": "ee7045de-d184-4f76-8722-ee12f5e73e72",
@@ -375,7 +354,8 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -384,7 +364,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        480,
+        1104,
         480
       ],
       "id": "7ca81d15-8179-4e37-83fe-111b331317ff",
@@ -395,14 +375,14 @@
       "parameters": {
         "resource": "Chatting",
         "operation": "Start Typing",
-        "session": "={{ $('config').item.json.sessionId }}",
+        "session": "={{ $('config2').item.json.sessionId }}",
         "chatId": "={{ $('All Groups').item.json.group }}",
         "requestOptions": {}
       },
       "type": "@devlikeapro/n8n-nodes-waha.WAHA",
       "typeVersion": 202502,
       "position": [
-        336,
+        960,
         480
       ],
       "id": "a3310780-8197-4c74-b420-6ee7c3c774b9",
@@ -412,15 +392,16 @@
           "id": "OSQWzQbmYRYYqgCf",
           "name": "WAHA account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        688,
-        240
+        1312,
+        48
       ],
       "id": "3bd5169e-a7f4-4cab-92fa-36a5e021a39f",
       "name": "Wait3",
@@ -428,25 +409,12 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n   item.json.message = $('Loop Over Items1').first().json.avatar_url+`PASTI Kawasan Sik mengucapkan 🥳 *SELAMAT HARI JADI* kepada *`+$('Loop Over Items1').first().json.nama.toUpperCase()+`*.\n\n🤲 _Semoga panjang umur dalam keberkatan dan dimurahkan rezeki._`;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+        "jsCode": "const now = new Date();\nconst age_start = $('config').first().json.age_start;\nconst age_last = $('config').first().json.age_last;\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nconst cek_tarikh_hari_jadi = `${month}-${day}`;\nconst hari_jadi = $input.first().json.date_of_birth.slice(5);\n\nlet ok = false;\n\nif(cek_tarikh_hari_jadi==hari_jadi && $input.first().json.umur>=age_start && $input.first().json.umur<=age_last)\n{\n  ok = true;\n}\n\nreturn {\n  ok,\n  tarikh,\n  tarikh_format\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        336,
-        64
-      ],
-      "id": "c3bae211-78c2-4094-9d39-f771dfae142f",
-      "name": "config"
-    },
-    {
-      "parameters": {
-        "jsCode": "const now = new Date();\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\n\nconst cek_tarikh_hari_jadi = `${month}-${day}`;\nconst hari_jadi = $input.first().json.tarikh_lahir.slice(5);\n\nlet ok = false;\n\nif(cek_tarikh_hari_jadi==hari_jadi)\n{\n  ok = true;\n}\n\nreturn {\n  ok,\n  tarikh,\n  tarikh_format\n};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -128,
+        320,
         80
       ],
       "id": "2dcb12b0-0fb1-4b2e-b78e-d186ce144923",
@@ -459,7 +427,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -144,
+        272,
         -160
       ],
       "id": "a2832ea5-e8c1-4860-beaf-20238be862d0",
@@ -467,13 +435,13 @@
     },
     {
       "parameters": {
-        "fieldToSplitOut": "data",
+        "fieldToSplitOut": "data_filter",
         "options": {}
       },
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -368,
+        48,
         -160
       ],
       "id": "617d7b7b-6659-4929-b10c-18d88e669e9c",
@@ -506,7 +474,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        64,
+        480,
         80
       ],
       "id": "f0159b8f-6c99-494d-90de-c2ff4d8b0740",
@@ -520,15 +488,635 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -528,
+        -400,
         -160
       ],
       "id": "c27c922b-6d58-4f9a-80c3-53ba47a3ca17",
       "name": "Ambil data Hari Jadi Pemilih"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.age_start = 18;\n  item.json.age_last = 60;\n  item.json.sessionId = \"masjid_session\";\n  item.json.group = 'default';\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -160
+      ],
+      "id": "2e7e0b37-1db1-4709-bd75-7a1b1dac4955",
+      "name": "config"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random()*3,1) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        80
+      ],
+      "id": "907f60b1-33a7-4fcc-9b7e-7b07dc806455",
+      "name": "Wait",
+      "webhookId": "d01c5a52-bc9d-49e0-859b-413dc4254934"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data_all = $input.first().json.data;\nconst data_filter = [];\nlet total_data=0;\n\nconst now = new Date();\nconst age_start = $('config').first().json.age_start;\nconst age_last = $('config').first().json.age_last;\n\n// Format YYYY-MM-DD\nlet tarikh = now.toISOString().split(\"T\")[0];\nconst options = { timeZone: \"Asia/Kuala_Lumpur\" };\nconst year = now.toLocaleString(\"en-GB\", { ...options, year: \"numeric\" });\nconst month = now.toLocaleString(\"en-GB\", { ...options, month: \"2-digit\" });\nconst day = now.toLocaleString(\"en-GB\", { ...options, day: \"2-digit\" });\n\nconst tarikh_format = `${day}-${month}-${year}`;\ntarikh =  `${year}-${month}-${day}`;\nconst cek_tarikh_hari_jadi = `${month}-${day}`;\n\n\nfor(const data in data_all){\n  const hari_jadi = data_all[data].date_of_birth.split(\"-\");\n  const tarikh_hari_jadi = `${hari_jadi[1]}-${hari_jadi[2]}`;\n  if(tarikh_hari_jadi==cek_tarikh_hari_jadi && data_all[data].umur>=age_start && data_all[data].umur<=age_last)\n  {\n    data_filter.push(data_all[data]);\n  }\n}\n\nif(data_filter.length>0){\n  total_data= data_filter.length;\n}\n\nreturn [\n  {\n    json:{\n      data_filter,tarikh,tarikh_format,total_data\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -192,
+        -160
+      ],
+      "id": "483d6f0b-d383-42d1-96c2-b058791d2bad",
+      "name": "filter data"
     }
   ],
   "origin": "n8n",
-  "pinData": {},
+  "pinData": {
+    "Ambil data Hari Jadi Pemilih": [
+      {
+        "json": {
+          "data": [
+            {
+              "name": "ABDUL MANAN BIN ISMAIL",
+              "ic_number": "480728025397",
+              "kod_cula": "2",
+              "no_telefon": "0134698119",
+              "date_of_birth": "1948-07-28",
+              "umur": 78,
+              "birthday_url": null
+            },
+            {
+              "name": "ABU BAKAR BIN AWANG",
+              "ic_number": "590728025423",
+              "kod_cula": "2",
+              "no_telefon": "0194814862",
+              "date_of_birth": "1959-07-28",
+              "umur": 67,
+              "birthday_url": null
+            },
+            {
+              "name": "AHMAD BADRI BIN HASHIM",
+              "ic_number": "630728025005",
+              "kod_cula": "3P",
+              "no_telefon": "0132123698",
+              "date_of_birth": "1963-07-28",
+              "umur": 63,
+              "birthday_url": null
+            },
+            {
+              "name": "AYOB BIN TAIB",
+              "ic_number": "830728026151",
+              "kod_cula": "?",
+              "no_telefon": "0174910214",
+              "date_of_birth": "1983-07-28",
+              "umur": 43,
+              "birthday_url": null
+            },
+            {
+              "name": "BASIRON BIN AHMAD",
+              "ic_number": "800728025557",
+              "kod_cula": "2",
+              "no_telefon": "0195732467",
+              "date_of_birth": "1980-07-28",
+              "umur": 46,
+              "birthday_url": null
+            },
+            {
+              "name": "CHE GON BINTI IDRIS",
+              "ic_number": "510728025500",
+              "kod_cula": "2",
+              "no_telefon": "0124383740",
+              "date_of_birth": "1951-07-28",
+              "umur": 75,
+              "birthday_url": null
+            },
+            {
+              "name": "EE MA A/P AI LIANG",
+              "ic_number": "580728025694",
+              "kod_cula": "98",
+              "no_telefon": "0134218263",
+              "date_of_birth": "1958-07-28",
+              "umur": 68,
+              "birthday_url": null
+            },
+            {
+              "name": "ELLEP A/P EK LIAU",
+              "ic_number": "830728025570",
+              "kod_cula": "98",
+              "no_telefon": "0125779446",
+              "date_of_birth": "1983-07-28",
+              "umur": 43,
+              "birthday_url": null
+            },
+            {
+              "name": "GHAZALI BIN OSMAN",
+              "ic_number": "900728026187",
+              "kod_cula": "2",
+              "no_telefon": "0134090732",
+              "date_of_birth": "1990-07-28",
+              "umur": 36,
+              "birthday_url": null
+            },
+            {
+              "name": "HASMINI BINTI SAUD",
+              "ic_number": "750728025300",
+              "kod_cula": "2",
+              "no_telefon": "0109401975",
+              "date_of_birth": "1975-07-28",
+              "umur": 51,
+              "birthday_url": null
+            },
+            {
+              "name": "HELMI IZUAN BIN HARON",
+              "ic_number": "870728025403",
+              "kod_cula": "1A",
+              "no_telefon": "01114460225",
+              "date_of_birth": "1987-07-28",
+              "umur": 39,
+              "birthday_url": null
+            },
+            {
+              "name": "HUSAIN BIN CHE TEH",
+              "ic_number": "560728025215",
+              "kod_cula": "2",
+              "no_telefon": "0134718492",
+              "date_of_birth": "1956-07-28",
+              "umur": 70,
+              "birthday_url": null
+            },
+            {
+              "name": "I.BONG A/L ENDIN GUN",
+              "ic_number": "610728025111",
+              "kod_cula": "98",
+              "no_telefon": "0175416745",
+              "date_of_birth": "1961-07-28",
+              "umur": 65,
+              "birthday_url": null
+            },
+            {
+              "name": "ISMAIL BIN IBRAHIM",
+              "ic_number": "830728025909",
+              "kod_cula": "2",
+              "no_telefon": "0134398332",
+              "date_of_birth": "1983-07-28",
+              "umur": 43,
+              "birthday_url": null
+            },
+            {
+              "name": "JAH BINTI ISMAIL",
+              "ic_number": "710728025072",
+              "kod_cula": "1",
+              "no_telefon": "0195197943",
+              "date_of_birth": "1971-07-28",
+              "umur": 55,
+              "birthday_url": null
+            },
+            {
+              "name": "JULAIDA BINTI AZIZ",
+              "ic_number": "680728025254",
+              "kod_cula": "?",
+              "no_telefon": "0182652763",
+              "date_of_birth": "1968-07-28",
+              "umur": 58,
+              "birthday_url": null
+            },
+            {
+              "name": "KIAH BINTI AWANG",
+              "ic_number": "330728025078",
+              "kod_cula": "1",
+              "no_telefon": "0174485523",
+              "date_of_birth": "1933-07-28",
+              "umur": 93,
+              "birthday_url": null
+            },
+            {
+              "name": "LAU YEW KIANG",
+              "ic_number": "720728025290",
+              "kod_cula": "99",
+              "no_telefon": "0123815328",
+              "date_of_birth": "1972-07-28",
+              "umur": 54,
+              "birthday_url": null
+            },
+            {
+              "name": "MAI SALAMAH BINTI NORDIN",
+              "ic_number": "470728025136",
+              "kod_cula": "2",
+              "no_telefon": "0195573988",
+              "date_of_birth": "1947-07-28",
+              "umur": 79,
+              "birthday_url": null
+            },
+            {
+              "name": "MAKKI BIN YAHAYA",
+              "ic_number": "860728775029",
+              "kod_cula": "3P",
+              "no_telefon": "0194153086",
+              "date_of_birth": "1986-07-28",
+              "umur": 40,
+              "birthday_url": null
+            },
+            {
+              "name": "MEHAT BIN SU",
+              "ic_number": "680728025705",
+              "kod_cula": "?",
+              "no_telefon": "0134702805",
+              "date_of_birth": "1968-07-28",
+              "umur": 58,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHAMAD FAIZAL BIN MOHAMAD RASHID",
+              "ic_number": "840728025713",
+              "kod_cula": "2",
+              "no_telefon": "0174969200",
+              "date_of_birth": "1984-07-28",
+              "umur": 42,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHAMMAD FAZLAN BIN ABDUL HALIM",
+              "ic_number": "920728025879",
+              "kod_cula": "?",
+              "no_telefon": "0176526977",
+              "date_of_birth": "1992-07-28",
+              "umur": 34,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD ARIF BIN ABDUL HAMID",
+              "ic_number": "740728025571",
+              "kod_cula": "3K",
+              "no_telefon": "0192755525",
+              "date_of_birth": "1974-07-28",
+              "umur": 52,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD BIN ABDULLAH",
+              "ic_number": "700728025575",
+              "kod_cula": "2",
+              "no_telefon": "0134491918",
+              "date_of_birth": "1970-07-28",
+              "umur": 56,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD FUAAD BIN ABU SEMAN",
+              "ic_number": "850728025421",
+              "kod_cula": "2",
+              "no_telefon": "0194576901",
+              "date_of_birth": "1985-07-28",
+              "umur": 41,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD IDRIS BIN MOHAMAD ISA",
+              "ic_number": "710728025507",
+              "kod_cula": "?",
+              "no_telefon": "0194365195",
+              "date_of_birth": "1971-07-28",
+              "umur": 55,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD KHAIRUL AZHAR BIN OSMAN",
+              "ic_number": "890728026025",
+              "kod_cula": "1B",
+              "no_telefon": "0172257191",
+              "date_of_birth": "1989-07-28",
+              "umur": 37,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD NASIR BIN HAMZAH",
+              "ic_number": "670728025247",
+              "kod_cula": "?",
+              "no_telefon": "0174964866",
+              "date_of_birth": "1967-07-28",
+              "umur": 59,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD NURHISHAM BIN KAMARUDDIN",
+              "ic_number": "920728025799",
+              "kod_cula": "2",
+              "no_telefon": "0135293469",
+              "date_of_birth": "1992-07-28",
+              "umur": 34,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD RIDUAN BIN YAACOB",
+              "ic_number": "780728025615",
+              "kod_cula": "2",
+              "no_telefon": "0133638367",
+              "date_of_birth": "1978-07-28",
+              "umur": 48,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD SHAHBUDIN BIN HUSSEIN",
+              "ic_number": "840728025457",
+              "kod_cula": "2",
+              "no_telefon": "0197652797",
+              "date_of_birth": "1984-07-28",
+              "umur": 42,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD SHAHIDAN BIN SALLEH",
+              "ic_number": "910728025431",
+              "kod_cula": "1B",
+              "no_telefon": "0194085398",
+              "date_of_birth": "1991-07-28",
+              "umur": 35,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD SHAHIR BIN GHAZALI",
+              "ic_number": "860728265117",
+              "kod_cula": "2",
+              "no_telefon": "0173020953",
+              "date_of_birth": "1986-07-28",
+              "umur": 40,
+              "birthday_url": null
+            },
+            {
+              "name": "MOHD SYAHRIL BIN SOOED",
+              "ic_number": "840728025799",
+              "kod_cula": "1",
+              "no_telefon": "0193875799",
+              "date_of_birth": "1984-07-28",
+              "umur": 42,
+              "birthday_url": null
+            },
+            {
+              "name": "MUHAMAD ILIAS BIN SHAARI",
+              "ic_number": "010728020901",
+              "kod_cula": "2",
+              "no_telefon": "01129627518",
+              "date_of_birth": "2001-07-28",
+              "umur": 25,
+              "birthday_url": null
+            },
+            {
+              "name": "MUHAMAD NASRI BIN MEHAT",
+              "ic_number": "820728025897",
+              "kod_cula": "2",
+              "no_telefon": "0174226898",
+              "date_of_birth": "1982-07-28",
+              "umur": 44,
+              "birthday_url": null
+            },
+            {
+              "name": "MUHAMMAD AMIN BIN ABD RAHAMAN",
+              "ic_number": "910728025335",
+              "kod_cula": "2",
+              "no_telefon": "0195199639",
+              "date_of_birth": "1991-07-28",
+              "umur": 35,
+              "birthday_url": null
+            },
+            {
+              "name": "MUHAMMAD IHSAN AQIL BIN BASRI",
+              "ic_number": "020728020759",
+              "kod_cula": "2",
+              "no_telefon": "01121462357",
+              "date_of_birth": "2002-07-28",
+              "umur": 24,
+              "birthday_url": null
+            },
+            {
+              "name": "NANG CHARI A/P I KALAU",
+              "ic_number": "610728025402",
+              "kod_cula": "98",
+              "no_telefon": "0175082933",
+              "date_of_birth": "1961-07-28",
+              "umur": 65,
+              "birthday_url": null
+            },
+            {
+              "name": "NOOR DINA BINTI MD DZAHIR",
+              "ic_number": "810728025230",
+              "kod_cula": "1",
+              "no_telefon": "0175759042",
+              "date_of_birth": "1981-07-28",
+              "umur": 45,
+              "birthday_url": null
+            },
+            {
+              "name": "NOORDIN BIN YUSOF",
+              "ic_number": "750728025925",
+              "kod_cula": "2",
+              "no_telefon": "0175165946",
+              "date_of_birth": "1975-07-28",
+              "umur": 51,
+              "birthday_url": null
+            },
+            {
+              "name": "NUR FADHILAH BINTI MUSA",
+              "ic_number": "890728026164",
+              "kod_cula": "2",
+              "no_telefon": "0149597266",
+              "date_of_birth": "1989-07-28",
+              "umur": 37,
+              "birthday_url": null
+            },
+            {
+              "name": "NURUL SAFINAZ BINTI MD SALLEH",
+              "ic_number": "840728025270",
+              "kod_cula": "2",
+              "no_telefon": "0164455616",
+              "date_of_birth": "1984-07-28",
+              "umur": 42,
+              "birthday_url": null
+            },
+            {
+              "name": "RABIATON ADAWIAH BINTI AB RAHMAN",
+              "ic_number": "850728025392",
+              "kod_cula": "2",
+              "no_telefon": "0173907349",
+              "date_of_birth": "1985-07-28",
+              "umur": 41,
+              "birthday_url": null
+            },
+            {
+              "name": "RAMLI @ HASHIM BIN YAHAYA",
+              "ic_number": "340728025245",
+              "kod_cula": "2",
+              "no_telefon": "0134203117",
+              "date_of_birth": "1934-07-28",
+              "umur": 92,
+              "birthday_url": null
+            },
+            {
+              "name": "RAZAK BIN AHMAD",
+              "ic_number": "660728025467",
+              "kod_cula": "2",
+              "no_telefon": "0134278678",
+              "date_of_birth": "1966-07-28",
+              "umur": 60,
+              "birthday_url": null
+            },
+            {
+              "name": "ROBIAH BINTI L.M.SAMAN",
+              "ic_number": "570728026604",
+              "kod_cula": "8",
+              "no_telefon": "0134132921",
+              "date_of_birth": "1957-07-28",
+              "umur": 69,
+              "birthday_url": null
+            },
+            {
+              "name": "ROHAYA BINTI ISMAIL",
+              "ic_number": "900728025870",
+              "kod_cula": "?",
+              "no_telefon": "0134713548",
+              "date_of_birth": "1990-07-28",
+              "umur": 36,
+              "birthday_url": null
+            },
+            {
+              "name": "ROSLIZAWATI BINTI RAMLI",
+              "ic_number": "770728025528",
+              "kod_cula": "2",
+              "no_telefon": "01111779942",
+              "date_of_birth": "1977-07-28",
+              "umur": 49,
+              "birthday_url": null
+            },
+            {
+              "name": "SABAI A/L ERIAM",
+              "ic_number": "780728025623",
+              "kod_cula": "98",
+              "no_telefon": "0135992246",
+              "date_of_birth": "1978-07-28",
+              "umur": 48,
+              "birthday_url": null
+            },
+            {
+              "name": "SAIDIN BIN OTHMAN",
+              "ic_number": "730728025433",
+              "kod_cula": "1",
+              "no_telefon": "0195674418",
+              "date_of_birth": "1973-07-28",
+              "umur": 53,
+              "birthday_url": null
+            },
+            {
+              "name": "SAUDAH BINTI GHAZALI",
+              "ic_number": "750728025378",
+              "kod_cula": "3P",
+              "no_telefon": "0124596768",
+              "date_of_birth": "1975-07-28",
+              "umur": 51,
+              "birthday_url": null
+            },
+            {
+              "name": "SAWAT A/L IKE LUAN",
+              "ic_number": "730728025505",
+              "kod_cula": "98",
+              "no_telefon": "0124690538",
+              "date_of_birth": "1973-07-28",
+              "umur": 53,
+              "birthday_url": null
+            },
+            {
+              "name": "SHARINAH BINTI SENAPI",
+              "ic_number": "850728025720",
+              "kod_cula": "1B",
+              "no_telefon": "0195659268",
+              "date_of_birth": "1985-07-28",
+              "umur": 41,
+              "birthday_url": null
+            },
+            {
+              "name": "SHARIPAH BINTI MAT PIAH",
+              "ic_number": "610728025074",
+              "kod_cula": "1A",
+              "no_telefon": "0135192264",
+              "date_of_birth": "1961-07-28",
+              "umur": 65,
+              "birthday_url": null
+            },
+            {
+              "name": "SITI RAHMAH BINTI MAHMUD",
+              "ic_number": "630728025072",
+              "kod_cula": "2",
+              "no_telefon": "0194409409",
+              "date_of_birth": "1963-07-28",
+              "umur": 63,
+              "birthday_url": null
+            },
+            {
+              "name": "SOM CHIT A/L ENDIN ON TONG",
+              "ic_number": "520728025147",
+              "kod_cula": "98",
+              "no_telefon": "0134250988",
+              "date_of_birth": "1952-07-28",
+              "umur": 74,
+              "birthday_url": null
+            },
+            {
+              "name": "SOMPONG A/L AM",
+              "ic_number": "890728026121",
+              "kod_cula": "98",
+              "no_telefon": "0194478112",
+              "date_of_birth": "1989-07-28",
+              "umur": 37,
+              "birthday_url": null
+            },
+            {
+              "name": "SUHAINI BINTI YAHYA",
+              "ic_number": "850728025106",
+              "kod_cula": "3K",
+              "no_telefon": "0193910866",
+              "date_of_birth": "1985-07-28",
+              "umur": 41,
+              "birthday_url": null
+            },
+            {
+              "name": "SYED MOHD ZEKRY BIN SYD MUHAMAD RAMLI",
+              "ic_number": "900728025141",
+              "kod_cula": "2",
+              "no_telefon": "0174103610",
+              "date_of_birth": "1990-07-28",
+              "umur": 36,
+              "birthday_url": null
+            },
+            {
+              "name": "TIGAH @ TIJAH BINTI DOLAH",
+              "ic_number": "540728025612",
+              "kod_cula": "1P",
+              "no_telefon": "0134734401",
+              "date_of_birth": "1954-07-28",
+              "umur": 72,
+              "birthday_url": null
+            },
+            {
+              "name": "ZAINAB BINTI HAJI MAT DIN",
+              "ic_number": "310728025010",
+              "kod_cula": "2",
+              "no_telefon": "0194445613",
+              "date_of_birth": "1931-07-28",
+              "umur": 95,
+              "birthday_url": null
+            }
+          ],
+          "total": 63
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "repo": {
     "owner": "shukrisenawi",
     "name": "n8n_backup"
@@ -554,6 +1142,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-07-26T10:39:55.370Z",
-  "versionId": "08db51d4-876f-45d9-adfc-3ed8a346b55d"
+  "updatedAt": "2026-07-28T08:19:08.797Z",
+  "versionId": "b81e8935-40b6-47f0-9389-13dfb2a639f4"
 }
