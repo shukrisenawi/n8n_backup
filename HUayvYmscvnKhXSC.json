@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-08-16T09:33:14.000Z",
-    "createdAt": "2026-08-16T09:32:58.641Z",
-    "versionId": "ae04696d-b562-4bb5-88ac-ff973a5705ac",
+    "updatedAt": "2026-08-18T07:22:36.000Z",
+    "createdAt": "2026-08-18T07:22:33.624Z",
+    "versionId": "86805f63-0954-4859-8d7a-071b24a65d9c",
     "workflowId": "HUayvYmscvnKhXSC",
     "nodes": [
       {
@@ -21,7 +21,7 @@
       },
       {
         "parameters": {
-          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($(\"config\").first().json.mode!=\"test\")\n  groups = ['120363410532967888@g.us'];//group JPRD\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+          "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($(\"config\").first().json.mode!=\"test\")\n  groups = ['120363410532967888@g.us','60132108072-1568866868@g.us'];//group JPRD\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -474,11 +474,11 @@
     },
     "nodeGroups": [],
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version ae04696d",
+    "name": "Version 86805f63",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "ae04696d-b562-4bb5-88ac-ff973a5705ac",
+  "activeVersionId": "86805f63-0954-4859-8d7a-071b24a65d9c",
   "connections": {
     "Code2": {
       "main": [
@@ -679,7 +679,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($(\"config\").first().json.mode!=\"test\")\n  groups = ['120363410532967888@g.us'];//group JPRD\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
+        "jsCode": "let groups = ['120363425874463975@g.us'];//group test\n\nif($(\"config\").first().json.mode!=\"test\")\n  groups = ['120363410532967888@g.us','60132108072-1568866868@g.us'];//group JPRD\n\nreturn groups.map(group => ({ json: { group,message:$input.first().json.message } }));"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -955,43 +955,7 @@
     }
   ],
   "origin": "n8n",
-  "pinData": {
-    "Webhook1": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n-mt8umikivytz.n8x.biz.id",
-            "user-agent": "GuzzleHttp/7",
-            "content-length": "1617",
-            "accept": "application/json",
-            "accept-encoding": "gzip, br",
-            "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "2001:e68:5e1b:2b00:c465:ca94:e7bb:10d7",
-            "cf-ipcountry": "MY",
-            "cf-ray": "a2bf6063dd20c51a-SIN",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "content-type": "application/json",
-            "x-forwarded-for": "2001:e68:5e1b:2b00:c465:ca94:e7bb:10d7, 104.23.175.13",
-            "x-forwarded-host": "n8n-mt8umikivytz.n8x.biz.id",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "13334096a66b",
-            "x-real-ip": "104.23.175.13"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "message": "📌CULAN TERKINI JPrD JENERI 16/8/26\n\n♦️JUM PEMILIH\n3️⃣5️⃣, 8️⃣4️⃣8️⃣\n♦️SUDAH CULA\n3️⃣1️⃣, 7️⃣9️⃣9️⃣\n♦️BELUM CULA\n4️⃣, 0️⃣4️⃣9️⃣\n♦️PERATUP SIAP\n8️⃣8️⃣▪️7️⃣\n\n📌BELUM CULA IKUT UDM\n1) BATU LIMA 2️⃣6️⃣6️⃣🌸\n2) BERIS JAYA 1️⃣6️⃣5️⃣🌸\n3) CHAROK PADANG 2️⃣8️⃣3️⃣🌸\n4) FELDA TELUI TIMOR 0️⃣🌸\n5) HUJONG BANDAR 2️⃣🌸\n6) KAMPUNG BANDAR 1️⃣🌸\n7) KAMPUNG BETONG 7️⃣4️⃣3️⃣🌸\n8) KAMPUNG BIGIA 2️⃣1️⃣2️⃣🌸\n9) KAMPUNG CHEMARA 3️⃣3️⃣0️⃣🌸\n10) KAMPUNG KALAI 1️⃣6️⃣2️⃣🌸\n11) KAMPUNG KUALA BIGIA 3️⃣0️⃣9️⃣🌸\n12) KAMPUNG TELUI 6️⃣5️⃣🌸\n13) KOTA BUKIT 9️⃣4️⃣8️⃣🌸\n14) KUALA JENERI 3️⃣🌸\n15) PADANG CHICHAK 6️⃣5️⃣🌸\n16) TUPAI 4️⃣9️⃣5️⃣🌸\n\n🟩JUMLAH KESELURUHAN\n4️⃣, 0️⃣4️⃣9️⃣\n\n🌸Terima kasih atas komitmen UDM.. Ayuh kita Selesaikan.. Anda semua terbaik"
-          },
-          "webhookUrl": "https://n8n-mt8umikivytz.n8x.biz.id/webhook-test/d925780e-5011-44ee-ae45-ae10aabbbc0f",
-          "executionMode": "test"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "repo": {
     "owner": "shukrisenawi",
     "name": "n8n_backup"
@@ -1017,6 +981,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-08-16T09:33:35.864Z",
-  "versionId": "ae04696d-b562-4bb5-88ac-ff973a5705ac"
+  "updatedAt": "2026-08-18T07:24:56.809Z",
+  "versionId": "86805f63-0954-4859-8d7a-071b24a65d9c"
 }
