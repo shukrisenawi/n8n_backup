@@ -3861,8 +3861,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        -240,
-        64
+        -1056,
+        720
       ],
       "id": "2a1c17d0-6afc-4086-ba50-828493eb418e",
       "name": "Cari Pengajian"
@@ -4874,8 +4874,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -448,
-        48
+        -1232,
+        320
       ],
       "id": "8b855796-c98d-4d3e-8c35-2e7c83ca9aa3",
       "name": "If6"
@@ -5721,7 +5721,8 @@
     "timezone": "Asia/Kuala_Lumpur",
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "X3z9DFNcd6pygcaS",
-    "timeSavedPerExecution": 1
+    "timeSavedPerExecution": 1,
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -5742,6 +5743,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-02-19T16:14:36.664Z",
-  "versionId": "5cc95278-79cc-49c3-8791-8bbc7154bdbf"
+  "updatedAt": "2026-08-30T10:25:15.762Z",
+  "versionId": "81a5aeb9-b403-44fc-b75c-141a9c9a248c"
 }
