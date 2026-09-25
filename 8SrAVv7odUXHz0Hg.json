@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-09-24T07:37:49.000Z",
-    "createdAt": "2026-09-24T07:37:42.599Z",
-    "versionId": "82a1e188-380b-4c31-83a5-2cfd30e10409",
+    "updatedAt": "2026-09-25T01:27:47.000Z",
+    "createdAt": "2026-09-25T01:27:44.482Z",
+    "versionId": "3ea268be-83e5-4597-9e24-2df623a84f30",
     "workflowId": "8SrAVv7odUXHz0Hg",
     "nodes": [
       {
@@ -47,8 +47,8 @@
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.2,
         "position": [
-          -336,
-          -128
+          -576,
+          -144
         ],
         "id": "63b6fc6e-3751-4b77-8b57-f291b766ba54",
         "name": "Schedule Trigger"
@@ -494,26 +494,6 @@
         ],
         "id": "cb5136c9-c87e-4c91-94dd-51922a6b46a9",
         "name": "Cari Pengajian Surau"
-      },
-      {
-        "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "cronExpression",
-                "expression": "0 0 1 2 * *"
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.scheduleTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -352,
-          752
-        ],
-        "id": "aa1df52a-830d-4ca2-8b86-85451366a2a9",
-        "name": "Schedule Trigger1"
       },
       {
         "parameters": {
@@ -963,6 +943,21 @@
         ],
         "id": "7e70976d-4c6d-4802-b8aa-670ad71672f0",
         "name": "update pengajian ustaz aminudin"
+      },
+      {
+        "parameters": {
+          "amount": 2,
+          "unit": "minutes"
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          -288,
+          272
+        ],
+        "id": "7ef56581-df19-42e3-8073-8e7fbe940526",
+        "name": "Wait",
+        "webhookId": "b7aa28d0-3579-48cc-90a2-6e319c81fbb2"
       }
     ],
     "connections": {
@@ -1001,6 +996,11 @@
           [
             {
               "node": "Tarikh Sekarang",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Wait",
               "type": "main",
               "index": 0
             }
@@ -1084,17 +1084,6 @@
           [
             {
               "node": "Loop Over Items1",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Schedule Trigger1": {
-        "main": [
-          [
-            {
-              "node": "Tarikh Semasa",
               "type": "main",
               "index": 0
             }
@@ -1185,15 +1174,26 @@
             }
           ]
         ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Tarikh Semasa",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "nodeGroups": [],
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 82a1e188",
+    "name": "Version 3ea268be",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "82a1e188-380b-4c31-83a5-2cfd30e10409",
+  "activeVersionId": "3ea268be-83e5-4597-9e24-2df623a84f30",
   "connections": {
     "Week": {
       "main": [
@@ -1230,6 +1230,11 @@
         [
           {
             "node": "Tarikh Sekarang",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -1313,17 +1318,6 @@
         [
           {
             "node": "Loop Over Items1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger1": {
-      "main": [
-        [
-          {
-            "node": "Tarikh Semasa",
             "type": "main",
             "index": 0
           }
@@ -1414,6 +1408,17 @@
           }
         ]
       ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Tarikh Semasa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-21T14:35:22.496Z",
@@ -1466,8 +1471,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -336,
-        -128
+        -576,
+        -144
       ],
       "id": "63b6fc6e-3751-4b77-8b57-f291b766ba54",
       "name": "Schedule Trigger"
@@ -1913,26 +1918,6 @@
       ],
       "id": "cb5136c9-c87e-4c91-94dd-51922a6b46a9",
       "name": "Cari Pengajian Surau"
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "cronExpression",
-              "expression": "0 0 1 2 * *"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -352,
-        752
-      ],
-      "id": "aa1df52a-830d-4ca2-8b86-85451366a2a9",
-      "name": "Schedule Trigger1"
     },
     {
       "parameters": {
@@ -2382,6 +2367,21 @@
       ],
       "id": "7e70976d-4c6d-4802-b8aa-670ad71672f0",
       "name": "update pengajian ustaz aminudin"
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -288,
+        272
+      ],
+      "id": "7ef56581-df19-42e3-8073-8e7fbe940526",
+      "name": "Wait",
+      "webhookId": "b7aa28d0-3579-48cc-90a2-6e319c81fbb2"
     }
   ],
   "origin": "n8n",
@@ -2426,7 +2426,7 @@
     }
   },
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2026-09-24T07:37:42.595Z",
-  "versionId": "82a1e188-380b-4c31-83a5-2cfd30e10409"
+  "triggerCount": 1,
+  "updatedAt": "2026-09-25T01:27:44.481Z",
+  "versionId": "3ea268be-83e5-4597-9e24-2df623a84f30"
 }
