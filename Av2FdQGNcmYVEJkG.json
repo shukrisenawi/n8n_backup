@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-07-23T14:53:53.000Z",
-    "createdAt": "2026-07-23T14:53:50.379Z",
-    "versionId": "1ae93f09-7530-4ca5-bbaf-196de13b416e",
+    "updatedAt": "2026-10-04T11:08:17.000Z",
+    "createdAt": "2026-10-04T11:08:02.739Z",
+    "versionId": "07200210-ea6c-4a59-92d7-f16f0a6229fb",
     "workflowId": "Av2FdQGNcmYVEJkG",
     "nodes": [
       {
@@ -17,7 +17,7 @@
         "type": "@n8n/n8n-nodes-langchain.agent",
         "typeVersion": 2,
         "position": [
-          4032,
+          4240,
           464
         ],
         "id": "0c69a9b8-a171-47bd-b120-74f6407162f0",
@@ -36,7 +36,7 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1.2,
         "position": [
-          3824,
+          4032,
           672
         ],
         "id": "7790f747-d5d0-4183-a196-1a2d1cb73c32",
@@ -55,7 +55,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          4528,
+          4736,
           480
         ],
         "id": "fd7093ef-3873-44a3-9324-c1cc297b8db0",
@@ -68,7 +68,7 @@
         "type": "n8n-nodes-base.splitInBatches",
         "typeVersion": 3,
         "position": [
-          4736,
+          4944,
           496
         ],
         "id": "4ad8849c-c974-4fab-9c2e-c24d3b57c090",
@@ -82,7 +82,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          5024,
+          5232,
           496
         ],
         "id": "5817c18f-3b20-4dad-aafa-5f6c68df0e65",
@@ -117,7 +117,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          5168,
+          5376,
           512
         ],
         "id": "e194b8ad-0332-4f7c-87eb-5fb8c478d127",
@@ -130,7 +130,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          4832,
+          5040,
           928
         ],
         "id": "8722c972-afc2-47ee-872c-0d8e51c4bbda",
@@ -172,7 +172,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          4864,
+          5072,
           768
         ],
         "id": "131e6254-5044-4570-9336-e0f4771524d8",
@@ -204,7 +204,7 @@
         "type": "n8n-nodes-base.wait",
         "typeVersion": 1.1,
         "position": [
-          5024,
+          5232,
           768
         ],
         "id": "f5ce818a-e5db-406f-a037-6a54baebb113",
@@ -223,7 +223,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          5344,
+          5552,
           768
         ],
         "id": "dbe0aa72-efc6-4137-b94d-90c1e83bc07b",
@@ -246,7 +246,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          5184,
+          5392,
           768
         ],
         "id": "31571ec5-72cb-45e5-ad41-bf813d17cfdb",
@@ -271,7 +271,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          4992,
+          5200,
           928
         ],
         "id": "f6ec42fd-40db-4e13-a0ef-67a7848e5b53",
@@ -312,7 +312,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          2864,
+          3072,
           -416
         ],
         "id": "16cb9aa4-335b-4472-8e04-93025ac2d582",
@@ -328,7 +328,7 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          2864,
+          3072,
           64
         ],
         "id": "4c7eb807-8f1c-4dfd-9c24-f9ed95965453",
@@ -474,7 +474,7 @@
         "type": "n8n-nodes-base.switch",
         "typeVersion": 3.2,
         "position": [
-          3168,
+          3376,
           -112
         ],
         "id": "7b8d2a5c-fc68-49ca-88ec-c11081be0069",
@@ -496,7 +496,7 @@
         "type": "@n8n/n8n-nodes-langchain.openAi",
         "typeVersion": 1.8,
         "position": [
-          3584,
+          3792,
           -144
         ],
         "id": "775a9eb5-72eb-495a-a1c8-fbee32f2d82b",
@@ -516,7 +516,7 @@
         "type": "n8n-nodes-base.extractFromFile",
         "typeVersion": 1,
         "position": [
-          3696,
+          3904,
           -256
         ],
         "id": "99fba661-77f3-47fe-867b-c46bde36ab25",
@@ -539,7 +539,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          3904,
+          4112,
           -240
         ],
         "id": "413b6ea6-4c9d-43c5-965d-a8b5e4c909eb",
@@ -552,7 +552,7 @@
         "type": "n8n-nodes-base.merge",
         "typeVersion": 3.2,
         "position": [
-          4144,
+          4352,
           -240
         ],
         "id": "225bedbe-6db7-4a92-8222-001bffde6479",
@@ -575,7 +575,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          3904,
+          4112,
           -64
         ],
         "id": "a4e5bea7-3c46-4cfa-bc04-7ecc3613cb8d",
@@ -598,7 +598,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          3680,
+          3888,
           -416
         ],
         "id": "d71266e1-98ca-40cd-a884-79c6ee3b81b9",
@@ -614,7 +614,7 @@
         "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
         "typeVersion": 1,
         "position": [
-          3696,
+          3904,
           144
         ],
         "id": "070a09e4-f2cd-411a-9f88-8ebeb85c92fd",
@@ -643,7 +643,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          3904,
+          4112,
           144
         ],
         "id": "b0845e75-2a87-4cd6-b686-f080b7c6b27c",
@@ -690,7 +690,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          2864,
+          3072,
           -176
         ],
         "id": "baccf64f-e579-4876-953f-8b3e08c56251",
@@ -713,7 +713,7 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          4320,
+          4528,
           -224
         ],
         "id": "0be8b095-56fb-43b3-bbec-e3deaf210d8d",
@@ -769,7 +769,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          3200,
+          3408,
           480
         ],
         "id": "8166a685-6c5c-4c27-b241-b2c3ddd78213",
@@ -782,7 +782,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          3504,
+          3712,
           480
         ],
         "id": "3da26379-2380-483e-ae8a-b37225694f90",
@@ -863,7 +863,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          4336,
+          4544,
           144
         ],
         "id": "456b8e8f-0736-4835-87d4-01fa6eed3fdb",
@@ -1205,7 +1205,7 @@
         "type": "n8n-nodes-base.mongoDb",
         "typeVersion": 1.2,
         "position": [
-          3344,
+          3552,
           480
         ],
         "id": "d648a9f5-29c3-4117-80a7-853aee339526",
@@ -1232,7 +1232,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          3040,
+          3248,
           480
         ],
         "id": "83b34e8c-280d-4470-859a-dc52ffaa9620",
@@ -1262,7 +1262,7 @@
         "type": "@n8n/n8n-nodes-langchain.openAi",
         "typeVersion": 1.8,
         "position": [
-          3600,
+          3808,
           16
         ],
         "id": "3b0dce43-b623-4c94-b0c1-ad8f83475cf2",
@@ -1298,7 +1298,7 @@
         "type": "n8n-nodes-base.dataTableTool",
         "typeVersion": 1,
         "position": [
-          3952,
+          4160,
           672
         ],
         "id": "52c82d08-a15f-4fe8-b16d-fb6512753574",
@@ -1309,7 +1309,7 @@
         "type": "@n8n/n8n-nodes-langchain.toolCalculator",
         "typeVersion": 1,
         "position": [
-          4496,
+          4704,
           672
         ],
         "id": "56cf217c-115e-4339-a4f1-c66e73cddb87",
@@ -1460,7 +1460,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          3712,
+          3920,
           480
         ],
         "id": "39a4f7d4-304e-4b98-a4e6-123b0467d0f1",
@@ -1511,7 +1511,7 @@
         "typeVersion": 1.2,
         "position": [
           1392,
-          -496
+          -512
         ],
         "id": "854a102f-033e-422f-a425-235f3210feac",
         "name": "OpenAI Chat Model",
@@ -1531,7 +1531,7 @@
         "typeVersion": 1.3,
         "position": [
           1536,
-          -480
+          -512
         ],
         "id": "6e5eb9dc-42dd-4ff9-b750-0615569daae7",
         "name": "Structured Output Parser"
@@ -1559,7 +1559,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1440,
+          1264,
           -224
         ],
         "id": "b0906969-4cec-41eb-a121-fdf46b8df50c",
@@ -1576,7 +1576,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          1904,
+          2112,
           128
         ],
         "id": "1d8e7b70-caa2-463d-acc2-9656d7a4f4e6",
@@ -1600,7 +1600,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          1584,
+          1760,
           128
         ],
         "id": "e8ef6c23-4297-402c-8702-7d500db231e8",
@@ -1787,7 +1787,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1600,
+          1424,
           -224
         ],
         "id": "afb7f02d-93bd-4462-b568-3f6552e6a95f",
@@ -1806,8 +1806,8 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1.2,
         "position": [
-          1632,
-          -336
+          1808,
+          -512
         ],
         "id": "dbc1f655-8586-4db7-910f-b779cbcbd723",
         "name": "OpenAI Chat Model1",
@@ -1886,7 +1886,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          2064,
+          2272,
           128
         ],
         "id": "4b472adc-6b0d-4549-87f8-5949cc50fb87",
@@ -1906,7 +1906,7 @@
         "type": "n8n-nodes-base.wait",
         "typeVersion": 1.1,
         "position": [
-          1760,
+          1968,
           128
         ],
         "id": "49c4f963-f9df-4020-bff5-b75ce8d85902",
@@ -2834,7 +2834,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1936,
+          2144,
           -224
         ],
         "id": "e2a2b98c-c994-4fae-bbc0-ae9062a1beb2",
@@ -2948,7 +2948,7 @@
         "type": "n8n-nodes-base.dataTableTool",
         "typeVersion": 1,
         "position": [
-          4352,
+          4560,
           672
         ],
         "id": "890ada7f-f162-43f0-b52c-36d7ea02b2ef",
@@ -2963,7 +2963,7 @@
         "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
         "typeVersion": 1.1,
         "position": [
-          4128,
+          4336,
           1152
         ],
         "credentials": {
@@ -2990,7 +2990,7 @@
         "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
         "typeVersion": 1,
         "position": [
-          4128,
+          4336,
           1008
         ],
         "credentials": {
@@ -3009,7 +3009,7 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1,
         "position": [
-          4368,
+          4576,
           1104
         ],
         "credentials": {
@@ -3046,7 +3046,7 @@
         "type": "n8n-nodes-base.mySqlTool",
         "typeVersion": 2.4,
         "position": [
-          4224,
+          4432,
           672
         ],
         "id": "f588c3d1-3ab4-4ba5-98e4-47a7d58a6978",
@@ -3069,7 +3069,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          1920,
+          2128,
           288
         ],
         "id": "850c4850-e13c-4799-8b7f-f4c73ec29061",
@@ -3093,7 +3093,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          1584,
+          1760,
           288
         ],
         "id": "f2f008ed-7150-4656-b6c8-7fed782627db",
@@ -3118,7 +3118,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          2080,
+          2288,
           288
         ],
         "id": "d63b7845-3195-411d-9c9d-92507714ceaf",
@@ -3138,7 +3138,7 @@
         "type": "n8n-nodes-base.wait",
         "typeVersion": 1.1,
         "position": [
-          1776,
+          1968,
           288
         ],
         "id": "9e0738d8-d910-4c15-b2a9-61a0f663e7e6",
@@ -3174,7 +3174,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          2208,
+          2416,
           -224
         ],
         "id": "a2f81922-71c1-4c49-8fe5-d9e27272f366",
@@ -3187,7 +3187,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1456,
+          1632,
           288
         ],
         "id": "41a83c4c-2e04-4b28-ad9e-0415ba9e8299",
@@ -3215,7 +3215,7 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          1760,
+          1568,
           -224
         ],
         "id": "66a2fc27-b576-4140-b4aa-c242c9a6dba5",
@@ -3234,7 +3234,7 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1.2,
         "position": [
-          3376,
+          3584,
           960
         ],
         "id": "b300efdb-ffe4-45a4-af7e-73a1880f1b4c",
@@ -3415,7 +3415,7 @@
         "type": "n8n-nodes-base.dataTableTool",
         "typeVersion": 1,
         "position": [
-          3680,
+          3888,
           960
         ],
         "id": "80ac018c-6202-4213-b2fa-266e7cc67c6c",
@@ -3431,7 +3431,7 @@
         "type": "@n8n/n8n-nodes-langchain.agentTool",
         "typeVersion": 2.2,
         "position": [
-          3472,
+          3680,
           816
         ],
         "id": "f6445c4f-58f2-472b-92c7-8fe52a282a59",
@@ -3449,7 +3449,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          2240,
+          2448,
           -32
         ],
         "id": "06072105-ec38-4d49-8c23-cdbee34af931",
@@ -3495,7 +3495,7 @@
         "type": "n8n-nodes-base.googleSheetsTool",
         "typeVersion": 4.7,
         "position": [
-          3696,
+          3904,
           656
         ],
         "id": "469af01e-8789-4a69-a652-a18ad9923d76",
@@ -3529,7 +3529,7 @@
         "type": "n8n-nodes-base.dataTableTool",
         "typeVersion": 1,
         "position": [
-          3536,
+          3744,
           960
         ],
         "id": "41d48def-14d3-4798-8dde-9018331ef3ce",
@@ -3545,7 +3545,7 @@
         "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
         "typeVersion": 1,
         "position": [
-          4240,
+          4448,
           848
         ]
       },
@@ -3558,7 +3558,7 @@
         "type": "@n8n/n8n-nodes-langchain.memoryMongoDbChat",
         "typeVersion": 1,
         "position": [
-          4096,
+          4304,
           672
         ],
         "id": "4aa2c0fb-acb9-4f02-8c30-b078894ac3ea",
@@ -4277,7 +4277,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1584,
+          1760,
           -32
         ],
         "id": "23a05418-7ac8-453e-968d-4a44db6cdbc7",
@@ -4294,7 +4294,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          2080,
+          2288,
           -32
         ],
         "id": "df70afa6-357f-4f5e-a06d-7f39180ceee6",
@@ -4318,7 +4318,7 @@
         "type": "@devlikeapro/n8n-nodes-waha.WAHA",
         "typeVersion": 202502,
         "position": [
-          1760,
+          1968,
           -32
         ],
         "id": "d3385807-1204-444f-85be-0c910df87f95",
@@ -4338,7 +4338,7 @@
         "type": "n8n-nodes-base.wait",
         "typeVersion": 1.1,
         "position": [
-          1936,
+          2144,
           -32
         ],
         "id": "4c118ef7-999a-42c9-9b0a-201f5a9fa1c4",
@@ -4393,7 +4393,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.3,
         "position": [
-          2224,
+          2432,
           -384
         ],
         "id": "c85fbe8c-66bf-4838-850e-6b9d669bad24",
@@ -4578,11 +4578,267 @@
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1,
         "position": [
-          2496,
+          2704,
           -400
         ],
         "id": "c6592f11-c1ae-4e11-a60a-5b28a742b82b",
         "name": "Kemaskini Pengajian Muhimmah"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "dataTableId": {
+            "__rl": true,
+            "value": "ssP2ikwXFWiluBNx",
+            "mode": "list",
+            "cachedResultName": "Masjid - Jadual Pengajian",
+            "cachedResultUrl": "/projects/xIwyQZxho25VDDOK/datatables/ssP2ikwXFWiluBNx"
+          },
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "pengajar",
+                "keyValue": "Ustaz Aminudin Bin Abdul Rahman"
+              },
+              {
+                "keyName": "active",
+                "keyValue": "Tidak"
+              },
+              {
+                "keyName": "tarikh_bulan_ini",
+                "keyValue": "={{ $('Cari Pengajian').item.json.tarikh_bulan_ini }}"
+              }
+            ]
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "active": "Ya"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "kitab",
+                "displayName": "kitab",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "hari",
+                "displayName": "hari",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "minggu",
+                "displayName": "minggu",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "masa",
+                "displayName": "masa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "pengajar",
+                "displayName": "pengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tempat",
+                "displayName": "tempat",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "live",
+                "displayName": "live",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_bulan_ini",
+                "displayName": "tarikh_bulan_ini",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "tarikh_peringatan",
+                "displayName": "tarikh_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "no_hp_peringatan",
+                "displayName": "no_hp_peringatan",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "active",
+                "displayName": "active",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "sebab_tidak_mengajar",
+                "displayName": "sebab_tidak_mengajar",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "poster",
+                "displayName": "poster",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              },
+              {
+                "id": "post",
+                "displayName": "post",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1952,
+          -336
+        ],
+        "id": "0bcbde57-6f13-4a6b-9331-27c3c7624a9f",
+        "name": "Kemaskini Pengajian Ustaz Aminudin"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "ffeed164-f393-4473-9201-2ced7dd21cfc",
+                "leftValue": "={{ $('Cari Pengajian').item.json.kitab }}",
+                "rightValue": "Hikam",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1760,
+          -224
+        ],
+        "id": "b29dbb6c-6709-4e74-b4b7-633301dbdf0e",
+        "name": "Adakah Kitab Hikam"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "bc2c4424-89bb-4423-91c8-1fafa7f5186f",
+                "leftValue": "={{ $('Cari Pengajian').item.json.active}}",
+                "rightValue": "Ya",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1760,
+          -352
+        ],
+        "id": "43ff36b4-2dac-4fdb-b629-38ce9f67a28d",
+        "name": "Adakah Aktif"
       }
     ],
     "connections": {
@@ -5618,7 +5874,7 @@
         "main": [
           [
             {
-              "node": "Aktifkan Semula",
+              "node": "Adakah Kitab Hikam",
               "type": "main",
               "index": 0
             }
@@ -6013,15 +6269,62 @@
           [],
           []
         ]
+      },
+      "Kemaskini Pengajian Ustaz Aminudin": {
+        "main": [
+          [
+            {
+              "node": "Aktifkan Semula",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Adakah Kitab Hikam": {
+        "main": [
+          [
+            {
+              "node": "Adakah Aktif",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Aktifkan Semula",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Adakah Aktif": {
+        "main": [
+          [
+            {
+              "node": "Aktifkan Semula",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Kemaskini Pengajian Ustaz Aminudin",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "nodeGroups": [],
     "authors": "Mohamad Shukri Senawi",
-    "name": "Version 1ae93f09",
+    "name": "Version 07200210",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "1ae93f09-7530-4ca5-bbaf-196de13b416e",
+  "activeVersionId": "07200210-ea6c-4a59-92d7-f16f0a6229fb",
   "connections": {
     "AI Chat": {
       "main": [
@@ -7055,7 +7358,7 @@
       "main": [
         [
           {
-            "node": "If9",
+            "node": "Adakah Kitab Hikam",
             "type": "main",
             "index": 0
           }
@@ -7451,11 +7754,22 @@
         []
       ]
     },
-    "If9": {
+    "Kemaskini Pengajian Ustaz Aminudin": {
       "main": [
         [
           {
-            "node": "If10",
+            "node": "Aktifkan Semula",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adakah Kitab Hikam": {
+      "main": [
+        [
+          {
+            "node": "Adakah Aktif",
             "type": "main",
             "index": 0
           }
@@ -7469,7 +7783,7 @@
         ]
       ]
     },
-    "If10": {
+    "Adakah Aktif": {
       "main": [
         [
           {
@@ -7481,17 +7795,6 @@
         [
           {
             "node": "Kemaskini Pengajian Ustaz Aminudin",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Kemaskini Pengajian Ustaz Aminudin": {
-      "main": [
-        [
-          {
-            "node": "Aktifkan Semula",
             "type": "main",
             "index": 0
           }
@@ -12088,74 +12391,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
-          "conditions": [
-            {
-              "id": "ffeed164-f393-4473-9201-2ced7dd21cfc",
-              "leftValue": "={{ $('Cari Pengajian').item.json.kitab }}",
-              "rightValue": "=Hikam",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.3,
-      "position": [
-        1760,
-        -224
-      ],
-      "id": "b29dbb6c-6709-4e74-b4b7-633301dbdf0e",
-      "name": "If9"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
-          "conditions": [
-            {
-              "id": "bc2c4424-89bb-4423-91c8-1fafa7f5186f",
-              "leftValue": "",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.3,
-      "position": [
-        1760,
-        -352
-      ],
-      "id": "43ff36b4-2dac-4fdb-b629-38ce9f67a28d",
-      "name": "If10"
-    },
-    {
-      "parameters": {
         "operation": "update",
         "dataTableId": {
           "__rl": true,
@@ -12167,15 +12402,23 @@
         "filters": {
           "conditions": [
             {
-              "keyValue": "={{ $('Check Notification').item.json.id_penajian }}"
+              "keyName": "pengajar",
+              "keyValue": "Ustaz Aminudin Bin Abdul Rahman"
+            },
+            {
+              "keyName": "active",
+              "keyValue": "Tidak"
+            },
+            {
+              "keyName": "tarikh_bulan_ini",
+              "keyValue": "={{ $('Cari Pengajian').item.json.tarikh_bulan_ini }}"
             }
           ]
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "active": "={{ $('AI Agent1').item.json.output.active }}",
-            "tarikh_peringatan": "-"
+            "active": "Ya"
           },
           "matchingColumns": [],
           "schema": [
@@ -12267,7 +12510,7 @@
               "display": true,
               "type": "string",
               "readOnly": false,
-              "removed": false
+              "removed": true
             },
             {
               "id": "no_hp_peringatan",
@@ -12333,6 +12576,74 @@
       ],
       "id": "0bcbde57-6f13-4a6b-9331-27c3c7624a9f",
       "name": "Kemaskini Pengajian Ustaz Aminudin"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ffeed164-f393-4473-9201-2ced7dd21cfc",
+              "leftValue": "={{ $('Cari Pengajian').item.json.kitab }}",
+              "rightValue": "Hikam",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1760,
+        -224
+      ],
+      "id": "b29dbb6c-6709-4e74-b4b7-633301dbdf0e",
+      "name": "Adakah Kitab Hikam"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bc2c4424-89bb-4423-91c8-1fafa7f5186f",
+              "leftValue": "={{ $('Cari Pengajian').item.json.active}}",
+              "rightValue": "Ya",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1760,
+        -352
+      ],
+      "id": "43ff36b4-2dac-4fdb-b629-38ce9f67a28d",
+      "name": "Adakah Aktif"
     }
   ],
   "origin": "n8n",
@@ -12368,6 +12679,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-10-04T11:00:16.762Z",
-  "versionId": "99debfc9-4b9f-4e18-8fd8-764c789e2b85"
+  "updatedAt": "2026-10-04T11:08:02.735Z",
+  "versionId": "07200210-ea6c-4a59-92d7-f16f0a6229fb"
 }
