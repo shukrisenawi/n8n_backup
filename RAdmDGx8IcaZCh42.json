@@ -1154,11 +1154,11 @@
   "settings": null,
   "shared": [
     {
-      "updatedAt": "2025-09-21T04:43:04.116Z",
-      "createdAt": "2025-09-21T04:43:04.116Z",
       "role": "workflow:owner",
       "workflowId": "RAdmDGx8IcaZCh42",
-      "projectId": "xIwyQZxho25VDDOK"
+      "projectId": "xIwyQZxho25VDDOK",
+      "createdAt": "2025-09-21T04:43:04.116Z",
+      "updatedAt": "2025-09-21T04:43:04.116Z"
     }
   ],
   "staticData": null,
