@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-24T10:47:24.000Z",
-    "createdAt": "2026-04-24T10:47:18.977Z",
     "versionId": "c7a43100-a77b-4b86-9cb9-a670fed5adbd",
     "workflowId": "uWZXuSyCnZAN45zu",
     "nodes": [
@@ -476,7 +474,9 @@
     "authors": "Mohamad Shukri Senawi",
     "name": "Version c7a43100",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-04-24T10:47:18.977Z",
+    "updatedAt": "2026-04-24T10:47:24.000Z"
   },
   "activeVersionId": "c7a43100-a77b-4b86-9cb9-a670fed5adbd",
   "connections": {
@@ -970,11 +970,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-03-24T03:32:40.735Z",
-      "createdAt": "2026-03-24T03:32:40.735Z",
       "role": "workflow:owner",
       "workflowId": "uWZXuSyCnZAN45zu",
-      "projectId": "xIwyQZxho25VDDOK"
+      "projectId": "xIwyQZxho25VDDOK",
+      "createdAt": "2026-03-24T03:32:40.735Z",
+      "updatedAt": "2026-03-24T03:32:40.735Z"
     }
   ],
   "staticData": null,
